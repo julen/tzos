@@ -8,4 +8,7 @@ def create_app():
     from tzos.views.frontend import frontend
     app.register_module(frontend)
 
+    from tzos.views.auth import auth
+    app.register_module(auth)
+
     return app

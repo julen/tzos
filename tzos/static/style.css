@@ -29,6 +29,14 @@ header {
     position: relative;
 }
 
+nav ul li {
+    padding: 5px 10px;
+}
+
+section#searchbox {
+    margin-top: 20px;
+}
+
 section#body {
     margin: 0 auto;
     padding: 0 15px;

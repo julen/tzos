@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header class="content">
+            <a href="{{ url_for('frontend.index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" /></a>
+            <nav class="in">
+                <ul class="in flRight">
+                    <li>Log in</li>
+                    <li>Register</li>
+                </ul>
+            </nav>
+            <section id="searchbox" class="flRight clRight">
+                <input type="text" id="search" />
+            </section>
+        </header>
+        <section id="body" class="content">{% block body %}{% endblock %}</section>
+        <footer>
+            <section id="languages" class="content">
+                <ul class="in flLeft">
+                    <li>English</li>
+                    <li>Euskara</li>
+                    <li>Castellano</li>
+                </ul>
+            </section>
+        </footer>
+    </body>
+</html>

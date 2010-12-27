@@ -1,0 +1,92 @@
+/* General styling */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #f8f8f8;
+    color: #000;
+}
+
+body {
+    background-color: #fff;
+    color: #000;
+    font: 14px helvetica, arial, freesans, clean, sans-serif;
+}
+
+img {
+    border: 0 none;
+}
+
+/* Main block level elements */
+
+header {
+    height: 90px;
+    margin: 0 auto;
+    padding: 20px 0 0;
+    position: relative;
+}
+
+section#body {
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #f1f1f1;
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 20px 0 50px;
+    position: relative;
+}
+
+section#languages {
+    background: url('img/langs.png') no-repeat scroll 0 0 transparent;
+    padding: 0 0 0 16px;
+    overflow: auto;
+}
+
+/* General classes */
+
+.content {
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+    width: 900px;
+}
+
+.in, ul.in li {
+    display: inline;
+}
+
+/* Clears and floats */
+
+.flLeft {
+    float: left;
+}
+
+.flRight {
+    float: right;
+}
+
+.clBoth {
+    clear: both;
+}
+
+.clLeft {
+    clear: left;
+}
+
+.clRight {
+    clear: right;
+}
+
+/* HTML5 compatibility */
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display:block;
+}

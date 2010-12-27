@@ -21,6 +21,15 @@
                 <input type="text" id="search" />
             </section>
         </header>
+        <section id="glossary">
+            <div class="content menu">
+                <ul class="in">
+                    {% for letter in ['all', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
+                    <li><a href="#">{{ letter }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
         <section id="body" class="content">{% block body %}{% endblock %}</section>
         <footer>
             <section id="languages" class="content">

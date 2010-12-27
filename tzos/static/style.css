@@ -16,6 +16,22 @@ body {
     font: 14px helvetica, arial, freesans, clean, sans-serif;
 }
 
+a:link, a:active, a:hover {
+    color: #f70;
+}
+
+a:visited {
+    color: #f90;
+}
+
+a:link, a:active, a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 img {
     border: 0 none;
 }
@@ -23,7 +39,7 @@ img {
 /* Main block level elements */
 
 header {
-    height: 90px;
+    height: 70px;
     margin: 0 auto;
     padding: 20px 0 0;
     position: relative;
@@ -35,6 +51,12 @@ nav ul li {
 
 section#searchbox {
     margin-top: 20px;
+}
+
+section#glossary {
+    background-color: #333;
+    border-top: 2px solid #f90;
+    height: 30px;
 }
 
 section#body {
@@ -92,9 +114,33 @@ section#languages {
     clear: right;
 }
 
+/* Glossary menu */
+
+.menu ul li {
+    background-color: #333;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu a {
+    border-right: 1px solid #4d4d4d;
+    color: #fff;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+}
+
+.menu a:hover {
+    background-color: #444;
+    text-decoration: none;
+}
+
 /* HTML5 compatibility */
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-    display:block;
+    display: block;
 }

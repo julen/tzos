@@ -13,8 +13,8 @@
             <a href="{{ url_for('frontend.index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" /></a>
             <nav class="in">
                 <ul class="in flRight">
-                    <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">{{ _('Log in') }}</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">{{ _('Register') }}</a></li>
                 </ul>
             </nav>
             <section id="searchbox" class="flRight clRight">

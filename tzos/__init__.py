@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+    __init__.py
+    ~~~~~~~~~~~
 
-from flask import Flask
-from flaskext.babel import Babel
+    :copyright: (c) 2011 Julen Ruiz Aizpuru.
+    :license: BSD, see LICENSE for more details.
+"""
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_pyfile('settings.cfg')
-    app.babel = Babel(app)
-
-    from tzos.views.frontend import frontend
-    app.register_module(frontend)
-
-    from tzos.views.auth import auth
-    app.register_module(auth)
-
-    return app
+from tzos.application import create_app

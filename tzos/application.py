@@ -21,8 +21,7 @@ MODULES = (
     (views.auth, ''),
 )
 
-def create_app(config='settings.cfg'):
-
+def create_app(config):
     app = Flask(__name__)
 
     configure_app(app, config)
@@ -34,17 +33,14 @@ def create_app(config='settings.cfg'):
 
 
 def configure_app(app, config):
-
     app.config.from_pyfile(config)
     app.config.from_envvar('TZOS_CONFIG', silent=True)
 
 def configure_modules(app):
-
     for module, url_prefix in MODULES:
         app.register_module(module, url_prefix=url_prefix)
 
 def configure_i18n(app):
-
     babel = Babel(app)
 
     @babel.localeselector

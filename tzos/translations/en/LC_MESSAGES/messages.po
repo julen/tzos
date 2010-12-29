@@ -1,0 +1,44 @@
+# English translations for PROJECT.
+# Copyright (C) 2010 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2010-12-28 12:32+0100\n"
+"PO-Revision-Date: 2010-12-29 11:57+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.5\n"
+
+#: templates/index.html:2
+msgid "Online System for Terminology Service"
+msgstr ""
+
+#: templates/index.html:3
+msgid "Hello world"
+msgstr ""
+
+#: templates/layout.html:16 templates/auth/login.html:2
+msgid "Log in"
+msgstr ""
+
+#: templates/layout.html:17 templates/auth/register.html:2
+msgid "Register"
+msgstr ""
+
+#: templates/auth/login.html:3
+msgid "Enter your username and password"
+msgstr ""
+
+#: templates/auth/register.html:3
+msgid "Please fill in the required information to register an account."
+msgstr ""
+

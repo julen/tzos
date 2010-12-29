@@ -46,6 +46,7 @@ def configure_modules(app):
 
 
 def configure_before_handlers(app):
+
     @app.before_request
     def set_lang():
         if request.endpoint != 'static':

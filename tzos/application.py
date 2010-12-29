@@ -30,6 +30,7 @@ def create_app(config):
     configure_before_handlers(app)
     configure_modules(app)
     configure_jinja(app)
+    configure_context_processors(app)
     configure_i18n(app)
 
     return app
@@ -84,6 +85,20 @@ def configure_before_handlers(app):
 
 def configure_jinja(app):
     app.jinja_env.globals.update(url_for=url_for)
+
+
+def configure_context_processors(app):
+
+    @app.context_processor
+    def get_langs():
+        # TODO: cache items not to hit the disk each time we run this
+        langs = []
+        langlist = app.babel_instance.list_translations()
+
+        for l in langlist:
+            langs.append((l.language, l.display_name))
+
+        return dict(langs=langs)
 
 
 def configure_i18n(app):

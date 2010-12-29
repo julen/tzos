@@ -34,9 +34,9 @@
         <footer>
             <section id="languages" class="content">
                 <ul class="in flLeft">
-                    <li>English</li>
-                    <li>Euskara</li>
-                    <li>Castellano</li>
+                    {% for lang_code, lang_name in langs %}
+                    <li><a href="{{ url_for('frontend.index', lang=lang_code) }}">{{ lang_name }}</a></li>
+                    {% endfor %}
                 </ul>
             </section>
         </footer>

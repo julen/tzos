@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask import g, Flask, redirect, request
-from flask.helpers import get_flashed_messages, _tojson_filter
 
 from flaskext.babel import Babel
 
@@ -23,25 +22,14 @@ MODULES = (
     (views.auth, '/<lang>'),
 )
 
-class TZOS(Flask):
-    """Subclass application class."""
-
-    def init_jinja_globals(self):
-        """Overriden function to support custom url_for methods in templates."""
-        self.jinja_env.globals.update(
-            url_for=url_for,
-            get_flashed_messages=get_flashed_messages
-        )
-        self.jinja_env.filters['tojson'] = _tojson_filter
-
-
 def create_app(config):
-    app = TZOS(__name__)
+    app = Flask(__name__)
 
     configure_app(app, config)
 
     configure_before_handlers(app)
     configure_modules(app)
+    configure_jinja(app)
     configure_i18n(app)
 
     return app
@@ -91,6 +79,10 @@ def configure_before_handlers(app):
 
             if goto:
                 return redirect(url_for('frontend.index'))
+
+
+def configure_jinja(app):
+    app.jinja_env.globals.update(url_for=url_for)
 
 
 def configure_i18n(app):

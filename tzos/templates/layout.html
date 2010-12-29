@@ -25,7 +25,7 @@
             <div class="content menu">
                 <ul class="in">
                     {% for letter in ['all', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
-                    <li><a href="#">{{ letter }}</a></li>
+                    <li{% if loop.first %} class="first"{% endif %}><a href="#">{{ letter }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

@@ -16,7 +16,7 @@ body {
     font: 14px helvetica, arial, freesans, clean, sans-serif;
 }
 
-a:link, a:active, a:hover {
+a {
     color: #f70;
 }
 
@@ -131,6 +131,10 @@ section#languages {
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
+}
+
+.menu .first a {
+    border-left: 1px solid #4d4d4d;
 }
 
 .menu a:hover {

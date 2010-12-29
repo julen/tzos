@@ -145,8 +145,10 @@ ul.in li {
     color: #fff;
     display: block;
     height: 30px;
+    font-weight: bold;
     line-height: 30px;
     padding: 0 10px;
+    text-transform: uppercase;
 }
 
 .menu .first a {

@@ -36,6 +36,10 @@ img {
     border: 0 none;
 }
 
+li {
+    list-style: none;
+}
+
 /* Main block level elements */
 
 header {
@@ -73,9 +77,9 @@ footer {
     position: relative;
 }
 
-section#languages {
+section#locales {
     background: url('img/langs.png') no-repeat scroll 0 0 transparent;
-    padding: 0 0 0 16px;
+    padding: 0 0 0 20px;
     overflow: auto;
 }
 
@@ -88,8 +92,20 @@ section#languages {
     width: 900px;
 }
 
+span.current {
+    font-weight: bold;
+}
+
 .in, ul.in li {
     display: inline;
+}
+
+ul.in li {
+    margin-right: 10px;
+}
+
+.aDark a {
+    color: #554;
 }
 
 /* Clears and floats */

@@ -14,7 +14,7 @@ def url_for(endpoint, **values):
     """Overriden method to always add the language information."""
 
     # If no lang is passed, add it between the values
-    if endpoint != 'static':
+    if endpoint != '.static':
         if not 'lang' in values:
             values['lang'] = g.lang
 

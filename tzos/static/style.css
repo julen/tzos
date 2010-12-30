@@ -40,6 +40,25 @@ li {
     list-style: none;
 }
 
+/* Headings */
+
+h1, h2, h3, .h1, .h2, .h3 {
+    font-weight: bold;
+}
+
+h1, .h1 {
+    font-size: 26px;
+    margin-right: 10px;
+}
+
+h2, .h2 {
+    font-size: 23px;
+}
+
+h3, .h3 {
+    font-size: 20px;
+}
+
 /* Main block level elements */
 
 header {
@@ -128,6 +147,20 @@ ul.in li {
 
 .clRight {
     clear: right;
+}
+
+/* Flashes */
+
+.flash {
+    background-color: #ffb;
+    color: #554;
+    margin: 0 -60px 4px;
+    padding: 15px 60px;
+}
+
+.flashError {
+    background-color: #c00;
+    color: #fff;
 }
 
 /* Glossary menu */

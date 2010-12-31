@@ -45,8 +45,10 @@
         {% endwith %}
         {% block intro %}
             <div class="intro">
+            {% block intro_content %}
                 <h1 class="in">{% block intro_title %}{% endblock %}</h1>
                 <p class="in">{% block intro_text %}{% endblock %}</p>
+            {% endblock %}
             </div>
         {% endblock %}
         {% block content %}{% endblock %}

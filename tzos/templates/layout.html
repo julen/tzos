@@ -43,6 +43,12 @@
             {% endfor %}
           {% endif %}
         {% endwith %}
+        {% block intro %}
+            <div class="intro">
+                <h1 class="in">{% block intro_title %}{% endblock %}</h1>
+                <p class="in">{% block intro_text %}{% endblock %}</p>
+            </div>
+        {% endblock %}
         {% block content %}{% endblock %}
         </section>
         <footer>

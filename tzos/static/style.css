@@ -209,13 +209,12 @@ input, select {
 /* BASSE customizations */
 
 header a:link, header a:active, header a:visited,
-section#glossary a:link, section#glossary a:active, section#glossary a:visited,
+.menu a:link, .menu a:active, .menu a:visited,
 footer a:link, footer a:active, footer a:visited {
     text-decoration: none;
 }
 
 header a:hover,
-section#glossary a:hover,
 footer a:hover {
     text-decoration: underline;
 }

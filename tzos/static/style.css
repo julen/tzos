@@ -278,11 +278,8 @@ span.current {
     font-weight: bold;
 }
 
-.in, ul.in li {
-    display: inline;
-}
-
 ul.in li {
+    display: inline;
     margin-right: 10px;
 }
 

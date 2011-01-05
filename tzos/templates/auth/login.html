@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from "macros/_forms.html" import render_field %}
 {% block title %}{{ super() }}{{ _('Log in') }}{% endblock %}
 {% block intro_title %}{{ _('Log in') }}{% endblock %}
 {% block intro_text %}{{ _('If you already have an account, you can log in by providing your username and password.') }}{% endblock %}
@@ -6,22 +7,12 @@
 <form method="POST" action="." class="f1">
     {{ form.hidden_tag() }}
     <ul>
-        <li>
-            {{ form.login.label }}
-            {{ form.login(size=15,class="input") }}
-        </li>
-
-        <li>
-            {{ form.password.label }}
-            {{ form.password(size=15,class="input") }}
-        </li>
-        <li>
-            {{ form.remember(class="in input") }}
-            {{ form.remember.label(class="in") }}
-        </li>
-        <li>
-            {{ form.submit(class="button") }}
-        </li>
+        {{ render_field(form.login, class="input") }}
+        {{ render_field(form.password, class="input") }}
+        {{ render_field(form.remember, class="in input") }}
     </ul>
+    <p>
+        {{ form.submit(class="button") }}
+    </p>
 </form>
 {% endblock %}

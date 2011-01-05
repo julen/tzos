@@ -178,7 +178,6 @@ label {
 }
 
 input, textarea {
-    /*background: url("http://b.iuumg.com/css/images/sprite.png") repeat-x scroll left -318px #FFFFFF;*/
     background-color: #fff;
     border-color: #848484 #c1c1c1 #e1e1e1;
     border-style: solid;
@@ -243,8 +242,6 @@ section#searchbox {
 section#glossary {
     background-color: #333;
     border-top: 2px solid #f4ad32;
-    /*border-top: 2px solid #f90;*/
-    /*border-top: 2px solid #4183C4;*/
     height: 30px;
 }
 

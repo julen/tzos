@@ -12,12 +12,12 @@
         <header class="content">
             <a href="{{ url_for('frontend.index') }}"><img src="{{ url_for('.static', filename='img/logo.png') }}" /></a>
             <nav class="in">
-                <ul class="in flRight">
+                <ul class="in fr">
                     <li><a href="{{ url_for('auth.login') }}">{{ _('Log in') }}</a></li>
                     <li><a href="{{ url_for('auth.register') }}">{{ _('Register') }}</a></li>
                 </ul>
             </nav>
-            <section id="searchbox" class="flRight clRight">
+            <section id="searchbox" class="fr clRight">
                 <input type="text" id="search" />
             </section>
         </header>
@@ -47,7 +47,7 @@
             <div class="intro">
             {% block intro_content %}
                 <h1 class="in">{% block intro_title %}{% endblock %}</h1>
-                <p class="in">{% block intro_text %}{% endblock %}</p>
+                <p class="p2">{% block intro_text %}{% endblock %}</p>
             {% endblock %}
             </div>
         {% endblock %}
@@ -55,7 +55,7 @@
         </section>
         <footer>
             <section id="locales" class="content">
-                <ul class="in flLeft aDark">
+                <ul class="in fl aDark">
                     {% for lang_code, lang_name in langs %}
                     <li>{% if lang_code == g.lang %}<span class="current">{{ lang_name }}</span>{% else %}<a href="{{ url_for(request.endpoint, lang=lang_code) }}">{{ lang_name }}</a>{% endif %}</li>
                     {% endfor %}

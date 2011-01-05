@@ -1,3 +1,27 @@
 {% extends "layout.html" %}
 {% block title %}{{ super() }}{{ _('Log in') }}{% endblock %}
-{% block content %}{{ _('Enter your username and password') }}{% endblock %}
+{% block intro_title %}{{ _('Log in') }}{% endblock %}
+{% block intro_text %}{{ _('If you already have an account, you can log in by providing your username and password.') }}{% endblock %}
+{% block content %}
+<form method="POST" action="." class="f1">
+    {{ form.hidden_tag() }}
+    <ul>
+        <li>
+            {{ form.login.label }}
+            {{ form.login(size=15,class="input") }}
+        </li>
+
+        <li>
+            {{ form.password.label }}
+            {{ form.password(size=15,class="input") }}
+        </li>
+        <li>
+            {{ form.remember(class="in input") }}
+            {{ form.remember.label(class="in") }}
+        </li>
+        <li>
+            {{ form.submit(class="button") }}
+        </li>
+    </ul>
+</form>
+{% endblock %}

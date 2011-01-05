@@ -159,13 +159,54 @@ body {
     font: 14px helvetica, arial, freesans, clean, sans-serif;
 }
 
-img {
+fieldset, img {
     border: 0 none;
 }
 
 li {
     list-style: none;
 }
+
+/* Forms */
+
+.form label {
+    font-size: 0.9em;
+}
+
+label {
+    display: block;
+}
+
+input, textarea {
+    /*background: url("http://b.iuumg.com/css/images/sprite.png") repeat-x scroll left -318px #FFFFFF;*/
+    background-color: #fff;
+    border-color: #848484 #c1c1c1 #e1e1e1;
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.15em;
+}
+
+input, select {
+    display: block;
+    margin: 0.25em 0 0.75em;
+}
+
+.f1 {
+    margin: 0 0 1em;
+}
+
+.f1 .input {
+    font-size: 1.3em;
+    padding: 0.2em;
+    width: 65%;
+}
+
+.f1 .button {
+    font-size: 1.3em;
+    padding: 0.4em 1.1em;
+}
+
+/* BASSE customizations */
 
 header a:link, header a:active, header a:visited,
 section#glossary a:link, section#glossary a:active, section#glossary a:visited,

@@ -8,7 +8,9 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, render_template
+from flask import flash, Module, render_template
+
+from tzos.forms import LoginForm
 
 auth = Module(__name__)
 
@@ -16,6 +18,15 @@ auth = Module(__name__)
 def register():
     return render_template('auth/register.html')
 
-@auth.route('/login/')
+
+@auth.route('/login/', methods=('GET', 'POST'))
 def login():
-    return render_template('auth/login.html')
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        flash('Data is OK', 'success')
+    else:
+        flash('Data is NOT OK', 'error')
+
+    return render_template('auth/login.html', form=form)

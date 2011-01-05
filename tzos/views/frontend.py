@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     tzos.views.frontend
-    ~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Fronted views
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     manage.py
-    ~~~~~~~~~~~~~~
+    ~~~~~~~~~
 
     General management script
 

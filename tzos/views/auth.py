@@ -10,13 +10,20 @@
 """
 from flask import flash, Module, render_template
 
-from tzos.forms import LoginForm
+from tzos.forms import LoginForm, SignupForm
 
 auth = Module(__name__)
 
 @auth.route('/register/')
 def register():
-    return render_template('auth/register.html')
+    form = SignupForm()
+
+    if form.validate_on_submit():
+        flash('Data is OK', 'success')
+    else:
+        flash('Data is NOT OK', 'error')
+
+    return render_template('auth/register.html', form=form)
 
 
 @auth.route('/login/', methods=('GET', 'POST'))

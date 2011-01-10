@@ -1,3 +1,20 @@
 {% extends "layout.html" %}
+{% from "macros/_forms.html" import render_field %}
 {% block title %}{{ super() }}{{ _('Register') }}{% endblock %}
-{% block content %}{{ _('Please fill in the required information to register an account.') }}{% endblock %}
+{% block intro_title %}{{ _('Register') }}{% endblock %}
+{% block intro_text %}{{ _('Please fill in the required information to register an account.') }}{% endblock %}
+{% block content %}
+<form method="POST" action="." class="f1">
+    {{ form.hidden_tag() }}
+    <ul>
+        {{ render_field(form.username, class="input") }}
+        {{ render_field(form.password, class="input") }}
+        {{ render_field(form.password_repeat, class="input") }}
+        {{ render_field(form.email, class="input") }}
+        {{ render_field(form.recaptcha, class="input") }}
+    </ul>
+    <p>
+        {{ form.submit(class="button") }}
+    </p>
+</form>
+{% endblock %}

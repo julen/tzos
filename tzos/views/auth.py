@@ -40,6 +40,12 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        flash('Data is OK', 'success')
+        user = User.query.filter(db.or_(User.username==form.login.data,
+                                        User.email==form.login.data)).first()
+
+        if user is not None and user.check_password(form.password.data):
+            flash(_("Welcome, %(name)s", name=user.username), "success")
+        else:
+            flash('Wrong username or password', 'error')
 
     return render_template('auth/login.html', form=form)

@@ -15,8 +15,8 @@
     {{ field.label(class="in") }}
 {% else %}
     {{ field.label }}
-    {{ field(**kwargs)|safe }}
     {{ render_errors(field) }}
+    {{ field(**kwargs)|safe }}
 {% endif %}
 </li>
 {% endmacro %}

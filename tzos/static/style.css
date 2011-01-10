@@ -323,6 +323,18 @@ ul.in li {
     padding: 20px;
 }
 
+/* Form errors */
+
+ul.errors {
+    color: #c00;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+ul.errors li {
+    list-style: square inside;
+}
+
 /* Glossary menu */
 
 .menu ul li {

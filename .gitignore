@@ -1,3 +1,4 @@
+*.db
 *.mo
-*.swp
 *.pyc
+*.swp

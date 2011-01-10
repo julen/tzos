@@ -30,8 +30,6 @@ def register():
         db.session.commit()
 
         flash(_("Welcome, %(name)s", name=user.username), "success")
-    else:
-        flash('Data is NOT OK', 'error')
 
     return render_template('auth/register.html', form=form)
 
@@ -43,7 +41,5 @@ def login():
 
     if form.validate_on_submit():
         flash('Data is OK', 'success')
-    else:
-        flash('Data is NOT OK', 'error')
 
     return render_template('auth/login.html', form=form)

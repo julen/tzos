@@ -13,6 +13,7 @@ from flask import g, Flask, redirect, request
 from flaskext.babel import Babel
 
 from tzos import views
+from tzos.extensions import db
 from tzos.helpers import url_for
 
 __all__ = ["create_app"]
@@ -27,11 +28,11 @@ def create_app(config):
 
     configure_app(app, config)
 
+    configure_extensions(app)
     configure_before_handlers(app)
     configure_modules(app)
     configure_jinja(app)
     configure_context_processors(app)
-    configure_i18n(app)
 
     return app
 
@@ -44,6 +45,12 @@ def configure_app(app, config):
 def configure_modules(app):
     for module, url_prefix in MODULES:
         app.register_module(module, url_prefix=url_prefix)
+
+
+def configure_extensions(app):
+    db.init_app(app)
+
+    configure_i18n(app)
 
 
 def configure_before_handlers(app):

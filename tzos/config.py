@@ -3,6 +3,10 @@ DEBUG = True
 
 SECRET_KEY = 'f00barbaZ'
 
+# SQLAlchemy database settings
+SQLALCHEMY_DATABASE_URI = 'sqlite:////home/julen/dev/tzos/tzos.db'
+SQLALCHEMY_ECHO = DEBUG
+
 # Babel configuration settings
 BABEL_DEFAULT_LOCALE = 'en'
 BABEL_DEFAULT_TIMEZONE = 'UTC+1'

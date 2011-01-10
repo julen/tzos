@@ -10,16 +10,26 @@
 """
 from flask import flash, Module, render_template
 
+from flaskext.babel import gettext as _
+
+from tzos.extensions import db
 from tzos.forms import LoginForm, SignupForm
+from tzos.models import User
 
 auth = Module(__name__)
 
-@auth.route('/register/')
+@auth.route('/register/', methods=('GET', 'POST'))
 def register():
     form = SignupForm()
 
     if form.validate_on_submit():
-        flash('Data is OK', 'success')
+        user = User()
+        form.populate_obj(user)
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash(_("Welcome, %(name)s", name=user.username), "success")
     else:
         flash('Data is NOT OK', 'error')
 

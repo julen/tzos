@@ -33,7 +33,7 @@ class User(db.Model):
     def _set_password(self, password):
         self._password = generate_password_hash(password)
 
-    password = db.synonym("_password", 
+    password = db.synonym("_password",
                           descriptor=property(_get_password,
                                               _set_password))
 

@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, render_template, session
+from flask import Module, flash, redirect, render_template, session, url_for
 
 from flaskext.babel import gettext as _
 
@@ -48,6 +48,13 @@ def login():
             session.permanent = form.remember.data
 
             flash(_("Welcome, %(name)s", name=user.username), "success")
+
+            next_url = form.next.data
+
+            if not next_url or next_url == request.path:
+                next_url = url_for('frontend.index')
+
+            return redirect(next_url)
         else:
             flash('Wrong username or password', 'error')
 

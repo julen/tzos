@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import flash, Module, render_template
+from flask import Module, flash, render_template, session
 
 from flaskext.babel import gettext as _
 
@@ -40,10 +40,13 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter(db.or_(User.username==form.login.data,
-                                        User.email==form.login.data)).first()
+        user, authenticated = \
+            User.query.authenticate(form.login.data,
+                                    form.password.data)
 
-        if user is not None and user.check_password(form.password.data):
+        if user and authenticated:
+            session.permanent = form.remember.data
+
             flash(_("Welcome, %(name)s", name=user.username), "success")
         else:
             flash('Wrong username or password', 'error')

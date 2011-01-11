@@ -8,12 +8,29 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from flaskext.sqlalchemy import BaseQuery
+
 from tzos.extensions import db
 
 from werkzeug import generate_password_hash, check_password_hash
 
+class UserQuery(BaseQuery):
+
+    def authenticate(self, login, password):
+        user = self.filter(db.or_(User.username==login,
+                                  User.email==login)).first()
+
+        if user:
+            authenticated = user.check_password(password)
+        else:
+            authenticated = False
+
+        return user, authenticated
+
+
 class User(db.Model):
     __tablename__ = 'users'
+    query_class = UserQuery
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode(60), unique=True, nullable=False)

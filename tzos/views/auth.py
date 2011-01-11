@@ -9,13 +9,14 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask import Module, flash, current_app, redirect, render_template,\
-                  session, url_for
+                  session
 
 from flaskext.babel import gettext as _
 from flaskext.principal import AnonymousIdentity, Identity, identity_changed
 
 from tzos.extensions import db
 from tzos.forms import LoginForm, SignupForm
+from tzos.helpers import url_for
 from tzos.models import User
 
 auth = Module(__name__)

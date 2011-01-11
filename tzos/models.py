@@ -8,13 +8,27 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from werkzeug import cached_property, check_password_hash, generate_password_hash
+
 from flaskext.sqlalchemy import BaseQuery
+from flaskext.principal import RoleNeed, UserNeed
 
 from tzos.extensions import db
 
-from werkzeug import generate_password_hash, check_password_hash
-
 class UserQuery(BaseQuery):
+
+    def from_identity(self, identity):
+        try:
+            user = self.get(int(identity.name))
+        except ValueError:
+            user = None
+
+        if user:
+            identity.provides.update(user.provides)
+
+        identity.user = user
+
+        return user
 
     def authenticate(self, login, password):
         user = self.filter(db.or_(User.username==login,
@@ -32,9 +46,15 @@ class User(db.Model):
     __tablename__ = 'users'
     query_class = UserQuery
 
+    # User roles
+    MEMBER = 100
+    MODERATOR = 200
+    ADMIN = 300
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode(60), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
+    role = db.Column(db.Integer, default=MEMBER)
 
     _password = db.Column(db.String(80))
 
@@ -58,3 +78,24 @@ class User(db.Model):
         if self.password is None:
             return False
         return check_password_hash(self.password, password)
+
+    @cached_property
+    def provides(self):
+        needs = [RoleNeed('authenticated'),
+                 UserNeed(self.id)]
+
+        if self.is_moderator:
+            needs.append(RoleNeed('moderator'))
+
+        if self.is_admin:
+            needs.append(RoleNeed('admin'))
+
+        return needs
+
+    @property
+    def is_moderator(self):
+        return self.role >= self.MODERATOR
+
+    @property
+    def is_admin(self):
+        return self.role >= self.ADMIN

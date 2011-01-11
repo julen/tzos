@@ -11,10 +11,12 @@
 from flask import g, Flask, redirect, request
 
 from flaskext.babel import Babel
+from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
 from tzos.extensions import db
 from tzos.helpers import url_for
+from tzos.models import User
 
 __all__ = ["create_app"]
 
@@ -51,9 +53,14 @@ def configure_extensions(app):
     db.init_app(app)
 
     configure_i18n(app)
+    configure_identity(app)
 
 
 def configure_before_handlers(app):
+
+    @app.before_request
+    def authenticate():
+        g.user = getattr(g.identity, 'user', None)
 
     @app.before_request
     def set_lang():
@@ -106,6 +113,14 @@ def configure_context_processors(app):
             langs.append((l.language, l.display_name))
 
         return dict(langs=langs)
+
+
+def configure_identity(app):
+    Principal(app)
+
+    @identity_loaded.connect_via(app)
+    def on_identity_loaded(sender, identity):
+        g.user = User.query.from_identity(identity)
 
 
 def configure_i18n(app):

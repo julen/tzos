@@ -10,3 +10,4 @@
 """
 from .frontend import frontend
 from .auth import auth
+from .terms import terms

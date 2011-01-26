@@ -14,7 +14,7 @@ from flaskext.babel import Babel
 from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
-from tzos.extensions import db
+from tzos.extensions import db, dbxml
 from tzos.helpers import url_for
 from tzos.models import User
 
@@ -23,6 +23,7 @@ __all__ = ["create_app"]
 MODULES = (
     (views.frontend, ''),
     (views.auth, '/<lang>'),
+    (views.terms, '/<lang>/terms'),
 )
 
 def create_app(config):
@@ -50,8 +51,7 @@ def configure_modules(app):
 
 
 def configure_extensions(app):
-    db.init_app(app)
-
+    configure_databases(app)
     configure_i18n(app)
     configure_identity(app)
 
@@ -61,6 +61,15 @@ def configure_before_handlers(app):
     @app.before_request
     def authenticate():
         g.user = getattr(g.identity, 'user', None)
+
+    @app.before_request
+    def set_dict():
+        dict = request.args.get('dict', None)
+
+        if dict:
+            g.dict = str(dict)
+        elif not hasattr(g, 'dict'):
+            g.dict = app.config.get('TZOS_DEFAULT_DICT', 'eu')
 
     @app.before_request
     def set_lang():
@@ -113,6 +122,11 @@ def configure_context_processors(app):
             langs.append((l.language, l.display_name))
 
         return dict(langs=langs)
+
+
+def configure_databases(app):
+    db.init_app(app)
+    dbxml.init_app(app)
 
 
 def configure_identity(app):

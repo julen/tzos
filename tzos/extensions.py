@@ -9,8 +9,10 @@
     :license: BSD, see LICENSE for more details.
 """
 
+from flaskext.dbxml import DBXML
 from flaskext.sqlalchemy import SQLAlchemy
 
-__all__ = ['db']
+__all__ = ['db', 'dbxml']
 
 db = SQLAlchemy()
+dbxml = DBXML()

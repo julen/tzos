@@ -3,9 +3,16 @@ DEBUG = True
 
 SECRET_KEY = 'f00barbaZ'
 
+# TZOS stuff
+TZOS_DEFAULT_DICT = 'eu'
+
 # SQLAlchemy database settings
 SQLALCHEMY_DATABASE_URI = 'sqlite:////home/julen/dev/tzos/tzos.db'
-SQLALCHEMY_ECHO = DEBUG
+SQLALCHEMY_ECHO = False
+
+# DB-XML database settings
+DBXML_DATABASE = '/home/julen/dev/tzos/test.dbxml'
+DBXML_DEFAULT_COLLECTION = 'test.dbxml'
 
 # Babel configuration settings
 BABEL_DEFAULT_LOCALE = 'en'

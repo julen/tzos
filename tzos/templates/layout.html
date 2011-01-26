@@ -29,8 +29,8 @@
         <section id="glossary">
             <div class="content menu">
                 <ul>
-                    {% for letter in ['0-9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
-                    <li{% if loop.first %} class="first"{% endif %}><a href="#">{{ letter }}</a></li>
+                    {% for letter in ['0-9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
+                    <li{% if loop.first %} class="first"{% endif %}><a href="{{ url_for('terms.list_letter', letter=letter) }}">{{ letter }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

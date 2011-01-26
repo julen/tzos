@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}{{ super() }}{{ letter|upper }}{% endblock %}
+{% block intro_title %}{{ letter|upper }}{% endblock %}
+{% block intro_text %}{{ ngettext('%(num)d term found.', '%(num)d terms found.', terms|count) }}{% endblock %}
+{% block content %}
+<ul>
+{% for term in terms %}
+    <li>{{ term }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

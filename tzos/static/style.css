@@ -225,18 +225,39 @@ header a:visited {
 /* Main block level elements */
 
 header {
-    height: 70px;
+    height: 45px;
     margin: 0 auto;
-    padding: 20px 0 0;
+    padding: 5px 0 0;
     position: relative;
 }
 
-nav ul li {
-    padding: 5px 10px;
+header a#logo {
+    background-image: url('img/logo.png');
+    background-repeat: no-repeat;
+    float: left;
+    height: 24px;
+    width: 100px;
+    text-indent: -999999px;
+    outline: 0 none;
+    margin: 8px 20px 0 10px;
 }
 
-section#searchbox {
-    margin-top: 20px;
+nav ul.in li {
+    margin-right: 20px;
+}
+
+nav a {
+    font-weight: bold;
+    line-height: 3em;
+}
+
+nav a.register {
+    background-color: #07c;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
 }
 
 section#glossary {

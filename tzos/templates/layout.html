@@ -10,21 +10,21 @@
     </head>
     <body>
         <header class="content">
-            <a href="{{ url_for('frontend.index') }}"><img src="{{ url_for('.static', filename='img/logo.png') }}" /></a>
-            <nav class="in">
-                <ul class="in fr">
+            <a href="{{ url_for('frontend.index') }}" id="logo">TZOS</a>
+            <nav class="in fr">
+                <ul class="in">
                     {% if g.user %}
                     <li>{{ g.user.username }}</li>
                     <li><a href="{{ url_for('auth.logout') }}">{{ _('Log out') }}</a></li>
                     {% else %}
+                    <li><a href="{{ url_for('auth.register') }}" class="register">{{ _('Register') }}</a></li>
                     <li><a href="{{ url_for('auth.login') }}">{{ _('Log in') }}</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">{{ _('Register') }}</a></li>
                     {% endif %}
                 </ul>
+                <form class="fr">
+                    <input type="search" id="search" />
+                </form>
             </nav>
-            <section id="searchbox" class="fr clRight">
-                <input type="text" id="search" />
-            </section>
         </header>
         <section id="glossary">
             <div class="content menu">

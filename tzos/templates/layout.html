@@ -12,7 +12,7 @@
         <header class="content">
             <a href="{{ url_for('frontend.index') }}" id="logo">TZOS</a>
             <nav class="in fr">
-                <ul class="in">
+                <ul class="in fl">
                     {% if g.user %}
                     <li>{{ g.user.username }}</li>
                     <li><a href="{{ url_for('auth.logout') }}">{{ _('Log out') }}</a></li>
@@ -21,8 +21,9 @@
                     <li><a href="{{ url_for('auth.login') }}">{{ _('Log in') }}</a></li>
                     {% endif %}
                 </ul>
-                <form class="fr">
-                    <input type="search" id="search" />
+                <form class="fl headerSearch">
+                    <a href="{{ url_for('frontend.index') }}" class="i16 advancedSearch" title="{{ 'Advanced search' }}">{{ 'Advanced search' }}</a>
+                    <input type="search" class="in" name="q" placeholder="{{ _('Search…') }}" />
                 </form>
             </nav>
         </header>

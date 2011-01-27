@@ -48,6 +48,7 @@ q {}
   height:16px; width:16px;
   cursor:default;
 }
+.i16 { height:16px; width:16px; }
 .i32 { height:32px; width:32px; } /* Example for a different icon size */
 
 .iGit { background-position:0 0; }
@@ -258,6 +259,19 @@ nav a.register {
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
+}
+
+form.headerSearch {
+    margin-top: 11px;
+}
+
+a.advancedSearch {
+    background-image: url('img/advanced_search.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-indent: -999999px;
+    line-height: 3.6em;
+    vertical-align: middle;
 }
 
 section#glossary {

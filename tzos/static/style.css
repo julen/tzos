@@ -225,7 +225,7 @@ header a:visited {
 /* Main block level elements */
 
 header {
-    height: 45px;
+    height: 55px;
     margin: 0 auto;
     padding: 5px 0 0;
     position: relative;
@@ -239,7 +239,7 @@ header a#logo {
     width: 100px;
     text-indent: -999999px;
     outline: 0 none;
-    margin: 8px 20px 0 10px;
+    margin: 13px 20px 0 10px;
 }
 
 nav ul.in li {
@@ -248,7 +248,7 @@ nav ul.in li {
 
 nav a {
     font-weight: bold;
-    line-height: 3em;
+    line-height: 3.6em;
 }
 
 nav a.register {

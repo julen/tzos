@@ -279,6 +279,7 @@ a.advancedSearch {
     display: inline-block;
     text-indent: -999999px;
     line-height: 3.6em;
+    outline: 0 none;
     vertical-align: middle;
 }
 

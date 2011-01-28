@@ -8,6 +8,8 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+import hashlib
+
 from werkzeug import cached_property, check_password_hash, generate_password_hash
 
 from flaskext.sqlalchemy import BaseQuery
@@ -99,3 +101,20 @@ class User(db.Model):
     @property
     def is_admin(self):
         return self.role >= self.ADMIN
+
+    @cached_property
+    def gravatar(self):
+        if not self.email:
+            return ''
+
+        md5 = hashlib.md5()
+        md5.update(self.email.strip().lower())
+
+        return md5.hexdigest()
+
+    def gravatar_url(self, size=80):
+        if not self.gravatar:
+            return ''
+
+        return "http://www.gravatar.com/avatar/%s.jpg?s=%d&d=mm" %\
+            (self.gravatar, size)

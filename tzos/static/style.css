@@ -303,7 +303,9 @@ footer {
 }
 
 section#locales {
-    background: url('img/langs.png') no-repeat scroll 0 0 transparent;
+    background-image: url('img/langs.png');
+    background-repeat: no-repeat;
+    min-height: 16px;
     padding: 0 0 0 20px;
     overflow: auto;
 }

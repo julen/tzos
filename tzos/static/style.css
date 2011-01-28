@@ -267,10 +267,10 @@ form.headerSearch {
 
 form.headerSearch input {
     background-image: url('img/search.png');
-    background-position: 155px center;
+    background-position: 0.4em center;
     background-repeat: no-repeat;
-    padding: 0.4em;
-    width: 165px;
+    padding: 0.4em 0.4em 0.4em 2.2em;
+    width: 140px;
 }
 
 a.advancedSearch {

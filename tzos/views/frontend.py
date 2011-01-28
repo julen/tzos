@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import g, Module, render_template
+from flask import Module, render_template
 
 frontend = Module(__name__)
 

@@ -262,7 +262,15 @@ nav a.register {
 }
 
 form.headerSearch {
-    margin-top: 11px;
+    margin-top: 10px;
+}
+
+form.headerSearch input {
+    background-image: url('img/search.png');
+    background-position: 155px center;
+    background-repeat: no-repeat;
+    padding: 0.4em;
+    width: 165px;
 }
 
 a.advancedSearch {

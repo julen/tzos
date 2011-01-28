@@ -21,9 +21,9 @@
                     <li><a href="{{ url_for('auth.login') }}">{{ _('Log in') }}</a></li>
                     {% endif %}
                 </ul>
-                <form class="fl headerSearch">
+                <form class="fl headerSearch" method="GET" action="{{ url_for('search.quick') }}">
                     <input type="search" class="in" name="q" placeholder="{{ _('Search…') }}" />
-                    <a href="{{ url_for('frontend.index') }}" class="i16 advancedSearch" title="{{ 'Advanced search' }}">{{ 'Advanced search' }}</a>
+                    <a href="{{ url_for('search.quick') }}" class="i16 advancedSearch" title="{{ 'Advanced search' }}">{{ 'Advanced search' }}</a>
                 </form>
             </nav>
         </header>

@@ -10,4 +10,5 @@
 """
 from .frontend import frontend
 from .auth import auth
+from .search import search
 from .terms import terms

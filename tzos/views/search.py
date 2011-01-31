@@ -21,4 +21,4 @@ def quick():
     if not q:
         return render_template('search/advanced.html')
 
-    return render_template('search/quick.html', q=q)
+    return render_template('search/results.html', q=q)

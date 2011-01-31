@@ -26,7 +26,7 @@ msgstr "Letrak, zenbakiak edo marrak erabil ditzakezu soilik"
 
 #: tzos/forms.py:22
 msgid "Search terms"
-msgstr "Bilaketa-terminoak"
+msgstr "Bilatu terminoak"
 
 #: tzos/forms.py:24
 msgid "Search"

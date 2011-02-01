@@ -12,16 +12,14 @@ from flask import Module, g, render_template
 
 from flaskext.babel import gettext as _
 
-from tzos.extensions import dbxml
-
 terms = Module(__name__)
 
 @terms.route('/')
 def list_all():
     terms_list = []
 
-    qs = 'collection()/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term/string()' % (g.dict)
-    terms = dbxml.query(qs)
+    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term/string()' % (g.dict)
+    terms = g.dbxml.query(qs)
     #terms = dbxml.query("distinct-values(collection()/martif/text/body/termEntry/langSet/@xml:lang)")
 
     while terms.hasNext():
@@ -36,8 +34,8 @@ def list_letter(letter='0-9'):
     letter = str(letter)
     terms_list = []
 
-    qs = 'collection()/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term[starts-with(string(), "%s")]/string()' % (g.dict, letter)
-    terms = dbxml.query(qs)
+    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term[starts-with(string(), "%s")]/string()' % (g.dict, letter)
+    terms = g.dbxml.query(qs)
 
     while terms.hasNext():
         cur = terms.next()

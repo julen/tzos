@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    tzos.extensions
-    ~~~~~~~~~~~~~~~
+    tzos.models
+    ~~~~~~~~~~~
 
     Application models
 

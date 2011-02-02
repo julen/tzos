@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, render_template, request
+from flask import Module, g, render_template, request
 
 from tzos.helpers import url_for
 
@@ -21,4 +21,7 @@ def quick():
     if not q:
         return render_template('search/advanced.html')
 
-    return render_template('search/results.html', q=q)
+    qs = '/martif/text/body/termEntry/langSet/tig/term[contains(string(), "%s")]/string()' % (q)
+    terms = g.dbxml.query(qs).as_str().all()
+
+    return render_template('search/results.html', q=q, results=terms)

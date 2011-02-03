@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import _request_ctx_stack, g
+from flask import _request_ctx_stack, g, request
 
 def url_for(endpoint, **values):
     """Overriden method to always add the language information."""
@@ -17,6 +17,9 @@ def url_for(endpoint, **values):
     if endpoint != '.static':
         if not 'lang' in values:
             values['lang'] = g.lang
+        else:
+            # This is useful for URLs used for choosing languages
+            values.update(request.view_args)
 
     # The code below is from flask.url_for
     ctx = _request_ctx_stack.top

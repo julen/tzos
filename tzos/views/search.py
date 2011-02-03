@@ -21,7 +21,7 @@ def quick():
     if not q:
         return render_template('search/advanced.html')
 
-    qs = '/martif/text/body/termEntry/langSet/tig/term[contains(string(), "%s")]/string()' % (q)
+    qs = '/martif/text/body/termEntry/langSet/tig/term[contains(string(), "%s")]/string()' % (q.replace('"', '""'))
     terms = g.dbxml.query(qs).as_str().all()
 
     return render_template('search/results.html', q=q, results=terms)

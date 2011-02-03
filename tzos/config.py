@@ -12,7 +12,6 @@ SQLALCHEMY_ECHO = False
 
 # DB-XML database settings
 DBXML_DATABASE = '/home/julen/dev/tzos/test.dbxml'
-DBXML_DEFAULT_COLLECTION = 'test.dbxml'
 
 # Babel configuration settings
 BABEL_DEFAULT_LOCALE = 'en'

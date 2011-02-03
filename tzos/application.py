@@ -138,7 +138,7 @@ def configure_context_processors(app):
             l = Locale.parse(d)
             dicts.append((l.language, l.display_name))
 
-        return dict(dicts=dicts)
+        return dict(tzos_dicts=dicts)
 
 
 def configure_databases(app):

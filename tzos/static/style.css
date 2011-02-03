@@ -352,13 +352,23 @@ ul.in li {
 .flash {
     background-color: #ffb;
     color: #554;
-    margin: 0 -60px 4px;
+    margin: 0 -30px 4px;
     padding: 15px 60px;
+    text-align: center;
 }
 
 .flashError {
     background-color: #c00;
     color: #fff;
+}
+
+.flashError h1 {
+    color: #fff;
+}
+
+.flashSuccess {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 /* Intro text */

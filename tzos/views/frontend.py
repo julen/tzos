@@ -16,3 +16,7 @@ frontend = Module(__name__)
 @frontend.route('/')
 def index():
     return render_template('index.html')
+
+@frontend.route('/<lang>/dict/')
+def dict():
+    return render_template('dict.html')

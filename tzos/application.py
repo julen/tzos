@@ -8,10 +8,12 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import g, Flask, redirect, request
+from flask import Flask, g, redirect, request, session
 
 from flaskext.babel import Babel
 from flaskext.principal import Principal, identity_loaded
+
+from babel import Locale
 
 from tzos import views
 from tzos.extensions import db, dbxml
@@ -65,12 +67,12 @@ def configure_before_handlers(app):
 
     @app.before_request
     def set_dict():
-        dict = request.args.get('dict', None)
+        newdict = request.args.get('setdict', None)
 
-        if dict:
-            g.dict = str(dict)
-        elif not hasattr(g, 'dict'):
-            g.dict = app.config.get('TZOS_DEFAULT_DICT', 'eu')
+        if newdict:
+            session['tzos_dict'] = newdict
+        elif not 'tzos_dict' in session:
+            session['tzos_dict'] = app.config['TZOS_DEFAULT_DICT']
 
     @app.before_request
     def set_lang():
@@ -123,6 +125,20 @@ def configure_context_processors(app):
             langs.append((l.language, l.display_name))
 
         return dict(langs=langs)
+
+    @app.context_processor
+    def get_dicts():
+        # TODO: cache items not to hit the disk each time we run this
+        dicts = []
+
+        qs = "distinct-values(collection('{0}')/martif/text/body/termEntry/langSet/@xml:lang)".format(g.dbxml.collection)
+        dictlist = g.dbxml.raw_query(qs).as_str().all()
+
+        for d in dictlist:
+            l = Locale.parse(d)
+            dicts.append((l.language, l.display_name))
+
+        return dict(dicts=dicts)
 
 
 def configure_databases(app):

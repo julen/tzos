@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, g, render_template
+from flask import Module, g, render_template, session
 
 from flaskext.babel import gettext as _
 
@@ -16,7 +16,7 @@ terms = Module(__name__)
 
 @terms.route('/')
 def list_all():
-    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term/string()' % (g.dict)
+    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term/string()' % (session['tzos_dict'])
     terms = g.dbxml.query(qs).as_str().all()
     #terms = dbxml.query("distinct-values(collection()/martif/text/body/termEntry/langSet/@xml:lang)")
 
@@ -27,7 +27,7 @@ def list_all():
 def list_letter(letter='0-9'):
     letter = str(letter)
 
-    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term[starts-with(string(), "%s")]/string()' % (g.dict, letter)
+    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term[starts-with(string(), "%s")]/string()' % (session['tzos_dict'], letter)
     terms = g.dbxml.query(qs).as_str().all()
 
     return render_template('terms/list_letter.html', terms=terms, letter=letter)

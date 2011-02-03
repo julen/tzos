@@ -391,6 +391,11 @@ ul.errors li {
     float: left;
 }
 
+.menu .dict {
+    position: absolute;
+    right: 0;
+}
+
 .menu a {
     border-right: 1px solid #4d4d4d;
     color: #fff;
@@ -398,18 +403,34 @@ ul.errors li {
     height: 30px;
     font-weight: bold;
     line-height: 30px;
-    padding: 0 10px;
+    padding: 0 9px;
     text-transform: uppercase;
 }
 
+.menu .dict a,
 .menu .first a {
     border-left: 1px solid #4d4d4d;
+}
+
+.menu .dict a {
+    font-size: 0.7em;
 }
 
 .menu a:focus,
 .menu a:hover {
     background-color: #444;
     text-decoration: none;
+}
+
+.menu .dictList {
+    position: absolute;
+    z-index: 9999;
+    text-align: right;
+    right: 0;
+}
+
+.menu .dictList li {
+    width: 85px;
 }
 
 /* HTML5 compatibility */

@@ -35,7 +35,7 @@ def register():
         identity_changed.send(current_app._get_current_object(),
                               identity=Identity(user.id))
 
-        flash(_("Welcome, %(name)s", name=user.username), "success")
+        flash(_("Welcome, %(name)s.", name=user.username), "success")
 
         next_url = form.next.data
 
@@ -69,14 +69,14 @@ def login():
 
             return redirect(next_url)
         else:
-            flash('Wrong username or password', 'error')
+            flash('Wrong username or password.', 'error')
 
     return render_template('auth/login.html', form=form)
 
 
 @auth.route("/logout/")
 def logout():
-    flash(_("You are now logged out"), "success")
+    flash(_("You are now logged out."), "success")
 
     identity_changed.send(current_app._get_current_object(),
                           identity=AnonymousIdentity())

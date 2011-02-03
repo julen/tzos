@@ -5,6 +5,7 @@
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='style.css') }}" />
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
@@ -33,8 +34,8 @@
                     {% for letter in ['0-9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
                     <li{% if loop.first %} class="first"{% endif %}><a href="{{ url_for('terms.list_letter', letter=letter) }}">{{ letter }}</a></li>
                     {% endfor %}
-                    <li class="dict"><a href="{{ url_for('frontend.dict') }}">{{ session.tzos_dict }}</a>
-                        <ul class="dictList">
+                    <li id="tzosDict" class="dict"><a href="{{ url_for('frontend.dict') }}">{{ session.tzos_dict }}</a>
+                        <ul class="dictList" style="display:none;">
                             {% for dict_lang, dict_langname in dicts %}
                             {% if dict_lang != session.tzos_dict %}
                             <li><a href="{{ url_for(request.endpoint, setdict=dict_lang) }}">{{ dict_langname }}</a></li>
@@ -77,5 +78,8 @@
                 </ul>
             </section>
         </footer>
+        {% block scripts %}
+        <script type="text/javascript" src="{{ url_for('.static', filename='tzos.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

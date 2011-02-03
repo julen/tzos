@@ -427,6 +427,7 @@ ul.errors li {
     z-index: 9999;
     text-align: right;
     right: 0;
+    display: none;
 }
 
 .menu .dictList li {

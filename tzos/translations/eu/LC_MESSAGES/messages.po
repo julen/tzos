@@ -8,23 +8,20 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-01-26 15:34+0200\n"
+"PO-Revision-Date: 2011-02-09 18:08+0100\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0-beta4\n"
 "Generated-By: Babel 0.9.5\n"
-"X-Project-Style: default\n"
 
 #: tzos/forms.py:19
 msgid "You can only use letters, numbers or dashes"
 msgstr "Letrak, zenbakiak edo marrak erabil ditzakezu soilik"
 
-#: tzos/forms.py:22
+#: tzos/forms.py:22 tzos/templates/layout.html:26
 msgid "Search terms"
 msgstr "Bilatu terminoak"
 
@@ -92,6 +89,18 @@ msgstr "Kopiatu azpiko hitzak"
 msgid "Signup"
 msgstr "Eman izena"
 
+#: tzos/templates/dict.html:2 tzos/templates/layout.html:37
+msgid "Select dictionary language"
+msgstr ""
+
+#: tzos/templates/dict.html:3
+msgid "Dictionary language"
+msgstr ""
+
+#: tzos/templates/dict.html:4
+msgid "Please select the dictionary language of your choice."
+msgstr ""
+
 #: tzos/templates/index.html:2
 msgid "Online System for Terminology Service"
 msgstr "Terminologia Zerbitzurako Online Sistema"
@@ -104,21 +113,21 @@ msgstr "Ongi etorri"
 msgid "TZOS is an online community for building and sharing terminology."
 msgstr "Terminologia sortu eta partekatzeko online komunitatea da TZOS."
 
-#: tzos/templates/layout.html:18
+#: tzos/templates/layout.html:19
 msgid "Log out"
 msgstr "Amaitu saioa"
-
-#: tzos/templates/layout.html:20 tzos/templates/auth/login.html:3
-#: tzos/templates/auth/login.html:4
-msgid "Log in"
-msgstr "Hasi saioa"
 
 #: tzos/templates/layout.html:21 tzos/templates/auth/register.html:3
 #: tzos/templates/auth/register.html:4
 msgid "Register"
 msgstr "Eman izena"
 
-#: tzos/templates/layout.html:44
+#: tzos/templates/layout.html:22 tzos/templates/auth/login.html:3
+#: tzos/templates/auth/login.html:4
+msgid "Log in"
+msgstr "Hasi saioa"
+
+#: tzos/templates/layout.html:55
 msgid "Error"
 msgstr "Errorea"
 
@@ -133,6 +142,26 @@ msgstr ""
 #: tzos/templates/auth/register.html:5
 msgid "Please fill in the required information to register an account."
 msgstr "Bete beharrezko datuak izena eman eta kontu berria sortzeko."
+
+#: tzos/templates/search/advanced.html:2 tzos/templates/search/advanced.html:3
+msgid "Advanced search"
+msgstr ""
+
+#: tzos/templates/search/advanced.html:4
+msgid "Search the needle on the haystack."
+msgstr ""
+
+#: tzos/templates/search/results.html:2
+#, fuzzy
+msgid "Search results"
+msgstr "Bilatu terminoak"
+
+#: tzos/templates/search/results.html:4
+#, python-format
+msgid "Your search returned %(num)d result."
+msgid_plural "Your search returned %(num)d results."
+msgstr[0] ""
+msgstr[1] ""
 
 #: tzos/templates/terms/list_all.html:2
 msgid "Terms list"
@@ -154,16 +183,17 @@ msgstr[0] "Termino bat aurkitu da."
 msgstr[1] "%(num)d termino aurkitu dira."
 
 #: tzos/views/auth.py:38
-#, python-format
-msgid "Welcome, %(name)s"
+#, fuzzy, python-format
+msgid "Welcome, %(name)s."
 msgstr "Ongi etorri, %(name)s"
 
 #: tzos/views/auth.py:79
-msgid "You are now logged out"
+#, fuzzy
+msgid "You are now logged out."
 msgstr "Saioa amaitu duzu"
 
-#~ msgid "Hello world"
-#~ msgstr "Kaixo mundua"
+#: tzos/views/frontend.py:33
+#, python-format
+msgid "From now on your dictionary language is ‘%(dictname)s’."
+msgstr ""
 
-#~ msgid "Enter your username and password"
-#~ msgstr "Idatzi zure erabiltzaile-izen eta pasahitza"

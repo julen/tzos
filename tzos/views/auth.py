@@ -69,7 +69,7 @@ def login():
 
             return redirect(next_url)
         else:
-            flash('Wrong username or password.', 'error')
+            flash(_('Wrong username or password.'), 'error')
 
     return render_template('auth/login.html', form=form)
 

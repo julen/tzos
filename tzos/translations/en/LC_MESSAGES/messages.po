@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-02-09 18:08+0100\n"
+"PO-Revision-Date: 2011-02-09 18:38+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -185,6 +185,10 @@ msgstr[1] ""
 msgid "Welcome, %(name)s."
 msgstr ""
 
+#: tzos/views/auth.py:72
+msgid "Wrong username or password."
+msgstr ""
+
 #: tzos/views/auth.py:79
 msgid "You are now logged out."
 msgstr ""
@@ -193,10 +197,4 @@ msgstr ""
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr ""
-
-#~ msgid "Hello world"
-#~ msgstr ""
-
-#~ msgid "Enter your username and password"
-#~ msgstr ""
 

@@ -8,17 +8,14 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-02-09 18:12+0200\n"
+"PO-Revision-Date: 2011-02-09 18:38+0100\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0-beta4\n"
 "Generated-By: Babel 0.9.5\n"
-"X-Project-Style: default\n"
 
 #: tzos/forms.py:19
 msgid "You can only use letters, numbers or dashes"
@@ -189,6 +186,10 @@ msgstr[1] "%(num)d termino aurkitu dira."
 msgid "Welcome, %(name)s."
 msgstr "Ongi etorri, %(name)s."
 
+#: tzos/views/auth.py:72
+msgid "Wrong username or password."
+msgstr ""
+
 #: tzos/views/auth.py:79
 msgid "You are now logged out."
 msgstr "Saioa amaitu duzu."
@@ -197,3 +198,4 @@ msgstr "Saioa amaitu duzu."
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr "Hemendik aurrera hiztegiaren hizkuntza ‘%(dictname)s’ da."
+

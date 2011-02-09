@@ -29,7 +29,7 @@ MODULES = (
     (views.terms, '/<lang>/terms'),
 )
 
-def create_app(config):
+def create_app(config=None):
     app = Flask(__name__)
 
     configure_app(app, config)
@@ -44,7 +44,9 @@ def create_app(config):
 
 
 def configure_app(app, config):
-    app.config.from_pyfile(config)
+    if config is not None:
+        app.config.from_pyfile(config)
+
     app.config.from_envvar('TZOS_CONFIG', silent=True)
 
 

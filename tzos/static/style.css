@@ -49,6 +49,7 @@ q {}
   cursor:default;
 }
 .i16 { height:16px; width:16px; }
+.i20 { height:20px; width:20px; }
 .i32 { height:32px; width:32px; } /* Example for a different icon size */
 
 .iGit { background-position:0 0; }
@@ -318,6 +319,17 @@ section#locales {
     position: relative;
     text-align: left;
     width: 900px;
+}
+
+.gravatar {
+    display: inline;
+}
+
+.gravatar img {
+    border: 1px solid #ccc;
+    padding: 1px;
+    margin-right: 0.3em;
+    vertical-align: middle;
 }
 
 span.current {

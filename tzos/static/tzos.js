@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#tzosDict').click(function (e) {
+    $('#tzosDict > a').click(function (e) {
         e.preventDefault();
     });
     $('#tzosDict').hover(function () {

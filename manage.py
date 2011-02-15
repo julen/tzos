@@ -13,7 +13,7 @@ from flask import current_app
 from flaskext.script import Manager, prompt_bool
 
 from tzos import create_app
-from tzos.extensions import db
+from tzos.extensions import db, dbxml
 
 manager = Manager(create_app)
 
@@ -25,6 +25,13 @@ def createall():
 def dropall():
     if prompt_bool('Are you sure? This will delete all the data.'):
         db.drop_all()
+
+@manager.option('-f', '--filename', dest='filename', default=None, required=True)
+@manager.option('-d', '--docname', dest='docname', default=None)
+def initdbxml(filename, docname):
+    '''Initializes the XML-DB by feeding data from the given file.'''
+
+    dbxml.init_dbxml(filename, docname)
 
 @manager.shell
 def make_shell_context():

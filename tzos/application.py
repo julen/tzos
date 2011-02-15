@@ -8,9 +8,9 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Flask, g, redirect, request, session
+from flask import Flask, flash, g, redirect, render_template, request, session
 
-from flaskext.babel import Babel
+from flaskext.babel import Babel, gettext as _
 from flaskext.principal import Principal, identity_loaded
 
 from babel import Locale
@@ -34,6 +34,7 @@ def create_app(config=None):
 
     configure_app(app, config)
 
+    configure_errorhandlers(app)
     configure_extensions(app)
     configure_before_handlers(app)
     configure_modules(app)
@@ -59,6 +60,25 @@ def configure_extensions(app):
     configure_databases(app)
     configure_i18n(app)
     configure_identity(app)
+
+
+def configure_errorhandlers(app):
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template("errors/404.html")
+
+    @app.errorhandler(403)
+    def forbidden(e):
+        return render_template("errors/403.html")
+
+    @app.errorhandler(500)
+    def server_error(e):
+        return render_template("errors/500.html")
+
+    @app.errorhandler(401)
+    def unauthorized(e):
+        flash(_("You must login to see this page."), "error")
+        return redirect(url_for("auth.login", next=request.path))
 
 
 def configure_before_handlers(app):

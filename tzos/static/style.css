@@ -314,6 +314,17 @@ section#locales {
 
 /* General classes */
 
+.errorbody {
+    text-align: center;
+    margin: 0 auto;
+    padding: 50px 0;
+    width: 900px;
+}
+
+.errorbody p {
+    margin: 10px;
+}
+
 .content {
     margin: 0 auto;
     position: relative;

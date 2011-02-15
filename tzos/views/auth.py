@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask import Module, flash, current_app, redirect, render_template,\
-                  session
+                  request, session
 
 from flaskext.babel import gettext as _
 from flaskext.principal import AnonymousIdentity, Identity, identity_changed
@@ -49,7 +49,7 @@ def register():
 
 @auth.route('/login/', methods=('GET', 'POST'))
 def login():
-    form = LoginForm()
+    form = LoginForm(next=request.args.get('next', None))
 
     if form.validate_on_submit():
         user, authenticated = \

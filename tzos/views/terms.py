@@ -18,7 +18,6 @@ terms = Module(__name__)
 def list_all():
     qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term/string()' % (session['tzos_dict'])
     terms = g.dbxml.query(qs).as_str().all()
-    #terms = dbxml.query("distinct-values(collection()/martif/text/body/termEntry/langSet/@xml:lang)")
 
     return render_template('terms/list_all.html', terms=terms)
 

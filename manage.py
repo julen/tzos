@@ -19,10 +19,14 @@ manager = Manager(create_app)
 
 @manager.command
 def createall():
+    '''Creates the SQL tables needed by the models.'''
+
     db.create_all()
 
 @manager.command
 def dropall():
+    '''Deletes all the SQL database data.'''
+
     if prompt_bool('Are you sure? This will delete all the data.'):
         db.drop_all()
 

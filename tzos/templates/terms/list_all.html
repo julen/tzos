@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
+
 {% block title %}{{ super() }}{{ _('Terms list') }}{% endblock %}
+
 {% block intro_title %}{{ _('Terms') }}{% endblock %}
 {% block intro_text %}{{ _('This is a list of all the available terms in TZOS.') }}{% endblock %}
+
 {% block content %}
 <ul>
 {% for term in terms %}

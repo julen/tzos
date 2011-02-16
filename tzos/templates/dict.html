@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
+
 {% block title %}{{ super() }}{{ _('Select dictionary language') }}{% endblock %}
+
 {% block intro_title %}{{ _('Dictionary language') }}{% endblock %}
 {% block intro_text %}{{ _('Please select the dictionary language of your choice.') }}{% endblock %}
+
 {% block content %}
 <ul>
     {% for dict_lang, dict_langname in tzos_dicts %}

@@ -19,7 +19,11 @@ is_username = regexp(USERNAME_RE,
                      message=_("You can only use letters, numbers or dashes"))
 
 class SearchForm(Form):
-    search_text = TextField(_('Search terms'), validators=[required()])
+    term = TextField(_('Search terms'))
+    source = TextField(_('Source'))
+    example = TextField(_('Examples'))
+    definition = TextField(_('Definition'))
+    sample = TextField(_('Sample text'))
 
     submit = SubmitField(_('Search'))
 

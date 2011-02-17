@@ -16,7 +16,7 @@ from flaskext.principal import Principal, identity_loaded
 from babel import Locale
 
 from tzos import views
-from tzos.extensions import db, dbxml
+from tzos.extensions import db, dbxml, mail
 from tzos.helpers import url_for
 from tzos.models import User
 
@@ -57,6 +57,8 @@ def configure_modules(app):
 
 
 def configure_extensions(app):
+    mail.init_app(app)
+
     configure_databases(app)
     configure_i18n(app)
     configure_identity(app)

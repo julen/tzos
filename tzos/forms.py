@@ -61,3 +61,23 @@ class SignupForm(Form):
     recaptcha = RecaptchaField(_("Copy the words appearing below"))
 
     submit = SubmitField(_("Signup"))
+
+
+class RecoverPasswordForm(Form):
+    email = TextField("Your email address", validators=[
+                      email(message=_("A valid email address is required."))])
+
+    submit = SubmitField(_("Recover password"))
+
+
+class ChangePasswordForm(Form):
+    activation_key = HiddenField()
+
+    password = PasswordField("Password", validators=[
+                             required(message=_("Password is required."))])
+
+    password_again = PasswordField(_("Password again"), validators=[
+                                   equal_to("password", message=\
+                                            _("Passwords don't match."))])
+
+    submit = SubmitField(_("Save"))

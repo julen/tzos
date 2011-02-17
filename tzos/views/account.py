@@ -8,14 +8,18 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, current_app, redirect, render_template,\
-                  request, session
+import uuid
+
+from flask import Module, abort, current_app, flash, g, redirect, \
+    render_template, request, session
 
 from flaskext.babel import gettext as _
+from flaskext.mail import Message
 from flaskext.principal import AnonymousIdentity, Identity, identity_changed
 
-from tzos.extensions import db
-from tzos.forms import LoginForm, SignupForm
+from tzos.extensions import db, mail
+from tzos.forms import ChangePasswordForm, LoginForm, RecoverPasswordForm, \
+    SignupForm
 from tzos.helpers import url_for
 from tzos.models import User
 
@@ -52,11 +56,11 @@ def login():
     form = LoginForm(next=request.args.get('next', None))
 
     if form.validate_on_submit():
-        user, accountenticated = \
-            User.query.accountenticate(form.login.data,
+        user, authenticated = \
+            User.query.authenticate(form.login.data,
                                     form.password.data)
 
-        if user and accountenticated:
+        if user and authenticated:
             session.permanent = form.remember.data
 
             identity_changed.send(current_app._get_current_object(),
@@ -82,3 +86,63 @@ def logout():
                           identity=AnonymousIdentity())
 
     return redirect(url_for('frontend.index'))
+
+
+@account.route("/forgotpass/", methods=("GET", "POST"))
+def forgot_password():
+    form = RecoverPasswordForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+
+        if user:
+            flash(_("Please check your email for instructions on "
+                  "how to access your account."), "success")
+
+            user.activation_key = str(uuid.uuid4())
+            db.session.commit()
+
+            body = render_template("emails/recover_password.html",
+                                   user=user)
+
+            message = Message(subject=_("Recover your password"),
+                              body=body,
+                              recipients=[user.email])
+            mail.send(message)
+
+            return redirect(url_for("frontend.index"))
+        else:
+            flash(_("Sorry, no user found for that email address."), "error")
+
+    return render_template("account/recover_password.html", form=form)
+
+
+@account.route("/changepass/", methods=("GET", "POST"))
+def change_password():
+    user = None
+
+    if g.user:
+        user = g.user
+
+    elif 'activation_key' in request.values:
+        user = User.query.filter_by(
+            activation_key=request.values['activation_key']).first()
+
+    if user is None:
+        abort(403)
+
+    form = ChangePasswordForm(activation_key=user.activation_key)
+
+    if form.validate_on_submit():
+        user.password = form.password.data
+        user.activation_key = None
+
+        db.session.commit()
+
+        flash(_("Your password has been changed, "
+                "please log in again."), "success")
+
+        # TODO: if user is already authenticated redirect it to its account page
+        return redirect(url_for("account.login"))
+
+    return render_template("account/change_password.html", form=form)

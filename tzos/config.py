@@ -17,6 +17,16 @@ DBXML_DATABASE = '/home/julen/dev/tzos/tzos/dbs/tzos.dbxml'
 BABEL_DEFAULT_LOCALE = 'en'
 BABEL_DEFAULT_TIMEZONE = 'UTC+1'
 
+# Mail settings
+#MAIL_SERVER = 'localhost'
+#MAIL_PORT = 25
+#MAIL_USE_TLS = False
+#MAIL_USE_SSL = False
+#MAIL_USERNAME = foo
+#MAIL_PASSWORD = bar
+DEFAULT_MAIL_SENDER = ('TZOS', 'no-reply@tzos.net')
+MAIL_FAIL_SILENTLY = DEBUG
+
 # Recaptcha settings
 RECAPTCHA_USE_SSL = True
 RECAPTCHA_PUBLIC_KEY = '6LchVcASAAAAAGfvqAQAQEkq2K-YIOeG9HlAtVln'

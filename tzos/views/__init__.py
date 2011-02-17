@@ -9,6 +9,6 @@
     :license: BSD, see LICENSE for more details.
 """
 from .frontend import frontend
-from .auth import auth
+from .account import account
 from .search import search
 from .terms import terms

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    tzos.views.auth
-    ~~~~~~~~~~~~~~~
+    tzos.views.account
+    ~~~~~~~~~~~~~~~~~~
 
     Authentication views
 
@@ -19,9 +19,9 @@ from tzos.forms import LoginForm, SignupForm
 from tzos.helpers import url_for
 from tzos.models import User
 
-auth = Module(__name__)
+account = Module(__name__)
 
-@auth.route('/register/', methods=('GET', 'POST'))
+@account.route('/register/', methods=('GET', 'POST'))
 def register():
     form = SignupForm()
 
@@ -44,19 +44,19 @@ def register():
 
         return redirect(next_url)
 
-    return render_template('auth/register.html', form=form)
+    return render_template('account/register.html', form=form)
 
 
-@auth.route('/login/', methods=('GET', 'POST'))
+@account.route('/login/', methods=('GET', 'POST'))
 def login():
     form = LoginForm(next=request.args.get('next', None))
 
     if form.validate_on_submit():
-        user, authenticated = \
-            User.query.authenticate(form.login.data,
+        user, accountenticated = \
+            User.query.accountenticate(form.login.data,
                                     form.password.data)
 
-        if user and authenticated:
+        if user and accountenticated:
             session.permanent = form.remember.data
 
             identity_changed.send(current_app._get_current_object(),
@@ -71,10 +71,10 @@ def login():
         else:
             flash(_('Wrong username or password.'), 'error')
 
-    return render_template('auth/login.html', form=form)
+    return render_template('account/login.html', form=form)
 
 
-@auth.route("/logout/")
+@account.route("/logout/")
 def logout():
     flash(_("You are now logged out."), "success")
 

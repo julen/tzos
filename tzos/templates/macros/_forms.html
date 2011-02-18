@@ -20,3 +20,18 @@
 {% endif %}
 </li>
 {% endmacro %}
+
+{% macro render_form(form, action='.') %}
+<form method="post" action="{{ action }}" class="f1">
+    {{ form.hidden_tag() }}
+    <ul>
+        {% for field in form if not field.type == 'SubmitField' and
+                                not field.type == 'HiddenField' %}
+        {{ render_field(field, class="input") }}
+        {% endfor %}
+    </ul>
+    <p>
+        {{ form.submit(class="button") }}
+    </p>
+</form>
+{% endmacro %}

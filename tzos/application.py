@@ -80,7 +80,7 @@ def configure_errorhandlers(app):
     @app.errorhandler(401)
     def unauthorized(e):
         flash(_("You must login to see this page."), "error")
-        return redirect(url_for("auth.login", next=request.path))
+        return redirect(url_for("account.login", next=request.path))
 
 
 def configure_before_handlers(app):

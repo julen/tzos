@@ -18,8 +18,8 @@ from flaskext.mail import Message
 from flaskext.principal import AnonymousIdentity, Identity, identity_changed
 
 from tzos.extensions import db, mail
-from tzos.forms import ChangePasswordForm, EditEmailForm, EditProfileForm, \
-    LoginForm, RecoverPasswordForm, SignupForm
+from tzos.forms import EditEmailForm, EditPasswordForm, EditProfileForm, \
+    LoginForm, RecoverPasswordForm, ResetPasswordForm, SignupForm
 from tzos.helpers import url_for
 from tzos.models import User
 from tzos.permissions import auth
@@ -132,7 +132,7 @@ def change_password():
     if user is None:
         abort(403)
 
-    form = ChangePasswordForm(activation_key=user.activation_key)
+    form = ResetPasswordForm(activation_key=user.activation_key)
 
     if form.validate_on_submit():
         user.password = form.password.data
@@ -149,12 +149,31 @@ def change_password():
     return render_template("account/change_password.html", form=form)
 
 
-@account.route("/account/")
+@account.route("/account/", methods=("GET", "POST"))
 @auth.require(401)
-def account_settings():
+def settings():
     profileform = EditProfileForm(obj=g.user)
     emailform = EditEmailForm(obj=g.user)
-    passwordform = ChangePasswordForm()
+    passwordform = EditPasswordForm()
+
+    allowed_actions = {
+        'editpassword': passwordform,
+        'editemail': emailform,
+        'editprofile': profileform,
+        }
+    action = request.args.get('action', None)
+
+    form = None
+    if action and action in allowed_actions:
+        form = allowed_actions[action]
+
+    if form and form.validate_on_submit():
+        form.populate_obj(g.user)
+        db.session.commit()
+
+        flash(_("Your account has been updated."), "success")
+
+        return redirect(url_for("account.settings"))
 
     return render_template("account/account.html", profileform=profileform,
                                                    emailform=emailform,

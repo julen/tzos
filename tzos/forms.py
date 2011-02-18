@@ -74,9 +74,7 @@ class RecoverPasswordForm(Form):
     submit = SubmitField(_("Recover password"))
 
 
-class ChangePasswordForm(Form):
-    activation_key = HiddenField()
-
+class BasePasswordForm(Form):
     password = PasswordField("Password", validators=[
                              required(message=_("Password is required."))])
 
@@ -84,6 +82,13 @@ class ChangePasswordForm(Form):
                                    equal_to("password", message=\
                                             _("Passwords don't match."))])
 
+class ResetPasswordForm(BasePasswordForm):
+    activation_key = HiddenField()
+
+    submit = SubmitField(_("Reset password"))
+
+
+class EditPasswordForm(BasePasswordForm):
     submit = SubmitField(_("Change password"))
 
 

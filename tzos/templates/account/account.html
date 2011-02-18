@@ -8,7 +8,7 @@
 
 {% block content %}
 <h3>{{ _("Public profile") }}</h3>
-<form method="post" action="." class="f1">
+<form method="post" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
     {{ profileform.hidden_tag() }}
     <ul>
         {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}
@@ -21,8 +21,8 @@
 </form>
 
 <h3>{{ _("Email address") }}</h3>
-{{ render_form(emailform) }}
+{{ render_form(emailform, action=url_for('account.settings', action='editemail')) }}
 
 <h3>{{ _("Password") }}</h3>
-{{ render_form(passwordform) }}
+{{ render_form(passwordform, action=url_for('account.settings', action='editpassword')) }}
 {% endblock %}

@@ -13,6 +13,8 @@ from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
     PasswordField, RecaptchaField, SubmitField, TextField, URL, email, \
     equal_to, regexp, required
 
+from tzos.models import User
+
 USERNAME_RE = r'^[\w.+-]+$'
 
 is_username = regexp(USERNAME_RE,

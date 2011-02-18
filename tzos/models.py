@@ -53,15 +53,21 @@ class User(db.Model):
     MODERATOR = 200
     ADMIN = 300
 
+    # Core fields
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode(60), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
-    display_name = db.Column(db.String(80))
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     activation_key = db.Column(db.String(80), unique=True)
     role = db.Column(db.Integer, default=MEMBER)
 
     _password = db.Column(db.String(80))
+
+    # Public profile fields
+    display_name = db.Column(db.Unicode(80))
+    website = db.Column(db.String(200))
+    company = db.Column(db.Unicode(80))
+    location = db.Column(db.Unicode(60))
 
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)

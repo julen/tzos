@@ -9,9 +9,9 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import gettext, lazy_gettext as _
-from flaskext.wtf import BooleanField, Form, HiddenField, PasswordField, \
-    RecaptchaField, SubmitField, TextField, URL, email, equal_to, regexp, \
-    required
+from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
+    PasswordField, RecaptchaField, SubmitField, TextField, URL, email, \
+    equal_to, regexp, required
 
 USERNAME_RE = r'^[\w.+-]+$'
 
@@ -86,7 +86,7 @@ class ChangePasswordForm(Form):
 
 
 class EditEmailForm(Form):
-    email = TextField(_("New email address"), validators=[
+    email = TextField(_("Your email address"), validators=[
                       required(message=_("Email address required.")),
                       email(message=_("A valid email address is required."))])
 
@@ -103,6 +103,7 @@ class EditProfileForm(Form):
     display_name = TextField(_("Display name"))
 
     website = TextField(_("Website"), validators=[
+                        Optional(),
                         URL(message=_("The URL must be valid."))])
 
     company = TextField(_("Company"))

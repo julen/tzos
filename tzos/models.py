@@ -56,6 +56,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode(60), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
+    display_name = db.Column(db.String(150))
+    date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     activation_key = db.Column(db.String(80), unique=True)
     role = db.Column(db.Integer, default=MEMBER)
 

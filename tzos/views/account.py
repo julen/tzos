@@ -18,10 +18,11 @@ from flaskext.mail import Message
 from flaskext.principal import AnonymousIdentity, Identity, identity_changed
 
 from tzos.extensions import db, mail
-from tzos.forms import ChangePasswordForm, LoginForm, RecoverPasswordForm, \
-    SignupForm
+from tzos.forms import ChangePasswordForm, EditEmailForm, EditProfileForm, \
+    LoginForm, RecoverPasswordForm, SignupForm
 from tzos.helpers import url_for
 from tzos.models import User
+from tzos.permissions import auth
 
 account = Module(__name__)
 
@@ -146,3 +147,15 @@ def change_password():
         return redirect(url_for("account.login"))
 
     return render_template("account/change_password.html", form=form)
+
+
+@account.route("/account/")
+@auth.require(401)
+def account_settings():
+    profileform = EditProfileForm(obj=g.user)
+    emailform = EditEmailForm(obj=g.user)
+    passwordform = ChangePasswordForm()
+
+    return render_template("account/account.html", profileform=profileform,
+                                                   emailform=emailform,
+                                                   passwordform=passwordform)

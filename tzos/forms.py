@@ -8,10 +8,10 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import BooleanField, Form, HiddenField, PasswordField,\
-                         RecaptchaField, SubmitField, TextField, email,\
-                         equal_to, regexp, required
+from flaskext.babel import gettext, lazy_gettext as _
+from flaskext.wtf import BooleanField, Form, HiddenField, PasswordField, \
+    RecaptchaField, SubmitField, TextField, URL, email, equal_to, regexp, \
+    required
 
 USERNAME_RE = r'^[\w.+-]+$'
 
@@ -31,11 +31,13 @@ class SearchForm(Form):
 class LoginForm(Form):
     next = HiddenField()
 
-    remember = BooleanField(_('Remember me'))
     login = TextField(_('Username or email address'), validators=[
                       required(message=\
                                _('You must provide an email or username.'))])
+
     password = PasswordField(_('Password'))
+
+    remember = BooleanField(_('Remember me'))
 
     submit = SubmitField(_('Login'))
 
@@ -80,4 +82,31 @@ class ChangePasswordForm(Form):
                                    equal_to("password", message=\
                                             _("Passwords don't match."))])
 
-    submit = SubmitField(_("Save"))
+    submit = SubmitField(_("Change password"))
+
+
+class EditEmailForm(Form):
+    email = TextField(_("New email address"), validators=[
+                      required(message=_("Email address required.")),
+                      email(message=_("A valid email address is required."))])
+
+    submit = SubmitField(_("Edit email address"))
+
+    def validate_email(self, field):
+        user = User.query.filter(User.email.like(field.data)).first()
+
+        if user:
+            raise ValidationError, gettext("This email is taken.")
+
+
+class EditProfileForm(Form):
+    display_name = TextField(_("Display name"))
+
+    website = TextField(_("Website"), validators=[
+                        URL(message=_("The URL must be valid."))])
+
+    company = TextField(_("Company"))
+
+    location = TextField(_("Location"))
+
+    submit = SubmitField(_("Update information"))

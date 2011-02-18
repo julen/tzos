@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% from "macros/_forms.html" import render_field, render_form %}
+
+{% block title %}{{ super() }}{{ _('Your account') }}{% endblock %}
+
+{% block intro_title %}{{ _('Account settings') }}{% endblock %}
+{% block intro_text %}{{ _('You can change the settings related to your account below.') }}{% endblock %}
+
+{% block content %}
+<h3>{{ _("Public profile") }}</h3>
+<form method="post" action="." class="f1">
+    {{ profileform.hidden_tag() }}
+    <ul>
+        {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}
+        {{ render_field(field, class="input") }}
+        {% endfor %}
+    </ul>
+    <p>
+        {{ profileform.submit(class="button") }}
+    </p>
+</form>
+
+<h3>{{ _("Email address") }}</h3>
+{{ render_form(emailform) }}
+
+<h3>{{ _("Password") }}</h3>
+{{ render_form(passwordform) }}
+{% endblock %}

@@ -34,7 +34,7 @@
         </dl>
         {% endif %}
         <dl>
-            <dt>{{ _('Date joined') }}</dt><dd>{{ user.date_joined }}</dd>
+            <dt>{{ _('Date joined') }}</dt><dd>{{ user.date_joined|dateformat(_('d/M/Y')) }}</dd>
         </dl>
     </div>
 </div>

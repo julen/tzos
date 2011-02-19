@@ -10,7 +10,7 @@
 """
 from flask import Flask, flash, g, redirect, render_template, request, session
 
-from flaskext.babel import Babel, gettext as _
+from flaskext.babel import Babel, gettext as _, format_date
 from flaskext.principal import Principal, identity_loaded
 
 from babel import Locale
@@ -136,6 +136,10 @@ def configure_before_handlers(app):
 
 def configure_jinja(app):
     app.jinja_env.globals.update(url_for=url_for)
+
+    @app.template_filter()
+    def dateformat(value, format):
+        return format_date(value, format=format)
 
 
 def configure_context_processors(app):

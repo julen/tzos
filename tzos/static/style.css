@@ -50,7 +50,8 @@ q {}
 }
 .i16 { height:16px; width:16px; }
 .i20 { height:20px; width:20px; }
-.i32 { height:32px; width:32px; } /* Example for a different icon size */
+.i32 { height:32px; width:32px; }
+.i48 { height:48px; width:48px; }
 
 .iGit { background-position:0 0; }
 .iHelp { background-position:0 -16px; }
@@ -338,17 +339,6 @@ section#locales {
     width: 900px;
 }
 
-.gravatar {
-    display: inline;
-}
-
-.gravatar img {
-    border: 1px solid #ccc;
-    padding: 1px;
-    margin-right: 0.3em;
-    vertical-align: middle;
-}
-
 span.current {
     font-weight: bold;
 }
@@ -534,6 +524,42 @@ ul.sideTabs li a.selected {
 .main .fAction {
     padding-right: 10px;
     text-align: right;
+}
+
+/* Gravatars */
+
+header .gravatar {
+    display: inline;
+}
+
+#body .gravatar {
+    height: 52px;
+    margin: 10px 0;
+}
+
+#body .gravatar strong {
+    display: block;
+}
+
+.gravatar img {
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+header .gravatar img {
+    margin-right: 0.3em;
+    padding: 1px;
+}
+
+#body .gravatar img {
+    float: left;
+    margin-right: 0.7em;
+    padding: 2px;
+}
+
+#body .gravatar p {
+    padding-top: 10px;
+    line-height: 1;
 }
 
 /* HTML5 compatibility */

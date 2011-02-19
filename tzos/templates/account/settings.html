@@ -25,6 +25,10 @@
                             {{ render_field(field, class="input") }}
                             {% endfor %}
                         </ul>
+                        <div class="gravatar">
+                            <img class="i48" src="{{ g.user.gravatar_url() }}" /></a>
+                            <p><strong>{{ _('Change your avatar at <a href="http://gravatar.com">gravatar.com</a>') }}</strong><span class="p6 weak">{{ _('We are using %(user_email)s', user_email=g.user.email) }}</span></p>
+                        </div>
                         <p class="fAction">
                             {{ profileform.submit(class="button") }}
                         </p>

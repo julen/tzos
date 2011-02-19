@@ -113,7 +113,7 @@ class EditProfileForm(Form):
                         Optional(),
                         URL(message=_("The URL must be valid."))])
 
-    company = TextField(_("Company"))
+    company = TextField(_("Company/Organization"))
 
     location = TextField(_("Location"))
 

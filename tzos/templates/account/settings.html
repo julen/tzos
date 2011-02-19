@@ -7,22 +7,33 @@
 {% block intro_text %}{{ _('You can change the settings related to your account below.') }}{% endblock %}
 
 {% block content %}
-<h3>{{ _("Public profile") }}</h3>
-<form method="post" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
-    {{ profileform.hidden_tag() }}
-    <ul>
-        {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}
-        {{ render_field(field, class="input") }}
-        {% endfor %}
+<div class="hTabs">
+    <ul class="inlineTabs sideTabs">
+        <li><a href="#edit_profile">{{ _("Public profile") }}</a></li>
+        <li><a href="#edit_email">{{ _("Email address") }}</a></li>
+        <li><a href="#edit_password">{{ _("Password") }}</a></li>
     </ul>
-    <p>
-        {{ profileform.submit(class="button") }}
-    </p>
-</form>
 
-<h3>{{ _("Email address") }}</h3>
-{{ render_form(emailform, action=url_for('account.settings', action='editemail')) }}
+    <div id="edit_profile" class="tabContent">
+    <form method="post" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
+        {{ profileform.hidden_tag() }}
+        <ul>
+            {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}
+            {{ render_field(field, class="input") }}
+            {% endfor %}
+        </ul>
+        <p>
+            {{ profileform.submit(class="button") }}
+        </p>
+    </form>
+    </div>
 
-<h3>{{ _("Password") }}</h3>
-{{ render_form(passwordform, action=url_for('account.settings', action='editpassword')) }}
+    <div id="edit_email" class="tabContent">
+    {{ render_form(emailform, action=url_for('account.settings', action='editemail')) }}
+    </div>
+
+    <div id="edit_password" class="tabContent">
+    {{ render_form(passwordform, action=url_for('account.settings', action='editpassword')) }}
+    </div>
+</div>
 {% endblock %}

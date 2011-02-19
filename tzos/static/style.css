@@ -220,7 +220,8 @@ footer a:hover {
     text-decoration: underline;
 }
 
-header a:visited {
+header a:visited,
+#body a:visited {
     color: #07c;
 }
 
@@ -302,6 +303,7 @@ footer {
     margin-top: 20px;
     padding: 20px 0 50px;
     position: relative;
+    clear: both;
 }
 
 section#locales {
@@ -465,6 +467,39 @@ ul.errors li {
 
 .menu .dictList li {
     width: 85px;
+}
+
+/* Side tabs */
+
+ul.sideTabs {
+    float: left;
+    margin: 0;
+    width: 230px;
+}
+
+ul.sideTabs li {
+    margin: 10px 0;
+}
+
+ul.sideTabs li a {
+    display: block;
+    font-size: 1.5em;
+    padding: 8px 10px 8px 15px;
+    text-decoration: none;
+    border: 1px solid #f8f8f8;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+
+ul.sideTabs li a.selected {
+    background-color: #07c;
+    color: #fff!important;
+}
+
+.hTabs .tabContent {
+    float: right;
+    width: 640px;
 }
 
 /* HTML5 compatibility */

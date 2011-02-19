@@ -5,8 +5,10 @@
 {% block intro %}{% endblock %}
 
 {% block content %}
-<div class="gravatar">
-    <img class="i48" src="{{ user.gravatar_url() }}"{% if user.username == g.user.username %} title="{{ _('Change your avatar at gravatar.com') }}"{% endif %} /></a>
-    <h1>{{ user.username }}</h1>
+<div class="profileHead">
+    <div class="gravatar">
+        <img class="i48" src="{{ user.gravatar_url() }}"{% if user.username == g.user.username %} title="{{ _('Change your avatar at gravatar.com') }}"{% endif %} />
+    <h1 class="in">{{ user.username }}</h1>{% if user.display_name %}<h1 class="in dead">({{ user.display_name }})</h1>{% endif %}<a href="{{ url_for('account.settings') }}" class="b strong small action">{{ _('Edit profile') }}</a>
+    </div>
 </div>
 {% endblock %}

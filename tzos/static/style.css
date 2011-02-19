@@ -526,6 +526,19 @@ ul.sideTabs li a.selected {
     text-align: right;
 }
 
+/* User profile */
+
+.profileHead {
+    margin: 15px 0 0;
+    padding: 10px 0;
+}
+
+.profileHead .action {
+    position: absolute;
+    right: 15px;
+    top: 36px;
+}
+
 /* Gravatars */
 
 header .gravatar {

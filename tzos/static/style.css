@@ -479,6 +479,7 @@ ul.sideTabs {
     float: left;
     margin: 0;
     width: 230px;
+    padding-bottom: 10px;
 }
 
 ul.sideTabs li {
@@ -522,8 +523,12 @@ ul.sideTabs li a.selected {
     width: 200px;
 }
 
-.column .input {
-    width: 90%;
+.main .fields {
+    padding: 10px;
+}
+
+.fields .input {
+    width: 400px;
 }
 
 /* HTML5 compatibility */

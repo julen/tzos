@@ -17,17 +17,19 @@
     <div id="edit_profile" class="tabContent">
         <div class="columns">
             <div class="column main">
-                <form method="post" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
-                    {{ profileform.hidden_tag() }}
-                    <ul>
-                        {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}
-                        {{ render_field(field, class="input") }}
-                        {% endfor %}
-                    </ul>
-                    <p>
-                        {{ profileform.submit(class="button") }}
-                    </p>
-                </form>
+                <div class="fields">
+                    <form method="post" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
+                        {{ profileform.hidden_tag() }}
+                        <ul>
+                            {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}
+                            {{ render_field(field, class="input") }}
+                            {% endfor %}
+                        </ul>
+                        <p>
+                            {{ profileform.submit(class="button") }}
+                        </p>
+                    </form>
+                </div>
             </div>
             <div class="column sidebar">
                 <p class="p5 weak">{{ _('This information will be displayed on your <a href="%(profile_url)s">public profile page</a>.', profile_url=url_for('frontend.index')) }}</p>
@@ -38,7 +40,9 @@
     <div id="edit_email" class="tabContent">
         <div class="columns">
             <div class="column main">
-            {{ render_form(emailform, action=url_for('account.settings', action='editemail')) }}
+                <div class="fields">
+                {{ render_form(emailform, action=url_for('account.settings', action='editemail')) }}
+                </div>
             </div>
             <div class="column sidebar">
                 <p class="p5 weak">{{ _('Make sure you have set a valid email address — it is used for password recovery.') }}</p>
@@ -50,7 +54,9 @@
     <div id="edit_password" class="tabContent">
         <div class="columns">
             <div class="column main">
-            {{ render_form(passwordform, action=url_for('account.settings', action='editpassword')) }}
+                <div class="fields">
+                {{ render_form(passwordform, action=url_for('account.settings', action='editpassword')) }}
+                </div>
             </div>
             <div class="column sidebar">
                 <p class="p5 weak">{{ _('Type your new password and confirm it.') }}</p>

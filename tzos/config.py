@@ -15,7 +15,7 @@ DBXML_DATABASE = '/home/julen/dev/tzos/tzos/dbs/tzos.dbxml'
 
 # Babel configuration settings
 BABEL_DEFAULT_LOCALE = 'en'
-BABEL_DEFAULT_TIMEZONE = 'UTC'
+BABEL_DEFAULT_TIMEZONE = 'CET'
 
 # Mail settings
 #MAIL_SERVER = 'localhost'

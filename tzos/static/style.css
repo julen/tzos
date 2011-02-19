@@ -169,6 +169,10 @@ li {
     list-style: none;
 }
 
+p {
+    margin: 10px 0;
+}
+
 /* Forms */
 
 .form label {
@@ -500,6 +504,26 @@ ul.sideTabs li a.selected {
 .hTabs .tabContent {
     float: right;
     width: 640px;
+}
+
+/* Column-based layouts */
+
+.columns {
+    display: block;
+}
+
+.columns .main {
+    float: left;
+    width: 440px;
+}
+
+.columns .sidebar {
+    float: right;
+    width: 200px;
+}
+
+.column .input {
+    width: 90%;
 }
 
 /* HTML5 compatibility */

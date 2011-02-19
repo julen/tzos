@@ -531,6 +531,11 @@ ul.sideTabs li a.selected {
     width: 400px;
 }
 
+.main .fAction {
+    padding-right: 10px;
+    text-align: right;
+}
+
 /* HTML5 compatibility */
 
 article, aside, details, figcaption, figure,

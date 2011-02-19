@@ -27,6 +27,7 @@ MODULES = (
     (views.account, '/<lang>'),
     (views.search, '/<lang>/search'),
     (views.terms, '/<lang>/terms'),
+    (views.user, '/<lang>/user'),
 )
 
 def create_app(config=None):

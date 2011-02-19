@@ -15,7 +15,7 @@
             <nav class="in fr">
                 <ul class="in fl">
                     {% if g.user %}
-                    <li><div class="gravatar"><a href="#"><img class="i20" src="{{ g.user.gravatar_url() }}" /></a><a href="#">{{ g.user.username }}</a></div></li>
+                    <li><div class="gravatar"><a href="{{ url_for('user.profile', username=g.user.username) }}"><img class="i20" src="{{ g.user.gravatar_url() }}" /></a><a href="{{ url_for('user.profile', username=g.user.username) }}">{{ g.user.username }}</a></div></li>
                     <li><a href="{{ url_for('account.logout') }}">{{ _('Log out') }}</a></li>
                     {% else %}
                     <li><a href="{{ url_for('account.register') }}" class="register">{{ _('Register') }}</a></li>

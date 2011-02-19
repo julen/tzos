@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="column sidebar">
-                <p class="p5 weak">{{ _('This information will be displayed on your <a href="%(profile_url)s">public profile page</a>.', profile_url=url_for('frontend.index')) }}</p>
+                <p class="p5 weak">{{ _('This information will be displayed on your <a href="%(profile_url)s">public profile page</a>.', profile_url=url_for('user.profile', username=g.user.username)) }}</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ super() }}{{ _("%(user)s's profile", user=user.username) }}{% endblock %}
+
+{% block intro %}{% endblock %}
+
+{% block content %}
+<div class="gravatar">
+    <img class="i48" src="{{ user.gravatar_url() }}"{% if user.username == g.user.username %} title="{{ _('Change your avatar at gravatar.com') }}"{% endif %} /></a>
+    <h1>{{ user.username }}</h1>
+</div>
+{% endblock %}

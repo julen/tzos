@@ -175,6 +175,6 @@ def settings():
 
         return redirect(url_for("account.settings"))
 
-    return render_template("account/account.html", profileform=profileform,
-                                                   emailform=emailform,
-                                                   passwordform=passwordform)
+    return render_template("account/settings.html", profileform=profileform,
+                                                    emailform=emailform,
+                                                    passwordform=passwordform)

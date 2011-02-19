@@ -539,6 +539,22 @@ ul.sideTabs li a.selected {
     top: 36px;
 }
 
+.profileBody {
+    border-top: 1px solid #f1f1f1;
+    padding: 15px 0 0;
+}
+
+.vcard dl {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+}
+
+.vcard dl dt {
+    float: left;
+    color: #999;
+    width: 150px;
+}
+
 /* Gravatars */
 
 header .gravatar {

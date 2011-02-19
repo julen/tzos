@@ -11,4 +11,31 @@
     <h1 class="in">{{ user.username }}</h1>{% if user.display_name %}<h1 class="in dead">({{ user.display_name }})</h1>{% endif %}<a href="{{ url_for('account.settings') }}" class="b strong small action">{{ _('Edit profile') }}</a>
     </div>
 </div>
+<div class="profileBody">
+    <div class="vcard">
+        {% if user.display_name %}
+        <dl>
+            <dt>{{ _('Name') }}</dt><dd class="fn">{{ user.display_name }}</dd>
+        </dl>
+        {% endif %}
+        {% if user.website %}
+        <dl>
+            <dt>{{ _('Website') }}</dt><dd class="url"><a href="{{ user.website }}" class="url">{{ user.website }}</a></dd>
+        </dl>
+        {% endif %}
+        {% if user.company %}
+        <dl>
+            <dt>{{ _('Company/Organization') }}</dt><dd class="org">{{ user.company }}</dd>
+        </dl>
+        {% endif %}
+        {% if user.location %}
+        <dl>
+            <dt>{{ _('Location') }}</dt><dd class="adr locality">{{ user.location }}</dd>
+        </dl>
+        {% endif %}
+        <dl>
+            <dt>{{ _('Date joined') }}</dt><dd>{{ user.date_joined }}</dd>
+        </dl>
+    </div>
+</div>
 {% endblock %}

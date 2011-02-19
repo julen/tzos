@@ -8,18 +8,21 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-02-19 23:22+0100\n"
+"PO-Revision-Date: 2011-02-19 23:41+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0-beta4\n"
 "Generated-By: Babel 0.9.5\n"
+"X-Project-Style: default\n"
 
 #: tzos/application.py:83
 msgid "You must login to see this page."
-msgstr ""
+msgstr "Saioa hasi behar duzu orri hau ikusteko."
 
 #: tzos/forms.py:21
 msgid "You can only use letters, numbers or dashes"
@@ -31,19 +34,19 @@ msgstr "Bilatu terminoak"
 
 #: tzos/forms.py:25
 msgid "Source"
-msgstr ""
+msgstr "Iturria"
 
 #: tzos/forms.py:26
 msgid "Examples"
-msgstr ""
+msgstr "Adibideak"
 
 #: tzos/forms.py:27
 msgid "Definition"
-msgstr ""
+msgstr "Definizioa"
 
 #: tzos/forms.py:28
 msgid "Sample text"
-msgstr ""
+msgstr "Lagin-testua"
 
 #: tzos/forms.py:30
 msgid "Search"
@@ -110,72 +113,64 @@ msgid "Signup"
 msgstr "Eman izena"
 
 #: tzos/forms.py:74
-#, fuzzy
 msgid "Recover password"
-msgstr "Erabiltzaile-izen edo pasahitz okerra."
+msgstr "Berreskuratu pasahitza"
 
 #: tzos/forms.py:81
-#, fuzzy
 msgid "Repeat password"
 msgstr "Errepikatu pasahitza"
 
 #: tzos/forms.py:83
-#, fuzzy
 msgid "Passwords don't match."
-msgstr "Pasahitzak ez datoz bat"
+msgstr "Pasahitzak ez datoz bat."
 
 #: tzos/forms.py:88
-#, fuzzy
 msgid "Reset password"
-msgstr "Errepikatu pasahitza"
+msgstr "Berrezarri pasahitza"
 
 #: tzos/forms.py:92
-#, fuzzy
 msgid "Change password"
-msgstr "Pasahitza"
+msgstr "Aldatu pasahitza"
 
 #: tzos/forms.py:96
-#, fuzzy
 msgid "Your email address"
 msgstr "Helbide elektronikoa"
 
 #: tzos/forms.py:97
-#, fuzzy
 msgid "Email address required."
 msgstr "Helbide elektronikoa beharrezkoa da."
 
 #: tzos/forms.py:100
-#, fuzzy
 msgid "Edit email address"
-msgstr "Helbide elektronikoa"
+msgstr "Editatu helbide elektronikoa"
 
 #: tzos/forms.py:106
 msgid "This email is taken."
-msgstr ""
+msgstr "Helbide elektronikoa hartuta dago."
 
 #: tzos/forms.py:110
 msgid "Display name"
-msgstr ""
+msgstr "Bistaratzeko izena"
 
 #: tzos/forms.py:112 tzos/templates/user/profile.html:23
 msgid "Website"
-msgstr ""
+msgstr "Webgunea"
 
 #: tzos/forms.py:114
 msgid "The URL must be valid."
-msgstr ""
+msgstr "URLak baliozkoa izan behar du."
 
 #: tzos/forms.py:116 tzos/templates/user/profile.html:28
 msgid "Company/Organization"
-msgstr ""
+msgstr "Enpresa/Erakundea"
 
 #: tzos/forms.py:118 tzos/templates/user/profile.html:33
 msgid "Location"
-msgstr ""
+msgstr "Kokalekua"
 
 #: tzos/forms.py:120
 msgid "Update information"
-msgstr ""
+msgstr "Eguneratu informazioa"
 
 #: tzos/templates/dict.html:3 tzos/templates/layout.html:37
 msgid "Select dictionary language"
@@ -221,31 +216,29 @@ msgstr "Errorea"
 
 #: tzos/templates/account/change_password.html:4
 #: tzos/templates/account/change_password.html:6
-#, fuzzy
 msgid "Change your password"
-msgstr "Erabiltzaile-izen edo pasahitz okerra."
+msgstr "Aldatu pasahitza"
 
 #: tzos/templates/account/change_password.html:7
 msgid "Please fill in the form below to change your password."
-msgstr ""
+msgstr "Bete ezazu azpiko inprimakia pasahitza aldatzeko."
 
 #: tzos/templates/account/login.html:7
 msgid ""
 "If you already have an account, you can log in by providing your username"
 " and password."
 msgstr ""
-"Kontua baldin baduzu, zure erabiltzaile-izen eta pasahitza emanez has "
-"dezakezu saioa."
+"Kontua baldin baduzu, erabiltzaile-izen eta pasahitza emanez has dezakezu "
+"saioa."
 
 #: tzos/templates/account/recover_password.html:4
 #: tzos/templates/account/recover_password.html:6 tzos/views/account.py:109
-#, fuzzy
 msgid "Recover your password"
-msgstr "Erabiltzaile-izen edo pasahitz okerra."
+msgstr "Berreskuratu pasahitza"
 
 #: tzos/templates/account/recover_password.html:7
 msgid "Please fill in the form below to request a password recovery."
-msgstr ""
+msgstr "Bete ezazu azpiko inprimakia pasahitz-berreskurapena eskatzeko."
 
 #: tzos/templates/account/register.html:7
 msgid "Please fill in the required information to register an account."
@@ -253,28 +246,29 @@ msgstr "Bete beharrezko datuak izena eman eta kontu berria sortzeko."
 
 #: tzos/templates/account/settings.html:4
 msgid "Your account"
-msgstr ""
+msgstr "Zure kontua"
 
 #: tzos/templates/account/settings.html:6
 msgid "Account settings"
-msgstr ""
+msgstr "Kontuaren ezarpenak"
 
 #: tzos/templates/account/settings.html:7
 msgid "You can change the settings related to your account below."
-msgstr ""
+msgstr "Zure kontuaren inguruko ezarpenak alda ditzakezu azpian."
 
 #: tzos/templates/account/settings.html:12
 msgid "Public profile"
-msgstr ""
+msgstr "Profil publikoa"
 
 #: tzos/templates/account/settings.html:30
 msgid "Change your avatar at <a href=\"http://gravatar.com\">gravatar.com</a>"
 msgstr ""
+"Aldatu avatarra <a href=\"http://gravatar.com\">gravatar.com</a> helbidean"
 
 #: tzos/templates/account/settings.html:30
 #, python-format
 msgid "We are using %(user_email)s"
-msgstr ""
+msgstr "%(user_email)s helbidea ari gara erabiltzen"
 
 #: tzos/templates/account/settings.html:39
 #, python-format
@@ -282,12 +276,16 @@ msgid ""
 "This information will be displayed on your <a "
 "href=\"%(profile_url)s\">public profile page</a>."
 msgstr ""
+"Informazio hau zure <a href=\"%(profile_url)s\">profil publikoan</a> "
+"bistaratuko da."
 
 #: tzos/templates/account/settings.html:52
 msgid ""
 "Make sure you have set a valid email address — it is used for password "
 "recovery."
 msgstr ""
+"Ziurtatu baliozko helbide elektronikoa ezarri duzula — pasahitza "
+"berreskuratzeko erabiltzen da."
 
 #: tzos/templates/account/settings.html:53
 msgid ""
@@ -295,10 +293,12 @@ msgid ""
 "href=\"http://gravatar.com\">gravatar.com</a> based on your email "
 "address."
 msgstr ""
+"Zure avatarra <a href=\"http://gravatar.com\">gravatar.com</a> gunetik "
+"eskuratuko da, helbide elektronikoan oinarrituta."
 
 #: tzos/templates/account/settings.html:66
 msgid "Type your new password and confirm it."
-msgstr ""
+msgstr "Idatzi pasahitz berria eta berretsi ezazu."
 
 #: tzos/templates/emails/recover_password.html:1
 #, python-format
@@ -308,36 +308,42 @@ msgid ""
 "\n"
 "%(change_password_url)s\n"
 msgstr ""
+"\n"
+"Egin klik azpiko estekan pasahitza berreskuratzeko:\n"
+"\n"
+"%(change_password_url)s\n"
 
 #: tzos/templates/errors/403.html:3
 msgid "Hey!"
-msgstr ""
+msgstr "Aizu!"
 
 #: tzos/templates/errors/403.html:5
 msgid "You should not be here!"
-msgstr ""
+msgstr "Ez zenuke hemen egon behar!"
 
 #: tzos/templates/errors/404.html:3
 msgid "Page not found"
-msgstr ""
+msgstr "Ez da orria aurkitu"
 
 #: tzos/templates/errors/404.html:5
 msgid "The page you were looking for could not be found."
-msgstr ""
+msgstr "Bila zenbiltzan orria ezin izan da aurkitu."
 
 #: tzos/templates/errors/500.html:3
 msgid "We are sorry!"
-msgstr ""
+msgstr "Sentitzen dugu!"
 
 #: tzos/templates/errors/500.html:5
 msgid ""
 "It seems that something bad happened on the server. We will try to fix it"
 " as soon as possible. Thanks for your patience."
 msgstr ""
+"Badirudi zerbait oker dabilela zerbitzarian. Ahal bezain pronto konpontzen "
+"saiatuko gara. Eskerrik asko pazientziagatik."
 
 #: tzos/templates/errors/layout.html:11
 msgid "« Back to the home page"
-msgstr ""
+msgstr "« Atzera hasiera-orrira"
 
 #: tzos/templates/search/advanced.html:4 tzos/templates/search/advanced.html:6
 msgid "Advanced search"
@@ -355,8 +361,8 @@ msgstr "Bilaketaren emaitzak"
 #, python-format
 msgid "Your search returned %(num)d result."
 msgid_plural "Your search returned %(num)d results."
-msgstr[0] "Zure bilaketak emaitza bat itzuli du."
-msgstr[1] "Zure bilaketak %(num)d emaitza itzuli ditu."
+msgstr[0] "Bilaketak emaitza bat itzuli du."
+msgstr[1] "Bilaketak %(num)d emaitza itzuli ditu."
 
 #: tzos/templates/terms/list_all.html:3
 msgid "Terms list"
@@ -380,28 +386,27 @@ msgstr[1] "%(num)d termino aurkitu dira."
 #: tzos/templates/user/profile.html:3
 #, python-format
 msgid "%(user)s's profile"
-msgstr ""
+msgstr "%(user)s(r)en profila"
 
 #: tzos/templates/user/profile.html:10
 msgid "Change your avatar at gravatar.com"
-msgstr ""
+msgstr "Aldatu avatarra gravatar.com helbidean"
 
 #: tzos/templates/user/profile.html:11
 msgid "Edit profile"
-msgstr ""
+msgstr "Editatu profila"
 
 #: tzos/templates/user/profile.html:18
-#, fuzzy
 msgid "Name"
-msgstr "Erabiltzaile-izena"
+msgstr "Izena"
 
 #: tzos/templates/user/profile.html:37
 msgid "Date joined"
-msgstr ""
+msgstr "Izen-emate data"
 
 #: tzos/templates/user/profile.html:37
 msgid "d/M/Y"
-msgstr ""
+msgstr "Y/M/d"
 
 #: tzos/views/account.py:43
 #, python-format
@@ -418,23 +423,21 @@ msgstr "Saioa amaitu duzu."
 
 #: tzos/views/account.py:100
 msgid "Please check your email for instructions on how to access your account."
-msgstr ""
+msgstr "Egiaztatu posta elektronikoa kontua atzitzeko jarraibideak eskuratzeko."
 
 #: tzos/views/account.py:116
-#, fuzzy
 msgid "Sorry, no user found for that email address."
-msgstr "Erabiltzaile-izena edo helbide elektronikoa"
+msgstr "Ez da erabiltzailerik aurkitu helbide elektroniko horrekin."
 
 #: tzos/views/account.py:143
 msgid "Your password has been changed, please log in again."
-msgstr ""
+msgstr "Pasahitza aldatu da, hasi saioa berriro mesedez."
 
 #: tzos/views/account.py:174
 msgid "Your account has been updated."
-msgstr ""
+msgstr "Kontua eguneratu da."
 
 #: tzos/views/frontend.py:33
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr "Hemendik aurrera hiztegiaren hizkuntza ‘%(dictname)s’ da."
-

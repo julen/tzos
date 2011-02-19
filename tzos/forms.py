@@ -78,7 +78,7 @@ class BasePasswordForm(Form):
     password = PasswordField("Password", validators=[
                              required(message=_("Password is required."))])
 
-    password_again = PasswordField(_("Password again"), validators=[
+    password_again = PasswordField(_("Repeat password"), validators=[
                                    equal_to("password", message=\
                                             _("Passwords don't match."))])
 

@@ -534,6 +534,7 @@ ul.sideTabs li a.selected {
 }
 
 .profileHead .action {
+    color: #000!important;
     position: absolute;
     right: 15px;
     top: 36px;

@@ -8,7 +8,7 @@
 <div class="profileHead">
     <div class="gravatar">
         <img class="i48" src="{{ user.gravatar_url() }}"{% if user.username == g.user.username %} title="{{ _('Change your avatar at gravatar.com') }}"{% endif %} />
-    <h1 class="in">{{ user.username }}</h1>{% if user.display_name %}<h1 class="in dead">({{ user.display_name }})</h1>{% endif %}<a href="{{ url_for('account.settings') }}" class="b small strong action">{{ _('Edit profile') }}</a>
+        <h1 class="in">{{ user.username }}</h1>{% if user.display_name %}<h1 class="in dead">({{ user.display_name }})</h1>{% endif %}{% if user.username == g.user.username %}<a href="{{ url_for('account.settings') }}" class="b small strong action">{{ _('Edit profile') }}</a>{% endif %}
     </div>
 </div>
 <div class="profileBody">

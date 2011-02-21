@@ -54,6 +54,9 @@ def register():
 
 @account.route('/login/', methods=('GET', 'POST'))
 def login():
+    if g.user:
+        return redirect(url_for('user.profile', username=g.user.username))
+
     form = LoginForm(next=request.args.get('next', None))
 
     if form.validate_on_submit():

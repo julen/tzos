@@ -170,10 +170,6 @@ li {
     list-style: none;
 }
 
-p {
-    margin: 10px 0;
-}
-
 /* Forms */
 
 .form label {
@@ -497,6 +493,15 @@ ul.sideTabs li a.selected {
     width: 640px;
 }
 
+.hTabs .fAction {
+    padding-right: 8%;
+    text-align: right;
+}
+
+.hTabs .input {
+    width: 90%;
+}
+
 /* Column-based layouts */
 
 .columns {
@@ -505,25 +510,36 @@ ul.sideTabs li a.selected {
 
 .columns .main {
     float: left;
+    width: 640px;
+}
+
+.hTabs .columns .main {
     width: 440px;
 }
 
 .columns .sidebar {
     float: right;
+    width: 250px;
+}
+
+.hTabs .columns .sidebar {
     width: 200px;
+}
+
+.sidebar p {
+    margin: 10px 0;
+}
+
+.sidebar .sidebarBlock {
+    margin-bottom: 1.5em;
+}
+
+.sidebarBlock p {
+    margin: 5px 0;
 }
 
 .main .fields {
     padding: 10px;
-}
-
-.fields .input {
-    width: 400px;
-}
-
-.main .fAction {
-    padding-right: 10px;
-    text-align: right;
 }
 
 /* User profile */

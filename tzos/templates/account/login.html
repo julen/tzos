@@ -7,5 +7,21 @@
 {% block intro_text %}{{ _('If you already have an account, you can log in by providing your username and password.') }}{% endblock %}
 
 {% block content %}
-{{ render_form(form) }}
+<div class="columns">
+    <div class="column main">
+        <div class="fields">
+        {{ render_form(form) }}
+        </div>
+    </div>
+    <div class="column sidebar">
+        <div class="sidebarBlock">
+            <h2 class="h4 normal">{{ _("Don't have an account yet?") }}</h2>
+            <p class="p5 weak">{{ _("You can <a href=\"%(register_url)s\">register now</a>, it's quick and free.", register_url=url_for('account.register')) }}</p>
+        </div>
+        <div class="sidebarBlock">
+            <h2 class="h4 normal">{{ _('Forgot your password?') }}</h2>
+            <p class="p5 weak">{{ _('You can set up a new one by <a href="%(password_reset_url)s">requesting a password reset</a>.', password_reset_url=url_for('account.forgot_password')) }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

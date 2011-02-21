@@ -11,7 +11,7 @@
 {% macro render_field(field) %}
 <li>
 {% if field.type == 'BooleanField' %}
-    {{ field(**kwargs)|safe }}
+    {{ field(class="in")|safe }}
     {{ field.label(class="in") }}
 {% else %}
     {{ field.label }}

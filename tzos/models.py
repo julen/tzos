@@ -14,6 +14,7 @@ from datetime import datetime
 
 from werkzeug import cached_property, check_password_hash, generate_password_hash
 
+from flaskext.babel import gettext as _
 from flaskext.sqlalchemy import BaseQuery
 from flaskext.principal import RoleNeed, UserNeed
 
@@ -112,6 +113,16 @@ class User(db.Model):
     @property
     def is_admin(self):
         return self.role >= self.ADMIN
+
+    @cached_property
+    def natural_role(self):
+        role_map = {
+                self.MEMBER: _('Member'),
+                self.MODERATOR: _('Moderator'),
+                self.ADMIN: _('Administrator'),
+                }
+
+        return role_map[self.role]
 
     @cached_property
     def gravatar(self):

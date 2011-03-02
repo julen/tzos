@@ -34,6 +34,9 @@
         </dl>
         {% endif %}
         <dl>
+            <dt>{{ _('Role') }}</dt><dd>{{ user.natural_role }}</dd>
+        </dl>
+        <dl>
             <dt>{{ _('Date joined') }}</dt><dd>{{ user.date_joined|dateformat(_('d/M/Y')) }}</dd>
         </dl>
     </div>

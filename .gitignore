@@ -2,5 +2,8 @@
 *.dbxml
 *-packed.js
 *.mo
+*.png
+!sprite.png
 *.pyc
 *.swp
+*.xcf

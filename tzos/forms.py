@@ -68,7 +68,7 @@ class SignupForm(Form):
 
 
 class RecoverPasswordForm(Form):
-    email = TextField("Your email address", validators=[
+    email = TextField(_("Your email address"), validators=[
                       email(message=_("A valid email address is required."))])
 
     submit = SubmitField(_("Recover password"))

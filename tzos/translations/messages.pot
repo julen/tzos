@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-02-19 23:22+0100\n"
+"POT-Creation-Date: 2011-03-02 17:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.5\n"
 
-#: tzos/application.py:83
+#: tzos/application.py:85
 msgid "You must login to see this page."
 msgstr ""
 
@@ -25,7 +25,7 @@ msgstr ""
 msgid "You can only use letters, numbers or dashes"
 msgstr ""
 
-#: tzos/forms.py:24 tzos/templates/layout.html:26
+#: tzos/forms.py:24
 msgid "Search terms"
 msgstr ""
 
@@ -109,6 +109,10 @@ msgstr ""
 msgid "Signup"
 msgstr ""
 
+#: tzos/forms.py:71 tzos/forms.py:96
+msgid "Your email address"
+msgstr ""
+
 #: tzos/forms.py:74
 msgid "Recover password"
 msgstr ""
@@ -127,10 +131,6 @@ msgstr ""
 
 #: tzos/forms.py:92
 msgid "Change password"
-msgstr ""
-
-#: tzos/forms.py:96
-msgid "Your email address"
 msgstr ""
 
 #: tzos/forms.py:97
@@ -169,7 +169,19 @@ msgstr ""
 msgid "Update information"
 msgstr ""
 
-#: tzos/templates/dict.html:3 tzos/templates/layout.html:37
+#: tzos/models.py:120
+msgid "Member"
+msgstr ""
+
+#: tzos/models.py:121
+msgid "Moderator"
+msgstr ""
+
+#: tzos/models.py:122
+msgid "Administrator"
+msgstr ""
+
+#: tzos/templates/dict.html:3
 msgid "Select dictionary language"
 msgstr ""
 
@@ -193,24 +205,6 @@ msgstr ""
 msgid "TZOS is an online community for building and sharing terminology."
 msgstr ""
 
-#: tzos/templates/layout.html:19
-msgid "Log out"
-msgstr ""
-
-#: tzos/templates/layout.html:21 tzos/templates/account/register.html:4
-#: tzos/templates/account/register.html:6
-msgid "Register"
-msgstr ""
-
-#: tzos/templates/layout.html:22 tzos/templates/account/login.html:4
-#: tzos/templates/account/login.html:6
-msgid "Log in"
-msgstr ""
-
-#: tzos/templates/layout.html:55 tzos/templates/errors/layout.html:6
-msgid "Error"
-msgstr ""
-
 #: tzos/templates/account/change_password.html:4
 #: tzos/templates/account/change_password.html:6
 msgid "Change your password"
@@ -220,14 +214,40 @@ msgstr ""
 msgid "Please fill in the form below to change your password."
 msgstr ""
 
+#: tzos/templates/account/login.html:4 tzos/templates/account/login.html:6
+msgid "Log in"
+msgstr ""
+
 #: tzos/templates/account/login.html:7
 msgid ""
 "If you already have an account, you can log in by providing your username"
 " and password."
 msgstr ""
 
+#: tzos/templates/account/login.html:18
+msgid "Don't have an account yet?"
+msgstr ""
+
+#: tzos/templates/account/login.html:19
+#, python-format
+msgid ""
+"You can <a href=\"%(register_url)s\">register now</a>, it's quick and "
+"free."
+msgstr ""
+
+#: tzos/templates/account/login.html:22
+msgid "Forgot your password?"
+msgstr ""
+
+#: tzos/templates/account/login.html:23
+#, python-format
+msgid ""
+"You can set up a new one by <a href=\"%(password_reset_url)s\">requesting"
+" a password reset</a>."
+msgstr ""
+
 #: tzos/templates/account/recover_password.html:4
-#: tzos/templates/account/recover_password.html:6 tzos/views/account.py:109
+#: tzos/templates/account/recover_password.html:6 tzos/views/account.py:112
 msgid "Recover your password"
 msgstr ""
 
@@ -235,8 +255,22 @@ msgstr ""
 msgid "Please fill in the form below to request a password recovery."
 msgstr ""
 
+#: tzos/templates/account/register.html:4
+#: tzos/templates/account/register.html:6
+msgid "Register"
+msgstr ""
+
 #: tzos/templates/account/register.html:7
 msgid "Please fill in the required information to register an account."
+msgstr ""
+
+#: tzos/templates/account/register.html:18
+msgid "Already have an account?"
+msgstr ""
+
+#: tzos/templates/account/register.html:19
+#, python-format
+msgid "Then you can go straight to the <a href=\"%(login_url)s\">login page</a>."
 msgstr ""
 
 #: tzos/templates/account/settings.html:4
@@ -323,6 +357,10 @@ msgid ""
 " as soon as possible. Thanks for your patience."
 msgstr ""
 
+#: tzos/templates/errors/layout.html:6
+msgid "Error"
+msgstr ""
+
 #: tzos/templates/errors/layout.html:11
 msgid "« Back to the home page"
 msgstr ""
@@ -383,10 +421,14 @@ msgid "Name"
 msgstr ""
 
 #: tzos/templates/user/profile.html:37
+msgid "Role"
+msgstr ""
+
+#: tzos/templates/user/profile.html:40
 msgid "Date joined"
 msgstr ""
 
-#: tzos/templates/user/profile.html:37
+#: tzos/templates/user/profile.html:40
 msgid "d/M/Y"
 msgstr ""
 
@@ -395,27 +437,27 @@ msgstr ""
 msgid "Welcome, %(name)s."
 msgstr ""
 
-#: tzos/views/account.py:77
+#: tzos/views/account.py:80
 msgid "Wrong username or password."
 msgstr ""
 
-#: tzos/views/account.py:84
+#: tzos/views/account.py:87
 msgid "You are now logged out."
 msgstr ""
 
-#: tzos/views/account.py:100
+#: tzos/views/account.py:103
 msgid "Please check your email for instructions on how to access your account."
 msgstr ""
 
-#: tzos/views/account.py:116
+#: tzos/views/account.py:119
 msgid "Sorry, no user found for that email address."
 msgstr ""
 
-#: tzos/views/account.py:143
+#: tzos/views/account.py:146
 msgid "Your password has been changed, please log in again."
 msgstr ""
 
-#: tzos/views/account.py:174
+#: tzos/views/account.py:177
 msgid "Your account has been updated."
 msgstr ""
 

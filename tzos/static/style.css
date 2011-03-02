@@ -473,10 +473,14 @@ ul.sideTabs li a {
     font-size: 1.5em;
     padding: 8px 10px 8px 15px;
     text-decoration: none;
-    border: 1px solid #f8f8f8;
+    border: 1px solid #f1f1f1;
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
+}
+
+ul.sideTabs li a:hover {
+    background-color: #f8f8f8;
 }
 
 ul.sideTabs li a.selected {

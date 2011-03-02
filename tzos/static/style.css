@@ -43,7 +43,7 @@ q {}
 .i, i {
   display:inline-block; overflow:hidden;
   line-height:0; font-size:0; color:transparent;
-  vertical-align:text-bottom; *vertical-align:middle; /* IE Hack */
+  vertical-align:middle; *vertical-align:middle; /* IE Hack */
   background-image:url(sprite.png); background-repeat:no-repeat;
   height:16px; width:16px;
   cursor:default;

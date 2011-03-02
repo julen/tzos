@@ -14,7 +14,7 @@
     </head>
     <body>
         <header class="content">
-            <a href="{{ url_for('frontend.index') }}" id="logo">TZOS</a>
+            <a href="{{ url_for('frontend.index') }}" id="logo" class="i">TZOS</a>
             <nav class="in fr">
                 <ul class="in fl">
                     {% if g.user %}
@@ -27,7 +27,7 @@
                 </ul>
                 <form class="fl headerSearch" method="GET" action="{{ url_for('search.quick') }}">
                     <input type="search" class="in" name="q" placeholder="{{ _('Search terms') }}" />
-                    <a href="{{ url_for('search.quick') }}" class="i16 advancedSearch" title="{{ 'Advanced search' }}">{{ 'Advanced search' }}</a>
+                    <a href="{{ url_for('search.quick') }}" class="i advancedSearch" title="{{ 'Advanced search' }}">{{ 'Advanced search' }}</a>
                 </form>
             </nav>
         </header>
@@ -37,7 +37,7 @@
                     {% for letter in ['0-9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
                     <li{% if loop.first %} class="first"{% endif %}><a href="{{ url_for('terms.list_letter', letter=letter) }}">{{ letter }}</a></li>
                     {% endfor %}
-                    <li id="tzosDict" class="dict"><a href="{{ url_for('frontend.dict') }}" title="{{ _('Select dictionary language') }}"><img src="{{ url_for('.static', filename='img/arrow_down.png') }}" class="i i16" /> {{ session.tzos_dict }}</a>
+                    <li id="tzosDict" class="dict"><a href="{{ url_for('frontend.dict') }}" title="{{ _('Select dictionary language') }}"><i class="iArrow">[arrow]</i> {{ session.tzos_dict }}</a>
                         <ul class="dictList" style="display:none;">
                             {% for dict_lang, dict_langname in tzos_dicts %}
                             {% if dict_lang != session.tzos_dict %}

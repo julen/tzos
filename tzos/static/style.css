@@ -44,7 +44,7 @@ q {}
   display:inline-block; overflow:hidden;
   line-height:0; font-size:0; color:transparent;
   vertical-align:middle; *vertical-align:middle; /* IE Hack */
-  background-image:url(sprite.png); background-repeat:no-repeat;
+  background-image:url('img/sprite.png'); background-repeat:no-repeat;
   height:16px; width:16px;
   cursor:default;
 }
@@ -53,10 +53,7 @@ q {}
 .i32 { height:32px; width:32px; }
 .i48 { height:48px; width:48px; }
 
-.iGit { background-position:0 0; }
-.iHelp { background-position:0 -16px; }
-.iAdd { background-position:0 -32px; }
-.iDelete { background-position:0 -48px; }
+.iArrow { background-position:0 -40px; }
 
 /* Buttons */
 .b, button, input[type=submit] {
@@ -210,6 +207,10 @@ input, select {
 
 /* BASSE customizations */
 
+a i, a.i {
+    cursor:pointer;
+}
+
 header a:link, header a:active, header a:visited,
 .menu a:link, .menu a:active, .menu a:visited,
 footer a:link, footer a:active, footer a:visited {
@@ -236,13 +237,12 @@ header {
 }
 
 header a#logo {
-    background-image: url('img/logo.png');
+    background-image: url('img/sprite.png');
+    background-position: 0 0;
     background-repeat: no-repeat;
     float: left;
     height: 24px;
     width: 100px;
-    text-indent: -999999px;
-    outline: 0 none;
     margin: 13px 20px 0 10px;
 }
 
@@ -269,21 +269,16 @@ form.headerSearch {
 }
 
 form.headerSearch input {
-    background-image: url('img/search.png');
-    background-position: 0.4em center;
+    background-image: url('img/sprite.png');
+    background-position: -11px -38px;
     background-repeat: no-repeat;
     padding: 0.4em 0.4em 0.4em 2.2em;
     width: 140px;
 }
 
-a.advancedSearch {
-    background-image: url('img/advanced_search.png');
-    background-repeat: no-repeat;
-    display: inline-block;
-    text-indent: -999999px;
+.advancedSearch {
+    background-position: 0 -24px;
     line-height: 3.6em;
-    outline: 0 none;
-    vertical-align: middle;
 }
 
 section#glossary {
@@ -308,7 +303,8 @@ footer {
 }
 
 section#locales {
-    background-image: url('img/langs.png');
+    background-image: url('img/sprite.png');
+    background-position: -16px -24px;
     background-repeat: no-repeat;
     min-height: 16px;
     padding: 0 0 0 20px;

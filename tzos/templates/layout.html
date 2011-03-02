@@ -6,6 +6,9 @@
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        {% assets "js_all" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='style.css') }}" />
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
@@ -78,9 +81,5 @@
                 </ul>
             </section>
         </footer>
-        {% block scripts %}
-        <script type="text/javascript" src="{{ url_for('.static', filename='tzos.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('.static', filename='tabs.js') }}"></script>
-        {% endblock %}
     </body>
 </html>

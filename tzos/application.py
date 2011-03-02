@@ -10,6 +10,7 @@
 """
 from flask import Flask, flash, g, redirect, render_template, request, session
 
+from flaskext.assets import Bundle, Environment
 from flaskext.babel import Babel, gettext as _, format_date
 from flaskext.principal import Principal, identity_loaded
 
@@ -60,6 +61,7 @@ def configure_modules(app):
 def configure_extensions(app):
     mail.init_app(app)
 
+    configure_assets(app)
     configure_databases(app)
     configure_i18n(app)
     configure_identity(app)
@@ -168,6 +170,15 @@ def configure_context_processors(app):
             dicts.append((l.language, l.display_name))
 
         return dict(tzos_dicts=dicts)
+
+
+def configure_assets(app):
+    assets = Environment(app)
+
+    js = Bundle('tzos.js', 'tabs.js',
+                filters='jsmin', output='tzos-packed.js')
+
+    assets.register('js_all', js)
 
 
 def configure_databases(app):

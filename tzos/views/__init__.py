@@ -10,6 +10,7 @@
 """
 from .frontend import frontend
 from .account import account
+from .admin import admin
 from .search import search
 from .terms import terms
 from .user import user

@@ -26,6 +26,7 @@ __all__ = ["create_app"]
 MODULES = (
     (views.frontend, ''),
     (views.account, '/<lang>'),
+    (views.admin, '/<lang>/admin'),
     (views.search, '/<lang>/search'),
     (views.terms, '/<lang>/terms'),
     (views.user, '/<lang>/user'),

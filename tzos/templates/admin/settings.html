@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% from "macros/_forms.html" import render_field, render_form %}
+
+{% block title %}{{ super() }}{{ _('Administration') }}{% endblock %}
+
+{% block intro_title %}{{ _('Administration') }}{% endblock %}
+{% block intro_text %}{{ _('You can change the settings that affect to the whole system below.') }}{% endblock %}
+
+{% block content %}
+<div class="hTabs">
+    <ul class="inlineTabs sideTabs">
+        <li><a href="#edit_permissions">{{ _("User permissions") }}</a></li>
+        <li><a href="#edit_kfields">{{ _("Knowledge fields") }}</a></li>
+    </ul>
+
+    <div id="edit_permissions" class="tabContent">
+        <div class="columns">
+            <div class="column">
+                <div class="fields">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit_kfields" class="tabContent">
+        <div class="columns">
+            <div class="column">
+                <div class="fields">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

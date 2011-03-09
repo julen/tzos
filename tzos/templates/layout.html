@@ -21,7 +21,7 @@
                     <li><div class="gravatar"><a href="{{ url_for('user.profile', username=g.user.username) }}"><img class="i20" src="{{ g.user.gravatar_url() }}" /></a><a href="{{ url_for('user.profile', username=g.user.username) }}">{{ g.user.username }}</a></div></li>
                     <li><a href="/suggest/">{{ _('Add term') }}</a></li>
                     {% if g.user.is_admin %}
-                    <li><a href="/admin/" class="special admin">{{ _('Admin') }}</a></li>
+                    <li><a href="{{ url_for('admin.settings') }}" class="special admin">{{ _('Admin') }}</a></li>
                     {% endif %}
                     <li><a href="{{ url_for('account.logout') }}">{{ _('Log out') }}</a></li>
                     {% else %}

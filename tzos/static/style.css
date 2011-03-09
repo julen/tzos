@@ -255,13 +255,21 @@ nav a {
     line-height: 3.6em;
 }
 
-nav a.register {
-    background-color: #07c;
-    color: #fff;
+nav a.special {
     padding: 5px 10px;
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
+}
+
+nav a.admin {
+    background-color: #d54e21;
+    color: #fff;
+}
+
+nav a.register {
+    background-color: #07c;
+    color: #fff;
 }
 
 form.headerSearch {

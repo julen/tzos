@@ -26,7 +26,7 @@
                         <tbody>
                         {% for user in users %}
                             <tr>
-                                <td><div class="gravatar in"><img src="{{ user.gravatar_url(24) }}" /></div>{{ user.username }} <span class="small weak">({{ user.display_name }})</span><span class="block small weak">{{ user.email }}</span></td><td>{{ user.natural_role }}</td>
+                                <td><div class="gravatar in"><img src="{{ user.gravatar_url(24) }}" /></div><span class="strong">{{ user.username }}</span> <span class="small weak">({{ user.display_name }})</span><span class="block small weak">{{ user.email }}</span></td><td>{{ user.natural_role }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

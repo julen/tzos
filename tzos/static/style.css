@@ -496,6 +496,10 @@ ul.sideTabs li a.selected {
     color: #fff!important;
 }
 
+section.admin ul.sideTabs li a.selected {
+    background-color: #d54e21;
+}
+
 .hTabs .tabContent {
     float: right;
     width: 640px;

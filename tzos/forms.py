@@ -120,10 +120,10 @@ class EditProfileForm(Form):
     submit = SubmitField(_("Update information"))
 
 
-class AddUserPermissionForm(Form):
+class ModifyUserPermissionForm(Form):
     user = SelectField(_("Username"))
 
     role_choices = [(role, User.role_map[role]) for role in User.role_map.keys()]
     role = SelectField(_("Role"), choices=role_choices)
 
-    submit = SubmitField(_("Add permissions"))
+    submit = SubmitField(_("Modify permissions"))

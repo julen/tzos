@@ -13,7 +13,7 @@ from flask import Module, flash, g, redirect, render_template, request
 from flaskext.babel import gettext as _
 
 from tzos.extensions import db
-from tzos.forms import AddUserPermissionForm
+from tzos.forms import ModifyUserPermissionForm
 from tzos.helpers import url_for
 from tzos.models import User
 from tzos.permissions import admin as admin_permission
@@ -26,7 +26,7 @@ admin = Module(__name__)
 def settings():
     users = User.query.filter(User.role > User.MEMBER)
 
-    addusersform = AddUserPermissionForm()
+    addusersform = ModifyUserPermissionForm()
     addusersform.user.choices = [(u.id, u.username) for u in \
             User.query.filter(User.username!=g.user.username).all()]
 

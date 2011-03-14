@@ -10,8 +10,8 @@
 """
 from flaskext.babel import gettext, lazy_gettext as _
 from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
-    PasswordField, RecaptchaField, SubmitField, TextField, URL, email, \
-    equal_to, regexp, required
+    PasswordField, RecaptchaField, SelectField, SubmitField, TextField, \
+    URL, email, equal_to, regexp, required
 
 from tzos.models import User
 
@@ -118,3 +118,12 @@ class EditProfileForm(Form):
     location = TextField(_("Location"))
 
     submit = SubmitField(_("Update information"))
+
+
+class AddUserPermissionForm(Form):
+    user = SelectField(_("Username"))
+
+    role_choices = [(role, User.role_map[role]) for role in User.role_map.keys()]
+    role = SelectField(_("Role"), choices=role_choices)
+
+    submit = SubmitField(_("Add permissions"))

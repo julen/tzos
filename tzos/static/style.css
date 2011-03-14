@@ -200,9 +200,20 @@ input, select {
     width: 65%;
 }
 
+.f1 dd .input {
+    width: 210px;
+    margin-right: 5px;
+}
+
 .f1 .button {
     font-size: 1.3em;
     padding: 0.4em 1.1em;
+}
+
+.f1 dd .button {
+    position: relative;
+    top: -2px;
+    float: right;
 }
 
 /* Tables */

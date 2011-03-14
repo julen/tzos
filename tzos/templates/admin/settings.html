@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "macros/_forms.html" import render_field, render_form %}
+{% from "macros/_forms.html" import render_field %}
 
 {% block title %}{{ super() }}{{ _('Administration') }}{% endblock %}
 
@@ -34,7 +34,12 @@
         </div>
         <div class="hr fields">
             <h2 class="h4">{{ _('Add or modify user permissions') }}</h2>
-            {{ render_form(addusersform) }}
+            <p>{{ _('Select user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') }}</p>
+            <form method="POST" action="" class="f1">
+                <dl>
+                    <dd>{{ addusersform.user(class="input fl") }}{{ addusersform.role(class="input fl") }}{{ addusersform.submit(class="button") }}</dd>
+                </dl>
+            </form>
         </div>
     </div>
 

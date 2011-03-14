@@ -24,7 +24,8 @@ admin = Module(__name__)
 @admin.route('/')
 @admin_permission.require(401)
 def settings():
-    users = User.query.filter(User.role > User.MEMBER)
+    users = User.query.filter(User.role > User.MEMBER) \
+                      .order_by('-role', 'username')
 
     usersform = ModifyUserPermissionForm()
     usersform.user.choices = [(u.id, u.username) for u in \

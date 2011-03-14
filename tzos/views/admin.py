@@ -28,7 +28,8 @@ def settings():
 
     addusersform = ModifyUserPermissionForm()
     addusersform.user.choices = [(u.id, u.username) for u in \
-            User.query.filter(User.username!=g.user.username).all()]
+            User.query.filter(User.username!=g.user.username)
+                      .order_by('username')]
 
     return render_template("admin/settings.html", users=users,
                                                   addusersform=addusersform)

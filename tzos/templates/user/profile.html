@@ -11,7 +11,7 @@
         <h1 class="in">{{ user.username }}</h1>{% if user.display_name %}<h1 class="in dead">({{ user.display_name }})</h1>{% endif %}{% if user.username == g.user.username %}<a href="{{ url_for('account.settings') }}" class="b small strong action">{{ _('Edit profile') }}</a>{% endif %}
     </div>
 </div>
-<div class="profileBody">
+<div class="hr">
     <div class="vcard">
         {% if user.display_name %}
         <dl>

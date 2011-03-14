@@ -396,6 +396,13 @@ ul.in li {
     clear: right;
 }
 
+/* Misc */
+
+.hr {
+    border-top: 1px solid #f1f1f1;
+    padding: 15px 0 0;
+}
+
 /* Flashes */
 
 .flash {
@@ -596,11 +603,6 @@ section.admin ul.sideTabs li a.selected {
     position: absolute;
     right: 15px;
     top: 36px;
-}
-
-.profileBody {
-    border-top: 1px solid #f1f1f1;
-    padding: 15px 0 0;
 }
 
 .vcard dl {

@@ -35,7 +35,7 @@
         <div class="hr fields">
             <h2 class="h4">{{ _('Modify user permissions') }}</h2>
             <p>{{ _('Select a user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') }}</p>
-            <form method="POST" action="" class="f1">
+            <form method="POST" action="{{ url_for('admin.settings', action='modifypermissions') }}" class="f1">
                 <dl>
                     <dd>{{ addusersform.user(class="input fl") }}{{ addusersform.role(class="input fl") }}{{ addusersform.submit(class="button") }}</dd>
                 </dl>

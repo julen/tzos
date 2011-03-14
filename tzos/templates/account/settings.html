@@ -18,7 +18,7 @@
         <div class="columns">
             <div class="column main">
                 <div class="fields">
-                    <form method="post" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
+                    <form method="POST" action="{{ url_for('account.settings', action='editprofile') }}" class="f1">
                         {{ profileform.hidden_tag() }}
                         <ul>
                             {% for field in profileform if not field.type == 'SubmitField' and not field.type == 'HiddenField' %}

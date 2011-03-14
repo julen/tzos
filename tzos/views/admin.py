@@ -26,10 +26,10 @@ admin = Module(__name__)
 def settings():
     users = User.query.filter(User.role > User.MEMBER)
 
-    addusersform = ModifyUserPermissionForm()
-    addusersform.user.choices = [(u.id, u.username) for u in \
-            User.query.filter(User.username!=g.user.username)
-                      .order_by('username')]
+    usersform = ModifyUserPermissionForm()
+    usersform.user.choices = [(u.id, u.username) for u in \
+        User.query.filter(User.username!=g.user.username)
+                  .order_by('username')]
 
     return render_template("admin/settings.html", users=users,
-                                                  addusersform=addusersform)
+                                                  usersform=usersform)

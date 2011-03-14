@@ -3,6 +3,8 @@
 
 {% block title %}{{ super() }}{{ _('Administration') }}{% endblock %}
 
+{% block bodyclass %}{{ super() }} admin{% endblock %}
+
 {% block intro_title %}{{ _('Administration') }}{% endblock %}
 {% block intro_text %}{{ _('You can change the settings that affect to the whole system below.') }}{% endblock %}
 

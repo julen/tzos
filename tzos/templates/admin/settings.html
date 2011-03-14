@@ -16,31 +16,25 @@
     </ul>
 
     <div id="edit_permissions" class="tabContent">
-        <div class="columns">
-            <div class="column">
-                <div class="table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>{{ _('User') }}</th><th>{{ _('Role') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for user in users %}
-                            <tr>
-                                <td><div class="gravatar in"><img src="{{ user.gravatar_url(24) }}" /></div><span class="strong">{{ user.username }}</span> <span class="small weak">({{ user.display_name }})</span><span class="block small weak">{{ user.email }}</span></td><td>{{ user.natural_role }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="column main">
-                    <div class="fields">
-                        <h2 class="h4">{{ _('Add or modify user permissions') }}</h2>
-                        {{ render_form(addusersform) }}
-                    </div>
-                </div>
-            </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ _('User') }}</th><th>{{ _('Role') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td><div class="gravatar in"><img src="{{ user.gravatar_url(24) }}" /></div><span class="strong">{{ user.username }}</span> <span class="small weak">({{ user.display_name }})</span><span class="block small weak">{{ user.email }}</span></td><td>{{ user.natural_role }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="hr fields">
+            <h2 class="h4">{{ _('Add or modify user permissions') }}</h2>
+            {{ render_form(addusersform) }}
         </div>
     </div>
 

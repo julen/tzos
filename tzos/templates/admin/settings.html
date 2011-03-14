@@ -37,7 +37,7 @@
             <p>{{ _('Select a user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') }}</p>
             <form method="POST" action="{{ url_for('admin.settings', action='modifypermissions') }}" class="f1">
                 <dl>
-                    <dd>{{ usersform.user(class="input fl") }}{{ usersform.role(class="input fl") }}{{ usersform.submit(class="button") }}</dd>
+                    <dd>{{ usersform.user(class="input") }}{{ usersform.role(class="input") }}{{ usersform.submit(class="button") }}</dd>
                 </dl>
             </form>
         </div>

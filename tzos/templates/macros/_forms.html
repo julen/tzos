@@ -9,20 +9,26 @@
 {% endmacro %}
 
 {% macro render_field(field) %}
-<li>
-{% if field.type == 'BooleanField' %}
-    {{ field(class="in")|safe }}
-    {{ field.label(class="in") }}
+{% if field.type == 'SubmitField' %}
+<p class="fAction">
+    {{ field(class="button") }}
+</p>
 {% else %}
-    {{ field.label }}
-    {{ render_errors(field) }}
-    {{ field(**kwargs)|safe }}
+    <li>
+    {% if field.type == 'BooleanField' %}
+        {{ field(class="in")|safe }}
+        {{ field.label(class="in") }}
+    {% else %}
+        {{ field.label }}
+        {{ render_errors(field) }}
+        {{ field(**kwargs)|safe }}
+    {% endif %}
+    </li>
 {% endif %}
-</li>
 {% endmacro %}
 
 {% macro render_form(form, action='.') %}
-<form method="post" action="{{ action }}" class="f1">
+<form method="POST" action="{{ action }}" class="f1">
     {{ form.hidden_tag() }}
     <ul>
         {% for field in form if not field.type == 'SubmitField' and
@@ -30,8 +36,6 @@
         {{ render_field(field, class="input") }}
         {% endfor %}
     </ul>
-    <p class="fAction">
-        {{ form.submit(class="button") }}
-    </p>
+    {{ render_field(form.submit) }}
 </form>
 {% endmacro %}

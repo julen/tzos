@@ -1,7 +1,7 @@
 Flask
 Flask-Assets
 Flask-Babel
-Flask-DBXML
+#Flask-DBXML
 Flask-Mail
 Flask-Principal
 Flask-SQLAlchemy

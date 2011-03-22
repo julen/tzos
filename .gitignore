@@ -7,3 +7,5 @@
 *.pyc
 *.swp
 *.xcf
+
+fab_settings.py

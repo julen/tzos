@@ -7,7 +7,7 @@ import sys
 site.addsitedir('PROJECT_PATH/env/lib/python2.6/site-packages/')
 site.addsitedir('PROJECT_PATH/flask-dbxml/')
 
-sys.path.append(PROJECT_PATH)
+sys.path.append('PROJECT_PATH')
 
 os.environ['TZOS_CONFIG'] = 'PROJECT_PATH/tzos/prod_config.py'
 

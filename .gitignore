@@ -8,4 +8,8 @@
 *.swp
 *.xcf
 
-fab_settings.py
+configs/__init__.py
+configs/fabric.py
+configs/production.py
+
+tzos/production.py

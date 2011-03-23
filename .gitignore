@@ -14,3 +14,6 @@ configs/production.py
 
 tzos/production.py
 tzos/tzos.wsgi
+
+env/
+logs/

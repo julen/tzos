@@ -10,6 +10,7 @@
 """
 from flask import Module, g, render_template, request
 
+from tzos.extensions import dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import url_for
 
@@ -24,6 +25,6 @@ def quick():
         return render_template('search/advanced.html', form=form)
 
     qs = '/martif/text/body/termEntry/langSet/tig/term[dbxml:contains(string(), "%s")]/string()' % (q.replace('"', '""'))
-    terms = g.dbxml.query(qs).as_str().all()
+    terms = dbxml.get_db().query(qs).as_str().all()
 
     return render_template('search/results.html', q=q, results=terms)

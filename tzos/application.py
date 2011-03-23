@@ -163,8 +163,8 @@ def configure_context_processors(app):
         # TODO: cache items not to hit the disk each time we run this
         dicts = []
 
-        qs = "distinct-values(collection('{0}')/martif/text/body/termEntry/langSet/@xml:lang)".format(g.dbxml.collection)
-        dictlist = g.dbxml.raw_query(qs).as_str().all()
+        qs = "distinct-values(collection('{0}')/martif/text/body/termEntry/langSet/@xml:lang)".format(dbxml.get_db().collection)
+        dictlist = dbxml.get_db().raw_query(qs).as_str().all()
 
         for d in dictlist:
             l = Locale.parse(d)

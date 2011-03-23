@@ -1,9 +1,11 @@
 Flask
 Flask-Assets
 Flask-Babel
-#Flask-DBXML
 Flask-Mail
 Flask-Principal
 Flask-SQLAlchemy
 Flask-Script
 Flask-WTF
+
+# Flask-DBXML
+-e git://github.com/julen/flask-dbxml.git#egg=flask-dbxml

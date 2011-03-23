@@ -13,3 +13,4 @@ configs/fabric.py
 configs/production.py
 
 tzos/production.py
+tzos/tzos.wsgi

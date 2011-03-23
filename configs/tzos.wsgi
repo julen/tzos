@@ -4,12 +4,11 @@ import os
 import site
 import sys
 
-site.addsitedir('PROJECT_PATH/env/lib/python2.6/site-packages/')
-site.addsitedir('PROJECT_PATH/flask-dbxml/')
+site.addsitedir('{{ project_path }}/env/lib/python2.6/site-packages/')
 
-sys.path.append('PROJECT_PATH')
+sys.path.append('{{ project_path }}')
 
-os.environ['TZOS_CONFIG'] = 'PROJECT_PATH/tzos/prod_config.py'
+os.environ['TZOS_CONFIG'] = '{{ project_path }}/tzos/production.py'
 
 from tzos import create_app
 application = create_app()

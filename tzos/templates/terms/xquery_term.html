@@ -1,0 +1,18 @@
+for $term in collection($collection)//term
+where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lang=$lang]
+return
+<dl>
+    <dt class="strong big">{ $term/string() }</dt>
+<dl>
+    {
+    for $trans in $term/../../..//term
+    let $transLang := data($trans/../../@xml:lang)
+    where $trans/../..[@xml:lang!=$lang]
+    return
+    (
+    <dt style="margin-left: 2em; margin-right: 1em; width:2ch" class="fl">{ $transLang }</dt>,
+    <dd lang="{ $transLang }">{ $trans/string() }</dd>
+    )
+    }
+</dl>
+</dl>

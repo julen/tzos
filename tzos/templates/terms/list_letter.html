@@ -6,9 +6,7 @@
 {% block intro_text %}{{ ngettext('%(num)d term found.', '%(num)d terms found.', terms|count) }}{% endblock %}
 
 {% block content %}
-<ul>
 {% for term in terms %}
-    <li>{{ term }}</li>
+    {{ term|safe }}
 {% endfor %}
-</ul>
 {% endblock %}

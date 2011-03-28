@@ -1,18 +1,32 @@
+declare boundary-space preserve;
+
 for $term in collection($collection)//term
 where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lang=$lang]
 return
 <dl class="term">
-    <dt class="termName">{ $term/string() }</dt>
-    <dl>
-    {
-    for $trans in $term/../../..//term
-    let $transLang := data($trans/../../@xml:lang)
-    where $trans/../..[@xml:lang!=$lang]
-    return
-    (
-        <dt class="langName">{ $transLang }</dt>,
-        <dd lang="{ $transLang }">{ $trans/string() }</dd>
-    )
-    }
-    </dl>
+    <dt class="term">{ $term/string() }</dt>
+    <dd>
+        <dl class="syn">
+            <dt class="in"><abbr class="small" title="{{{{ _('Synonyms') }}}}">{{{{ _('syn.') }}}}</abbr></dt>
+            {
+            let $synTerms := $term/../..//term
+            for $syn in $synTerms
+            where $syn[string()!=$term/string()]
+            return
+                <dd class="in">{ $syn/string() }, </dd>
+            }
+        </dl>
+        <dl class="trans">
+        {
+        for $trans in $term/../../..//term
+        let $transLang := data($trans/../../@xml:lang)
+        where $trans/../..[@xml:lang!=$lang]
+        return
+        (
+            <dt>{ $transLang }</dt>,
+            <dd lang="{ $transLang }">{ $trans/string() }</dd>
+        )
+        }
+        </dl>
+    </dd>
 </dl>

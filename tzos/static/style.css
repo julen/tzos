@@ -667,23 +667,23 @@ header .gravatar img {
 
 /* Terms */
 
-div.terms {
-    margin-left: 0.5em;
-}
-
 dl.term {
-    margin: 1em 0;
+    margin: 1em 0 1em 0.5em;
 }
 
-dt.termName {
+dt.term {
     font-weight: bold;
     font-size: 1.5em;
 }
 
-dt.langName {
+dl.syn dt,
+dl.trans dt {
     float: left;
     margin-left: 2em;
     margin-right: 1em;
+}
+
+dl.trans dt {
     width: 2ch;
 }
 

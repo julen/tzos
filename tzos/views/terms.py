@@ -26,9 +26,9 @@ def list_all():
 @terms.route('/0-9/')
 @terms.route('/<string(length=1):letter>/')
 def list_letter(letter='0-9'):
-    letter = str(letter)
 
-    qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term[starts-with(string(), "%s")]/string()' % (session['tzos_dict'], letter)
-    terms = dbxml.get_db().query(qs).as_str().all()
+    ctx = {'lang': session['tzos_dict'], 'letter': str(letter)}
+    terms = dbxml.get_db().template_query('terms/xquery_term.html',
+                                          context=ctx).as_rendered().all()
 
     return render_template('terms/list_letter.html', terms=terms, letter=letter)

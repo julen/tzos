@@ -664,6 +664,30 @@ header .gravatar img {
     line-height: 1;
 }
 
+
+/* Terms */
+
+div.terms {
+    margin-left: 0.5em;
+}
+
+dl.term {
+    margin: 1em 0;
+}
+
+dt.termName {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+dt.langName {
+    float: left;
+    margin-left: 2em;
+    margin-right: 1em;
+    width: 2ch;
+}
+
+
 /* HTML5 compatibility */
 
 article, aside, details, figcaption, figure,

@@ -1,21 +1,31 @@
 declare boundary-space preserve;
 
+declare function local:getSynonyms($term as element(term)) {
+    $term/../..//term[string()!=$term/string()]
+};
+
 for $term in collection($collection)//term
 where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lang=$lang]
 return
 <dl class="term">
     <dt class="term">{ $term/string() }</dt>
     <dd>
+
+    { (: If any, display synonyms :)
+      let $syns := local:getSynonyms($term)
+      return
+      if (exists($syns)) then
         <dl class="syn">
             <dt class="in"><abbr class="small" title="{{{{ _('Synonyms') }}}}">{{{{ _('syn.') }}}}</abbr></dt>
             {
-            let $synTerms := $term/../..//term
-            for $syn in $synTerms
-            where $syn[string()!=$term/string()]
+            for $syn in $syns
             return
                 <dd class="in">{ $syn/string() }, </dd>
             }
         </dl>
+      else ()
+    }
+
         <dl class="trans">
         {
         for $trans in $term/../../..//term

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    tzos.views.term
-    ~~~~~~~~~~~~~~~
+    tzos.views.glossary
+    ~~~~~~~~~~~~~~~~~~~
 
-    Term views
+    Glossary views.
 
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.

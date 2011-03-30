@@ -26,7 +26,7 @@ def list_all():
 @terms.route('/<string(length=1):letter>/')
 def list_letter(letter):
 
-    ctx = {'lang': session['tzos_dict'], 'letter': str(letter)}
+    ctx = {'lang': session['tzos_dict'], 'letter': letter}
     terms = dbxml.get_db().template_query('terms/xquery_term.html',
                                           context=ctx).as_rendered().all()
 

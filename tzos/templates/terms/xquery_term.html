@@ -1,4 +1,3 @@
-declare boundary-space preserve;
 
 declare function local:getSynonyms($term as element(term)) {
     $term/../..//term[string()!=$term/string()]
@@ -18,9 +17,10 @@ return
         <dl class="syn">
             <dt class="in"><abbr class="small" title="{{{{ _('Synonyms') }}}}">{{{{ _('syn.') }}}}</abbr></dt>
             {
-            for $syn in $syns
+            for $syn at $i in $syns
+            let $synCount := count($syns)
             return
-                <dd class="in">{ $syn/string() }, </dd>
+            <dd class="in">{ $syn/string() }{ if ($i=$synCount) then () else ", "}</dd>
             }
         </dl>
       else ()

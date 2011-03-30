@@ -53,7 +53,7 @@
                 </ul>
             </div>
         </section>
-        <section id="body" class="{% block bodyclass %}content{% endblock %}">
+        <section id="messages" class="content">
         {% with messages = get_flashed_messages(with_categories=True) %}
           {% if messages %}
             {% for category, message in messages %}
@@ -74,6 +74,8 @@
             {% endblock %}
             </div>
         {% endblock %}
+        </section>
+        <section id="body" class="{% block bodyclass %}content{% endblock %}">
         {% block content %}{% endblock %}
         </section>
         <footer>

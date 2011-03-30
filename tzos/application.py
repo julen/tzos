@@ -93,10 +93,22 @@ def configure_before_handlers(app):
 
     @app.before_request
     def set_dict():
-        newdict = request.args.get('setdict', None)
+        new_dict = request.args.get('setdict', None)
 
-        if newdict:
-            session['tzos_dict'] = newdict
+        if new_dict:
+            session['tzos_dict'] = new_dict
+
+            # Set a new dict while in the glossary, refresh the current page
+            # but with the newly selected dictionary
+            if request.endpoint == 'glossary.list_letter':
+                old_dict = request.view_args['dict']
+
+                if new_dict != old_dict:
+                    request.view_args.update({'dict': new_dict})
+
+                    return redirect(url_for(request.endpoint,
+                                            **request.view_args))
+
         elif not 'tzos_dict' in session:
             session['tzos_dict'] = app.config['TZOS_DEFAULT_DICT']
 

@@ -39,6 +39,12 @@ def url_for(endpoint, **values):
 
 
 def get_tzos_dicts(only_codes=False):
+    """Returns a list with tuples of all the available dictionaries.
+    The tuple elements are language codes and language names.
+
+    :param only_codes: if set to True, returns a list of language codes.
+                       Defaults to False.
+    """
     # TODO: cache items not to hit the disk each time we run this
     dicts = []
 

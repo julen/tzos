@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, g, render_template, session
+from flask import Module, render_template
 
 from flaskext.babel import gettext as _
 

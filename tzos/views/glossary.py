@@ -16,7 +16,7 @@ from tzos.extensions import dbxml
 
 glossary = Module(__name__)
 
-@glossary.route('/<dict>/<string(length=1):letter>/')
+@glossary.route('/<string(length=2):dict>/<string(length=1):letter>/')
 def list_letter(dict, letter):
 
     ctx = {'lang': dict, 'letter': letter}

@@ -3,8 +3,7 @@ declare function local:getSynonyms($term as element(term)) {
     $term/../..//term[string()!=$term/string()]
 };
 
-for $term in collection($collection)//term
-where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lang=$lang]
+let $term := collection($collection)//term[id=$id]
 return
 <dl class="term">
     <dt class="term">{ $term/string() }</dt>
@@ -29,9 +28,10 @@ return
         return
         (
             <dt>{ $transLang }</dt>,
-            <dd lang="{ $transLang }"><a href="{{{{ url_for('terms.detail', id='{ data($term/@id) }') }}}}">{ $trans/string() }</a></dd>
+            <dd lang="{ $transLang }">{ $trans/string() }</dd>
         )
         }
         </dl>
     </dd>
 </dl>
+

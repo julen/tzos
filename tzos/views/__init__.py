@@ -13,4 +13,5 @@ from .account import account
 from .admin import admin
 from .glossary import glossary
 from .search import search
+from .terms import terms
 from .user import user

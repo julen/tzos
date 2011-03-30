@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ super() }}{{ term }}{% endblock %}
+
+{% block intro %}{% endblock %}
+
+{% block content %}
+{{ rendered_term|safe }}
+{% endblock %}
+

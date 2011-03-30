@@ -14,11 +14,9 @@ from flaskext.assets import Bundle, Environment
 from flaskext.babel import Babel, gettext as _, format_date
 from flaskext.principal import Principal, identity_loaded
 
-from babel import Locale
-
 from tzos import views
 from tzos.extensions import db, dbxml, mail
-from tzos.helpers import url_for
+from tzos.helpers import get_tzos_dicts, url_for
 from tzos.models import User
 
 __all__ = ["create_app"]
@@ -160,17 +158,7 @@ def configure_context_processors(app):
 
     @app.context_processor
     def get_dicts():
-        # TODO: cache items not to hit the disk each time we run this
-        dicts = []
-
-        qs = "distinct-values(collection('{0}')/martif/text/body/termEntry/langSet/@xml:lang)".format(dbxml.get_db().collection)
-        dictlist = dbxml.get_db().raw_query(qs).as_str().all()
-
-        for d in dictlist:
-            l = Locale.parse(d)
-            dicts.append((l.language, l.display_name))
-
-        return dict(tzos_dicts=dicts)
+        return dict(tzos_dicts=get_tzos_dicts())
 
 
 def configure_assets(app):

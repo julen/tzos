@@ -23,9 +23,8 @@ def list_all():
 
     return render_template('terms/list_all.html', terms=terms)
 
-@terms.route('/0-9/')
 @terms.route('/<string(length=1):letter>/')
-def list_letter(letter='0-9'):
+def list_letter(letter):
 
     ctx = {'lang': session['tzos_dict'], 'letter': str(letter)}
     terms = dbxml.get_db().template_query('terms/xquery_term.html',

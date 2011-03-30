@@ -8,9 +8,10 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import _request_ctx_stack, current_app, g, request
+from flask import _request_ctx_stack, abort, current_app, g, request
 
 from babel import Locale
+from functools import wraps
 
 from tzos.extensions import dbxml
 
@@ -58,3 +59,19 @@ def get_tzos_dicts(only_codes=False):
         dicts.append(locale)
 
     return dicts
+
+
+def require_valid_dict(f):
+    """A decorator that checks whether the dictionary passed in the URL exists
+    in the database or not. If not, aborts the request with 404."""
+
+    @wraps(f)
+    def decorator(dict, *args, **kwargs):
+        available_dicts = get_tzos_dicts(only_codes=True)
+
+        if dict not in available_dicts:
+            return abort(404)
+
+        return f(dict, *args, **kwargs)
+
+    return decorator

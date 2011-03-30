@@ -5,7 +5,11 @@
 {% block intro %}{% endblock %}
 
 {% block content %}
-{% for term in terms %}
-    {{ term|safe }}
-{% endfor %}
+{% if terms %}
+    {% for term in terms %}
+        {{ term|safe }}
+    {% endfor %}
+{% else %}
+<h2 class="h1">{{ _('No terms found.') }}</h2>
+{% endif %}
 {% endblock %}

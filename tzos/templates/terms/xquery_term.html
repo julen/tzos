@@ -16,12 +16,7 @@ return
       if (exists($syns)) then
         <dl class="syn">
             <dt class="in"><abbr class="small" title="{{{{ _('Synonyms') }}}}">{{{{ _('syn.') }}}}</abbr></dt>
-            {
-            for $syn at $i in $syns
-            let $synCount := count($syns)
-            return
-            <dd class="in">{ $syn/string() }{ if ($i=$synCount) then () else ", "}</dd>
-            }
+            <dd class="in">{ string-join($syns, ", ") }</dd>
         </dl>
       else ()
     }

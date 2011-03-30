@@ -28,7 +28,7 @@ MODULES = (
     (views.account, '/<lang>'),
     (views.admin, '/<lang>/admin'),
     (views.search, '/<lang>/search'),
-    (views.terms, '/<lang>/terms'),
+    (views.glossary, '/<lang>/glossary'),
     (views.user, '/<lang>/user'),
 )
 

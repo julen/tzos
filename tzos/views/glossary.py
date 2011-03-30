@@ -14,20 +14,20 @@ from flaskext.babel import gettext as _
 
 from tzos.extensions import dbxml
 
-terms = Module(__name__)
+glossary = Module(__name__)
 
-@terms.route('/')
+@glossary.route('/')
 def list_all():
     qs = '/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig/term/string()' % (session['tzos_dict'])
     terms = dbxml.get_db().query(qs).as_str().all()
 
-    return render_template('terms/list_all.html', terms=terms)
+    return render_template('glossary/list_all.html', terms=terms)
 
-@terms.route('/<string(length=1):letter>/')
-def list_letter(letter):
+@glossary.route('/<dict>/<string(length=1):letter>/')
+def list_letter(dict, letter):
 
-    ctx = {'lang': session['tzos_dict'], 'letter': letter}
-    terms = dbxml.get_db().template_query('terms/xquery_term.html',
+    ctx = {'lang': dict, 'letter': letter}
+    terms = dbxml.get_db().template_query('glossary/xquery_term.html',
                                           context=ctx).as_rendered().all()
 
-    return render_template('terms/list_letter.html', terms=terms, letter=letter)
+    return render_template('glossary/list_letter.html', terms=terms, letter=letter)

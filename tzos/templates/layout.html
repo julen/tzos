@@ -39,7 +39,7 @@
             <div class="content menu">
                 <ul>
                     {% for letter in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
-                    <li{% if loop.first %} class="first"{% endif %}><a href="{{ url_for('terms.list_letter', letter=letter) }}">{{ letter }}</a></li>
+                    <li{% if loop.first %} class="first"{% endif %}><a href="{{ url_for('glossary.list_letter', dict=session['tzos_dict'], letter=letter) }}">{{ letter }}</a></li>
                     {% endfor %}
                     <li id="tzosDict" class="dict"><a href="{{ url_for('frontend.dict') }}" title="{{ _('Select dictionary language') }}"><i class="iArrow">[arrow]</i> {{ session.tzos_dict }}</a>
                         <ul class="dictList" style="display:none;">

@@ -2,8 +2,7 @@
 
 {% block title %}{{ super() }}{{ letter|upper }}{% endblock %}
 
-{% block intro_title %}{{ letter|upper }}{% endblock %}
-{% block intro_text %}{{ ngettext('%(num)d term found.', '%(num)d terms found.', terms|count) }}{% endblock %}
+{% block intro %}{% endblock %}
 
 {% block content %}
 {% for term in terms %}

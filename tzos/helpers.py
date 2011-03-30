@@ -42,7 +42,8 @@ def get_tzos_dicts(only_codes=False):
     # TODO: cache items not to hit the disk each time we run this
     dicts = []
 
-    qs = "distinct-values(collection('{0}')//langSet/@xml:lang)".format(dbxml.get_db().collection)
+    qs = "distinct-values(collection('{0}')//langSet/@xml:lang)". \
+            format(dbxml.get_db().collection)
     dictlist = dbxml.get_db().raw_query(qs).as_str().all()
 
     for d in dictlist:

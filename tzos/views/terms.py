@@ -23,3 +23,7 @@ def detail(id):
                                          context=ctx).as_rendered().first()
 
     return render_template('terms/term_detail.html', term=term)
+
+@terms.route('/add/')
+def add():
+    return "Foo"

@@ -16,7 +16,7 @@ from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
 from tzos.extensions import db, dbxml, mail
-from tzos.helpers import get_tzos_dicts, url_for
+from tzos.helpers import get_dict_langs, url_for
 from tzos.models import User
 
 __all__ = ["create_app"]
@@ -171,7 +171,7 @@ def configure_context_processors(app):
 
     @app.context_processor
     def get_dicts():
-        return dict(tzos_dicts=get_tzos_dicts())
+        return dict(tzos_dicts=get_dict_langs())
 
 
 def configure_assets(app):

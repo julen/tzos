@@ -39,7 +39,7 @@ def url_for(endpoint, **values):
     return ctx.url_adapter.build(endpoint, values, force_external=external)
 
 
-def get_tzos_dicts(only_codes=False):
+def get_dict_langs(only_codes=False):
     """Returns a list with tuples of all the available dictionaries.
     The tuple elements are language codes and language names.
 
@@ -67,7 +67,7 @@ def require_valid_dict(f):
 
     @wraps(f)
     def decorator(dict, *args, **kwargs):
-        available_dicts = get_tzos_dicts(only_codes=True)
+        available_dicts = get_dict_langs(only_codes=True)
 
         if dict not in available_dicts:
             return abort(404)

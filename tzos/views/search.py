@@ -8,11 +8,10 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, g, render_template, request
+from flask import Module, g, render_template, request, url_for
 
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
-from tzos.helpers import url_for
 
 search = Module(__name__)
 

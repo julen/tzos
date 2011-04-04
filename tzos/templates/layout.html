@@ -45,7 +45,7 @@
                         <ul class="dictList" style="display:none;">
                             {% for dict_lang, dict_langname in dict_langs %}
                             {% if dict_lang != session.dict_lang %}
-                            <li><a href="{{ url_for(request.endpoint, lang=g.ui_lang, setdict=dict_lang) }}">{{ dict_langname }}</a></li>
+                            <li><a href="{{ url_for2(request.endpoint, setdict=dict_lang) }}">{{ dict_langname }}</a></li>
                             {% endif %}
                             {% endfor %}
                         </ul>
@@ -82,7 +82,7 @@
             <section id="locales" class="content">
                 <ul class="in fl aDark">
                     {% for lang_code, lang_name in langs %}
-                    <li>{% if lang_code == g.ui_lang %}<span class="current">{{ lang_name }}</span>{% else %}<a href="{{ url_for(request.endpoint, lang=lang_code) }}">{{ lang_name }}</a>{% endif %}</li>
+                    <li>{% if lang_code == g.ui_lang %}<span class="current">{{ lang_name }}</span>{% else %}<a href="{{ url_for2(request.endpoint, setuilang=lang_code) }}">{{ lang_name }}</a>{% endif %}</li>
                     {% endfor %}
                 </ul>
             </section>

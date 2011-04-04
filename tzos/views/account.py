@@ -11,7 +11,7 @@
 import uuid
 
 from flask import Module, abort, current_app, flash, g, redirect, \
-    render_template, request, session
+    render_template, request, session, url_for
 
 from flaskext.babel import gettext as _
 from flaskext.mail import Message
@@ -20,7 +20,6 @@ from flaskext.principal import AnonymousIdentity, Identity, identity_changed
 from tzos.extensions import db, mail
 from tzos.forms import EditEmailForm, EditPasswordForm, EditProfileForm, \
     LoginForm, RecoverPasswordForm, ResetPasswordForm, SignupForm
-from tzos.helpers import url_for
 from tzos.models import User
 from tzos.permissions import auth
 

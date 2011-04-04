@@ -8,7 +8,8 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Flask, flash, g, redirect, render_template, request, session
+from flask import Flask, flash, g, redirect, render_template, request, \
+    session, url_for
 
 from flaskext.assets import Bundle, Environment
 from flaskext.babel import Babel, gettext as _, format_date
@@ -16,19 +17,19 @@ from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
 from tzos.extensions import db, dbxml, mail
-from tzos.helpers import get_dict_langs, url_for
+from tzos.helpers import get_dict_langs, url_for2
 from tzos.models import User
 
 __all__ = ["create_app"]
 
 MODULES = (
     (views.frontend, ''),
-    (views.account, '/<lang>'),
-    (views.admin, '/<lang>/admin'),
-    (views.search, '/<lang>/search'),
-    (views.glossary, '/<lang>/glossary'),
-    (views.terms, '/<lang>/term'),
-    (views.user, '/<lang>/user'),
+    (views.account, ''),
+    (views.admin, '/admin'),
+    (views.search, '/search'),
+    (views.glossary, '/glossary'),
+    (views.terms, '/term'),
+    (views.user, '/user'),
 )
 
 def create_app(config=None):
@@ -115,41 +116,27 @@ def configure_before_handlers(app):
 
     @app.before_request
     def set_lang():
-        if request.endpoint != 'static':
-            lang = None
-            goto = False
+        lang = None
+        new_ui_lang = request.args.get('setuilang', None)
 
-            # First try to determine the language from the URL
-            if request.view_args and 'lang' in request.view_args:
-                # Pop the lang from the attributes passed to the view function
-                lang = request.view_args.pop('lang', None)
+        # If language is passed explicitely, try to set it
+        if new_ui_lang or new_ui_lang in app.available_languages:
+            g.ui_lang = new_ui_lang
+        else:
+            # Try to pick the language from the Accept-Lang headers
+            accept_languages = app.config.get('ACCEPT_LANGUAGES',
+                                              app.available_languages)
+            lang = request.accept_languages.best_match(accept_languages)
 
-                if lang not in app.available_languages:
-                    lang = None
-                    goto = True
-
-            # No lang set in the URL, let's try other ways
+            # As a last option, get the default from the config file
             if lang is None:
-                # First alternative: picking language from Accept-Lang headers
-                accept_languages = app.config.get('ACCEPT_LANGUAGES',
-                                                  app.available_languages)
-                lang = request.accept_languages.best_match(accept_languages)
-
-                if request.endpoint == 'frontend.index':
-                    goto = True
-
-                # Second alternative: get the default from the config file
-                if lang is None:
-                    lang = app.config.get('BABEL_DEFAULT_LOCALE', 'en')
+                lang = app.config.get('BABEL_DEFAULT_LOCALE')
 
             g.ui_lang = lang
 
-            if goto:
-                return redirect(url_for('frontend.index'))
-
 
 def configure_jinja(app):
-    app.jinja_env.globals.update(url_for=url_for)
+    app.jinja_env.globals.update(url_for2=url_for2)
 
     @app.template_filter()
     def dateformat(value, format):

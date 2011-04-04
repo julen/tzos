@@ -8,22 +8,19 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, redirect, render_template, request
+from flask import Module, flash, redirect, render_template, request, url_for
 
 from flaskext.babel import gettext as _
-
-from tzos.helpers import url_for
 
 from babel import Locale
 
 frontend = Module(__name__)
 
-@frontend.route('/<lang>/')
 @frontend.route('/')
 def index():
     return render_template('index.html')
 
-@frontend.route('/<lang>/dict/')
+@frontend.route('/dict/')
 def dict():
     newdict = request.args.get('setdict', None)
 

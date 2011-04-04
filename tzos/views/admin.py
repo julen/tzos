@@ -8,13 +8,12 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, g, redirect, render_template, request
+from flask import Module, flash, g, redirect, render_template, request, url_for
 
 from flaskext.babel import gettext as _
 
 from tzos.extensions import db
 from tzos.forms import ModifyUserPermissionForm
-from tzos.helpers import url_for
 from tzos.models import User
 from tzos.permissions import admin as admin_permission
 

@@ -142,7 +142,7 @@ def configure_before_handlers(app):
                 if lang is None:
                     lang = app.config.get('BABEL_DEFAULT_LOCALE', 'en')
 
-            g.lang = lang
+            g.ui_lang = lang
 
             if goto:
                 return redirect(url_for('frontend.index'))
@@ -203,4 +203,4 @@ def configure_i18n(app):
 
     @babel.localeselector
     def get_locale():
-        return g.lang
+        return g.ui_lang

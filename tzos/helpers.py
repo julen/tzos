@@ -22,7 +22,7 @@ def url_for(endpoint, **values):
     # If no lang is passed, add it between the values
     if endpoint != '.static':
         if not 'lang' in values:
-            values['lang'] = g.lang
+            values['lang'] = g.ui_lang
         else:
             # This is useful for URLs used for choosing languages
             values.update(request.view_args)

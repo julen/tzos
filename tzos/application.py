@@ -171,7 +171,7 @@ def configure_context_processors(app):
 
     @app.context_processor
     def get_dicts():
-        return dict(tzos_dicts=get_dict_langs())
+        return dict(dict_langs=get_dict_langs())
 
 
 def configure_assets(app):

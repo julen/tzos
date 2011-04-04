@@ -43,7 +43,7 @@
                     {% endfor %}
                     <li id="tzosDict" class="dict"><a href="{{ url_for('frontend.dict') }}" title="{{ _('Select dictionary language') }}"><i class="iArrow">[arrow]</i> {{ session.tzos_dict }}</a>
                         <ul class="dictList" style="display:none;">
-                            {% for dict_lang, dict_langname in tzos_dicts %}
+                            {% for dict_lang, dict_langname in dict_langs %}
                             {% if dict_lang != session.tzos_dict %}
                             <li><a href="{{ url_for(request.endpoint, lang=g.ui_lang, setdict=dict_lang) }}">{{ dict_langname }}</a></li>
                             {% endif %}

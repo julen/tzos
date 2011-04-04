@@ -4,7 +4,7 @@ DEBUG = True
 SECRET_KEY = 'f00barbaZ'
 
 # TZOS stuff
-TZOS_DEFAULT_DICT = 'eu'
+TZOS_DEFAULT_DICT_LANG = 'eu'
 
 # SQLAlchemy database settings
 SQLALCHEMY_DATABASE_URI = 'sqlite:////home/julen/dev/tzos/tzos/dbs/tzos.db'

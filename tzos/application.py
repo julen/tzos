@@ -111,7 +111,7 @@ def configure_before_handlers(app):
                                             **request.view_args))
 
         elif not 'dict_lang' in session:
-            session['dict_lang'] = app.config['TZOS_DEFAULT_DICT']
+            session['dict_lang'] = app.config['TZOS_DEFAULT_DICT_LANG']
 
     @app.before_request
     def set_lang():

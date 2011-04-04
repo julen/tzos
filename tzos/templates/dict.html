@@ -8,7 +8,7 @@
 {% block content %}
 <ul>
     {% for dict_lang, dict_langname in dict_langs %}
-    {% if dict_lang != session.tzos_dict %}
+    {% if dict_lang != session.dict_lang %}
     <li><a href="{{ url_for(request.endpoint, setdict=dict_lang) }}">{{ dict_langname|capitalize }}</a></li>
     {% endif %}
     {% endfor %}

@@ -19,10 +19,12 @@ terms = Module(__name__)
 def detail(id):
 
     ctx = {'id': id}
-    term = dbxml.get_db().template_query('terms/xq_term_detail.html',
-                                         context=ctx).as_rendered().first()
+    rendered_term = dbxml.get_db().template_query('terms/xq_term_detail.html',
+                                                  context=ctx) \
+                                  .as_rendered().first()
 
-    return render_template('terms/term_detail.html', term=term)
+    return render_template('terms/term_detail.html',
+                           rendered_term=rendered_term)
 
 @terms.route('/add/')
 def add():

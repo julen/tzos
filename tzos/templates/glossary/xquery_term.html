@@ -29,7 +29,7 @@ return
         return
         (
             <dt>{ $transLang }</dt>,
-            <dd lang="{ $transLang }"><a href="{{{{ url_for('terms.detail', id='{ data($term/@id) }') }}}}">{ $trans/string() }</a></dd>
+            <dd lang="{ $transLang }"><a href="{{{{ url_for('terms.detail', id='{ data($trans/@id) }') }}}}">{ $trans/string() }</a></dd>
         )
         }
         </dl>

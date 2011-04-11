@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-04-11 10:03+0200\n"
+"PO-Revision-Date: 2011-04-11 10:19+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -236,8 +236,8 @@ msgid ""
 "You can <a href=\"%(register_url)s\">register now</a>, it's quick and "
 "free."
 msgstr ""
-"Oraintxe <a href=\"%(register_url)s\">eman dezakezu izena</a> azkar asko,"
-" debalde da."
+"Oraintxe <a href=\"%(register_url)s\">eman dezakezu izena</a> azkar asko, "
+"debalde da."
 
 #: tzos/templates/account/login.html:22
 msgid "Forgot your password?"
@@ -356,7 +356,7 @@ msgstr "Erabiltzaile pribilegiatuak"
 
 #: tzos/templates/admin/settings.html:21
 msgid "The following users have special privileges on the system."
-msgstr "Ondorengo erabiltzaileeek baimen bereziak dituzte sisteman."
+msgstr "Ondorengo erabiltzaileek baimen bereziak dituzte sisteman."
 
 #: tzos/templates/admin/settings.html:26
 msgid "User"

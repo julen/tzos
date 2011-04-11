@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ super() }}{{ letter|upper }}{% endblock %}
+{% block title %}[[ super() ]][[ letter|upper ]]{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
 {% if terms %}
     {% for term in terms %}
-        {{ term|safe }}
+        [[ term|safe ]]
     {% endfor %}
 {% else %}
-<h2 class="h1">{{ _('No terms found.') }}</h2>
+<h2 class="h1">[[ _('No terms found.') ]]</h2>
 {% endif %}
 {% endblock %}

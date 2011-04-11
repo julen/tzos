@@ -15,7 +15,7 @@ return
       return
       if (exists($syns)) then
         <dl class="syn">
-            <dt class="in"><abbr class="small" title="{{{{ _('Synonyms') }}}}">{{{{ _('syn.') }}}}</abbr></dt>
+            <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
             <dd class="in">{ string-join($syns, ", ") }</dd>
         </dl>
       else ()
@@ -29,7 +29,7 @@ return
         return
         (
             <dt>{ $transLang }</dt>,
-            <dd lang="{ $transLang }"><a href="{{{{ url_for('terms.detail', id='{ data($trans/@id) }') }}}}">{ $trans/string() }</a></dd>
+            <dd lang="{ $transLang }"><a href="[[ url_for('terms.detail', id='{ data($trans/@id) }') ]]">{ $trans/string() }</a></dd>
         )
         }
         </dl>

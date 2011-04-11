@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ super() }}{{ _('Term details') }}{% endblock %}
+{% block title %}[[ super() ]][[ _('Term details') ]]{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
-{{ rendered_term|safe }}
+[[ rendered_term|safe ]]
 {% endblock %}
 

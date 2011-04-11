@@ -1,22 +1,22 @@
 {% extends "layout.html" %}
 {% from "macros/_forms.html" import render_form %}
 
-{% block title %}{{ super() }}{{ _('Register') }}{% endblock %}
+{% block title %}[[ super() ]][[ _('Register') ]]{% endblock %}
 
-{% block intro_title %}{{ _('Register') }}{% endblock %}
-{% block intro_text %}{{ _('Please fill in the required information to register an account.') }}{% endblock %}
+{% block intro_title %}[[ _('Register') ]]{% endblock %}
+{% block intro_text %}[[ _('Please fill in the required information to register an account.') ]]{% endblock %}
 
 {% block content %}
 <div class="columns">
     <div class="column main">
         <div class="fields">
-        {{ render_form(form) }}
+        [[ render_form(form) ]]
         </div>
     </div>
     <div class="column sidebar">
         <div class="sidebarBlock">
-            <h2 class="h4 normal">{{ _('Already have an account?') }}</h2>
-            <p class="p5 weak">{{ _('Then you can go straight to the <a href="%(login_url)s">login page</a>.', login_url=url_for('account.login')) }}</p>
+            <h2 class="h4 normal">[[ _('Already have an account?') ]]</h2>
+            <p class="p5 weak">[[ _('Then you can go straight to the <a href="%(login_url)s">login page</a>.', login_url=url_for('account.login')) ]]</p>
         </div>
     </div>
 </div>

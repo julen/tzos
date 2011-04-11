@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ super() }}{{ _('Search results') }}{% endblock %}
+{% block title %}[[ super() ]][[ _('Search results') ]]{% endblock %}
 
-{% block intro_title %}{{ q }}{% endblock %}
-{% block intro_text %}{{ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', results|count) }}{% endblock %}
+{% block intro_title %}[[ q ]]{% endblock %}
+{% block intro_text %}[[ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', results|count) ]]{% endblock %}
 
 {% block content %}
 {# refactor display of terms not to repeat this code over and over again #}
 <ul>
 {% for term in results %}
-    <li>{{ term }}</li>
+    <li>[[ term ]]</li>
 {% endfor %}
 </ul>
 {% endblock %}

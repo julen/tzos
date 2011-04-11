@@ -2,12 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='style.css') }}" />
-        <title>{% block title %}TZOS — {{ _('Error') }}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="[[ url_for('.static', filename='style.css') ]]" />
+        <title>{% block title %}TZOS — [[ _('Error') ]]{% endblock %}</title>
     </head>
     <body class="errorbody">
         <h1>{% block error_title %}{% endblock %}</h1>
         <p class="p1 big">{% block error_text %}{% endblock %}</p>
-        <p class="p2"><a href="{{ url_for('frontend.index') }}">{{ _('« Back to the home page') }}</a></p>
+        <p class="p2"><a href="[[ url_for('frontend.index') ]]">[[ _('« Back to the home page') ]]</a></p>
     </body>
 </html>

@@ -1,43 +1,43 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ super() }}{{ _("%(user)s's profile", user=user.username) }}{% endblock %}
+{% block title %}[[ super() ]][[ _("%(user)s's profile", user=user.username) ]]{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
 <div class="profileHead">
     <div class="gravatar">
-        <img class="i48" src="{{ user.gravatar_url() }}"{% if user.username == g.user.username %} title="{{ _('Change your avatar at gravatar.com') }}"{% endif %} />
-        <h1 class="in">{{ user.username }}</h1>{% if user.display_name %}<h1 class="in dead">({{ user.display_name }})</h1>{% endif %}{% if user.username == g.user.username %}<a href="{{ url_for('account.settings') }}" class="b small strong action">{{ _('Edit profile') }}</a>{% endif %}
+        <img class="i48" src="[[ user.gravatar_url() ]]"{% if user.username == g.user.username %} title="[[ _('Change your avatar at gravatar.com') ]]"{% endif %} />
+        <h1 class="in">[[ user.username ]]</h1>{% if user.display_name %}<h1 class="in dead">([[ user.display_name ]])</h1>{% endif %}{% if user.username == g.user.username %}<a href="[[ url_for('account.settings') ]]" class="b small strong action">[[ _('Edit profile') ]]</a>{% endif %}
     </div>
 </div>
 <div class="hr">
     <div class="vcard">
         {% if user.display_name %}
         <dl>
-            <dt>{{ _('Name') }}</dt><dd class="fn">{{ user.display_name }}</dd>
+            <dt>[[ _('Name') ]]</dt><dd class="fn">[[ user.display_name ]]</dd>
         </dl>
         {% endif %}
         {% if user.website %}
         <dl>
-            <dt>{{ _('Website') }}</dt><dd class="url"><a href="{{ user.website }}" class="url">{{ user.website }}</a></dd>
+            <dt>[[ _('Website') ]]</dt><dd class="url"><a href="[[ user.website ]]" class="url">[[ user.website ]]</a></dd>
         </dl>
         {% endif %}
         {% if user.company %}
         <dl>
-            <dt>{{ _('Company/Organization') }}</dt><dd class="org">{{ user.company }}</dd>
+            <dt>[[ _('Company/Organization') ]]</dt><dd class="org">[[ user.company ]]</dd>
         </dl>
         {% endif %}
         {% if user.location %}
         <dl>
-            <dt>{{ _('Location') }}</dt><dd class="adr locality">{{ user.location }}</dd>
+            <dt>[[ _('Location') ]]</dt><dd class="adr locality">[[ user.location ]]</dd>
         </dl>
         {% endif %}
         <dl>
-            <dt>{{ _('Role') }}</dt><dd>{{ user.natural_role }}</dd>
+            <dt>[[ _('Role') ]]</dt><dd>[[ user.natural_role ]]</dd>
         </dl>
         <dl>
-            <dt>{{ _('Date joined') }}</dt><dd>{{ user.date_joined|dateformat(_('d/M/Y')) }}</dd>
+            <dt>[[ _('Date joined') ]]</dt><dd>[[ user.date_joined|dateformat(_('d/M/Y')) ]]</dd>
         </dl>
     </div>
 </div>

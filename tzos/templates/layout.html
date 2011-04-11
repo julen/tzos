@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ g.ui_lang }}">
+<html lang="[[ g.ui_lang ]]">
     <head>
         <meta charset="utf-8" />
         <!--[if lt IE 9]>
@@ -7,31 +7,31 @@
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
         {% assets "js_all" %}
-        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        <script type="text/javascript" src="[[ ASSET_URL ]]"></script>
         {% endassets %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='style.css') }}" />
+        <link rel="stylesheet" type="text/css" href="[[ url_for('.static', filename='style.css') ]]" />
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
     <body>
         <header class="content">
-            <a href="{{ url_for('frontend.index') }}" id="logo" class="i">TZOS</a>
+            <a href="[[ url_for('frontend.index') ]]" id="logo" class="i">TZOS</a>
             <nav class="in fr">
                 <ul class="in fl">
                     {% if g.user %}
-                    <li><div class="gravatar"><a href="{{ url_for('user.profile', username=g.user.username) }}"><img class="i20" src="{{ g.user.gravatar_url() }}" /></a><a href="{{ url_for('user.profile', username=g.user.username) }}">{{ g.user.username }}</a></div></li>
-                    <li><a href="{{ url_for('terms.add') }}">{{ _('Add term') }}</a></li>
+                    <li><div class="gravatar"><a href="[[ url_for('user.profile', username=g.user.username) ]]"><img class="i20" src="[[ g.user.gravatar_url() ]]" /></a><a href="[[ url_for('user.profile', username=g.user.username) ]]">[[ g.user.username ]]</a></div></li>
+                    <li><a href="[[ url_for('terms.add') ]]">[[ _('Add term') ]]</a></li>
                     {% if g.user.is_admin %}
-                    <li><a href="{{ url_for('admin.settings') }}" class="admin">{{ _('Admin') }}</a></li>
+                    <li><a href="[[ url_for('admin.settings') ]]" class="admin">[[ _('Admin') ]]</a></li>
                     {% endif %}
-                    <li><a href="{{ url_for('account.logout') }}">{{ _('Log out') }}</a></li>
+                    <li><a href="[[ url_for('account.logout') ]]">[[ _('Log out') ]]</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('account.register') }}" class="special register">{{ _('Register') }}</a></li>
-                    <li><a href="{{ url_for('account.login') }}">{{ _('Log in') }}</a></li>
+                    <li><a href="[[ url_for('account.register') ]]" class="special register">[[ _('Register') ]]</a></li>
+                    <li><a href="[[ url_for('account.login') ]]">[[ _('Log in') ]]</a></li>
                     {% endif %}
                 </ul>
-                <form class="fl headerSearch" method="GET" action="{{ url_for('search.quick') }}">
-                    <input type="search" class="in" name="q" placeholder="{{ _('Search terms') }}" />
-                    <a href="{{ url_for('search.quick') }}" class="i advancedSearch" title="{{ _('Advanced search') }}">{{ _('Advanced search') }}</a>
+                <form class="fl headerSearch" method="GET" action="[[ url_for('search.quick') ]]">
+                    <input type="search" class="in" name="q" placeholder="[[ _('Search terms') ]]" />
+                    <a href="[[ url_for('search.quick') ]]" class="i advancedSearch" title="[[ _('Advanced search') ]]">[[ _('Advanced search') ]]</a>
                 </form>
             </nav>
         </header>
@@ -39,13 +39,13 @@
             <div class="content menu">
                 <ul>
                     {% for letter in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
-                    <li{% if loop.first %} class="first"{% endif %}><a href="{{ url_for('glossary.list_letter', dict=session['dict_lang'], letter=letter) }}">{{ letter }}</a></li>
+                    <li{% if loop.first %} class="first"{% endif %}><a href="[[ url_for('glossary.list_letter', dict=session['dict_lang'], letter=letter) ]]">[[ letter ]]</a></li>
                     {% endfor %}
-                    <li id="tzosDict" class="dict"><a href="{{ url_for('frontend.dict') }}" title="{{ _('Select dictionary language') }}"><i class="iArrow">[arrow]</i> {{ session.dict_lang }}</a>
+                    <li id="tzosDict" class="dict"><a href="[[ url_for('frontend.dict') ]]" title="[[ _('Select dictionary language') ]]"><i class="iArrow">[arrow]</i> [[ session.dict_lang ]]</a>
                         <ul class="dictList" style="display:none;">
                             {% for dict_lang, dict_langname in dict_langs %}
                             {% if dict_lang != session.dict_lang %}
-                            <li><a href="{{ url_for2(request.endpoint, setdict=dict_lang) }}">{{ dict_langname }}</a></li>
+                            <li><a href="[[ url_for2(request.endpoint, setdict=dict_lang) ]]">[[ dict_langname ]]</a></li>
                             {% endif %}
                             {% endfor %}
                         </ul>
@@ -57,11 +57,11 @@
         {% with messages = get_flashed_messages(with_categories=True) %}
           {% if messages %}
             {% for category, message in messages %}
-            <div class="flash{% if category %} flash{{ category|title }}{% endif %}">
+            <div class="flash{% if category %} flash[[ category|title ]]{% endif %}">
                 {% if category == 'error' %}
-                <h1 class="in h3">{{ _('Error') }}</h1>
+                <h1 class="in h3">[[ _('Error') ]]</h1>
                 {% endif %}
-                <p class="in">{{ message }}</p>
+                <p class="in">[[ message ]]</p>
             </div>
             {% endfor %}
           {% endif %}
@@ -82,7 +82,7 @@
             <section id="locales" class="content">
                 <ul class="in fl aDark">
                     {% for lang_code, lang_name in langs %}
-                    <li>{% if lang_code == g.ui_lang %}<span class="current">{{ lang_name }}</span>{% else %}<a href="{{ url_for2(request.endpoint, setuilang=lang_code) }}">{{ lang_name }}</a>{% endif %}</li>
+                    <li>{% if lang_code == g.ui_lang %}<span class="current">[[ lang_name ]]</span>{% else %}<a href="[[ url_for2(request.endpoint, setuilang=lang_code) ]]">[[ lang_name ]]</a>{% endif %}</li>
                     {% endfor %}
                 </ul>
             </section>

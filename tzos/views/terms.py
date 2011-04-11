@@ -28,4 +28,4 @@ def detail(id):
 
 @terms.route('/add/')
 def add():
-    return "Foo"
+    return render_template('terms/add.html')

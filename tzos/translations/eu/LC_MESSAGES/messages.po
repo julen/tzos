@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-04-11 09:59+0200\n"
+"PO-Revision-Date: 2011-04-11 10:03+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -179,7 +179,7 @@ msgstr "Eginkizuna"
 
 #: tzos/forms.py:130
 msgid "Modify permissions"
-msgstr ""
+msgstr "Aldatu baimenak"
 
 #: tzos/templates/dict.html:3
 msgid "Select dictionary language"
@@ -335,44 +335,44 @@ msgid "Type your new password and confirm it."
 msgstr "Idatzi pasahitz berria eta berretsi ezazu."
 
 #: tzos/templates/admin/settings.html:4 tzos/templates/admin/settings.html:8
-#, fuzzy
 msgid "Administration"
-msgstr "Administratzailea"
+msgstr "Kudeaketa"
 
 #: tzos/templates/admin/settings.html:9
-#, fuzzy
 msgid "You can change the settings that affect to the whole system below."
-msgstr "Zure kontuaren inguruko ezarpenak alda ditzakezu azpian."
+msgstr "Sistema osoari eragiten dieten ezarpenak alda ditzakezu azpian."
 
 #: tzos/templates/admin/settings.html:14
 msgid "User permissions"
-msgstr ""
+msgstr "Erabiltzaileen baimenak"
 
 #: tzos/templates/admin/settings.html:15
 msgid "Knowledge fields"
-msgstr ""
+msgstr "Jakintza arloak"
 
 #: tzos/templates/admin/settings.html:20
 msgid "Privileged users"
-msgstr ""
+msgstr "Erabiltzaile pribilegiatuak"
 
 #: tzos/templates/admin/settings.html:21
 msgid "The following users have special privileges on the system."
-msgstr ""
+msgstr "Ondorengo erabiltzaileeek baimen bereziak dituzte sisteman."
 
 #: tzos/templates/admin/settings.html:26
 msgid "User"
-msgstr ""
+msgstr "Erabiltzailea"
 
 #: tzos/templates/admin/settings.html:40
 msgid "Modify user permissions"
-msgstr ""
+msgstr "Aldatu erabiltzailearen baimenak"
 
 #: tzos/templates/admin/settings.html:41
 msgid ""
 "Select a user and the permission level you want to grant. If the selected"
 " user already has special privileges they will be updated."
 msgstr ""
+"Hautatu erabiltzailea eta eman nahi diozun baimen maila. Hautatutako "
+"erabiltzaileak dagoeneko baimen bereziak baditu, eguneratu egingo dira."
 
 #: tzos/templates/emails/recover_password.html:1
 #, python-format
@@ -424,19 +424,19 @@ msgid "« Back to the home page"
 msgstr "« Atzera hasiera-orrira"
 
 #: tzos/templates/glossary/list_letter.html:13
-#, fuzzy, python-format
+#, python-format
 msgid "No terms found."
-msgstr "Termino bat aurkitu da."
+msgstr "Ez da terminorik aurkitu."
 
 #: tzos/templates/glossary/xquery_term.html:18
 #: tzos/templates/terms/xq_term_detail.html:17
 msgid "Synonyms"
-msgstr ""
+msgstr "Sinonimoak"
 
 #: tzos/templates/glossary/xquery_term.html:18
 #: tzos/templates/terms/xq_term_detail.html:17
 msgid "syn."
-msgstr ""
+msgstr "sin."
 
 #: tzos/templates/search/advanced.html:4 tzos/templates/search/advanced.html:6
 msgid "Advanced search"
@@ -459,7 +459,7 @@ msgstr[1] "Bilaketak %(num)d emaitza itzuli ditu."
 
 #: tzos/templates/terms/term_detail.html:3
 msgid "Term details"
-msgstr ""
+msgstr "Terminoaren xehetasunak"
 
 #: tzos/templates/user/profile.html:3
 #, python-format
@@ -518,11 +518,11 @@ msgstr "Kontua eguneratu da."
 #: tzos/views/admin.py:50
 #, python-format
 msgid "Permissions for ‘%(user)s’ have been updated."
-msgstr ""
+msgstr "‘%(user)s’ erabiltzailearen baimenak eguneratu egin dira."
 
 #: tzos/views/admin.py:53
 msgid "Error while updating permissions."
-msgstr ""
+msgstr "Errorea baimenak eguneratzean."
 
 #: tzos/views/frontend.py:30
 #, python-format

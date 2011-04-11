@@ -10,6 +10,7 @@
 """
 from flask import current_app
 
+from flaskext.assets import Environment, ManageAssets
 from flaskext.script import Manager, prompt_bool
 
 from tzos import create_app
@@ -17,6 +18,9 @@ from tzos import fixtures
 from tzos.extensions import db, dbxml
 
 manager = Manager(create_app)
+
+
+manager.add_command("assets", ManageAssets(Environment()))
 
 @manager.command
 def createall():

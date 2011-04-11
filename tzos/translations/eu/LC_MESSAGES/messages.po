@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-03-02 18:03+0200\n"
+"PO-Revision-Date: 2011-04-11 09:59+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 0.9.5\n"
 "X-Project-Style: default\n"
 
-#: tzos/application.py:85
+#: tzos/application.py:86
 msgid "You must login to see this page."
 msgstr "Saioa hasi behar duzu orri hau ikusteko."
 
@@ -72,7 +72,7 @@ msgstr "Gogoratu"
 msgid "Login"
 msgstr "Hasi saioa"
 
-#: tzos/forms.py:50
+#: tzos/forms.py:50 tzos/forms.py:124
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
@@ -172,17 +172,14 @@ msgstr "Kokalekua"
 msgid "Update information"
 msgstr "Eguneratu informazioa"
 
-#: tzos/models.py:120
-msgid "Member"
-msgstr "Kidea"
+#: tzos/forms.py:128 tzos/templates/admin/settings.html:26
+#: tzos/templates/user/profile.html:37
+msgid "Role"
+msgstr "Eginkizuna"
 
-#: tzos/models.py:121
-msgid "Moderator"
-msgstr "Moderatzailea"
-
-#: tzos/models.py:122
-msgid "Administrator"
-msgstr "Administratzailea"
+#: tzos/forms.py:130
+msgid "Modify permissions"
+msgstr ""
 
 #: tzos/templates/dict.html:3
 msgid "Select dictionary language"
@@ -239,8 +236,8 @@ msgid ""
 "You can <a href=\"%(register_url)s\">register now</a>, it's quick and "
 "free."
 msgstr ""
-"Oraintxe <a href=\"%(register_url)s\">eman dezakezu izena</a> azkar asko, "
-"debalde da."
+"Oraintxe <a href=\"%(register_url)s\">eman dezakezu izena</a> azkar asko,"
+" debalde da."
 
 #: tzos/templates/account/login.html:22
 msgid "Forgot your password?"
@@ -252,11 +249,11 @@ msgid ""
 "You can set up a new one by <a href=\"%(password_reset_url)s\">requesting"
 " a password reset</a>."
 msgstr ""
-"Berria ezar dezakezu <a href=\"%(password_reset_url)s\">pasahitz-berrezartzea "
-"eskatuz</a>."
+"Berria ezar dezakezu <a href=\"%(password_reset_url)s\">pasahitz-"
+"berrezartzea eskatuz</a>."
 
 #: tzos/templates/account/recover_password.html:4
-#: tzos/templates/account/recover_password.html:6 tzos/views/account.py:112
+#: tzos/templates/account/recover_password.html:6 tzos/views/account.py:111
 msgid "Recover your password"
 msgstr "Berreskuratu pasahitza"
 
@@ -337,6 +334,46 @@ msgstr ""
 msgid "Type your new password and confirm it."
 msgstr "Idatzi pasahitz berria eta berretsi ezazu."
 
+#: tzos/templates/admin/settings.html:4 tzos/templates/admin/settings.html:8
+#, fuzzy
+msgid "Administration"
+msgstr "Administratzailea"
+
+#: tzos/templates/admin/settings.html:9
+#, fuzzy
+msgid "You can change the settings that affect to the whole system below."
+msgstr "Zure kontuaren inguruko ezarpenak alda ditzakezu azpian."
+
+#: tzos/templates/admin/settings.html:14
+msgid "User permissions"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:15
+msgid "Knowledge fields"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:20
+msgid "Privileged users"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:21
+msgid "The following users have special privileges on the system."
+msgstr ""
+
+#: tzos/templates/admin/settings.html:26
+msgid "User"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:40
+msgid "Modify user permissions"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:41
+msgid ""
+"Select a user and the permission level you want to grant. If the selected"
+" user already has special privileges they will be updated."
+msgstr ""
+
 #: tzos/templates/emails/recover_password.html:1
 #, python-format
 msgid ""
@@ -386,6 +423,21 @@ msgstr "Errorea"
 msgid "« Back to the home page"
 msgstr "« Atzera hasiera-orrira"
 
+#: tzos/templates/glossary/list_letter.html:13
+#, fuzzy, python-format
+msgid "No terms found."
+msgstr "Termino bat aurkitu da."
+
+#: tzos/templates/glossary/xquery_term.html:18
+#: tzos/templates/terms/xq_term_detail.html:17
+msgid "Synonyms"
+msgstr ""
+
+#: tzos/templates/glossary/xquery_term.html:18
+#: tzos/templates/terms/xq_term_detail.html:17
+msgid "syn."
+msgstr ""
+
 #: tzos/templates/search/advanced.html:4 tzos/templates/search/advanced.html:6
 msgid "Advanced search"
 msgstr "Bilaketa aurreratua"
@@ -405,24 +457,9 @@ msgid_plural "Your search returned %(num)d results."
 msgstr[0] "Bilaketak emaitza bat itzuli du."
 msgstr[1] "Bilaketak %(num)d emaitza itzuli ditu."
 
-#: tzos/templates/terms/list_all.html:3
-msgid "Terms list"
-msgstr "Terminoen zerrenda"
-
-#: tzos/templates/terms/list_all.html:5
-msgid "Terms"
-msgstr "Terminoak"
-
-#: tzos/templates/terms/list_all.html:6
-msgid "This is a list of all the available terms in TZOS."
-msgstr "TZOSen dauden termino guztien zerrenda da hau."
-
-#: tzos/templates/terms/list_letter.html:6
-#, python-format
-msgid "%(num)d term found."
-msgid_plural "%(num)d terms found."
-msgstr[0] "Termino bat aurkitu da."
-msgstr[1] "%(num)d termino aurkitu dira."
+#: tzos/templates/terms/term_detail.html:3
+msgid "Term details"
+msgstr ""
 
 #: tzos/templates/user/profile.html:3
 #, python-format
@@ -441,10 +478,6 @@ msgstr "Editatu profila"
 msgid "Name"
 msgstr "Izena"
 
-#: tzos/templates/user/profile.html:37
-msgid "Role"
-msgstr "Eginkizuna"
-
 #: tzos/templates/user/profile.html:40
 msgid "Date joined"
 msgstr "Izen-emate data"
@@ -453,39 +486,60 @@ msgstr "Izen-emate data"
 msgid "d/M/Y"
 msgstr "Y/M/d"
 
-#: tzos/views/account.py:43
+#: tzos/views/account.py:42
 #, python-format
 msgid "Welcome, %(name)s."
 msgstr "Ongi etorri, %(name)s."
 
-#: tzos/views/account.py:80
+#: tzos/views/account.py:79
 msgid "Wrong username or password."
 msgstr "Erabiltzaile-izen edo pasahitz okerra."
 
-#: tzos/views/account.py:87
+#: tzos/views/account.py:86
 msgid "You are now logged out."
 msgstr "Saioa amaitu duzu."
 
-#: tzos/views/account.py:103
+#: tzos/views/account.py:102
 msgid "Please check your email for instructions on how to access your account."
 msgstr "Egiaztatu posta elektronikoa kontua atzitzeko jarraibideak eskuratzeko."
 
-#: tzos/views/account.py:119
+#: tzos/views/account.py:118
 msgid "Sorry, no user found for that email address."
 msgstr "Ez da erabiltzailerik aurkitu helbide elektroniko horrekin."
 
-#: tzos/views/account.py:146
+#: tzos/views/account.py:145
 msgid "Your password has been changed, please log in again."
 msgstr "Pasahitza aldatu da, hasi saioa berriro mesedez."
 
-#: tzos/views/account.py:177
+#: tzos/views/account.py:176
 msgid "Your account has been updated."
 msgstr "Kontua eguneratu da."
 
-#: tzos/views/frontend.py:33
+#: tzos/views/admin.py:50
+#, python-format
+msgid "Permissions for ‘%(user)s’ have been updated."
+msgstr ""
+
+#: tzos/views/admin.py:53
+msgid "Error while updating permissions."
+msgstr ""
+
+#: tzos/views/frontend.py:30
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr "Hemendik aurrera hiztegiaren hizkuntza ‘%(dictname)s’ da."
 
-#~ msgid "Log out"
-#~ msgstr "Amaitu saioa"
+#~ msgid "Member"
+#~ msgstr "Kidea"
+
+#~ msgid "Moderator"
+#~ msgstr "Moderatzailea"
+
+#~ msgid "Terms list"
+#~ msgstr "Terminoen zerrenda"
+
+#~ msgid "Terms"
+#~ msgstr "Terminoak"
+
+#~ msgid "This is a list of all the available terms in TZOS."
+#~ msgstr "TZOSen dauden termino guztien zerrenda da hau."

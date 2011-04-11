@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-04-11 09:11+0200\n"
+"POT-Creation-Date: 2011-04-11 10:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,6 +176,18 @@ msgstr ""
 
 #: tzos/forms.py:130
 msgid "Modify permissions"
+msgstr ""
+
+#: tzos/models.py:61
+msgid "Member"
+msgstr ""
+
+#: tzos/models.py:62
+msgid "Moderator"
+msgstr ""
+
+#: tzos/models.py:63
+msgid "Administrator"
 msgstr ""
 
 #: tzos/templates/dict.html:3

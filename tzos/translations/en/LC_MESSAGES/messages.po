@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-04-11 09:42+0200\n"
+"PO-Revision-Date: 2011-04-11 10:22+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -177,6 +177,18 @@ msgstr ""
 
 #: tzos/forms.py:130
 msgid "Modify permissions"
+msgstr ""
+
+#: tzos/models.py:61
+msgid "Member"
+msgstr ""
+
+#: tzos/models.py:62
+msgid "Moderator"
+msgstr ""
+
+#: tzos/models.py:63
+msgid "Administrator"
 msgstr ""
 
 #: tzos/templates/dict.html:3
@@ -402,7 +414,7 @@ msgid "« Back to the home page"
 msgstr ""
 
 #: tzos/templates/glossary/list_letter.html:13
-#, fuzzy, python-format
+#, fuzzy
 msgid "No terms found."
 msgstr ""
 
@@ -506,22 +518,4 @@ msgstr ""
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr ""
-
-#~ msgid "Member"
-#~ msgstr ""
-
-#~ msgid "Moderator"
-#~ msgstr ""
-
-#~ msgid "Administrator"
-#~ msgstr ""
-
-#~ msgid "Terms list"
-#~ msgstr ""
-
-#~ msgid "Terms"
-#~ msgstr ""
-
-#~ msgid "This is a list of all the available terms in TZOS."
-#~ msgstr ""
 

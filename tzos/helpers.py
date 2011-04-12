@@ -50,7 +50,8 @@ def get_dict_langs(only_codes=False):
 
     for d in dictlist:
         l = Locale.parse(d)
-        locale = l.language if only_codes else (l.language, l.display_name)
+        locale = l.language if only_codes else (l.language,
+                                                l.display_name.capitalize())
         dicts.append(locale)
 
     return dicts

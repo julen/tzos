@@ -128,3 +128,47 @@ class ModifyUserPermissionForm(Form):
     role = SelectField(_("Role"), choices=role_choices, coerce=int)
 
     submit = SubmitField(_("Modify permissions"))
+
+
+class AddTermForm(Form):
+    # Core fields
+    term = TextField(_("Term"), validators=[
+        required(message=_("Term is required."))])
+
+    language = SelectField(_("Language"), validators=[
+        required(message=_("Language is required."))])
+
+    concept_origin = TextField(_("Origin"), validators=[
+        required(message=_("Origin is required."))])
+
+    element_working_status = TextField(_("Working status"), validators=[
+        required(message=_("Working status is required."))])
+
+    originating_person = TextField(_("Originating person"), validators=[
+        required(message=_("Originating person is required."))])
+
+    subject_field = TextField(_("Subject field"), validators=[
+        required(message=_("Subject field is required."))])
+
+
+    # Optional fields
+    context = TextField()
+    cross_reference = TextField()
+    definition = TextField()
+    entry_source = TextField()
+    example = TextField()
+    explanation = TextField()
+
+    normative_authorization = TextField()
+    part_of_speech = TextField()
+
+    product_subset = TextField()
+
+    subordinate_concept_generic = TextField()
+    superordinate_concept_generic = TextField()
+    antonym_concept = TextField()
+    related_concept = TextField()
+
+    term_type = TextField()
+
+    submit = SubmitField(_("Add"))

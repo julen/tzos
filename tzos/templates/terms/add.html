@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
+{% from "macros/_forms.html" import render_form %}
+
 {% block title %}[[ super() ]][[ _('Add terms') ]]{% endblock %}
 
 {% block intro_title %}Add terms{% endblock %}
 {% block intro_text %}Add single terms by filling in the data or by uploading files in one the supported formats.{% endblock %}
+
+{% block content %}[[ render_form(form) ]]{% endblock %}

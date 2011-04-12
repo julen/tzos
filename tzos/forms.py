@@ -75,7 +75,7 @@ class RecoverPasswordForm(Form):
 
 
 class BasePasswordForm(Form):
-    password = PasswordField("Password", validators=[
+    password = PasswordField(_("Password"), validators=[
                              required(message=_("Password is required."))])
 
     password_again = PasswordField(_("Repeat password"), validators=[

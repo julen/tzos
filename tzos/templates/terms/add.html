@@ -7,4 +7,36 @@
 {% block intro_title %}[[ _('Add terms') ]]{% endblock %}
 {% block intro_text %}[[ _('Add terms manually or by uploading files in any of the supported formats.') ]]{% endblock %}
 
-{% block content %}[[ render_form(form) ]]{% endblock %}
+{% block content %}
+<div class="hTabs">
+    <ul class="inlineTabs sideTabs">
+        <li><a href="#add_manually">[[ _("Manually") ]]</a></li>
+        <li><a href="#add_from_file">[[ _("From file") ]]</a></li>
+    </ul>
+
+    <div id="add_manually" class="tabContent">
+        <div class="columns">
+            <div class="column main">
+                <div class="fields">
+                    [[ render_form(form) ]]
+                </div>
+            </div>
+            <div class="column sidebar">
+                <p class="p5 weak"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="add_from_file" class="tabContent">
+        <div class="columns">
+            <div class="column main">
+                <div class="fields">
+                </div>
+            </div>
+            <div class="column sidebar">
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

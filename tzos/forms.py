@@ -147,7 +147,7 @@ class AddTermForm(Form):
     subject_field = TextField(_("Subject field"), validators=[
         required(message=_("Subject field is required."))])
 
-    not_mine = BooleanField(_("The source of this term is another person."))
+    not_mine = BooleanField(_("The author of this term is another person."))
     originating_person = TextField(_("Originating person"), validators=[
         required(message=_("Originating person is required."))])
 

@@ -8,13 +8,13 @@
 {% endif %}
 {% endmacro %}
 
-{% macro render_field(field, tag='li', labeled=True) %}
+{% macro render_field(field, tag='li', tag_class=None, labeled=True) %}
 {% if field.type == 'SubmitField' %}
 <p class="fAction">
     [[ field(class="button") ]]
 </p>
 {% else %}
-    <[[ tag ]]>
+    <[[ tag ]]{% if tag_class %} class="[[ tag_class ]]"{% endif %}>
     {% if field.type == 'BooleanField' %}
         [[ field(class="in")|safe ]]
         [[ field.label(class="in") ]]

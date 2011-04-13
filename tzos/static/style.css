@@ -54,6 +54,7 @@ q {}
 .i48 { height:48px; width:48px; }
 
 .iGlobe { background-position:-16px -24px; }
+.iSrch  { background-position:-16px -40px; }
 .iWDarr { background-position:0 -40px; }
 .iBDarr { background-position:-32px -24px; }
 .iBRarr { background-position:-32px -40px; }
@@ -343,17 +344,9 @@ form.headerSearch {
     margin-top: 10px;
 }
 
-form.headerSearch input {
-    background-image: url('img/sprite.png');
-    background-position: -11px -38px;
-    background-repeat: no-repeat;
-    padding: 0.4em 0.4em 0.4em 2.2em;
+form.headerSearch input[type=search] {
+    padding: 5px;
     width: 140px;
-}
-
-.advancedSearch {
-    background-position: 0 -24px;
-    line-height: 3.6em;
 }
 
 section#glossary {

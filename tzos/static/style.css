@@ -53,7 +53,9 @@ q {}
 .i32 { height:32px; width:32px; }
 .i48 { height:48px; width:48px; }
 
-.iArrow { background-position:0 -40px; }
+.iWDarr { background-position:0 -40px; }
+.iBDarr { background-position:-32px -24px; }
+.iBRarr { background-position:-32px -40px; }
 
 /* Buttons */
 .b, button, input[type=submit] {

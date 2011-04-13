@@ -11,6 +11,11 @@ $(document).ready(function () {
     $('.hideme').hide();
 
     $('.showFields').click(function () {
+        if ($(this).prev().hasClass('iBRarr')) {
+            $(this).prev().removeClass('iBRarr').addClass('iBDarr');
+        } else {
+            $(this).prev().removeClass('iBDarr').addClass('iBRarr');
+        }
         $('.extraFields').toggle('slow');
     });
 });

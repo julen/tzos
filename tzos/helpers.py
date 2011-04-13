@@ -71,3 +71,25 @@ def require_valid_dict(f):
         return f(dict, *args, **kwargs)
 
     return decorator
+
+
+def get_working_statuses(only_statuses=False):
+    """Returns a list with tuples of all the available working statuses
+    for a term.
+    The tuple elements are status names and localized names.
+
+    :param only_statuses: if set to True, returns a list of status names.
+                          Defaults to False.
+    """
+    # TODO: cache items not to hit the disk each time we run this
+
+    qs = "//adminSpec[@name='elementWorkingStatus']/contents/string()"
+    statuses = dbxml.get_db().query(qs).as_str().all()
+
+    try:
+        status_split = statuses[0].split()
+        status_list = [s if only_statuses else (s, s) for s in status_split]
+    except IndexError:
+        status_list = []
+
+    return status_list

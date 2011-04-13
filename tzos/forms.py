@@ -141,7 +141,7 @@ class AddTermForm(Form):
     concept_origin = TextField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
 
-    element_working_status = TextField(_("Working status"), validators=[
+    element_working_status = SelectField(_("Working status"), validators=[
         required(message=_("Working status is required."))])
 
     originating_person = TextField(_("Originating person"), validators=[

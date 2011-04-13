@@ -12,7 +12,8 @@ from flask import Module, render_template
 
 from tzos.extensions import dbxml
 from tzos.forms import AddTermForm
-from tzos.helpers import get_dict_langs, require_valid_dict
+from tzos.helpers import get_dict_langs, get_working_statuses, \
+    require_valid_dict
 
 terms = Module(__name__)
 
@@ -32,5 +33,7 @@ def add():
     form = AddTermForm()
     # TODO: Get a list of available languages form the XCS file
     form.language.choices = get_dict_langs()
+
+    form.element_working_status.choices = get_working_statuses()
 
     return render_template('terms/add.html', form=form)

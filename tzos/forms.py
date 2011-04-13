@@ -158,11 +158,10 @@ class AddTermForm(Form):
     entry_source = TextField()
     example = TextField()
     explanation = TextField()
+    product_subset = TextField()
 
     normative_authorization = TextField()
     part_of_speech = TextField()
-
-    product_subset = TextField()
 
     subordinate_concept_generic = TextField()
     superordinate_concept_generic = TextField()

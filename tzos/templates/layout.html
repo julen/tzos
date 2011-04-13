@@ -80,6 +80,7 @@
         </section>
         <footer>
             <section id="locales" class="content">
+                <i class="fl iGlobe">[locales]</i>
                 <ul class="in fl aDark">
                     {% for lang_code, lang_name in langs %}
                     <li>{% if lang_code == g.ui_lang %}<span class="current">[[ lang_name|capitalize ]]</span>{% else %}<a href="[[ url_for2(request.endpoint, setuilang=lang_code) ]]">[[ lang_name|capitalize ]]</a>{% endif %}</li>

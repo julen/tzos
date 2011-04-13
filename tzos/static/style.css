@@ -53,6 +53,7 @@ q {}
 .i32 { height:32px; width:32px; }
 .i48 { height:48px; width:48px; }
 
+.iGlobe { background-position:-16px -24px; }
 .iWDarr { background-position:0 -40px; }
 .iBDarr { background-position:-32px -24px; }
 .iBRarr { background-position:-32px -40px; }
@@ -376,13 +377,10 @@ footer {
     clear: both;
 }
 
-section#locales {
-    background-image: url('img/sprite.png');
-    background-position: -16px -24px;
-    background-repeat: no-repeat;
-    min-height: 16px;
-    padding: 0 0 0 20px;
-    overflow: auto;
+section#locales .iGlobe {
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
 }
 
 /* General classes */

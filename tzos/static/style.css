@@ -233,6 +233,12 @@ input, select {
     float: right;
 }
 
+.f1.addTerm li {
+    float: left;
+    margin-right: 20px;
+    width: 300px;
+}
+
 /* Tables */
 
 .table {
@@ -571,6 +577,7 @@ section.admin ul.sideTabs li a.selected {
 }
 
 .hTabs .fAction {
+    clear: both;
     padding-right: 8%;
     text-align: right;
 }
@@ -603,7 +610,7 @@ section.admin ul.sideTabs li a.selected {
     width: 200px;
 }
 
-.sidebar p {
+.column p {
     margin: 10px 0;
 }
 

@@ -6,4 +6,11 @@ $(document).ready(function () {
         $(this).children('ul').toggle();
     });
     $('ul.inlineTabs').tabs();
+
+    $('.showme').show();
+    $('.hideme').hide();
+
+    $('.showFields').click(function () {
+        $('.extraFields').toggle('slow');
+    });
 });

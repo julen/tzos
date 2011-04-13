@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% from "macros/_forms.html" import render_form %}
+{% from "macros/_forms.html" import render_field %}
 
 {% block title %}[[ super() ]][[ _('Add terms') ]]{% endblock %}
 
@@ -15,16 +15,40 @@
     </ul>
 
     <div id="add_manually" class="tabContent">
-        <div class="columns">
-            <div class="column main">
-                <div class="fields">
-                    [[ render_form(form) ]]
-                </div>
-            </div>
-            <div class="column sidebar">
-                <p class="p5 weak"></p>
-            </div>
+        <div class="column">
+            <form method="POST" action="[[ url_for('terms.add', mode='manual') ]]" class="f1 addTerm">
+                [[ form.hidden_tag() ]]
+                <ul>
+                    [[ render_field(form.term, class="input") ]]
+                    [[ render_field(form.language, class="input") ]]
+                    [[ render_field(form.subject_field, class="input") ]]
+                    [[ render_field(form.concept_origin, class="input") ]]
+                    [[ render_field(form.element_working_status, class="input") ]]
+                </ul>
+                <p class="clBoth showme" style="display:none;"><i class="iArrow">[arrow]</i><a href="#" class="showFields" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
+                <ul class="extraFields hideme">
+                    [[ render_field(form.context, class="input") ]]
+                    [[ render_field(form.cross_reference, class="input") ]]
+                    [[ render_field(form.definition, class="input") ]]
+                    [[ render_field(form.entry_source, class="input") ]]
+                    [[ render_field(form.example, class="input") ]]
+                    [[ render_field(form.explanation, class="input") ]]
+
+                    [[ render_field(form.product_subset, class="input") ]]
+
+                    [[ render_field(form.normative_authorization, class="input") ]]
+                    [[ render_field(form.part_of_speech, class="input") ]]
+                    [[ render_field(form.subordinate_concept_generic, class="input") ]]
+                    [[ render_field(form.superordinate_concept_generic, class="input") ]]
+                    [[ render_field(form.antonym_concept, class="input") ]]
+                    [[ render_field(form.related_concept, class="input") ]]
+                </ul>
+                <p class="fAction hr">
+                    [[ form.submit(class="button") ]]
+                </p>
+            </form>
         </div>
+    </div>
     </div>
 
     <div id="add_from_file" class="tabContent">

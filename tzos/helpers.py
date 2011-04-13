@@ -88,6 +88,8 @@ def get_working_statuses(only_statuses=False):
 
     try:
         status_split = statuses[0].split()
+        # TODO: display localized names
+        # TODO: limit status names depending on user privileges
         status_list = [s if only_statuses else (s, s) for s in status_split]
     except IndexError:
         status_list = []

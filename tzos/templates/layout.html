@@ -31,7 +31,7 @@
                 </ul>
                 <form class="fl headerSearch" method="GET" action="[[ url_for('search.quick') ]]">
                     <input type="search" class="in" name="q" placeholder="[[ _('Search terms') ]]" />
-                    <a href="[[ url_for('search.quick') ]]" class="i advancedSearch" title="[[ _('Advanced search') ]]">[[ _('Advanced search') ]]</a>
+                    <a href="[[ url_for('search.quick') ]]" class="i advancedSearch" rel="tipsy-ns" title="[[ _('Advanced search') ]]">[[ _('Advanced search') ]]</a>
                 </form>
             </nav>
         </header>
@@ -41,7 +41,7 @@
                     {% for letter in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
                     <li{% if loop.first %} class="first"{% endif %}><a href="[[ url_for('glossary.list_letter', dict=session['dict_lang'], letter=letter) ]]">[[ letter ]]</a></li>
                     {% endfor %}
-                    <li id="tzosDict" class="dict"><a href="[[ url_for('frontend.dict') ]]" title="[[ _('Select dictionary language') ]]"><i class="iWDarr">[arrow]</i> [[ session.dict_lang ]]</a>
+                    <li id="tzosDict" class="dict"><a href="[[ url_for('frontend.dict') ]]" rel="tipsy-we" title="[[ _('Select dictionary language') ]]"><i class="iWDarr">[arrow]</i> [[ session.dict_lang ]]</a>
                         <ul class="dictList" style="display:none;">
                             {% for dict_lang, dict_langname in dict_langs %}
                             {% if dict_lang != session.dict_lang %}

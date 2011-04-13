@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    $('[rel=tipsy-ns]').tipsy({gravity: $.fn.tipsy.autoNS});
+    $('[rel=tipsy-we]').tipsy({gravity: $.fn.tipsy.autoWE});
+
     $('#tzosDict > a').click(function (e) {
         e.preventDefault();
     });

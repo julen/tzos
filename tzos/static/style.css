@@ -711,6 +711,13 @@ dl.trans dt {
 }
 
 
+/* Adding terms */
+
+p.extraFields {
+    line-height: 2;
+}
+
+
 /* HTML5 compatibility */
 
 article, aside, details, figcaption, figure,

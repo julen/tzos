@@ -13,6 +13,10 @@ $(document).ready(function () {
 
     $('ul.inlineTabs').tabs();
 
+    if ($('li.showSource input:checkbox').is(':checked')) {
+        $('li.showSource').next('li').removeClass('hideme');
+    }
+
     $('.showme').show();
     $('.hideme').hide();
 

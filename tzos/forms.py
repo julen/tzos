@@ -11,7 +11,7 @@
 from flaskext.babel import gettext, lazy_gettext as _
 from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
     PasswordField, RecaptchaField, SelectField, SubmitField, TextField, \
-    URL, email, equal_to, regexp, required
+    URL, ValidationError, email, equal_to, regexp, required
 
 from tzos.models import User
 
@@ -131,6 +131,14 @@ class ModifyUserPermissionForm(Form):
 
 
 class AddTermForm(Form):
+
+    def check_not_mine(form, field):
+        message = _("You must specify the author's name.")
+
+        if form.not_mine.data and field.data == "":
+            raise ValidationError(message)
+
+
     # Core fields
     term = TextField(_("Term"), validators=[
         required(message=_("Term is required."))])
@@ -149,7 +157,7 @@ class AddTermForm(Form):
 
     not_mine = BooleanField(_("The author of this term is another person."))
     originating_person = TextField(_("Originating person"), validators=[
-        required(message=_("Originating person is required."))])
+        check_not_mine])
 
 
 

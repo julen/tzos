@@ -160,7 +160,6 @@ class AddTermForm(Form):
         check_not_mine])
 
 
-
     # Optional fields
     context = TextAreaField()
     cross_reference = TextField()
@@ -170,6 +169,7 @@ class AddTermForm(Form):
     explanation = TextAreaField()
     product_subset = TextField()
 
+    # Linguistic fields
     normative_authorization = TextField()
     part_of_speech = TextField()
 
@@ -179,5 +179,6 @@ class AddTermForm(Form):
     related_concept = TextField()
 
     term_type = TextField()
+
 
     submit = SubmitField(_("Add"))

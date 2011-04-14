@@ -26,7 +26,7 @@ $(document).ready(function () {
         } else {
             $(this).prev().removeClass('iBDarr').addClass('iBRarr');
         }
-        $('ul.extraFields').toggle('slow');
+        $('div.extraFields').toggle('slow');
     });
 
     $('li.showSource input:checkbox').click(function () {

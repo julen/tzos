@@ -30,23 +30,27 @@
                     [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
                 </ul>
                 <p class="clBoth showme extraFields" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showFields" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
-                <ul class="extraFields hideme">
-                    [[ render_field(form.context, class="input") ]]
-                    [[ render_field(form.cross_reference, class="input") ]]
-                    [[ render_field(form.definition, class="input") ]]
-                    [[ render_field(form.entry_source, class="input") ]]
-                    [[ render_field(form.example, class="input") ]]
-                    [[ render_field(form.explanation, class="input") ]]
+                <div class="extraFields hideme">
+                    <ul>
+                        [[ render_field(form.definition, class="input") ]]
+                        [[ render_field(form.context, class="input") ]]
+                        [[ render_field(form.example, class="input") ]]
+                        [[ render_field(form.explanation, class="input") ]]
+                        [[ render_field(form.entry_source, class="input") ]]
+                        [[ render_field(form.cross_reference, class="input") ]]
 
-                    [[ render_field(form.product_subset, class="input") ]]
-
-                    [[ render_field(form.normative_authorization, class="input") ]]
-                    [[ render_field(form.part_of_speech, class="input") ]]
-                    [[ render_field(form.subordinate_concept_generic, class="input") ]]
-                    [[ render_field(form.superordinate_concept_generic, class="input") ]]
-                    [[ render_field(form.antonym_concept, class="input") ]]
-                    [[ render_field(form.related_concept, class="input") ]]
-                </ul>
+                        [[ render_field(form.product_subset, class="input") ]]
+                    </ul>
+                    <h2 class="m4 clBoth">[[ _("Linguistic information") ]]</h2>
+                    <ul>
+                        [[ render_field(form.normative_authorization, class="input") ]]
+                        [[ render_field(form.part_of_speech, class="input") ]]
+                        [[ render_field(form.subordinate_concept_generic, class="input") ]]
+                        [[ render_field(form.superordinate_concept_generic, class="input") ]]
+                        [[ render_field(form.antonym_concept, class="input") ]]
+                        [[ render_field(form.related_concept, class="input") ]]
+                    </ul>
+                </div>
                 <p class="fAction hr">
                     [[ form.submit(class="button") ]]
                 </p>

@@ -299,6 +299,14 @@ header a:visited,
     color: #07c;
 }
 
+
+/* Margins */
+
+.m4 {
+    margin: 0.5em 0 0.25em;
+}
+
+
 /* Main block level elements */
 
 header {

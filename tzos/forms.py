@@ -10,8 +10,8 @@
 """
 from flaskext.babel import gettext, lazy_gettext as _
 from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
-    PasswordField, RecaptchaField, SelectField, SubmitField, TextField, \
-    URL, ValidationError, email, equal_to, regexp, required
+    PasswordField, RecaptchaField, SelectField, SubmitField, TextAreaField, \
+    TextField, URL, ValidationError, email, equal_to, regexp, required
 
 from tzos.models import User
 
@@ -162,12 +162,12 @@ class AddTermForm(Form):
 
 
     # Optional fields
-    context = TextField()
+    context = TextAreaField()
     cross_reference = TextField()
-    definition = TextField()
+    definition = TextAreaField()
     entry_source = TextField()
-    example = TextField()
-    explanation = TextField()
+    example = TextAreaField()
+    explanation = TextAreaField()
     product_subset = TextField()
 
     normative_authorization = TextField()

@@ -722,6 +722,10 @@ p.extraFields {
     line-height: 2;
 }
 
+ul.fields > li {
+    min-height: 75px;
+}
+
 
 /* HTML5 compatibility */
 

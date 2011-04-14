@@ -18,20 +18,20 @@
         <div class="column">
             <form method="POST" action="[[ url_for('terms.add', mode='manual') ]]" class="f1 addTerm">
                 [[ form.hidden_tag() ]]
-                <ul>
+                <ul class="fields">
                     [[ render_field(form.term, class="input") ]]
                     [[ render_field(form.language, class="input") ]]
-                    [[ render_field(form.subject_field, class="input", tag_class="clLeft") ]]
+                    [[ render_field(form.subject_field, class="input") ]]
                     [[ render_field(form.concept_origin, class="input") ]]
                     [[ render_field(form.element_working_status, class="input") ]]
                 </ul>
-                <ul class="clBoth">
+                <ul class="fields clBoth">
                     [[ render_field(form.not_mine, tag_class="showSource") ]]
                     [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
                 </ul>
                 <p class="clBoth showme extraFields" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showFields" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
                 <div class="extraFields hideme">
-                    <ul>
+                    <ul class="fields">
                         [[ render_field(form.definition, class="input") ]]
                         [[ render_field(form.context, class="input") ]]
                         [[ render_field(form.example, class="input") ]]
@@ -42,7 +42,7 @@
                         [[ render_field(form.product_subset, class="input") ]]
                     </ul>
                     <h2 class="m4 clBoth">[[ _("Linguistic information") ]]</h2>
-                    <ul>
+                    <ul class="fields">
                         [[ render_field(form.normative_authorization, class="input") ]]
                         [[ render_field(form.part_of_speech, class="input") ]]
                         [[ render_field(form.subordinate_concept_generic, class="input") ]]

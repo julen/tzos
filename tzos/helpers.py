@@ -15,6 +15,9 @@ from functools import wraps
 
 from tzos.extensions import dbxml
 
+import random
+import string
+
 
 def url_for2(endpoint, **values):
     """Overriden method to always add request.view_args."""
@@ -32,6 +35,13 @@ def url_for2(endpoint, **values):
         endpoint = endpoint[1:]
     external = values.pop('_external', False)
     return ctx.url_adapter.build(endpoint, values, force_external=external)
+
+
+def make_random(n=10):
+    """Creates a random strings for using them as IDs."""
+
+    return "".join(random.choice(string.ascii_lowercase + string.digits) \
+            for x in range(n))
 
 
 def get_dict_langs(only_codes=False):

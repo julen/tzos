@@ -13,6 +13,7 @@ from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
     PasswordField, RecaptchaField, SelectField, SubmitField, TextAreaField, \
     TextField, URL, ValidationError, email, equal_to, regexp, required
 
+from tzos.extensions import dbxml
 from tzos.models import User
 
 USERNAME_RE = r'^[\w.+-]+$'
@@ -138,10 +139,22 @@ class AddTermForm(Form):
         if form.not_mine.data and field.data == "":
             raise ValidationError(message)
 
+    def check_collision(form, field):
+        message = _("This term already exists in the database.")
+
+        # FIXME: Also check in subject field?
+        qs = "//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                format(form.language.data, form.term.data)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result:
+            raise ValidationError(message)
+
 
     # Core fields
     term = TextField(_("Term"), validators=[
-        required(message=_("Term is required."))])
+        required(message=_("Term is required.")),
+        check_collision])
 
     language = SelectField(_("Language"), validators=[
         required(message=_("Language is required."))])

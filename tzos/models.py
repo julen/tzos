@@ -11,14 +11,18 @@
 import hashlib
 
 from datetime import datetime
+from time import strftime
 
 from werkzeug import cached_property, check_password_hash, generate_password_hash
+
+from flask import g, render_template
 
 from flaskext.babel import gettext as _, lazy_gettext as _l
 from flaskext.sqlalchemy import BaseQuery
 from flaskext.principal import RoleNeed, UserNeed
 
-from tzos.extensions import db
+from tzos.extensions import db, dbxml
+from tzos.helpers import make_random
 
 class UserQuery(BaseQuery):
 
@@ -141,3 +145,44 @@ class User(db.Model):
 
         return "http://www.gravatar.com/avatar/%s.jpg?s=%d&d=mm" %\
             (self.gravatar, size)
+
+
+class Term(object):
+
+    def __init__(self, id=None):
+        if id:
+            self.id = id
+
+    def exists(self):
+        """Returns True if the current term exists in the DB."""
+
+        if not self.id:
+            return False
+
+        qs = "//term[@id='{0}']".format(self.id)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result is not None:
+            return True
+
+        return False
+
+    def insert(self):
+        """Inserts the current term to the DB."""
+
+        ctx = {
+            'orig_person': self.originating_person if self.not_mine else g.user.username,
+            'date': strftime('%Y-%m-%d %H:%M:%S%z'),
+            'username': g.user.username,
+            'concept_id': make_random(),
+            'term_id': make_random(),
+            }
+        ctx.update(self.__dict__)
+        xml = render_template('xml/new_term.xml', **ctx)
+
+
+        if dbxml.get_db().insert_before(xml, "//termEntry[1]"):
+            self.id = ctx['term_id']
+            return True
+
+        return False

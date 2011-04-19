@@ -241,12 +241,6 @@ textarea {
     float: right;
 }
 
-.f1.addTerm li {
-    float: left;
-    margin-right: 20px;
-    width: 300px;
-}
-
 /* Tables */
 
 .table {
@@ -718,8 +712,19 @@ dl.trans dt {
 
 /* Adding terms */
 
+.f1.addTerm li {
+    float: left;
+    margin-right: 20px;
+    width: 300px;
+}
+
 ul.fields > li {
     min-height: 75px;
+}
+
+ul li.singleLine {
+    width: 95%!important;
+    min-height: 40px;
 }
 
 

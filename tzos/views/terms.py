@@ -37,6 +37,7 @@ def add():
 
     # TODO: Get a list of available languages form the XCS file
     form.language.choices = get_dict_langs()
+    form.syntrans_lang.choices = get_dict_langs()
 
     form.element_working_status.choices = get_working_statuses()
 

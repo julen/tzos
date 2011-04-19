@@ -16,6 +16,9 @@ $(document).ready(function () {
     if ($('li.showSource input:checkbox').is(':checked')) {
         $('li.showSource').next('li').removeClass('hideme');
     }
+    if ($('li.showSyntrans input:checkbox').is(':checked')) {
+        $('li.showSyntrans').nextAll('li').removeClass('hideme');
+    }
 
     $('.showme').show();
     $('.hideme').hide();
@@ -31,5 +34,8 @@ $(document).ready(function () {
 
     $('li.showSource input:checkbox').click(function () {
         $(this).parent().next('li').toggle('slow');
+    });
+    $('li.showSyntrans input:checkbox').click(function () {
+        $(this).parent().nextAll('li').toggle('slow');
     });
 });

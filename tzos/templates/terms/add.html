@@ -25,7 +25,12 @@
                     [[ render_field(form.concept_origin, class="input") ]]
                     [[ render_field(form.element_working_status, class="input") ]]
                 </ul>
-                <ul class="fields clBoth">
+                <ul class="fields clLeft">
+                    [[ render_field(form.syntrans, class="input", tag_class="showSyntrans singleLine") ]]
+                    [[ render_field(form.syntrans_term, class="input", tag_class="hideme") ]]
+                    [[ render_field(form.syntrans_lang, class="input", tag_class="hideme") ]]
+                </ul>
+                <ul class="fields clLeft">
                     [[ render_field(form.not_mine, tag_class="showSource") ]]
                     [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
                 </ul>

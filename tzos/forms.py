@@ -133,12 +133,6 @@ class ModifyUserPermissionForm(Form):
 
 class AddTermForm(Form):
 
-    def check_not_mine(form, field):
-        message = _("You must specify the author's name.")
-
-        if form.not_mine.data and field.data == "":
-            raise ValidationError(message)
-
     def check_collision(form, field):
         message = _("This term already exists in the database.")
 
@@ -150,14 +144,44 @@ class AddTermForm(Form):
         if result:
             raise ValidationError(message)
 
+    def check_syntrans(form, field):
+        message = _("You must specify a term.")
 
+        if form.syntrans.data and field.data == "":
+            raise ValidationError(message)
+
+    def check_exists(form, field):
+        message = _("This term doesn't exist in the database.")
+
+        lang = form.syntrans_lang.data
+        term = field.data
+
+        # FIXME: Also check in subject field?
+        qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                format(lang, term)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if not result:
+            raise ValidationError(message)
+
+    def check_not_mine(form, field):
+        message = _("You must specify the author's name.")
+
+        if form.not_mine.data and field.data == "":
+            raise ValidationError(message)
+
+
+    #
     # Core fields
+    #
+
     term = TextField(_("Term"), validators=[
         required(message=_("Term is required.")),
         check_collision])
 
     language = SelectField(_("Language"), validators=[
         required(message=_("Language is required."))])
+
 
     concept_origin = TextField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
@@ -168,14 +192,29 @@ class AddTermForm(Form):
     subject_field = TextField(_("Subject field"), validators=[
         required(message=_("Subject field is required."))])
 
+
+    syntrans = BooleanField(_("This term is a synonym or a translation for another term."))
+
+    syntrans_term = TextField(_("Term"), validators=[
+        check_syntrans,
+        check_exists])
+
+    syntrans_lang = SelectField(_("Language"), validators=[
+        required(message=_("Language is required."))])
+
+
     not_mine = BooleanField(_("The author of this term is another person."))
     originating_person = TextField(_("Originating person"), validators=[
         check_not_mine])
 
+    #
     # Transaction-related stuff
+    #
     transac_type = HiddenField(default='input', validators=[AnyOf('input')])
 
+    #
     # Optional fields
+    #
     context = TextAreaField()
     cross_reference = TextField()
     definition = TextAreaField()
@@ -184,7 +223,9 @@ class AddTermForm(Form):
     explanation = TextAreaField()
     product_subset = TextField()
 
+    #
     # Linguistic fields
+    #
     normative_authorization = TextField()
     part_of_speech = TextField()
 

@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import gettext, lazy_gettext as _
-from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
+from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, Optional, \
     PasswordField, RecaptchaField, SelectField, SubmitField, TextAreaField, \
     TextField, URL, ValidationError, email, equal_to, regexp, required
 
@@ -172,6 +172,8 @@ class AddTermForm(Form):
     originating_person = TextField(_("Originating person"), validators=[
         check_not_mine])
 
+    # Transaction-related stuff
+    transac_type = HiddenField(default='input', validators=[AnyOf('input')])
 
     # Optional fields
     context = TextAreaField()

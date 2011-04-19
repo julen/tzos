@@ -61,7 +61,7 @@
                 {% if category == 'error' %}
                 <h1 class="in h3">[[ _('Error') ]]</h1>
                 {% endif %}
-                <p class="in">[[ message ]]</p>
+                <p class="in">[[ message|safe ]]</p>
             </div>
             {% endfor %}
           {% endif %}

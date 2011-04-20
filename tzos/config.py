@@ -11,7 +11,8 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:////home/julen/dev/tzos/tzos/dbs/tzos.db'
 SQLALCHEMY_ECHO = False
 
 # DB-XML database settings
-DBXML_DATABASE = '/home/julen/dev/tzos/tzos/dbs/tzos.dbxml'
+DBXML_ENV = '/home/julen/dev/tzos/tzos/dbs/dbxml/'
+DBXML_DATABASE = DBXML_ENV + 'tzos.dbxml'
 
 # Babel configuration settings
 BABEL_DEFAULT_LOCALE = 'en'

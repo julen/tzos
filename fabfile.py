@@ -157,6 +157,7 @@ def copy_local_dbs():
     with settings(warn_only=True):
 
         put('tzos/dbs/*', env.project_path + '/tzos/dbs/', mode=0664)
+        put('tzos/dbs/dbxml/*', env.project_path + '/tzos/dbs/dbxml/', mode=0664)
 
 
 def compile_translations():

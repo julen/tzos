@@ -1,0 +1,6 @@
+<langSet xml:lang="[[ language ]]">
+    {% if definition %}
+    <descrip type="definition">[[ definition ]]</descrip>
+    {% endif %}
+    {% include "xml/new_term.xml" %}
+</langSet>

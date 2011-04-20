@@ -1,0 +1,11 @@
+{% from "macros/_xml.html" import render_transaction %}
+<termEntry id="[[ concept_id ]]">
+    <admin type="originatingPerson">[[ orig_person ]]</admin>
+    <descrip type="subjectField">[[ subject_field ]]</descrip>
+    {% if cross_reference %}
+    <ref target="[[ cross_reference ]]" type="crossReference"></ref>
+    {% endif %}
+    [[ render_transaction(transac_type, date, username) ]]
+    {% include "xml/new_langset.xml" %}
+</termEntry>
+

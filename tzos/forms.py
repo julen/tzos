@@ -151,18 +151,19 @@ class AddTermForm(Form):
             raise ValidationError(message)
 
     def check_exists(form, field):
-        message = _("This term doesn't exist in the database.")
+        if form.syntrans.data and field.data != "":
+            message = _("This term doesn't exist in the database.")
 
-        lang = form.syntrans_lang.data
-        term = field.data
+            lang = form.syntrans_lang.data
+            term = field.data
 
-        # FIXME: Also check in subject field?
-        qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
-                format(lang, term)
-        result = dbxml.get_db().query(qs).as_str().first()
+            # FIXME: Also check in subject field?
+            qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                    format(lang, term)
+            result = dbxml.get_db().query(qs).as_str().first()
 
-        if not result:
-            raise ValidationError(message)
+            if not result:
+                raise ValidationError(message)
 
     def check_not_mine(form, field):
         message = _("You must specify the author's name.")

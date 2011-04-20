@@ -151,7 +151,20 @@ class Term(object):
 
     def __init__(self, id=None):
         if id:
-            self.id = id
+            self.term_id = id
+
+    @property
+    def id(self):
+        if hasattr(self, 'term_id'):
+            return self.term_id
+
+        qs = "//term[string()='{0}']/data(@id)".format(self.term)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result:
+            self.term_id = result
+
+        return result
 
     def exists(self):
         """Returns True if the current term exists in the DB."""
@@ -167,6 +180,17 @@ class Term(object):
 
         return False
 
+    def has_langset(self, langcode):
+        """Returns True if the current term has a langSet for langcode."""
+        qs = '//langSet[@xml:lang="{0}" and ..//term[string()="{1}"]]'. \
+            format(langcode, self.term)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result is not None:
+            return True
+
+        return False
+
     def insert(self):
         """Inserts the current term to the DB."""
 
@@ -174,15 +198,30 @@ class Term(object):
             'orig_person': self.originating_person if self.not_mine else g.user.username,
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,
-            'concept_id': make_random(),
             'term_id': make_random(),
             }
         ctx.update(self.__dict__)
-        xml = render_template('xml/new_term.xml', **ctx)
 
+        if self.syntrans:
+            syntrans_term = Term()
+            syntrans_term.term = self.syntrans_term
 
-        if dbxml.get_db().insert_before(xml, "//termEntry[1]"):
-            self.id = ctx['term_id']
+            if syntrans_term.has_langset(self.language):
+                template_name = 'xml/new_term.xml'
+                where = '//langSet[@xml:lang="{0}"]/tig[../..//term[@id="{1}"]][1]' \
+                    .format(self.language, syntrans_term.id)
+            else:
+                template_name = 'xml/new_langset.xml'
+                where = '//langSet[..//term[@id="{0}"]][1]'.format(syntrans_term.id)
+        else:
+            ctx.update({'concept_id': make_random()})
+            template_name = 'xml/new_concept.xml'
+            where = '//termEntry[1]'
+
+        xml = render_template(template_name, **ctx)
+
+        if dbxml.get_db().insert_before(xml, where):
+            self.term_id = ctx['term_id']
             return True
 
         return False

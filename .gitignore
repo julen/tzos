@@ -8,6 +8,9 @@
 *.swp
 *.xcf
 
+__db.*
+log.*
+
 configs/__init__.py
 configs/fabric.py
 configs/production.py

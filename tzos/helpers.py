@@ -56,7 +56,6 @@ def get_all_langs(only_codes=False):
     from babel import localedata
 
     for code in localedata.list():
-        print "Adding", code
         l = Locale.parse(code)
         locale = l.language if only_codes else (l.language,
                                                 l.display_name)

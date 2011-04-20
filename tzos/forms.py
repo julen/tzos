@@ -14,6 +14,7 @@ from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, Optional, \
     TextField, URL, ValidationError, email, equal_to, regexp, required
 
 from tzos.extensions import dbxml
+from tzos.helpers import get_all_langs
 from tzos.models import User
 
 USERNAME_RE = r'^[\w.+-]+$'
@@ -129,6 +130,13 @@ class ModifyUserPermissionForm(Form):
     role = SelectField(_("Role"), choices=role_choices, coerce=int)
 
     submit = SubmitField(_("Modify permissions"))
+
+
+class AddLanguagesForm(Form):
+    language_choices = get_all_langs()
+    language = SelectField(_("Language"), choices=language_choices)
+
+    submit = SubmitField(_("Add language"))
 
 
 class AddTermForm(Form):

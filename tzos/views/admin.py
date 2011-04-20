@@ -13,7 +13,7 @@ from flask import Module, flash, g, redirect, render_template, request, url_for
 from flaskext.babel import gettext as _
 
 from tzos.extensions import db
-from tzos.forms import ModifyUserPermissionForm
+from tzos.forms import AddLanguagesForm, ModifyUserPermissionForm
 from tzos.models import User
 from tzos.permissions import admin as admin_permission
 
@@ -31,8 +31,11 @@ def settings():
         User.query.filter(User.username!=g.user.username)
                   .order_by('username')]
 
+    languagesform = AddLanguagesForm()
+
     return render_template("admin/settings.html", users=users,
-                                                  usersform=usersform)
+                                                  usersform=usersform,
+                                                  languagesform=languagesform)
 
 @admin.route('/users/', methods=('POST',))
 @admin_permission.require(401)

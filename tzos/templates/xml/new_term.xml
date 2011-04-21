@@ -2,7 +2,7 @@
 <tig>
     <term id="[[ term_id ]]">[[ term ]]</term>
     {# XXX: review this #}
-    {% if normative_authorization %}
+    {% if normative_authorization != "none" %}
     <termNote type="normativeAuthorization"
         target="roid-Euskaltzaindia">[[ normative_authorization ]]</termNote>
     {% endif %}

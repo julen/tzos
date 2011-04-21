@@ -13,6 +13,7 @@ from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, SelectField, \
     SubmitField, TextAreaField, TextField, ValidationError, required
 
 from tzos.extensions import dbxml
+from tzos.strings import NORMATIVE_AUTHORIZATIONS
 
 class AddTermForm(Form):
 
@@ -110,14 +111,16 @@ class AddTermForm(Form):
     #
     # Linguistic fields
     #
-    normative_authorization = TextField()
-    part_of_speech = TextField()
+    normative_authorization = SelectField(_('Normative authorization'),
+                                          choices=NORMATIVE_AUTHORIZATIONS)
+    normative_authorization_org = SelectField(_('Organization'))
 
     subordinate_concept_generic = TextField()
     superordinate_concept_generic = TextField()
     antonym_concept = TextField()
     related_concept = TextField()
 
+    part_of_speech = TextField()
     term_type = TextField()
 
 

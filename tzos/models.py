@@ -22,7 +22,6 @@ from flaskext.sqlalchemy import BaseQuery
 from flaskext.principal import RoleNeed, UserNeed
 
 from tzos.extensions import db, dbxml
-from tzos.helpers import make_random
 
 class UserQuery(BaseQuery):
 

@@ -70,8 +70,8 @@ class AddTermForm(Form):
     concept_origin = TextField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
 
-    element_working_status = SelectField(_("Working status"), validators=[
-        required(message=_("Working status is required."))])
+    # Affects elementWorkingStatus
+    make_public = BooleanField(_("I want this term to be public immediately."))
 
     subject_field = TextField(_("Subject field"), validators=[
         required(message=_("Subject field is required."))])

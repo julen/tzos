@@ -37,8 +37,6 @@ def generate_add_term_form():
     form.language.choices = get_dict_langs()
     form.syntrans_lang.choices = get_dict_langs()
 
-    form.element_working_status.choices = get_working_statuses()
-
     return form
 
 @terms.route('/add/')

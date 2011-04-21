@@ -1,6 +1,9 @@
 
 declare function local:getSynonyms($term as element(term)) {
-    $term/../..//term[string()!=$term/string()]
+    for $syn in $term/../..//term[string()!=$term/string()]
+    let $workingStatus := $syn/../admin[@type="elementWorkingStatus"]/string()
+    where $workingStatus != "starterElement" and $workingStatus != "importedElement"
+    return $syn
 };
 
 for $term in collection($collection)//term

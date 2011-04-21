@@ -198,7 +198,7 @@ class Term(object):
             'orig_person': self.originating_person if self.not_mine else g.user.username,
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,
-            'term_id': make_random(),
+            'term_id': dbxml.get_db().generate_id('term'),
             }
         ctx.update(self.__dict__)
 
@@ -214,7 +214,7 @@ class Term(object):
                 template_name = 'xml/new_langset.xml'
                 where = '//langSet[..//term[@id="{0}"]][1]'.format(syntrans_term.id)
         else:
-            ctx.update({'concept_id': make_random()})
+            ctx.update({'concept_id': dbxml.get_db().generate_id('concept')})
             template_name = 'xml/new_concept.xml'
             where = '//termEntry[1]'
 

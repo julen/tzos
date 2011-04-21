@@ -37,12 +37,6 @@ def url_for2(endpoint, **values):
     return ctx.url_adapter.build(endpoint, values, force_external=external)
 
 
-def make_random(n=10):
-    """Creates random strings for using them as IDs."""
-
-    return "".join(random.choice(string.digits) for x in range(n))
-
-
 def get_all_langs(only_codes=False):
     """Returns a list with tuples of all the languages known by Babel.
     The tuple elements are language codes and language names.

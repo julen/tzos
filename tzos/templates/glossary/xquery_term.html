@@ -4,7 +4,8 @@ declare function local:getSynonyms($term as element(term)) {
 };
 
 for $term in collection($collection)//term
-where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lang=$lang]
+let $workingStatus := $term/../admin[@type="elementWorkingStatus"]/string()
+where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lang=$lang] and $workingStatus != "starterElement" and $workingStatus!="importedElement"
 return
 <dl class="term">
     <dt class="term">{ $term/string() }</dt>

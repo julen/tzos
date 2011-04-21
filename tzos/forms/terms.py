@@ -13,7 +13,7 @@ from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, SelectField, \
     SubmitField, TextAreaField, TextField, ValidationError, required
 
 from tzos.extensions import dbxml
-from tzos.strings import NORMATIVE_AUTHORIZATIONS
+from tzos.strings import NORMATIVE_AUTHORIZATIONS, TERM_TYPES
 
 class AddTermForm(Form):
 
@@ -121,7 +121,7 @@ class AddTermForm(Form):
     related_concept = TextField()
 
     part_of_speech = TextField()
-    term_type = TextField()
+    term_type = SelectField(_('Term type'), choices=TERM_TYPES)
 
 
     submit = SubmitField(_("Add"))

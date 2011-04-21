@@ -1,10 +1,9 @@
 {% from "macros/_xml.html" import render_transaction %}
 <tig>
     <term id="[[ term_id ]]">[[ term ]]</term>
-    {# XXX: review this #}
     {% if normative_authorization != "none" %}
     <termNote type="normativeAuthorization"
-        target="roid-Euskaltzaindia">[[ normative_authorization ]]</termNote>
+        target="[[ normative_authorization_org ]]">[[ normative_authorization ]]</termNote>
     {% endif %}
     <admin type="originatingPerson">[[ orig_person ]]</admin>
     {% if concept_origin %}

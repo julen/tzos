@@ -38,10 +38,9 @@ def url_for2(endpoint, **values):
 
 
 def make_random(n=10):
-    """Creates a random strings for using them as IDs."""
+    """Creates random strings for using them as IDs."""
 
-    return "".join(random.choice(string.ascii_lowercase + string.digits) \
-            for x in range(n))
+    return "".join(random.choice(string.digits) for x in range(n))
 
 
 def get_all_langs(only_codes=False):

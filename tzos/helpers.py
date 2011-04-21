@@ -117,3 +117,23 @@ def get_working_statuses(only_statuses=False):
         status_list = []
 
     return status_list
+
+
+def get_responsible_orgs(only_statuses=False):
+    """Returns a list with tuples of all the available responsible
+    organizations. These organizations are to be used in
+    normativeAuthorization fields.
+
+    The tuple elements are organization IDs and display names.
+    """
+    # TODO: cache items not to hit the disk each time we run this
+
+    qs = """
+    for $org in collection("{0}")//refObjectList[@type='respOrg']/refObject
+    return ($org/data(@id), $org/item[@type='org']/string())
+    """.format(dbxml.get_db().collection)
+    result = dbxml.get_db().raw_query(qs).as_str().all()
+
+    orgs_list = zip(result, result[1:])[::2]
+
+    return orgs_list

@@ -709,6 +709,16 @@ dl.trans dt {
     width: 2ch;
 }
 
+div.term {
+    position: relative;
+}
+
+ul.termActions {
+    position: absolute;
+    top: 0;
+    right: 5%;
+}
+
 
 /* Adding terms */
 

@@ -38,4 +38,8 @@ $(document).ready(function () {
     $('li.showSyntrans input:checkbox').click(function () {
         $(this).parent().nextAll('li').toggle('slow');
     });
+
+    $('dl.term').hover(function () {
+      $(this).next('.termActions').show();
+    });
 });

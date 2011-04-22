@@ -1,9 +1,12 @@
+declare function local:termLink($term as element(term)) {
+    <a href="[[ url_for('terms.detail', id='{ data($term/@id) }') ]]">{ $term }</a>
+};
 
 declare function local:getSynonyms($term as element(term)) {
     for $syn in $term/../..//term[string()!=$term/string()]
     let $workingStatus := $syn/../admin[@type="elementWorkingStatus"]/string()
     where $workingStatus != "starterElement" and $workingStatus != "importedElement"
-    return $syn
+    return local:termLink($syn)
 };
 
 for $term in collection($collection)//term

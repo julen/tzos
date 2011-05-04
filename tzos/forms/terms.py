@@ -103,13 +103,15 @@ class AddTermForm(Form):
     #
     # Optional fields
     #
-    context = TextAreaField()
-    cross_reference = TextField()
-    definition = TextAreaField()
-    entry_source = TextField()
-    example = TextAreaField()
-    explanation = TextAreaField()
-    product_subset = TextField()
+    context = TextAreaField(_('Context'))
+    cross_reference = TextField(_('Cross reference'))
+    definition = TextAreaField(_('Definition'))
+    # TODO: Convert this to a SelectField
+    entry_source = TextField(_('Entry source'))
+    example = TextAreaField(_('Example'))
+    explanation = TextAreaField(_('Explanation'))
+    # TODO: Convert this to a SelectField
+    product_subset = TextField(_('Appears in'))
 
     #
     # Linguistic fields
@@ -119,9 +121,9 @@ class AddTermForm(Form):
                                           choices=na_choices)
     normative_authorization_org = SelectField(_('Organization'))
 
-    subordinate_concept_generic = TextField()
-    superordinate_concept_generic = TextField()
-    antonym_concept = TextField()
+    subordinate_concept_generic = TextField(_('Hyponym'))
+    superordinate_concept_generic = TextField(_('Hyperonym'))
+    antonym_concept = TextField(_('Antonym'))
     related_concept = TextField()
 
     pos_choices = dropdown_list(PART_OF_SPEECH)

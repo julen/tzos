@@ -16,6 +16,19 @@ as element(a)* {
 };
 
 
+declare function term:translations($term as element(term))
+{
+    for $trans in $term/../../..//term
+    let $termLang := data($term/../../@xml:lang)
+    let $transLang := data($trans/../../@xml:lang)
+    let $workingStatus := $trans/../admin[@type="elementWorkingStatus"]/string()
+    where $trans/../..[@xml:lang!=$termLang] and $workingStatus != "starterElement" and $workingStatus != "importedElement"
+    return (
+    <dt>{ $transLang }</dt>,
+    <dd lang="{ $transLang }"><a href="[[ url_for('terms.detail', id='{ data($trans/@id) }') ]]">{ $trans/string() }</a></dd>)
+};
+
+
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
 return
@@ -40,16 +53,7 @@ return
                 </dl>
             else ()
         }
-            <dl class="trans">{
-            for $trans in $term/../../..//term
-            let $transLang := data($trans/../../@xml:lang)
-            where $trans/../..[@xml:lang!=$termLang]
-            return
-            (
-                <dt>{ $transLang }</dt>,
-                <dd lang="{ $transLang }"><a href="[[ url_for('terms.detail', id='{ data($trans/@id) }') ]]">{ $trans/string() }</a></dd>
-            )}
-            </dl>
+            <dl class="trans">{ term:translations($term) }</dl>
         </dd>
     </dl>
     {{% if g.user %}}

@@ -11,7 +11,7 @@
 from flaskext.babel import lazy_gettext as _
 
 NORMATIVE_AUTHORIZATIONS = [
-    ('none', _('Undefined')),
+    ('none', '-----'),
     ('standardizedTerm', _('Standard')),
     ('preferredTerm', _('Preferred')),
     ('admittedTerm', _('Admitted')),
@@ -24,6 +24,7 @@ NORMATIVE_AUTHORIZATIONS = [
 ]
 
 TERM_TYPES = [
+    ('none', '-----'),
     ('abbreviation', _('Abbreviation')),
     ('acronym', _('Acronym')),
     ('clippedTerm', _('Clipped term')),

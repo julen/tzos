@@ -29,7 +29,14 @@ return
             if (exists($syns)) then
                 <dl class="syn">
                     <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
-                    <dd class="in">{ string-join($syns, ", ") }</dd>
+                    <dd class="in">{
+                        for $syn at $i in $syns
+                        return
+                            if ($i != count($syns)) then
+                                ($syn, ", ")
+                            else
+                                $syn
+                    }</dd>
                 </dl>
             else ()
         }

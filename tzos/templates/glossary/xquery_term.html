@@ -1,5 +1,6 @@
-declare function local:termLink($term as element(term)) {
-    <a href="[[ url_for('terms.detail', id='{ data($term/@id) }') ]]">{ $term }</a>
+declare function local:termLink($term as element(term))
+as element(a) {
+    <a href="[[ url_for('terms.detail', id='{ data($term/@id) }') ]]">{ $term/string() }</a>
 };
 
 declare function local:getSynonyms($term as element(term)) {
@@ -16,7 +17,7 @@ where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lan
 return
 <div class="term">
     <dl class="term">
-        <dt class="term">{ $term/string() }</dt>
+        <dt class="term">{ local:termLink($term) }</dt>
         <dd>
         { (: If any, display synonyms :)
             let $syns := local:getSynonyms($term)

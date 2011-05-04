@@ -1,4 +1,6 @@
 import module namespace term = "http://tzos.net/term" at "term.xqm";
 
 let $term := collection($collection)//term[@id=$id]
-return  term:display($term)
+let $workingStatus := $term/../admin[@type="elementWorkingStatus"]/string()
+where $workingStatus != "starterElement" and $workingStatus!="importedElement"
+return term:display($term)

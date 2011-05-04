@@ -5,6 +5,10 @@
 {% block intro %}{% endblock %}
 
 {% block content %}
-[[ rendered_term|safe ]]
+{% if rendered_term %}
+    [[ rendered_term|safe ]]
+{% else %}
+<h2 class="h1">[[ _('Term not found.') ]]</h2>
+{% endif %}
 {% endblock %}
 

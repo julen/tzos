@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, render_template, redirect, url_for
+from flask import Module, flash, render_template, redirect, request, url_for
 
 from flaskext.babel import gettext as _
 
@@ -31,8 +31,9 @@ def detail(id):
     return render_template('terms/term_detail.html',
                            rendered_term=rendered_term)
 
-def generate_add_term_form():
-    form = AddTermForm()
+def generate_add_term_form(form_args=None):
+
+    form = AddTermForm(form_args)
 
     form.language.choices = get_dict_langs()
     form.syntrans_lang.choices = get_dict_langs()
@@ -43,12 +44,26 @@ def generate_add_term_form():
 
 @terms.route('/add/')
 def add():
-    add_term_form = generate_add_term_form()
+
+    form_args = None
+
+    if request.args and 'term' in request.args and 'lang' in request.args:
+        form_args = request.args.copy()
+
+        form_args['syntrans_term'] = request.args['term']
+        form_args['syntrans_lang'] = request.args['lang']
+        form_args['syntrans'] = True
+
+        del form_args['term']
+        del form_args['lang']
+
+    add_term_form = generate_add_term_form(form_args)
 
     return render_template('terms/add.html', add_term_form=add_term_form)
 
 @terms.route('/add/single/', methods=('POST',))
 def add_single():
+
     form = generate_add_term_form()
 
     if form and form.validate_on_submit():
@@ -62,4 +77,6 @@ def add_single():
         else:
             flash(_('Error while trying to add the term.'), 'error')
 
-    return redirect(url_for('terms.add'))
+        return redirect(url_for('terms.add'))
+
+    return render_template('terms/add.html', add_term_form=form)

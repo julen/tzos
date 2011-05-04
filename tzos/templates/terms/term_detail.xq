@@ -1,7 +1,4 @@
-
-declare function local:getSynonyms($term as element(term)) {
-    $term/../..//term[string()!=$term/string()]
-};
+import module namespace tzos = "http://tzos.net/tzos" at "tzos.xqm";
 
 let $term := collection($collection)//term[@id=$id]
 return
@@ -10,7 +7,7 @@ return
     <dd>
 
     { (: If any, display synonyms :)
-      let $syns := local:getSynonyms($term)
+      let $syns := tzos:getSynonyms($term)
       return
       if (exists($syns)) then
         <dl class="syn">
@@ -35,4 +32,3 @@ return
         </dl>
     </dd>
 </dl>
-

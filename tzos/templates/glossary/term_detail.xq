@@ -1,14 +1,4 @@
-declare function local:termLink($term as element(term))
-as element(a) {
-    <a href="[[ url_for('terms.detail', id='{ data($term/@id) }') ]]">{ $term/string() }</a>
-};
-
-declare function local:getSynonyms($term as element(term)) {
-    for $syn in $term/../..//term[string()!=$term/string()]
-    let $workingStatus := $syn/../admin[@type="elementWorkingStatus"]/string()
-    where $workingStatus != "starterElement" and $workingStatus != "importedElement"
-    return local:termLink($syn)
-};
+import module namespace tzos = "http://tzos.net/tzos" at "tzos.xqm";
 
 for $term in collection($collection)//term
 let $termLang := data($term/../../@xml:lang)
@@ -17,10 +7,10 @@ where $term[starts-with(lower-case(string()), $letter)] and $term/../..[@xml:lan
 return
 <div class="term">
     <dl class="term">
-        <dt class="term">{ local:termLink($term) }</dt>
+        <dt class="term">{ tzos:termLink($term) }</dt>
         <dd>
         { (: If any, display synonyms :)
-            let $syns := local:getSynonyms($term)
+            let $syns := tzos:getSynonyms($term)
             return
             if (exists($syns)) then
                 <dl class="syn">

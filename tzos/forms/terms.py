@@ -124,7 +124,8 @@ class AddTermForm(Form):
     antonym_concept = TextField()
     related_concept = TextField()
 
-    part_of_speech = TextField()
+    pos_choices = dropdown_list(PART_OF_SPEECH)
+    part_of_speech = SelectField(_('Part of Speech'), choices=pos_choices)
     tt_choices = dropdown_list(TERM_TYPES)
     term_type = SelectField(_('Term type'), choices=tt_choices)
 

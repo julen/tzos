@@ -268,3 +268,13 @@ TERM_TYPES = [
     ('variant', _('Variant')),
     ('other', _('Other')),
 ]
+
+
+PART_OF_SPEECH = [
+    ('noun', _('Noun')),
+    ('verb', _('Verb')),
+    ('adjective', _('Adjective')),
+    ('adverb', _('Adverb')),
+    ('properNoun', _('Proper noun')),
+    ('other', _('Other')),
+]

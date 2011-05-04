@@ -15,7 +15,7 @@ from flaskext.babel import gettext as _
 from tzos.extensions import dbxml
 from tzos.forms import AddTermForm
 from tzos.models import Term
-from tzos.helpers import get_dict_langs, get_responsible_orgs, \
+from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs, \
     get_working_statuses, require_valid_dict
 
 terms = Module(__name__)
@@ -38,7 +38,8 @@ def generate_add_term_form(form_args=None):
     form.language.choices = get_dict_langs()
     form.syntrans_lang.choices = get_dict_langs()
 
-    form.normative_authorization_org.choices = get_responsible_orgs()
+    form.normative_authorization_org.choices = \
+        dropdown_list(get_responsible_orgs())
 
     return form
 

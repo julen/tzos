@@ -24,7 +24,7 @@ terms = Module(__name__)
 def detail(id):
 
     ctx = {'id': id}
-    rendered_term = dbxml.get_db().template_query('terms/xq_term_detail.html',
+    rendered_term = dbxml.get_db().template_query('terms/term_detail.xq',
                                                   context=ctx) \
                                   .as_rendered().first()
 

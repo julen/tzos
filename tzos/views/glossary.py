@@ -22,7 +22,7 @@ glossary = Module(__name__)
 def list_letter(dict, letter):
 
     ctx = {'lang': dict, 'letter': letter}
-    terms = dbxml.get_db().template_query('glossary/xquery_term.html',
+    terms = dbxml.get_db().template_query('glossary/term_detail.xq',
                                           context=ctx).as_rendered().all()
 
     return render_template('glossary/list_letter.html', terms=terms, letter=letter)

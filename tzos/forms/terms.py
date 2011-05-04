@@ -14,7 +14,7 @@ from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, SelectField, \
 
 from tzos.extensions import dbxml
 from tzos.helpers import dropdown_list
-from tzos.strings import NORMATIVE_AUTHORIZATIONS, TERM_TYPES
+from tzos.strings import *
 
 class AddTermForm(Form):
 
@@ -75,8 +75,10 @@ class AddTermForm(Form):
     # Affects elementWorkingStatus
     make_public = BooleanField(_("I want this term to be public immediately."))
 
-    subject_field = TextField(_("Subject field"), validators=[
-        required(message=_("Subject field is required."))])
+    sf_choices = dropdown_list(SUBJECT_FIELDS)
+    subject_field = SelectField(_("Subject field"), validators=[
+        required(message=_("Subject field is required."))],
+        choices=sf_choices)
 
 
     syntrans = BooleanField(_("This term is a synonym or a translation for another term."))

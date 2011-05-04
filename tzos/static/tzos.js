@@ -39,7 +39,4 @@ $(document).ready(function () {
         $(this).parent().nextAll('li').toggle('slow');
     });
 
-    $('dl.term').hover(function () {
-      $(this).next('.termActions').show();
-    });
 });

@@ -719,6 +719,10 @@ ul.termActions {
     right: 5%;
 }
 
+div.term:hover .termActions {
+    display: block!important;
+}
+
 
 /* Adding terms */
 

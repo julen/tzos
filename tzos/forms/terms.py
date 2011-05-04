@@ -9,10 +9,11 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, SelectField, \
-    SubmitField, TextAreaField, TextField, ValidationError, required
+from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, NoneOf, \
+    SelectField, SubmitField, TextAreaField, TextField, ValidationError, required
 
 from tzos.extensions import dbxml
+from tzos.forms.fields import DynamicSelectField
 from tzos.helpers import dropdown_list
 from tzos.strings import *
 
@@ -56,6 +57,12 @@ class AddTermForm(Form):
         if form.not_mine.data and field.data == "":
             raise ValidationError(message)
 
+    def check_required_dropdown(form, field):
+        message = _("You must choose a valid option.")
+
+        if not field.data or field.data in ('none',):
+            raise ValidationError(message)
+
 
     #
     # Core fields
@@ -65,8 +72,8 @@ class AddTermForm(Form):
         required(message=_("Term is required.")),
         check_collision])
 
-    language = SelectField(_("Language"), validators=[
-        required(message=_("Language is required."))])
+    language = DynamicSelectField(_("Language"), validators=[
+        check_required_dropdown])
 
 
     concept_origin = TextField(_("Origin"), validators=[
@@ -76,8 +83,8 @@ class AddTermForm(Form):
     make_public = BooleanField(_("I want this term to be public immediately."))
 
     sf_choices = dropdown_list(SUBJECT_FIELDS)
-    subject_field = SelectField(_("Subject field"), validators=[
-        required(message=_("Subject field is required."))],
+    subject_field = DynamicSelectField(_("Subject field"), validators=[
+        check_required_dropdown],
         choices=sf_choices)
 
 
@@ -87,8 +94,8 @@ class AddTermForm(Form):
         check_syntrans,
         check_exists])
 
-    syntrans_lang = SelectField(_("Language"), validators=[
-        required(message=_("Language is required."))])
+    syntrans_lang = DynamicSelectField(_("Language"), validators=[
+        check_required_dropdown])
 
 
     not_mine = BooleanField(_("The author of this term is another person."))
@@ -128,6 +135,7 @@ class AddTermForm(Form):
 
     pos_choices = dropdown_list(PART_OF_SPEECH)
     part_of_speech = SelectField(_('Part of Speech'), choices=pos_choices)
+
     tt_choices = dropdown_list(TERM_TYPES)
     term_type = SelectField(_('Term type'), choices=tt_choices)
 

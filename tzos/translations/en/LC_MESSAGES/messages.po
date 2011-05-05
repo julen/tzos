@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-05-05 16:37+0200\n"
+"PO-Revision-Date: 2011-05-05 18:39+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -1591,6 +1591,22 @@ msgstr ""
 msgid "d/M/Y"
 msgstr ""
 
+#: tzos/templates/xquery/term.xqm:45
+msgid "Synonyms"
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:45
+msgid "syn."
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:62
+msgid "Add synonym/translation"
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:65
+msgid "Edit term"
+msgstr ""
+
 #: tzos/views/account.py:42
 #, python-format
 msgid "Welcome, %(name)s."
@@ -1642,19 +1658,4 @@ msgstr ""
 #: tzos/views/terms.py:79
 msgid "Error while trying to add the term."
 msgstr ""
-
-#~ msgid "Member"
-#~ msgstr ""
-
-#~ msgid "Moderator"
-#~ msgstr ""
-
-#~ msgid "Administrator"
-#~ msgstr ""
-
-#~ msgid "Synonyms"
-#~ msgstr ""
-
-#~ msgid "syn."
-#~ msgstr ""
 

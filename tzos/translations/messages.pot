@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-05-05 16:35+0200\n"
+"POT-Creation-Date: 2011-05-05 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1587,6 +1587,22 @@ msgstr ""
 
 #: tzos/templates/user/profile.html:40
 msgid "d/M/Y"
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:45
+msgid "Synonyms"
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:45
+msgid "syn."
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:62
+msgid "Add synonym/translation"
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:65
+msgid "Edit term"
 msgstr ""
 
 #: tzos/views/account.py:42

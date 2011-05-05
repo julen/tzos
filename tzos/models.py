@@ -145,6 +145,19 @@ class User(db.Model):
         return "http://www.gravatar.com/avatar/%s.jpg?s=%d&d=mm" %\
             (self.gravatar, size)
 
+    def owns_term(self, id):
+        """Returns True if the current user owns the term with id `id`."""
+        print type(id)
+        print id
+
+        qs = '//tig[term/@id="{0}" and transacGrp/transacNote[@type="responsibility"]/string()="{1}"]'.format(id, self.username)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result is not None:
+            return True
+
+        return False
+
 
 class Term(object):
 

@@ -31,6 +31,7 @@ declare function term:translations($term as element(term))
 
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
+let $termID := data($term/@id)
 return
 <div class="term">
     <dl class="term">
@@ -56,10 +57,14 @@ return
             <dl class="trans">{ term:translations($term) }</dl>
         </dd>
     </dl>
-    {{% if g.user %}}
     <ul class="termActions in hideme small weak">
+        {{% if g.user %}}
         <li><a href="[[ url_for('terms.add', lang='{ $termLang }', term='{ $term/string() }') ]]">[[ _('Add synonym/translation') ]]</a></li>
+        {{% endif %}}
+        {{% if g.user.owns_term('{ $termID }') %}}
+        <li><a href="[[ url_for('terms.edit', id='{ $termID }') ]]">[[ _('Edit term') ]]</a></li>
+        {{% endif %}}
+
     </ul>
-    {{% endif %}}
 </div>
 };

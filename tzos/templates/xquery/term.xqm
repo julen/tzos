@@ -25,7 +25,7 @@ declare function term:translations($term as element(term))
     where $trans/../..[@xml:lang!=$termLang] and $workingStatus != "starterElement" and $workingStatus != "importedElement"
     return (
     <dt>{ $transLang }</dt>,
-    <dd lang="{ $transLang }"><a href="[[ url_for('terms.detail', id='{ data($trans/@id) }') ]]">{ $trans/string() }</a></dd>)
+    <dd lang="{ $transLang }">{ term:asLink($trans) }</dd>)
 };
 
 

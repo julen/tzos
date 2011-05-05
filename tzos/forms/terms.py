@@ -17,7 +17,7 @@ from tzos.forms.fields import DynamicSelectField
 from tzos.helpers import dropdown_list
 from tzos.strings import *
 
-class AddTermForm(Form):
+class BaseTermForm(Form):
 
     def check_collision(form, field):
         message = _("This term already exists in the database.")
@@ -140,4 +140,11 @@ class AddTermForm(Form):
     term_type = SelectField(_('Term type'), choices=tt_choices)
 
 
+class AddTermForm(BaseTermForm):
+
     submit = SubmitField(_("Add"))
+
+
+class EditTermForm(BaseTermForm):
+
+    submit = SubmitField(_("Save changes"))

@@ -99,7 +99,7 @@ class AddTermForm(Form):
 
 
     not_mine = BooleanField(_("The author of this term is another person."))
-    originating_person = TextField(_("Originating person"), validators=[
+    originating_person = TextField(_("Author"), validators=[
         check_not_mine])
 
     #

@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, render_template, redirect, request, url_for
+from flask import Module, flash, g, render_template, redirect, request, url_for
 
 from flaskext.babel import gettext as _
 
@@ -23,7 +23,7 @@ terms = Module(__name__)
 @terms.route('/<id>/')
 def detail(id):
 
-    ctx = {'id': id}
+    ctx = {'id': id, 'current_user': g.user.username}
     rendered_term = dbxml.get_db().template_query('terms/term_detail.xq',
                                                   context=ctx) \
                                   .as_rendered().first()

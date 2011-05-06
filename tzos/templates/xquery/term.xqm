@@ -1,5 +1,7 @@
 module namespace term = "http://tzos.net/term";
 
+import module namespace util = "http://tzos.net/util" at "util.xqm";
+
 
 declare function term:owner($term as element(term))
 as xs:string {
@@ -79,14 +81,7 @@ return
             if (exists($syns)) then
                 <dl class="syn">
                     <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
-                    <dd class="in">{
-                        for $syn at $i in $syns
-                        return
-                            if ($i != count($syns)) then
-                                ($syn, ", ")
-                            else
-                                $syn
-                    }</dd>
+                    <dd class="in">{ util:join_seq($syns) }</dd>
                 </dl>
             else ()
         }

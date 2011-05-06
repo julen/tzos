@@ -1,6 +1,18 @@
 module namespace term = "http://tzos.net/term";
 
 
+declare function term:owner($term as element(term))
+as xs:string {
+    $term/../transacGrp[./transac[@type="transactionType"]/string()="origination" or ./transac[@type="transactionType"]/string()="input" or ./transac[@type="transactionType"]/string()="importation"]/transacNote[@type="responsibility"]/string()
+};
+
+declare function term:is_public($term as element(term))
+as xs:boolean {
+let $workingStatus := $term/../admin[@type="elementWorkingStatus"]/string()
+return $workingStatus != "starterElement" and $workingStatus != "importedElement"
+};
+
+
 declare function term:asLink($term as element(term))
 as element(a) {
     <a href="[[ url_for('terms.detail', id='{ data($term/@id) }') ]]">{ $term/string() }</a>

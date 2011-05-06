@@ -91,11 +91,10 @@ return
     <ul class="termActions in hideme small weak">
         {{% if g.user %}}
         <li><a href="[[ url_for('terms.add', lang='{ $termLang }', term='{ $term/string() }') ]]">[[ _('Add synonym/translation') ]]</a></li>
-        {{% endif %}}
         {{% if g.user.owns_term('{ $termID }') %}}
         <li><a href="[[ url_for('terms.edit', id='{ $termID }') ]]">[[ _('Edit term') ]]</a></li>
         {{% endif %}}
-
+        {{% endif %}}
     </ul>
 </div>
 };

@@ -21,7 +21,8 @@ glossary = Module(__name__)
 @require_valid_dict
 def list_letter(dict, letter):
 
-    ctx = {'lang': dict, 'letter': letter, 'current_user': g.user.username}
+    ctx = {'lang': dict, 'letter': letter,
+           'current_user': getattr(g.user, 'username', None)}
     terms = dbxml.get_db().template_query('glossary/term_detail.xq',
                                           context=ctx).as_rendered().all()
 

@@ -58,21 +58,36 @@ declare function term:norm_auth($term as element(term)) {
 };
 
 
+declare function term:concept_origin($term as element(term)) {
+    $term/../admin[@type="conceptOrigin"]/string()
+};
+
+
+declare function term:orig_person($term as element(term)) {
+    $term/../admin[@type="originatingPerson"]/string()
+};
+
+
+declare function term:product_subset($term as element(term)) {
+    $term/../admin[@type="productSubset"]/string()
+};
+
+
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
 let $termID := data($term/@id)
 return
 <div class="term">
     <ul class="term">
-        <li class="term in">{ term:asLink($term) }</li>
+        <li class="term">{ term:asLink($term) }</li>
         { if (term:type($term)) then
-        <li class="in weak small">[[ _t("{ term:type($term) }") ]]</li>
+        <li class="meta weak">[[ _t("{ term:type($term) }") ]]</li>
         else () }
         { if (term:pos($term)) then
-        <li class="in weak small">[[ _t("{ term:pos($term) }") ]]</li>
+        <li class="meta weak">[[ _t("{ term:pos($term) }") ]]</li>
         else () }
         { if (term:norm_auth($term)) then
-        <li class="in weak small">[[ _t("{ term:norm_auth($term) }") ]]</li>
+        <li class="meta weak">[[ _t("{ term:norm_auth($term) }") ]]</li>
         else () }
         <li>
         { (: If any, display synonyms :)
@@ -87,6 +102,13 @@ return
         }
             <dl class="trans">{ term:translations($term) }</dl>
         </li>
+        <li class="more">[[ _('Origin:') ]] { term:concept_origin($term) }
+            { if (term:orig_person($term)) then
+                <span class="weak"> ({ term:orig_person($term) })</span>
+              else () }</li>
+        { if (term:product_subset($term)) then
+        <li class="more">[[ _('Appears in:') ]] { term:product_subset($term) }</li>
+        else () }
     </ul>
     <ul class="termActions in hideme small weak">
         {{% if g.user %}}

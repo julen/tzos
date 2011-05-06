@@ -136,7 +136,7 @@ def get_working_statuses(only_statuses=False):
     return status_list
 
 
-def get_responsible_orgs(only_statuses=False):
+def get_responsible_orgs():
     """Returns a list with tuples of all the available responsible
     organizations. These organizations are to be used in
     normativeAuthorization fields.

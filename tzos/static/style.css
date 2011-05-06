@@ -689,11 +689,11 @@ header .gravatar img {
 
 /* Terms */
 
-dl.term {
+ul.term {
     margin: 1em 0 1em 0.5em;
 }
 
-dt.term {
+ul.term li.term {
     font-weight: bold;
     font-size: 1.5em;
 }

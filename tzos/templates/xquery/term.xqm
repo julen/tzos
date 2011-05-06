@@ -46,9 +46,9 @@ let $termLang := data($term/../../@xml:lang)
 let $termID := data($term/@id)
 return
 <div class="term">
-    <dl class="term">
-        <dt class="term">{ term:asLink($term) }</dt>
-        <dd>
+    <ul class="term">
+        <li class="term">{ term:asLink($term) }</li>
+        <li>
         { (: If any, display synonyms :)
             let $syns := term:synonyms($term)
             return
@@ -67,8 +67,8 @@ return
             else ()
         }
             <dl class="trans">{ term:translations($term) }</dl>
-        </dd>
-    </dl>
+        </li>
+    </ul>
     <ul class="termActions in hideme small weak">
         {{% if g.user %}}
         <li><a href="[[ url_for('terms.add', lang='{ $termLang }', term='{ $term/string() }') ]]">[[ _('Add synonym/translation') ]]</a></li>

@@ -41,13 +41,37 @@ declare function term:translations($term as element(term))
 };
 
 
+declare function term:type($term as element(term)) {
+    $term/../termNote[@type="termType"]/string()
+};
+
+
+declare function term:pos($term as element(term)) {
+    $term/../termNote[@type="partOfSpeech"]/string()
+};
+
+
+declare function term:norm_auth($term as element(term)) {
+    $term/../termNote[@type="normativeAuthorization"]/string()
+};
+
+
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
 let $termID := data($term/@id)
 return
 <div class="term">
     <ul class="term">
-        <li class="term">{ term:asLink($term) }</li>
+        <li class="term in">{ term:asLink($term) }</li>
+        { if (term:type($term)) then
+        <li class="in weak small">[[ _t("{ term:type($term) }") ]]</li>
+        else () }
+        { if (term:pos($term)) then
+        <li class="in weak small">[[ _t("{ term:pos($term) }") ]]</li>
+        else () }
+        { if (term:norm_auth($term)) then
+        <li class="in weak small">[[ _t("{ term:norm_auth($term) }") ]]</li>
+        else () }
         <li>
         { (: If any, display synonyms :)
             let $syns := term:synonyms($term)

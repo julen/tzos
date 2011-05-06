@@ -9,7 +9,7 @@ as xs:string {
 declare function term:is_public($term as element(term))
 as xs:boolean {
 let $workingStatus := $term/../admin[@type="elementWorkingStatus"]/string()
-return $workingStatus != "starterElement" and $workingStatus != "importedElement"
+return $workingStatus != "starterElement" and $workingStatus != "importedElement" and $workingStatus != "archiveElement"
 };
 
 

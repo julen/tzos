@@ -693,6 +693,10 @@ ul.term {
     margin: 1em 0 1em 0.5em;
 }
 
+ul.term li {
+    margin-right: 0.8em;
+}
+
 ul.term li.term {
     font-weight: bold;
     font-size: 1.5em;

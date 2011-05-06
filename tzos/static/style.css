@@ -695,11 +695,22 @@ ul.term {
 
 ul.term li {
     margin-right: 0.8em;
+    line-height: 1.2;
 }
 
 ul.term li.term {
+    display: inline;
     font-weight: bold;
     font-size: 1.5em;
+}
+
+ul.term li.meta {
+    display: inline;
+    font-size: 0.8em;
+}
+
+ul.term li.more {
+    margin-left: 2em;
 }
 
 dl.syn dt,

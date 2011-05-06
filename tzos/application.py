@@ -17,7 +17,7 @@ from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
 from tzos.extensions import db, dbxml, mail
-from tzos.helpers import get_dict_langs, url_for2
+from tzos.helpers import get_dict_langs, tzos_gettext, url_for2
 from tzos.models import User
 
 __all__ = ["create_app"]
@@ -137,6 +137,7 @@ def configure_before_handlers(app):
 
 def configure_jinja(app):
     app.jinja_env.globals.update(url_for2=url_for2)
+    app.jinja_env.globals.update(_t=tzos_gettext)
 
     app.jinja_env.variable_start_string = '[['
     app.jinja_env.variable_end_string = ']]'

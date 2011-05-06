@@ -14,9 +14,11 @@ from babel import Locale
 from functools import wraps
 
 from tzos.extensions import dbxml
+from tzos import strings
 
 import random
 import string
+import types
 
 
 def url_for2(endpoint, **values):
@@ -35,6 +37,21 @@ def url_for2(endpoint, **values):
         endpoint = endpoint[1:]
     external = values.pop('_external', False)
     return ctx.url_adapter.build(endpoint, values, force_external=external)
+
+
+def tzos_gettext(key):
+    """Special method to retrieve strings stored in the strings module."""
+    contexts = [k for k in dir(strings) \
+            if type(getattr(strings, k)) == types.ListType]
+
+    for ctx in contexts:
+        str_list = getattr(strings, ctx)
+
+        for elem in str_list:
+            if elem[0] == key:
+                return elem[1]
+
+    return key
 
 
 def get_all_langs(only_codes=False):

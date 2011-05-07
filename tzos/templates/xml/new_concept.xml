@@ -2,6 +2,18 @@
 <termEntry id="[[ concept_id ]]">
     <admin type="originatingPerson">[[ orig_person ]]</admin>
     <descrip type="subjectField">[[ subject_field ]]</descrip>
+    {% if subordinate_concept_generic %}
+    <descrip type="subordinateConceptGeneric">[[ subordinate_concept_generic ]]</descrip>
+    {% endif %}
+    {% if superordinate_concept_generic %}
+    <descrip type="superordinateConceptGeneric">[[ subordinate_concept_generic ]]</descrip>
+    {% endif %}
+    {% if antonym_concept %}
+    <descrip type="antonymConcept">[[ antonym_concept ]]</descrip>
+    {% endif %}
+    {% if related_concept %}
+    <descrip type="relatedConcept">[[ related_concept ]]</descrip>
+    {% endif %}
     {% if cross_reference %}
     <ref target="[[ cross_reference ]]" type="crossReference"></ref>
     {% endif %}

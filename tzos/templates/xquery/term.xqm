@@ -85,6 +85,26 @@ declare function term:subject_field($term as element(term)) {
 };
 
 
+declare function term:subordinate_cg($term as element(term)) {
+    $term/../../../descrip[@type="subordinateConceptGeneric"]/string()
+};
+
+
+declare function term:superordinate_cg($term as element(term)) {
+    $term/../../../descrip[@type="superordinateConceptGeneric"]/string()
+};
+
+
+declare function term:antonym_concept($term as element(term)) {
+    $term/../../../descrip[@type="antonymConcept"]/string()
+};
+
+
+declare function term:related_concept($term as element(term)) {
+    $term/../../../descrip[@type="relatedConcept"]/string()
+};
+
+
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
 let $termID := data($term/@id)
@@ -123,6 +143,18 @@ return
         else () }
         { if (term:subject_field($term)) then
         <li class="more">[[ _('Classification:') ]] [[ _t("{ term:subject_field($term) }") ]]</li>
+        else () }
+        { if (term:subordinate_cg($term)) then
+        <li class="more">[[ _('Hyponym:') ]] { term:subordinate_cg($term) }</li>
+        else () }
+        { if (term:superordinate_cg($term)) then
+        <li class="more">[[ _('Hyperonym:') ]] { term:superordinate_cg($term) }</li>
+        else () }
+        { if (term:antonym_concept($term)) then
+        <li class="more">[[ _('Antonym:') ]] { term:antonym_concept($term) }</li>
+        else () }
+        { if (term:related_concept($term)) then
+        <li class="more">[[ _('Related concept:') ]] { term:related_concept($term) }</li>
         else () }
     </ul>
     <ul class="termActions in hideme small weak">

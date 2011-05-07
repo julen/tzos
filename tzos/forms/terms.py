@@ -128,6 +128,7 @@ class BaseTermForm(Form):
                                           choices=na_choices)
     normative_authorization_org = SelectField(_('Organization'))
 
+    # TODO: check if the passed terms exist in the DB
     subordinate_concept_generic = TextField(_('Hyponym'))
     superordinate_concept_generic = TextField(_('Hyperonym'))
     antonym_concept = TextField(_('Antonym'))

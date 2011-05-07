@@ -15,7 +15,7 @@
     <descrip type="relatedConcept">[[ related_concept ]]</descrip>
     {% endif %}
     {% if cross_reference %}
-    <ref target="[[ cross_reference ]]" type="crossReference"></ref>
+    <ref target="[[ xref_id ]]" type="crossReference">[[ cross_reference ]]</ref>
     {% endif %}
     [[ render_transaction(transac_type, date, username) ]]
     {% include "xml/new_langset.xml" %}

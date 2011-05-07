@@ -159,9 +159,12 @@ class User(db.Model):
 
 class Term(object):
 
-    def __init__(self, id=None):
+    def __init__(self, id=None, term=None):
         if id:
             self.term_id = id
+
+        if term:
+            self.term = term
 
     @property
     def id(self):
@@ -211,6 +214,12 @@ class Term(object):
             'term_id': dbxml.get_db().generate_id('term'),
             }
         ctx.update(self.__dict__)
+
+        if self.cross_reference:
+            xref_term = Term(term=self.cross_reference)
+            xref_id = xref_term.id
+
+            ctx.update({'xref_id': xref_id})
 
         if self.syntrans:
             syntrans_term = Term()

@@ -1,9 +1,15 @@
 {% from "macros/_xml.html" import render_transaction %}
 <tig>
     <term id="[[ term_id ]]">[[ term ]]</term>
-    {% if normative_authorization != "none" %}
+    {% if normative_authorization != "none" and normative_authorization_org != "none" %}
     <termNote type="normativeAuthorization"
         target="[[ normative_authorization_org ]]">[[ normative_authorization ]]</termNote>
+    {% endif %}
+    {% if term_type != "none" %}
+    <termNote type="termType">[[ term_type ]]</termNote>
+    {% endif %}
+    {% if part_of_speech != "none" %}
+    <termNote type="partOfSpeech">[[ part_of_speech ]]</termNote>
     {% endif %}
     <admin type="originatingPerson">[[ orig_person ]]</admin>
     {% if concept_origin %}
@@ -12,6 +18,9 @@
     <admin type="elementWorkingStatus">{% if make_public %}workingElement{% else %}starterElement{% endif %}</admin>
     {% if entry_source %}
     <admin type="entrySource">[[ entry_source ]]</admin>
+    {% endif %}
+    {% if product_subset %}
+    <admin type="productSubset">[[ product_subset ]]</admin>
     {% endif %}
     {% if context %}
     <descrip type="context">[[ context ]]</descrip>

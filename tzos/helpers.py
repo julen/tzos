@@ -48,7 +48,7 @@ def tzos_gettext(key):
         str_list = getattr(strings, ctx)
 
         for elem in str_list:
-            if elem[0] == key:
+            if str(elem[0]) == key:
                 return elem[1]
 
     return key

@@ -54,7 +54,14 @@ declare function term:pos($term as element(term)) {
 
 
 declare function term:norm_auth($term as element(term)) {
-    $term/../termNote[@type="normativeAuthorization"]/string()
+    (: TODO: Remove [1] once we make sure there will be a single element :)
+    $term/../termNote[@type="normativeAuthorization"][1]/string()
+};
+
+
+declare function term:norm_auth_org($term as element(term)) {
+    let $nao := $term/../termNote[@type="normativeAuthorization"]/data(@target)
+    return collection($collection)//refObjectList[@type="respOrg"]/refObject[@id=$nao]/item[@type="org"]/string()
 };
 
 
@@ -73,6 +80,11 @@ declare function term:product_subset($term as element(term)) {
 };
 
 
+declare function term:subject_field($term as element(term)) {
+    $term/../../../descrip[@type="subjectField"]/string()
+};
+
+
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
 let $termID := data($term/@id)
@@ -87,7 +99,7 @@ return
         <li class="meta weak">[[ _t("{ term:pos($term) }") ]]</li>
         else () }
         { if (term:norm_auth($term)) then
-        <li class="meta weak">[[ _t("{ term:norm_auth($term) }") ]]</li>
+        <li class="meta weak">[[ _t("{ term:norm_auth($term) }") ]] ({ term:norm_auth_org($term) })</li>
         else () }
         <li>
         { (: If any, display synonyms :)
@@ -108,6 +120,9 @@ return
               else () }</li>
         { if (term:product_subset($term)) then
         <li class="more">[[ _('Appears in:') ]] { term:product_subset($term) }</li>
+        else () }
+        { if (term:subject_field($term)) then
+        <li class="more">[[ _('Classification:') ]] [[ _t("{ term:subject_field($term) }") ]]</li>
         else () }
     </ul>
     <ul class="termActions in hideme small weak">

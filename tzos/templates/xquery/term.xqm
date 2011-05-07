@@ -105,6 +105,15 @@ declare function term:related_concept($term as element(term)) {
 };
 
 
+declare function term:xref($term as element(term)) {
+    $term/../../../ref[@type="crossReference"]/string()
+};
+
+declare function term:xref_id($term as element(term)) {
+    $term/../../../ref[@type="crossReference"]/data(@target)
+};
+
+
 declare function term:display($term as element(term)) {
 let $termLang := data($term/../../@xml:lang)
 let $termID := data($term/@id)
@@ -155,6 +164,9 @@ return
         else () }
         { if (term:related_concept($term)) then
         <li class="more">[[ _('Related concept:') ]] { term:related_concept($term) }</li>
+        else () }
+        { if (term:xref($term)) then
+        <li class="more">[[ _('See also:') ]] <a href="[[ url_for('terms.detail', id='{ term:xref_id($term) }') ]]">{ term:xref($term) }</a></li>
         else () }
     </ul>
     <ul class="termActions in hideme small weak">

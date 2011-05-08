@@ -22,9 +22,11 @@ glossary = Module(__name__)
 def list_letter(dict, letter):
 
     ctx = {'lang': dict, 'letter': letter,
-           'pn': int(request.args.get('p', 1)),
            'current_user': getattr(g.user, 'username', None)}
-    terms = dbxml.get_db().template_query('glossary/term_detail.xq',
-                                          context=ctx).as_rendered().all()
 
-    return render_template('glossary/list_letter.html', terms=terms, letter=letter)
+    pn = int(request.args.get('p', 1))
+
+    page = dbxml.get_db().template_query('glossary/term_detail.xq',
+                                         context=ctx).as_rendered().paginate(pn, 10)
+
+    return render_template('glossary/list_letter.html', page=page, letter=letter)

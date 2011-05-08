@@ -81,8 +81,7 @@
         <footer>
             <section id="locales" class="content">
                 <ul class="in fl aDark">
-                    <li><strong>[[ _('Interface language') ]]</strong></li>
-                    <li><i class="iGlobe">[locales]</i></li>
+                    <li><i class="iGlobe">[locales]</i><strong class="small">[[ _('Interface language') ]]</strong></li>
                     {% for lang_code, lang_name in langs %}
                     <li>{% if lang_code == g.ui_lang %}<span class="current">[[ lang_name|capitalize ]]</span>{% else %}<a href="[[ url_for2(request.endpoint, setuilang=lang_code) ]]">[[ lang_name|capitalize ]]</a>{% endif %}</li>
                     {% endfor %}

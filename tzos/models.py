@@ -222,8 +222,7 @@ class Term(object):
             ctx.update({'xref_id': xref_id})
 
         if self.syntrans:
-            syntrans_term = Term()
-            syntrans_term.term = self.syntrans_term
+            syntrans_term = Term(term=self.syntrans_term)
 
             if syntrans_term.has_langset(self.language):
                 template_name = 'xml/new_term.xml'

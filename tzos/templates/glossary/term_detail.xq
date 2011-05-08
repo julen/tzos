@@ -1,5 +1,4 @@
 import module namespace term = "http://tzos.net/term" at "term.xqm";
-import module namespace util = "http://tzos.net/util" at "util.xqm";
 
 for $term in collection($collection)//term
 let $workingStatus := $term/../admin[@type="elementWorkingStatus"]/string()

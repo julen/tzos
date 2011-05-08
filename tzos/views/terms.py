@@ -26,7 +26,7 @@ def detail(id):
     ctx = { 'id': id, 'current_user': getattr(g.user, 'username', None) }
     rendered_term = dbxml.get_db().template_query('terms/term_detail.xq',
                                                   context=ctx) \
-                                  .as_rendered().first()
+                                  .as_rendered().first_or_404()
 
     return render_template('terms/term_detail.html',
                            rendered_term=rendered_term)

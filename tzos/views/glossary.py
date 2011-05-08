@@ -27,6 +27,7 @@ def list_letter(dict, letter):
     pn = int(request.args.get('p', 1))
 
     page = dbxml.get_db().template_query('glossary/term_detail.xq',
-                                         context=ctx).as_rendered().paginate(pn, 10)
+                                         context=ctx).as_rendered(). \
+                                                      paginate(pn, 10)
 
     return render_template('glossary/list_letter.html', page=page, letter=letter)

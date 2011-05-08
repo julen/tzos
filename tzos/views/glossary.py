@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, g, render_template
+from flask import Module, g, render_template, request
 
 from flaskext.babel import gettext as _
 
@@ -22,6 +22,7 @@ glossary = Module(__name__)
 def list_letter(dict, letter):
 
     ctx = {'lang': dict, 'letter': letter,
+           'pn': int(request.args.get('p', 1)),
            'current_user': getattr(g.user, 'username', None)}
     terms = dbxml.get_db().template_query('glossary/term_detail.xq',
                                           context=ctx).as_rendered().all()

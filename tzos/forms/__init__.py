@@ -13,4 +13,4 @@ from .account import LoginForm, SignupForm, RecoverPasswordForm, \
         EditEmailForm, EditProfileForm
 from .admin import AddLanguagesForm, ModifyUserPermissionForm
 from .search import SearchForm
-from .terms import AddTermForm
+from .terms import AddTermForm, EditTermForm

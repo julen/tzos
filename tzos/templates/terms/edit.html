@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% from "macros/_forms.html" import render_field %}
+
+{% block title %}[[ super() ]][[ _('Edit term') ]]{% endblock %}
+
+{% block intro %}{% endblock %}
+
+{% block content %}
+<div>
+    <form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm">
+        [[ form.hidden_tag() ]]
+        <ul class="fields">
+            [[ render_field(form.term, class="input") ]]
+            [[ render_field(form.language, class="input") ]]
+            [[ render_field(form.subject_field, class="input") ]]
+            [[ render_field(form.concept_origin, class="input") ]]
+            [[ render_field(form.make_public, class="input", tag_class="singleLine") ]]
+        </ul>
+        <ul class="fields clLeft">
+            [[ render_field(form.syntrans, class="input", tag_class="showSyntrans singleLine") ]]
+            [[ render_field(form.syntrans_term, class="input", tag_class="hideme") ]]
+            [[ render_field(form.syntrans_lang, class="input", tag_class="hideme") ]]
+        </ul>
+        <ul class="fields clLeft">
+            [[ render_field(form.not_mine, tag_class="showSource") ]]
+            [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
+        </ul>
+        <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showFields" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
+        <div class="extraFields hideme">
+            <ul class="fields">
+                [[ render_field(form.definition, class="input") ]]
+                [[ render_field(form.context, class="input") ]]
+                [[ render_field(form.example, class="input") ]]
+                [[ render_field(form.explanation, class="input") ]]
+                [[ render_field(form.entry_source, class="input") ]]
+                [[ render_field(form.cross_reference, class="input") ]]
+
+                [[ render_field(form.product_subset, class="input") ]]
+            </ul>
+            <h2 class="m4 clBoth">[[ _("Linguistic information") ]]</h2>
+            <ul class="fields">
+                [[ render_field(form.normative_authorization, class="input") ]]
+                [[ render_field(form.normative_authorization_org, class="input") ]]
+                [[ render_field(form.subordinate_concept_generic, class="input") ]]
+                [[ render_field(form.superordinate_concept_generic, class="input") ]]
+                [[ render_field(form.antonym_concept, class="input") ]]
+                [[ render_field(form.related_concept, class="input") ]]
+                [[ render_field(form.part_of_speech, class="input") ]]
+                [[ render_field(form.term_type, class="input") ]]
+            </ul>
+        </div>
+        <p class="fAction hr">
+            [[ form.submit(class="button") ]]
+        </p>
+    </form>
+</div>
+{% endblock %}
+

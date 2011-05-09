@@ -8,12 +8,13 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, g, render_template, redirect, request, url_for
+from flask import Module, abort, flash, g, render_template, redirect, \
+    request, url_for
 
 from flaskext.babel import gettext as _
 
 from tzos.extensions import dbxml
-from tzos.forms import AddTermForm
+from tzos.forms import AddTermForm, EditTermForm
 from tzos.models import Term
 from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs, \
     get_working_statuses, require_valid_dict
@@ -31,9 +32,9 @@ def detail(id):
     return render_template('terms/term_detail.html',
                            rendered_term=rendered_term)
 
-def generate_add_term_form(form_args=None):
+def generate_term_form(form_cls, **form_args):
 
-    form = AddTermForm(form_args)
+    form = form_cls(**form_args)
 
     form.language.choices = get_dict_langs()
     form.syntrans_lang.choices = get_dict_langs()
@@ -58,14 +59,14 @@ def add():
         del form_args['term']
         del form_args['lang']
 
-    add_term_form = generate_add_term_form(form_args)
+    add_term_form = generate_term_form(AddTermForm, formdata=form_args)
 
     return render_template('terms/add.html', add_term_form=add_term_form)
 
 @terms.route('/add/single/', methods=('POST',))
 def add_single():
 
-    form = generate_add_term_form()
+    form = generate_term_form(AddTermForm)
 
     if form and form.validate_on_submit():
         term = Term()
@@ -84,4 +85,10 @@ def add_single():
 
 @terms.route('/<id>/edit/')
 def edit(id):
-    return "Bar baz"
+
+    term = Term(id)
+    term.populate()
+
+    form = generate_term_form(EditTermForm, obj=term)
+
+    return render_template('terms/edit.html', form=form)

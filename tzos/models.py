@@ -204,6 +204,23 @@ class Term(object):
 
         return False
 
+    def populate(self):
+        """Populates current term's fields by querying fields by id."""
+
+        fields = [
+            ('term', '//term[@id="{0}"]/string()'),
+            ('language', '//term[@id="{0}"]/../langSet/@xml:lang'),
+            ('concept_origin',
+             '//term[@id="{0}"]/../admin[@type="conceptOrigin"]/string()'),
+            #conceptOrigin missing
+            ('subject_field',
+             '//term[@id="{0}"]/../../../descrip[@type="subjectField"]/string()'),
+        ]
+
+        for key, qs in fields:
+            result = dbxml.get_db().query(qs.format(self.id)).as_str().first()
+            setattr(self, key, result)
+
     def insert(self):
         """Inserts the current term to the DB."""
 

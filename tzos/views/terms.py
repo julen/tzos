@@ -82,6 +82,6 @@ def add_single():
 
     return render_template('terms/add.html', add_term_form=form)
 
-@terms.route('/edit/<id>/')
+@terms.route('/<id>/edit/')
 def edit(id):
     return "Bar baz"

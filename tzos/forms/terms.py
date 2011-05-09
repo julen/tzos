@@ -111,6 +111,7 @@ class BaseTermForm(Form):
     # Optional fields
     #
     context = TextAreaField(_('Context'))
+    # TODO: check if the passed terms exist in the DB
     cross_reference = TextField(_('Cross reference'))
     definition = TextAreaField(_('Definition'))
     # TODO: Convert this to a SelectField

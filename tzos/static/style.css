@@ -757,6 +757,16 @@ ul li.singleLine {
 }
 
 
+/* Search results */
+
+ul.searchResults li {
+    list-style: square;
+    font-size: 1.5em;
+    margin-left: 2em;
+    line-height: 1.5;
+}
+
+
 /* HTML5 compatibility */
 
 article, aside, details, figcaption, figure,

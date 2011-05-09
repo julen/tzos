@@ -9,7 +9,7 @@
 
 {% block content %}
 {% if page.items %}
-<ul>
+<ul class="searchResults">
     {% for term in page.items %}
     <li>[[ term|safe ]]</li>
     {% endfor %}

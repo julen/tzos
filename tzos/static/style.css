@@ -757,6 +757,44 @@ ul li.singleLine {
 }
 
 
+/* Pagination */
+
+ul.pagination {
+    display: inline-block;
+    list-style-type: none;
+    margin: 1em;
+}
+
+ul.pagination li {
+    float: left;
+    text-align: center;
+}
+
+ul.pagination li span,
+ul.pagination li a {
+    margin: 0.1em;
+    padding: 0.2em 0.5em;
+}
+
+ul.pagination li span.current {
+    background-color: #07c;
+    border: 1px solid #fff;
+    color: #fff;
+    font-weight: bold;
+}
+
+ul.pagination li a {
+    border: 1px solid #07c;
+    text-decoration: none;
+}
+
+ul.pagination li a:hover {
+    background-color: #07c;
+    border: 1px solid  #fff;
+    color: #fff!important;
+}
+
+
 /* Search results */
 
 ul.searchResults li {

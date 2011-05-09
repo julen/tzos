@@ -24,7 +24,7 @@ terms = Module(__name__)
 @terms.route('/<id>/')
 def detail(id):
 
-    ctx = { 'id': id, 'current_user': getattr(g.user, 'username', None) }
+    ctx = { 'id': id, 'current_user': getattr(g.user, 'username', '') }
     rendered_term = dbxml.get_db().template_query('terms/term_detail.xq',
                                                   context=ctx) \
                                   .as_rendered().first_or_404()

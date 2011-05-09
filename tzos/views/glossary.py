@@ -22,7 +22,7 @@ glossary = Module(__name__)
 def list_letter(dict, letter):
 
     ctx = {'lang': dict, 'letter': letter,
-           'current_user': getattr(g.user, 'username', None)}
+           'current_user': getattr(g.user, 'username', '__anon__')}
 
     pn = int(request.args.get('p', 1))
 

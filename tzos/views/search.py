@@ -23,7 +23,11 @@ def quick():
         form = SearchForm()
         return render_template('search/advanced.html', form=form)
 
-    qs = '/martif/text/body/termEntry/langSet/tig/term[dbxml:contains(string(), "%s")]/string()' % (q.replace('"', '""'))
-    terms = dbxml.get_db().query(qs).as_str().all()
+    pn = int(request.args.get('p', 1))
+    ctx = {'q': q}
 
-    return render_template('search/results.html', q=q, results=terms)
+    page = dbxml.get_db().template_query('search/results.xq',
+                                         context=ctx).as_rendered(). \
+                                         paginate(pn, 10, error_out=False)
+
+    return render_template('search/results.html', q=q, page=page)

@@ -27,6 +27,10 @@ def url_for2(endpoint, **values):
     if endpoint != '.static':
         values.update(request.view_args)
 
+        # Non-destructive merge for request.args
+        for k, v in request.args.iteritems():
+            values.setdefault(k, v)
+
     # The code below is from flask.url_for
     ctx = _request_ctx_stack.top
     if '.' not in endpoint:

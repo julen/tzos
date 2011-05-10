@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import _request_ctx_stack, abort, current_app, g, request
+from flask import _request_ctx_stack, abort, current_app, g, request, url_for
 
 from babel import Locale
 from functools import wraps
@@ -31,16 +31,7 @@ def url_for2(endpoint, **values):
         for k, v in request.args.iteritems():
             values.setdefault(k, v)
 
-    # The code below is from flask.url_for
-    ctx = _request_ctx_stack.top
-    if '.' not in endpoint:
-        mod = ctx.request.module
-        if mod is not None:
-            endpoint = mod + '.' + endpoint
-    elif endpoint.startswith('.'):
-        endpoint = endpoint[1:]
-    external = values.pop('_external', False)
-    return ctx.url_adapter.build(endpoint, values, force_external=external)
+    return url_for(endpoint, **values)
 
 
 def tzos_gettext(key):

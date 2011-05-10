@@ -151,11 +151,11 @@ def get_responsible_orgs():
     return orgs_list
 
 
-def dropdown_list(list):
+def dropdown_list(list, key='none', value='-----'):
     """Inserts a placeholder tuple entry in a list, suitable for using
     in dropdown lists."""
 
     newlist = list[:]
-    newlist.insert(0, ('none', '-----'))
+    newlist.insert(0, (key, value))
 
     return newlist

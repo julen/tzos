@@ -23,13 +23,13 @@ $(document).ready(function () {
     $('.showme').show();
     $('.hideme').hide();
 
-    $('.showFields').click(function () {
+    $('.showHide').click(function () {
         if ($(this).prev().hasClass('iBRarr')) {
             $(this).prev().removeClass('iBRarr').addClass('iBDarr');
         } else {
             $(this).prev().removeClass('iBDarr').addClass('iBRarr');
         }
-        $('div.extraFields').toggle('slow');
+        $('div.extra').toggle('slow');
     });
 
     $('li.showSource input:checkbox').click(function () {

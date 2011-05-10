@@ -26,8 +26,8 @@
             [[ render_field(form.not_mine, tag_class="showSource") ]]
             [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
         </ul>
-        <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showFields" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
-        <div class="extraFields hideme">
+        <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
+        <div class="extra hideme">
             <ul class="fields">
                 [[ render_field(form.definition, class="input") ]]
                 [[ render_field(form.context, class="input") ]]

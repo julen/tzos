@@ -795,7 +795,23 @@ ul.pagination li a:hover {
 }
 
 
-/* Search results */
+/* Search */
+
+/* Advanced */
+
+.coreFields {
+    margin-left: 10%;
+}
+
+.coreFields #keywords {
+    width: 500px;
+}
+
+.coreFields #language {
+    width: auto;
+}
+
+/* Results */
 
 ul.searchResults li {
     list-style: square;

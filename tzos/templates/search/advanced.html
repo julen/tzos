@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% from "macros/_forms.html" import render_form %}
 
 {% block title %}[[ super() ]][[ _('Advanced search') ]]{% endblock %}
 
@@ -7,5 +6,16 @@
 {% block intro_text %}[[ _('Search the needle on the haystack.') ]]{% endblock %}
 
 {% block content %}
-[[ render_form(form) ]]
+<form class="f1 advancedSearch" action="[[ url_for('search.advanced') ]]" method="POST">
+    <div class="coreFields">
+    [[ form.keywords(class="input in", placeholder=form.keywords.label.text) ]]
+    [[ form.language(class="input in") ]]
+    <p class="in">
+    [[ form.submit(class="button") ]]
+    </p>
+    </div>
+    <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide" rel="tipsy-ns" title="[[ _("Show advanced fields.") ]]">[[ _("Show advanced fields") ]]</a></p>
+    <div class="extra hideme">
+    </div>
+</form>
 {% endblock %}

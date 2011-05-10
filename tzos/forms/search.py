@@ -11,8 +11,13 @@
 from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import Form, SubmitField, TextField
 
+from tzos.forms.fields import DynamicSelectField
+
 class SearchForm(Form):
-    term = TextField(_('Search terms'))
+    keywords = TextField(_('Keywords'))
+
+    language = DynamicSelectField(_("Language"))
+
     source = TextField(_('Source'))
     example = TextField(_('Examples'))
     definition = TextField(_('Definition'))

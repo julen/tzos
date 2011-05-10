@@ -155,6 +155,7 @@ def dropdown_list(list):
     """Inserts a placeholder tuple entry in a list, suitable for using
     in dropdown lists."""
 
-    list.insert(0, ('none', '-----'))
+    newlist = list[:]
+    newlist.insert(0, ('none', '-----'))
 
-    return list
+    return newlist

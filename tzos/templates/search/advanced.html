@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% from "macros/_util.html" import render_pagination %}
+
 {% block title %}[[ super() ]][[ _('Advanced search') ]]{% endblock %}
 
 {% block intro_title %}[[ _('Advanced search') ]]{% endblock %}
@@ -20,7 +22,7 @@
     </div>
 </form>
 {% if page and page.items %}
-<ul class="searchResults">
+<ul class="searchResults hr">
     {% for term in page.items %}
     <li>[[ term|safe ]]</li>
     {% endfor %}

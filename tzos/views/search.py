@@ -36,11 +36,17 @@ def quick():
 
 @search.route('/advanced/', methods=('GET', 'POST',))
 def advanced():
-    form = SearchForm(request.args)
+    page = None
+    form = SearchForm()
 
     form.language.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
 
     if form.validate_on_submit():
-        pass
+        pn = int(request.args.get('p', 1))
+        ctx = {'q': form.keywords.data}
 
-    return render_template('search/advanced.html', form=form)
+        page = dbxml.get_db().template_query('search/results.xq',
+                                             context=ctx).as_rendered(). \
+                                             paginate(pn, 10, error_out=False)
+
+    return render_template('search/advanced.html', form=form, page=page)

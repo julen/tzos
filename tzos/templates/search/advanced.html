@@ -7,6 +7,7 @@
 
 {% block content %}
 <form class="f1 advancedSearch" action="[[ url_for('search.advanced') ]]" method="POST">
+    [[ form.hidden_tag() ]]
     <div class="coreFields">
     [[ form.keywords(class="input in", placeholder=form.keywords.label.text) ]]
     [[ form.language(class="input in") ]]
@@ -18,4 +19,12 @@
     <div class="extra hideme">
     </div>
 </form>
+{% if page and page.items %}
+<ul class="searchResults">
+    {% for term in page.items %}
+    <li>[[ term|safe ]]</li>
+    {% endfor %}
+</ul>
+[[ render_pagination(page, 'search.quick') ]]
+{% endif %}
 {% endblock %}

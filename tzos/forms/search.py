@@ -28,7 +28,7 @@ class SearchForm(Form):
         ('definition', _('Definition')),
         ('context', _('Context')),
         ('example', _('Example')),
-        ('description', _('Description')),
+        ('explanation', _('Explanation')),
         ('hyponym', _('Hyponym')),
         ('hyperonym', _('Hyperonym')),
         ('antonym', _('Antonym')),

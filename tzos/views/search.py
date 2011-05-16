@@ -52,7 +52,7 @@ def quick():
         where dbxml:contains($term/string(), "{0}") and
               term:is_public($term) and {1}
         return term:asLink($term)
-        """.format(q, filter)
+        """.format(q.encode('utf-8'), filter.encode('utf-8'))
 
         pn = int(request.args.get('p', 1))
         page = dbxml.get_db().raw_query(qs).as_str(). \

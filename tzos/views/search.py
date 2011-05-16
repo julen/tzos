@@ -32,10 +32,10 @@ def _get_search_predicate(q):
 
     predicates = {
         'term': '$term/string()',
-        #'definition': '{0}(, "{1}")',
+        'definition': '$term/../../descrip[@type="definition"]/string()',
         'context': '$term/../descrip[@type="context"]/string()',
-        #'example': '',
-        #'description': '',
+        'example': '$term/../descrip[@type="example"]/string()',
+        'explanation': '$term/../descrip[@type="explanation"]/string()',
         'hyponym': '$term/../descrip[@type="subordinateConceptGeneric"]/string()',
         'hyperonym': '$term/../descrip[@type="superordinateConceptGeneric"]/string()',
         'antonym': '$term/../descrip[@type="antonymConcept"]/string()',

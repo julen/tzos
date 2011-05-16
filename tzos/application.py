@@ -172,7 +172,11 @@ def configure_assets(app):
     js = Bundle('tzos.js', 'tabs.js', 'jquery.tipsy.js', 'jquery-ui.min.js',
                 filters='jsmin', output='tzos-packed.js')
 
+    css = Bundle('style.css', 'jquery-ui.css',
+                filters='cssmin', output='tzos-packed.css')
+
     assets.register('js_all', js)
+    assets.register('css_all', css)
 
 
 def configure_databases(app):

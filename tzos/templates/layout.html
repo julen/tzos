@@ -9,8 +9,9 @@
         {% assets "js_all" %}
         <script type="text/javascript" src="[[ ASSET_URL ]]"></script>
         {% endassets %}
-        <link rel="stylesheet" type="text/css" href="[[ url_for('.static', filename='style.css') ]]" />
-        <link rel="stylesheet" type="text/css" href="[[ url_for('.static', filename='jquery-ui.css') ]]" />
+        {% assets "css_all" %}
+        <link rel="stylesheet" type="text/css" href="[[ ASSET_URL ]]" />
+        {% endassets %}
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
     <body>

@@ -23,7 +23,7 @@ class SearchForm(Form):
     #
     # Search fields
     #
-    field_choices = dropdown_list([
+    field_choices = (
         ('term', _('Term')),
         ('definition', _('Definition')),
         ('context', _('Context')),
@@ -31,8 +31,9 @@ class SearchForm(Form):
         ('description', _('Description')),
         ('hyponym', _('Hyponym')),
         ('hyperonym', _('Hyperonym')),
-        ('relconcept', _('Related concept')),
-    ], 'all', _('All'))
+        ('antonym', _('Antonym')),
+        ('related', _('Related concept')),
+    )
     field = SelectField(_('Search field'), choices=field_choices)
 
     #

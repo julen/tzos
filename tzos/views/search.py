@@ -26,14 +26,46 @@ def _get_search_param(key):
 
     return val
 
+def _get_search_predicate(q):
+    default_field = 'term'
+    search_func = 'dbxml:contains'
+
+    predicates = {
+        'term': '$term/string()',
+        #'definition': '{0}(, "{1}")',
+        'context': '$term/../descrip[@type="context"]/string()',
+        #'example': '',
+        #'description': '',
+        'hyponym': '$term/../descrip[@type="subordinateConceptGeneric"]/string()',
+        'hyperonym': '$term/../descrip[@type="superordinateConceptGeneric"]/string()',
+        'antonym': '$term/../descrip[@type="antonymConcept"]/string()',
+        'related': '$term/../descrip[@type="relatedConcept"]/string()',
+    }
+
+    field = _get_search_param('field')
+
+    if not field:
+        field = default_field
+
+    try:
+        predicate = predicates[field]
+    except KeyError:
+        predicate = predicates[default_field]
+
+    return '{0}({1}, "{2}")'.format(search_func, predicate, q)
+
 def _get_search_filters():
 
     f_str = "true()"
 
     filters = (
         ('lang', '$term/../..[@xml:lang="{0}"]'),
-        ('subject_field', '$term/../../../descrip[@type="subjectField"]/string() = string({0})'),
-        ('', ''),
+        ('subject_field', '$term/../../../descrip[@type="subjectField"]/string() = "{0}"'),
+        # TODO: Concept origin
+        ('na', '$term/../termNote[@type="normativeAuthorization"]/string() = "{0}"'),
+        ('na_org', '$term/../termNote[@type="normativeAuthorization"][@target="{0}"]'),
+        ('pos', '$term/../termNote[@type="partOfSpeech"]/string() = "{0}"'),
+        ('tt', '$term/../termNote[@type="termType"]/string() = "{0}"'),
     )
 
     for f in filters:
@@ -50,16 +82,17 @@ def quick():
     q = request.args.get('q', '').strip()
 
     if q:
+        predicate = _get_search_predicate(q)
         filter = _get_search_filters()
 
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
 
         for $term in collection($collection)//term
-        where dbxml:contains($term/string(), "{0}") and
-              term:is_public($term) and {1}
+        where term:is_public($term) and {0} and {1}
         return term:asLink($term)
-        """.format(q.encode('utf-8'), filter.encode('utf-8'))
+        """.format(predicate.encode('utf-8'),
+                   filter.encode('utf-8'))
 
         pn = int(request.args.get('p', 1))
         page = dbxml.get_db().raw_query(qs).as_rendered(). \

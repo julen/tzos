@@ -811,6 +811,10 @@ ul.pagination li a:hover {
     width: auto;
 }
 
+.coreFields .button {
+    vertical-align: baseline;
+}
+
 .advancedSearch .extra {
     margin: 1.5em;
 }

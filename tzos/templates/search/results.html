@@ -14,16 +14,16 @@
     <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide">[[ _("Show advanced fields") ]]</a></p>
     <div class="extra hideme">
         <ul>
-            [[ render_field(form.source) ]]
-            [[ render_field(form.example) ]]
-            [[ render_field(form.definition) ]]
-            [[ render_field(form.sample) ]]
+            [[ render_field(form.source, class="input") ]]
+            [[ render_field(form.example, class="input") ]]
+            [[ render_field(form.definition, class="input") ]]
+            [[ render_field(form.sample, class="input") ]]
         </ul>
     </div>
 </form>
 
 {% if page.items %}
-<ul class="searchResults">
+<ul class="searchResults hr">
     {% for term in page.items %}
     <li>[[ term|safe ]]</li>
     {% endfor %}

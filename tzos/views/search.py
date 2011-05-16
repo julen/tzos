@@ -55,7 +55,7 @@ def quick():
         """.format(q.encode('utf-8'), filter.encode('utf-8'))
 
         pn = int(request.args.get('p', 1))
-        page = dbxml.get_db().raw_query(qs).as_str(). \
+        page = dbxml.get_db().raw_query(qs).as_rendered(). \
                                             paginate(pn, 10, error_out=False)
 
     form = SearchForm(request.args, csrf_enabled=False)

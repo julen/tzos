@@ -28,12 +28,12 @@ def _get_search_param(key):
 
 def _get_search_filters():
 
-    filter = "true() "
+    filter = "true()"
 
     lang = _get_search_param('lang')
 
     if lang:
-        filter += 'and $term/../..[@xml:lang="{0}"]'.format(lang)
+        filter += ' and $term/../..[@xml:lang="{0}"]'.format(lang)
 
     return filter
 
@@ -43,11 +43,7 @@ def quick():
     q = request.args.get('q', '').strip()
 
     if q:
-        pn = int(request.args.get('p', 1))
-
         filter = _get_search_filters()
-        print filter
-        #ctx = {'q': q, 'filter': _get_search_filters() }
 
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
@@ -57,8 +53,8 @@ def quick():
               term:is_public($term) and {1}
         return term:asLink($term)
         """.format(q, filter)
-        print qs
 
+        pn = int(request.args.get('p', 1))
         page = dbxml.get_db().raw_query(qs).as_str(). \
                                             paginate(pn, 10, error_out=False)
 

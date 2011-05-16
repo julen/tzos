@@ -42,7 +42,7 @@ $(document).ready(function () {
     });
 
     $("input#entry_source").autocomplete({
-        source: '/xhr/autocomplete/?type=entrySource'
+        source: $AUTOCOMPLETE_URL + '?type=entrySource'
     });
 
 });

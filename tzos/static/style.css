@@ -811,6 +811,20 @@ ul.pagination li a:hover {
     width: auto;
 }
 
+form.advancedSearch .extra {
+    margin: 1.5em;
+}
+
+form.advancedSearch .extra label,
+form.advancedSearch .extra input {
+    float: left;
+}
+
+form.advancedSearch .extra label {
+    width: 150px;
+    line-height: 2.5;
+}
+
 /* Results */
 
 ul.searchResults li {

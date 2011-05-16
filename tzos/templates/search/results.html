@@ -12,7 +12,7 @@
 <form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
     {% include "search/core.html" %}
     <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide">[[ _("Search options") ]]</a></p>
-    <div class="extra hideme">
+    <div class="extra hideme{% if non_default %} nonDefault{% endif %}">
         <ul>
             <h2 class="h4 clBoth">[[ _('General') ]]</h2>
             [[ render_field(form.field, class="input") ]]

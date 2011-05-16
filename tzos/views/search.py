@@ -79,11 +79,14 @@ def _get_search_filters():
 @search.route('/')
 def quick():
     page = None
+    non_default = False
     q = request.args.get('q', '').strip()
 
     if q:
         predicate = _get_search_predicate(q)
         filter = _get_search_filters()
+
+        non_default = filter and request.args.get('field', None)
 
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
@@ -106,4 +109,5 @@ def quick():
     form.na_org.choices = \
         dropdown_list(get_responsible_orgs(), 'all', _('All'))
 
-    return render_template('search/results.html', form=form, q=q, page=page)
+    ctx = {'form': form, 'q': q, 'page': page, 'non_default': non_default}
+    return render_template('search/results.html', **ctx)

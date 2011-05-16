@@ -10,3 +10,5 @@ Flask-WTF
 # Flask-DBXML
 -e git://github.com/julen/flask-dbxml.git#egg=flask-dbxml
 bsddb3
+
+cssmin

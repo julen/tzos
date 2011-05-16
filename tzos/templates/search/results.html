@@ -1,13 +1,33 @@
 {% extends "layout.html" %}
 
 {% from "macros/_util.html" import render_pagination %}
+{% from "macros/_forms.html" import render_field %}
 
-{% block title %}[[ super() ]][[ _('Search results') ]]{% endblock %}
+{% block title %}[[ super() ]]{% if q %}[[ _('Search results') ]]{% else %}[[ _('Advanced search') ]]{% endif %}{% endblock %}
 
-{% block intro_title %}[[ q ]]{% endblock %}
-{% block intro_text %}[[ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', page.total ) ]]{% endblock %}
+{% block intro_title %}{% if q %}[[ q ]]{% else %}[[ _('Advanced search') ]]{% endif %}{% endblock %}
+{% block intro_text %}{% if q %}[[ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', page.total ) ]]{% else %}[[ _('Search the needle on the haystack.') ]]{% endif %}{% endblock %}
 
 {% block content %}
+<form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
+    <div class="coreFields">
+    [[ form.q(class="input in", placeholder=form.q.label.text) ]]
+    [[ form.lang(class="input in") ]]
+    <p class="in">
+    [[ form.submit(class="button") ]]
+    </p>
+    </div>
+    <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide">[[ _("Show advanced fields") ]]</a></p>
+    <div class="extra hideme">
+        <ul>
+            [[ render_field(form.source) ]]
+            [[ render_field(form.example) ]]
+            [[ render_field(form.definition) ]]
+            [[ render_field(form.sample) ]]
+        </ul>
+    </div>
+</form>
+
 {% if page.items %}
 <ul class="searchResults">
     {% for term in page.items %}
@@ -15,7 +35,5 @@
     {% endfor %}
 </ul>
 [[ render_pagination(page, 'search.quick') ]]
-{% else %}
-{# TODO: insert searchbox #}
 {% endif %}
 {% endblock %}

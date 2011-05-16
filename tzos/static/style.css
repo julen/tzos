@@ -803,11 +803,11 @@ ul.pagination li a:hover {
     margin-left: 10%;
 }
 
-.coreFields #keywords {
+.coreFields #q {
     width: 500px;
 }
 
-.coreFields #language {
+.coreFields #lang {
     width: auto;
 }
 

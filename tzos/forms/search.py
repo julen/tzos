@@ -14,9 +14,9 @@ from flaskext.wtf import Form, SubmitField, TextField
 from tzos.forms.fields import DynamicSelectField
 
 class SearchForm(Form):
-    keywords = TextField(_('Keywords'))
+    q = TextField(_('Keywords'))
 
-    language = DynamicSelectField(_("Language"))
+    lang = DynamicSelectField(_("Language"))
 
     source = TextField(_('Source'))
     example = TextField(_('Examples'))

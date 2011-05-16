@@ -22,6 +22,12 @@
     {% if product_subset %}
     <admin type="productSubset">[[ product_subset ]]</admin>
     {% endif %}
+    {% if example %}
+    <descrip type="example">[[ example ]]</descrip>
+    {% endif %}
+    {% if explanation %}
+    <descrip type="explanation">[[ explanation ]]</descrip>
+    {% endif %}
     {% if context %}
     <descrip type="context">[[ context ]]</descrip>
     {% endif %}

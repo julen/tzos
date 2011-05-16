@@ -30,6 +30,7 @@ MODULES = (
     (views.glossary, '/glossary'),
     (views.terms, '/term'),
     (views.user, '/user'),
+    (views.xhr, '/xhr'),
 )
 
 def create_app(config=None):

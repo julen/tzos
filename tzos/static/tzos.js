@@ -41,4 +41,8 @@ $(document).ready(function () {
         $(this).parent().nextAll('li').toggle('slow');
     });
 
+    $("input#entry_source").autocomplete({
+        source: '/xhr/autocomplete/?type=entrySource'
+    });
+
 });

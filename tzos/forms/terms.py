@@ -129,7 +129,6 @@ class BaseTermForm(Form):
     cross_reference = TextField(_('Cross reference'), validators=[
         check_xref_exists])
     definition = TextAreaField(_('Definition'))
-    # TODO: Convert this to a SelectField
     entry_source = TextField(_('Entry source'))
     example = TextAreaField(_('Example'))
     explanation = TextAreaField(_('Explanation'))

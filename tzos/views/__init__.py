@@ -15,3 +15,4 @@ from .glossary import glossary
 from .search import search
 from .terms import terms
 from .user import user
+from .xhr import xhr

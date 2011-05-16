@@ -51,6 +51,21 @@ class BaseTermForm(Form):
             if not result:
                 raise ValidationError(message)
 
+    def check_xref_exists(form, field):
+        if field.data != "":
+            message = _("This term doesn't exist in the database.")
+
+            lang = form.language.data
+            term = field.data
+
+            # FIXME: Also check in subject field?
+            qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                    format(lang, term)
+            result = dbxml.get_db().query(qs).as_str().first()
+
+            if not result:
+                raise ValidationError(message)
+
     def check_not_mine(form, field):
         message = _("You must specify the author's name.")
 
@@ -111,8 +126,8 @@ class BaseTermForm(Form):
     # Optional fields
     #
     context = TextAreaField(_('Context'))
-    # TODO: check if the passed terms exist in the DB
-    cross_reference = TextField(_('Cross reference'))
+    cross_reference = TextField(_('Cross reference'), validators=[
+        check_xref_exists])
     definition = TextAreaField(_('Definition'))
     # TODO: Convert this to a SelectField
     entry_source = TextField(_('Entry source'))

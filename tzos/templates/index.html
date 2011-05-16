@@ -4,3 +4,9 @@
 
 {% block intro_title %}[[ _('Welcome') ]]{% endblock %}
 {% block intro_text %}[[ _('TZOS is an online community for building and sharing terminology.') ]]{% endblock %}
+
+{% block content %}
+<form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
+    {% include "search/core.html" %}
+</form>
+{% endblock %}

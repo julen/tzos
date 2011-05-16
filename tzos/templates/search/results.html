@@ -10,13 +10,7 @@
 
 {% block content %}
 <form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
-    <div class="coreFields">
-    [[ form.q(class="input in", placeholder=form.q.label.text) ]]
-    [[ form.lang(class="input in") ]]
-    <p class="in">
-    [[ form.submit(class="button") ]]
-    </p>
-    </div>
+    {% include "search/core.html" %}
     <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide">[[ _("Show advanced fields") ]]</a></p>
     <div class="extra hideme">
         <ul>

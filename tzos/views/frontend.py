@@ -14,11 +14,17 @@ from flaskext.babel import gettext as _
 
 from babel import Locale
 
+from tzos.forms import SearchForm
+from tzos.helpers import dropdown_list, get_dict_langs
+
 frontend = Module(__name__)
 
 @frontend.route('/')
 def index():
-    return render_template('index.html')
+    form = SearchForm()
+    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
+
+    return render_template('index.html', form=form)
 
 @frontend.route('/dict/')
 def dict():

@@ -14,12 +14,16 @@
     <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide">[[ _("Show advanced fields") ]]</a></p>
     <div class="extra hideme">
         <ul>
+            <h2 class="h4 clBoth">[[ _('Fields') ]]</h2>
+            [[ render_field(form.field, class="input", tag_class="clBoth") ]]
             <h2 class="h4 clBoth">[[ _('Classification') ]]</h2>
             [[ render_field(form.subject_field, class="input", tag_class="clBoth") ]]
-            [[ render_field(form.source, class="input", tag_class="clBoth") ]]
-            [[ render_field(form.example, class="input", tag_class="clBoth") ]]
-            [[ render_field(form.definition, class="input", tag_class="clBoth") ]]
-            [[ render_field(form.sample, class="input", tag_class="clBoth") ]]
+            [[ render_field(form.concept_origin, class="input", tag_class="clBoth") ]]
+            <h2 class="h4 clBoth">[[ _('Linguistic information') ]]</h2>
+            [[ render_field(form.na, class="input", tag_class="clBoth") ]]
+            [[ render_field(form.na_org, class="input", tag_class="clBoth") ]]
+            [[ render_field(form.pos, class="input", tag_class="clBoth") ]]
+            [[ render_field(form.tt, class="input", tag_class="clBoth") ]]
         </ul>
     </div>
 </form>

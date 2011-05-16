@@ -14,7 +14,7 @@ from flaskext.babel import lazy_gettext as _
 
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
-from tzos.helpers import dropdown_list, get_dict_langs
+from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs
 
 search = Module(__name__)
 
@@ -68,5 +68,7 @@ def quick():
     form = SearchForm(request.args, csrf_enabled=False)
 
     form.lang.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
+    form.na_org.choices = \
+        dropdown_list(get_responsible_orgs(), 'all', _('All'))
 
     return render_template('search/results.html', form=form, q=q, page=page)

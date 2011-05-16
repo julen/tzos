@@ -21,7 +21,7 @@ class SearchForm(Form):
     lang = DynamicSelectField(_("Language"))
 
     #
-    # Search fields
+    # General
     #
     field_choices = (
         ('term', _('Term')),
@@ -35,6 +35,15 @@ class SearchForm(Form):
         ('related', _('Related concept')),
     )
     field = SelectField(_('Search field'), choices=field_choices)
+
+    pp_choices = (
+        (10, 10),
+        (20, 20),
+        (30, 30),
+        (40, 40),
+        (50, 50),
+    )
+    pp = SelectField(_('Terms per page'), choices=pp_choices)
 
     #
     # Classification

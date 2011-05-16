@@ -811,18 +811,28 @@ ul.pagination li a:hover {
     width: auto;
 }
 
-form.advancedSearch .extra {
+.advancedSearch .extra {
     margin: 1.5em;
 }
+.advancedSearch .extra li {
+    float: left;
+    width: 50%;
+}
 
-form.advancedSearch .extra label,
-form.advancedSearch .extra input {
+.advancedSearch .extra label,
+.advancedSearch .extra input {
     float: left;
 }
 
-form.advancedSearch .extra label {
+.advancedSearch .extra input,
+.advancedSearch .extra select {
+    width: 50%;
+}
+
+.advancedSearch .extra label {
     width: 150px;
-    line-height: 2.5;
+    line-height: 3;
+    margin-right: 10px;
 }
 
 /* Results */

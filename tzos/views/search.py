@@ -28,14 +28,21 @@ def _get_search_param(key):
 
 def _get_search_filters():
 
-    filter = "true()"
+    f_str = "true()"
 
-    lang = _get_search_param('lang')
+    filters = (
+        ('lang', '$term/../..[@xml:lang="{0}"]'),
+        ('subject_field', '$term/../../../descrip[@type="subjectField"]/string() = string({0})'),
+        ('', ''),
+    )
 
-    if lang:
-        filter += ' and $term/../..[@xml:lang="{0}"]'.format(lang)
+    for f in filters:
+        param = _get_search_param(f[0])
 
-    return filter
+        if param:
+            f_str += ' and ' + f[1].format(param)
+
+    return f_str
 
 @search.route('/')
 def quick():

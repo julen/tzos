@@ -20,6 +20,12 @@ as element(a) {
     <a href="[[ url_for('terms.detail', id='{ data($term/@id) }') ]]">{ $term/string() }</a>
 };
 
+declare function term:asLink2($term_str as xs:string)
+as element(a) {
+    let $term := collection($collection)//term[string()=$term_str]
+    return term:asLink($term)
+};
+
 
 declare function term:synonyms($term as element(term))
 as element(a)* {
@@ -154,19 +160,19 @@ return
         <li class="more">[[ _('Classification:') ]] [[ _t("{ term:subject_field($term) }") ]]</li>
         else () }
         { if (term:subordinate_cg($term)) then
-        <li class="more">[[ _('Hyponym:') ]] { term:subordinate_cg($term) }</li>
+        <li class="more">[[ _('Hyponym:') ]] { term:asLink2(term:subordinate_cg($term)) }</li>
         else () }
         { if (term:superordinate_cg($term)) then
-        <li class="more">[[ _('Hyperonym:') ]] { term:superordinate_cg($term) }</li>
+        <li class="more">[[ _('Hyperonym:') ]] { term:asLink2(term:superordinate_cg($term)) }</li>
         else () }
         { if (term:antonym_concept($term)) then
-        <li class="more">[[ _('Antonym:') ]] { term:antonym_concept($term) }</li>
+        <li class="more">[[ _('Antonym:') ]] { term:asLink2(term:antonym_concept($term)) }</li>
         else () }
         { if (term:related_concept($term)) then
-        <li class="more">[[ _('Related concept:') ]] { term:related_concept($term) }</li>
+        <li class="more">[[ _('Related concept:') ]] { term:asLink2(term:related_concept($term)) }</li>
         else () }
         { if (term:xref($term)) then
-        <li class="more">[[ _('See also:') ]] <a href="[[ url_for('terms.detail', id='{ term:xref_id($term) }') ]]">{ term:xref($term) }</a></li>
+        <li class="more">[[ _('See also:') ]] <a href="[[ url_for('terms.detail', id='{ term:xref_id($term) }') ]]">{ term:asLink2(term:xref($term)) }</a></li>
         else () }
     </ul>
     <ul class="termActions in hideme small weak">

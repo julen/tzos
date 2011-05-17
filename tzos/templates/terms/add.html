@@ -34,15 +34,15 @@
                     [[ render_field(add_term_form.not_mine, tag_class="showSource") ]]
                     [[ render_field(add_term_form.originating_person, tag_class="hideme", class="input") ]]
                 </ul>
-                <p class="clLeft showme" style="display:none;"><i class="{% if add_term_form.errors %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Advanced fields") ]]</a></p>
+                <p class="clLeft showme" style="display:none;"><i class="{% if add_term_form.errors %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Advanced fields") ]]</a></p>
                 <div class="extra hideme{% if add_term_form.errors %} doNotHide{% endif %}">
                     <ul class="fields">
-                        [[ render_field(add_term_form.definition, class="input") ]]
-                        [[ render_field(add_term_form.context, class="input") ]]
-                        [[ render_field(add_term_form.example, class="input") ]]
-                        [[ render_field(add_term_form.explanation, class="input") ]]
-                        [[ render_field(add_term_form.entry_source, class="input") ]]
-                        [[ render_field(add_term_form.cross_reference, class="input") ]]
+                        [[ render_field(add_term_form.definition, class="input", rel="tipsy-ns", title=_("A descriptive statement which serves to differentiate from related concepts.")) ]]
+                        [[ render_field(add_term_form.context, class="input", rel="tipsy-ns", title=_("A text which illustrates a concept or a term by containing the concept designation itself. It must be authentic.")) ]]
+                        [[ render_field(add_term_form.example, class="input", rel="tipsy-ns", title=_("A text which illustrates a concept or a term. It can be an invented sentence.")) ]]
+                        [[ render_field(add_term_form.explanation, class="input", rel="tipsy-ns", title=_("A statement that describes and clarifies a concept and makes it understandable, but does not necessarily differentiate it from other concepts.")) ]]
+                        [[ render_field(add_term_form.entry_source, class="input", rel="tipsy-ns", title=_("The source of the terminological entry.")) ]]
+                        [[ render_field(add_term_form.cross_reference, class="input", rel="tipsy-ns", title=_("A related term.")) ]]
 
                         [[ render_field(add_term_form.product_subset, class="input") ]]
                     </ul>
@@ -53,7 +53,7 @@
                         [[ render_field(add_term_form.subordinate_concept_generic, class="input") ]]
                         [[ render_field(add_term_form.superordinate_concept_generic, class="input") ]]
                         [[ render_field(add_term_form.antonym_concept, class="input") ]]
-                        [[ render_field(add_term_form.related_concept, class="input") ]]
+                        [[ render_field(add_term_form.related_concept, class="input", rel="tipsy-ns", title=_("A concept that has an associative relation to another concept, such as teacher and school.")) ]]
                         [[ render_field(add_term_form.part_of_speech, class="input") ]]
                         [[ render_field(add_term_form.term_type, class="input") ]]
                     </ul>

@@ -741,7 +741,7 @@ div.term:hover .termActions {
 
 /* Adding terms */
 
-.f1.addTerm li {
+.f1.addTerm ul.fields > li {
     float: left;
     margin-right: 20px;
     width: 300px;
@@ -958,4 +958,37 @@ footer, header, hgroup, menu, nav, section {
   border-left-color: pink;
   border-right-color: pink;
   filter: chroma(color=pink);
+}
+
+
+/* bsmSelect */
+
+.bsmSelect {
+  display: inline;
+  margin: 0.25em 0 0.1em;
+}
+
+.bsmOptionDisabled {
+  color: #999;
+}
+
+.bsmList {
+    display: block;
+    list-style: none outside none;
+    margin: 0.25em 0;
+    padding-left: 0;
+}
+
+.bsmListItem {
+    float: left;
+    margin: 0 5px 5px 0;
+    cursor: default;
+}
+
+.bsmListItemLabel {
+  padding-right: 5px;
+}
+
+.bsmListItemRemove {
+  text-decoration: none;
 }

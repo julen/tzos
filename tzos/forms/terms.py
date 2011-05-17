@@ -10,7 +10,8 @@
 """
 from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, NoneOf, \
-    SelectField, SubmitField, TextAreaField, TextField, ValidationError, required
+    SelectField, SelectMultipleField, SubmitField, TextAreaField, TextField, \
+    ValidationError, required
 
 from tzos.extensions import dbxml
 from tzos.forms.fields import DynamicSelectField
@@ -97,10 +98,9 @@ class BaseTermForm(Form):
     # Affects elementWorkingStatus
     make_public = BooleanField(_("I want this term to be public immediately."))
 
-    sf_choices = dropdown_list(SUBJECT_FIELDS)
-    subject_field = DynamicSelectField(_("Subject field"), validators=[
+    subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown],
-        choices=sf_choices)
+        choices=SUBJECT_FIELDS)
 
 
     syntrans = BooleanField(_("This term is a synonym or a translation for another term."))

@@ -169,7 +169,7 @@ def configure_context_processors(app):
 def configure_assets(app):
     assets = Environment(app)
 
-    js = Bundle('jquery.tipsy.js', 'jquery-ui.min.js',
+    js = Bundle('jquery.bsmselect.js', 'jquery.tipsy.js', 'jquery-ui.min.js',
                 'tzos.js', 'tabs.js',
                 filters='jsmin', output='tzos-packed.js')
 

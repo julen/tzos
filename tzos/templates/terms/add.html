@@ -21,7 +21,8 @@
                 <ul class="fields">
                     [[ render_field(add_form.term, class="input") ]]
                     [[ render_field(add_form.language, class="input") ]]
-                    [[ render_field(add_form.subject_field, class="input") ]]
+                    {% set placeholder = _("Select…") %}
+                    [[ render_field(add_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) ]]
                     [[ render_field(add_form.concept_origin, class="input") ]]
                     [[ render_field(add_form.make_public, class="input", tag_class="singleLine") ]]
                 </ul>

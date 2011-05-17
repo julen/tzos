@@ -21,7 +21,7 @@ search = Module(__name__)
 def _get_search_param(key):
     val = request.args.get(key, '')
 
-    if val and val == 'all':
+    if val and (val == 'all' or val == '-1'):
         val = ''
 
     return val
@@ -61,6 +61,7 @@ def _get_search_filters():
     filters = (
         ('lang', '$term/../..[@xml:lang="{0}"]'),
         ('subject_field', '$term/../../../descrip[@type="subjectField"]/string() = "{0}"'),
+        ('product_subset', '$term/../admin[@type="productSubset"]/string() = "{0}"'),
         # TODO: Concept origin, product subset
         ('na', '$term/../termNote[@type="normativeAuthorization"]/string() = "{0}"'),
         ('na_org', '$term/../termNote[@type="normativeAuthorization"][@target="{0}"]'),

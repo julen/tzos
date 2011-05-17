@@ -72,6 +72,9 @@ def add_single():
         term = Term()
         form.populate_obj(term)
 
+        # Handle SelectMultipleFields
+        term.subject_field = ";".join(form.subject_field.data)
+
         if term.insert():
             msg = _('Term added successfully. <a href="%(url)s">Go to the term</a>.',
                     url=url_for('terms.detail', id=term.id))

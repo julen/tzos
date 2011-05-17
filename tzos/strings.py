@@ -278,3 +278,10 @@ PART_OF_SPEECH = [
     ('properNoun', _('Proper noun')),
     ('other', _('Other')),
 ]
+
+PRODUCT_SUBSET = [
+    (0, _('Notes')),
+    (1, _('End of degree projects')),
+    (2, _('Research projects')),
+    (3, _('Theses')),
+]

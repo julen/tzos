@@ -2,6 +2,9 @@
 <html lang="[[ g.ui_lang ]]">
     <head>
         <meta charset="utf-8" />
+        {%- assets "css_all" %}
+        <link rel="stylesheet" type="text/css" href="[[ ASSET_URL ]]" />
+        {%- endassets %}
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -9,9 +12,6 @@
             $AUTOCOMPLETE_URL = "[[ url_for('xhr.autocomplete') ]]";
         </script>
         <script src="[[ url_for('.static', filename='jquery.min.js') ]]"></script>
-        {%- assets "css_all" %}
-        <link rel="stylesheet" type="text/css" href="[[ ASSET_URL ]]" />
-        {%- endassets %}
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
     <body>

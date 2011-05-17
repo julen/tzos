@@ -157,7 +157,14 @@ return
         <li class="more">[[ _('Appears in:') ]] [[ _t("{ term:product_subset($term) }") ]]</li>
         else () }
         { if (term:subject_field($term)) then
-        <li class="more">[[ _('Classification:') ]] [[ _t("{ term:subject_field($term) }") ]]</li>
+        <li class="more">[[ _('Classification:') ]]
+        {
+            let $fields :=
+                for $field in tokenize(term:subject_field($term), ";")
+                return <span>[[ _t("{ $field }") ]]</span>
+            return util:join_seq($fields)
+        }
+        </li>
         else () }
         { if (term:subordinate_cg($term)) then
         <li class="more">[[ _('Hyponym:') ]] { term:asLink2(term:subordinate_cg($term)) }</li>

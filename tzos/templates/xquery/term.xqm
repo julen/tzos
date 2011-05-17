@@ -148,7 +148,7 @@ return
                 <span class="weak"> ({ term:orig_person($term) })</span>
               else () }</li>
         { if (term:product_subset($term)) then
-        <li class="more">[[ _('Appears in:') ]] { term:product_subset($term) }</li>
+        <li class="more">[[ _('Appears in:') ]] [[ _t("{ term:product_subset($term) }") ]]</li>
         else () }
         { if (term:subject_field($term)) then
         <li class="more">[[ _('Classification:') ]] [[ _t("{ term:subject_field($term) }") ]]</li>

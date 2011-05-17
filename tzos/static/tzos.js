@@ -20,7 +20,7 @@ $(document).ready(function () {
         $('li.showSyntrans').nextAll('li').removeClass('hideme');
     }
 
-    $('div.nonDefault').removeClass('hideme');
+    $('div.doNotHide').removeClass('hideme');
 
     $('.showme').show();
     $('.hideme').hide();

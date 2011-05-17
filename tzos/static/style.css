@@ -800,11 +800,11 @@ ul.pagination li a:hover {
 /* Advanced */
 
 .coreFields {
-    margin-left: 10%;
+    margin-left: 2em;
 }
 
 .coreFields #q {
-    width: 500px;
+    width: 600px;
 }
 
 .coreFields #lang {
@@ -813,6 +813,10 @@ ul.pagination li a:hover {
 
 .coreFields .button {
     vertical-align: baseline;
+}
+
+.searchOpts {
+    margin-left: 2em;
 }
 
 .advancedSearch .extra {

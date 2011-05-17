@@ -8,32 +8,33 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-05-17 09:39+0200\n"
+"PO-Revision-Date: 2011-05-17 09:46+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0-beta5\n"
 "Generated-By: Babel 0.9.5\n"
+"X-Project-Style: default\n"
 
 #: tzos/application.py:87
 msgid "You must login to see this page."
 msgstr "Saioa hasi behar duzu orri hau ikusteko."
 
 #: tzos/models.py:64
-#, fuzzy
 msgid "Member"
-msgstr "Gogoratu"
+msgstr "Kidea"
 
 #: tzos/models.py:65
 msgid "Moderator"
-msgstr ""
+msgstr "Moderatzailea"
 
 #: tzos/models.py:66
-#, fuzzy
 msgid "Administrator"
-msgstr "Kudeaketa"
+msgstr "Administratzailea"
 
 #: tzos/strings.py:14
 msgid "Logic"
@@ -92,9 +93,8 @@ msgid "Numerical analysis"
 msgstr "Zenbakizko Analisia"
 
 #: tzos/strings.py:29
-#, fuzzy
 msgid "Operations research"
-msgstr "Eragiketa Ikerketa"
+msgstr "Ikerkuntza eragilea"
 
 #: tzos/strings.py:30
 msgid "Probability"
@@ -938,7 +938,7 @@ msgstr "Erreferentzia zenbakia (Stock Keeping Unit)"
 
 #: tzos/strings.py:263
 msgid "Standard text"
-msgstr ""
+msgstr "Testu arrunta"
 
 #: tzos/strings.py:264
 msgid "String"
@@ -986,20 +986,19 @@ msgstr "Izen berrezia"
 
 #: tzos/strings.py:283
 msgid "Notes"
-msgstr ""
+msgstr "Oharrak"
 
 #: tzos/strings.py:284
 msgid "End of degree projects"
-msgstr ""
+msgstr "Karrera bukaerako proiektuak"
 
 #: tzos/strings.py:285
-#, fuzzy
 msgid "Research projects"
-msgstr "Bilaketaren emaitzak"
+msgstr "Ikerkuntza proiektuak"
 
 #: tzos/strings.py:286
 msgid "Theses"
-msgstr ""
+msgstr "Tesiak"
 
 #: tzos/forms/account.py:21
 msgid "You can only use letters, numbers or dashes"
@@ -1150,7 +1149,7 @@ msgstr "Ez da baliozko aukera"
 
 #: tzos/forms/search.py:19
 msgid "Keywords"
-msgstr ""
+msgstr "Gako-hitzak"
 
 #. l10n: Translate as 'Term'
 #: tzos/forms/search.py:28 tzos/forms/terms.py:86 tzos/forms/terms.py:108
@@ -1187,22 +1186,21 @@ msgstr "Antonimoa"
 
 #: tzos/forms/search.py:36
 msgid "Related concept"
-msgstr ""
+msgstr "Erlazionatutako kontzeptua"
 
 #: tzos/forms/search.py:38
-#, fuzzy
 msgid "Search field"
-msgstr "Jakintza-arloa"
+msgstr "Bilaketa-eremua"
 
 #: tzos/forms/search.py:47
 msgid "Terms per page"
-msgstr ""
+msgstr "Terminoak orriko"
 
 #: tzos/forms/search.py:52 tzos/forms/search.py:60 tzos/forms/search.py:66
 #: tzos/forms/search.py:69 tzos/views/frontend.py:25 tzos/views/search.py:108
 #: tzos/views/search.py:110
 msgid "All"
-msgstr ""
+msgstr "Denak"
 
 #: tzos/forms/search.py:53 tzos/forms/terms.py:101
 msgid "Subject field"
@@ -1214,12 +1212,11 @@ msgstr "Jatorria"
 
 #: tzos/forms/search.py:61
 msgid "Normative level"
-msgstr ""
+msgstr "Arau-maila"
 
 #: tzos/forms/search.py:64
-#, fuzzy
 msgid "Normative organization"
-msgstr "Arau-maila"
+msgstr "Erakunde arau-emailea"
 
 #: tzos/forms/search.py:67 tzos/forms/terms.py:153
 msgid "Part of Speech"
@@ -1303,7 +1300,7 @@ msgstr "Gehitu"
 
 #: tzos/forms/terms.py:166
 msgid "Save changes"
-msgstr ""
+msgstr "Gorde aldaketak"
 
 #: tzos/templates/dict.html:3
 msgid "Select dictionary language"
@@ -1603,19 +1600,16 @@ msgid "Search the needle on the haystack."
 msgstr "Aurki ezazu bila zabiltzana."
 
 #: tzos/templates/search/results.html:14
-#, fuzzy
 msgid "Search options"
-msgstr "Bilatu terminoak"
+msgstr "Bilaketa-aukerak"
 
 #: tzos/templates/search/results.html:17
-#, fuzzy
 msgid "General"
-msgstr "Logika Orokorra"
+msgstr "Orokorra"
 
 #: tzos/templates/search/results.html:20
-#, fuzzy
 msgid "Classification"
-msgstr "Etika Klasikoa"
+msgstr "Sailkapena"
 
 #: tzos/templates/search/results.html:23 tzos/templates/terms/add.html:49
 #: tzos/templates/terms/edit.html:41
@@ -1692,41 +1686,36 @@ msgid "syn."
 msgstr "sin."
 
 #: tzos/templates/xquery/term.xqm:146
-#, fuzzy
 msgid "Origin:"
-msgstr "Jatorria"
+msgstr "Jatorria:"
 
 #: tzos/templates/xquery/term.xqm:151
-#, fuzzy
 msgid "Appears in:"
-msgstr "Hemen agertzen da"
+msgstr "Hemen agertzen da:"
 
 #: tzos/templates/xquery/term.xqm:154
 msgid "Classification:"
-msgstr ""
+msgstr "Sailkapena:"
 
 #: tzos/templates/xquery/term.xqm:157
-#, fuzzy
 msgid "Hyponym:"
-msgstr "Hiponimoa"
+msgstr "Hiponimoa:"
 
 #: tzos/templates/xquery/term.xqm:160
-#, fuzzy
 msgid "Hyperonym:"
-msgstr "Hiperonimoa"
+msgstr "Hiperonimoa:"
 
 #: tzos/templates/xquery/term.xqm:163
-#, fuzzy
 msgid "Antonym:"
-msgstr "Antonimoa"
+msgstr "Antonimoa:"
 
 #: tzos/templates/xquery/term.xqm:166
 msgid "Related concept:"
-msgstr ""
+msgstr "Erlazionatutako kontzeptua:"
 
 #: tzos/templates/xquery/term.xqm:169
 msgid "See also:"
-msgstr ""
+msgstr "Ikus halaber:"
 
 #: tzos/templates/xquery/term.xqm:174
 msgid "Add synonym/translation"
@@ -1783,4 +1772,3 @@ msgstr "Terminoa ondo gehitu da. <a href=\"%(url)s\">Joan terminora</a>."
 #: tzos/views/terms.py:80
 msgid "Error while trying to add the term."
 msgstr "Errorea terminoa gehitzen saiatzean."
-

@@ -17,7 +17,7 @@ from tzos.extensions import dbxml
 from tzos.forms import AddTermForm, EditTermForm
 from tzos.models import Term
 from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs, \
-    get_working_statuses, require_valid_dict
+    require_valid_dict
 
 terms = Module(__name__)
 

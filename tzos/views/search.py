@@ -36,10 +36,10 @@ def _get_search_predicate(q):
         'context': '$term/../descrip[@type="context"]/string()',
         'example': '$term/../descrip[@type="example"]/string()',
         'explanation': '$term/../descrip[@type="explanation"]/string()',
-        'hyponym': '$term/../descrip[@type="subordinateConceptGeneric"]/string()',
-        'hyperonym': '$term/../descrip[@type="superordinateConceptGeneric"]/string()',
-        'antonym': '$term/../descrip[@type="antonymConcept"]/string()',
-        'related': '$term/../descrip[@type="relatedConcept"]/string()',
+        'hyponym': '$term/../../../descrip[@type="subordinateConceptGeneric"]/string()',
+        'hyperonym': '$term/../../../descrip[@type="superordinateConceptGeneric"]/string()',
+        'antonym': '$term/../../../descrip[@type="antonymConcept"]/string()',
+        'related': '$term/../../../descrip[@type="relatedConcept"]/string()',
     }
 
     field = _get_search_param('field')
@@ -61,7 +61,7 @@ def _get_search_filters():
     filters = (
         ('lang', '$term/../..[@xml:lang="{0}"]'),
         ('subject_field', '$term/../../../descrip[@type="subjectField"]/string() = "{0}"'),
-        # TODO: Concept origin
+        # TODO: Concept origin, product subset
         ('na', '$term/../termNote[@type="normativeAuthorization"]/string() = "{0}"'),
         ('na_org', '$term/../termNote[@type="normativeAuthorization"][@target="{0}"]'),
         ('pos', '$term/../termNote[@type="partOfSpeech"]/string() = "{0}"'),

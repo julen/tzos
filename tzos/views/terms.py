@@ -59,9 +59,9 @@ def add():
         del form_args['term']
         del form_args['lang']
 
-    add_term_form = generate_term_form(AddTermForm, formdata=form_args)
+    add_form = generate_term_form(AddTermForm, formdata=form_args)
 
-    return render_template('terms/add.html', add_term_form=add_term_form)
+    return render_template('terms/add.html', add_form=add_form)
 
 @terms.route('/add/single/', methods=('POST',))
 def add_single():
@@ -81,7 +81,7 @@ def add_single():
 
         return redirect(url_for('terms.add'))
 
-    return render_template('terms/add.html', add_term_form=form)
+    return render_template('terms/add.html', add_form=form)
 
 @terms.route('/<id>/edit/')
 def edit(id):

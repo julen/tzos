@@ -132,8 +132,9 @@ class BaseTermForm(Form):
     entry_source = TextField(_('Entry source'))
     example = TextAreaField(_('Example'))
     explanation = TextAreaField(_('Explanation'))
-    # TODO: Convert this to a SelectField
-    product_subset = TextField(_('Appears in'))
+
+    ps_choices = dropdown_list(PRODUCT_SUBSET)
+    product_subset = SelectField(_('Appears in'), choices=ps_choices)
 
     #
     # Linguistic fields

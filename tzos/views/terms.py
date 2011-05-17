@@ -86,7 +86,7 @@ def add_single():
 @terms.route('/<id>/edit/')
 def edit(id):
 
-    if not g.user or g.user.owns_term(id):
+    if not g.user or not g.user.owns_term(id):
         abort(403)
 
     term = Term(id)

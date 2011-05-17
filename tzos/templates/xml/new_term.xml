@@ -31,6 +31,8 @@
     {% if context %}
     <descrip type="context">[[ context ]]</descrip>
     {% endif %}
-    {# TODO: add non-required fields #}
+    {% if cross_reference %}
+    <ref target="[[ xref_id ]]" type="crossReference">[[ cross_reference ]]</ref>
+    {% endif %}
     [[ render_transaction(transac_type, date, username) ]]
 </tig>

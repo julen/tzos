@@ -8,13 +8,10 @@
         <script type=text/javascript>
             $AUTOCOMPLETE_URL = "[[ url_for('xhr.autocomplete') ]]";
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-        {% assets "js_all" %}
-        <script type="text/javascript" src="[[ ASSET_URL ]]"></script>
-        {% endassets %}
-        {% assets "css_all" %}
+        <script src="[[ url_for('.static', filename='jquery.min.js') ]]"></script>
+        {%- assets "css_all" %}
         <link rel="stylesheet" type="text/css" href="[[ ASSET_URL ]]" />
-        {% endassets %}
+        {%- endassets %}
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
     <body>
@@ -93,5 +90,8 @@
                 </ul>
             </section>
         </footer>
+        {%- assets "js_all" %}
+        <script type="text/javascript" src="[[ ASSET_URL ]]"></script>
+        {% endassets %}
     </body>
 </html>

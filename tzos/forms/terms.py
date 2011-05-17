@@ -36,7 +36,7 @@ class BaseTermForm(Form):
         if form.syntrans.data and field.data == "":
             raise ValidationError(message)
 
-    def check_exists(form, field):
+    def check_syntrans_exists(form, field):
         if form.syntrans.data and field.data != "":
             message = _("This term doesn't exist in the database.")
 
@@ -51,7 +51,7 @@ class BaseTermForm(Form):
             if not result:
                 raise ValidationError(message)
 
-    def check_xref_exists(form, field):
+    def check_exists(form, field):
         if field.data != "":
             message = _("This term doesn't exist in the database.")
 
@@ -107,7 +107,7 @@ class BaseTermForm(Form):
 
     syntrans_term = TextField(_("Term"), validators=[
         check_syntrans,
-        check_exists])
+        check_syntrans_exists])
 
     syntrans_lang = DynamicSelectField(_("Language"), validators=[
         check_required_dropdown])
@@ -127,7 +127,7 @@ class BaseTermForm(Form):
     #
     context = TextAreaField(_('Context'))
     cross_reference = TextField(_('Cross reference'), validators=[
-        check_xref_exists])
+        check_exists])
     definition = TextAreaField(_('Definition'))
     entry_source = TextField(_('Entry source'))
     example = TextAreaField(_('Example'))

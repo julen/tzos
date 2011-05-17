@@ -986,7 +986,7 @@ msgstr "Izen berrezia"
 
 #: tzos/strings.py:283
 msgid "Notes"
-msgstr "Oharrak"
+msgstr "Apunteak"
 
 #: tzos/strings.py:284
 msgid "End of degree projects"

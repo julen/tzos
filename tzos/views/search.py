@@ -21,7 +21,7 @@ search = Module(__name__)
 def _get_search_param(key):
     val = request.args.get(key, '')
 
-    if val and (val == 'all' or val == '-1'):
+    if val and (val == 'all'):
         val = ''
 
     return val

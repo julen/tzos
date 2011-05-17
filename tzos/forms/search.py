@@ -51,9 +51,8 @@ class SearchForm(Form):
     sf_choices = dropdown_list(SUBJECT_FIELDS, 'all', _('All'))
     subject_field = DynamicSelectField(_('Subject field'), choices=sf_choices)
 
-    ps_choices = dropdown_list(PRODUCT_SUBSET, -1, _('All'))
-    product_subset = SelectField(_('Appears in'), choices=ps_choices,
-        coerce=int)
+    ps_choices = dropdown_list(PRODUCT_SUBSET, 'all', _('All'))
+    product_subset = SelectField(_('Appears in'), choices=ps_choices)
 
     concept_origin = TextField(_('Origin'))
 

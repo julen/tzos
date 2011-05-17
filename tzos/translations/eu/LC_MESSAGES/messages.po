@@ -1614,7 +1614,7 @@ msgstr "Sailkapena"
 #: tzos/templates/search/results.html:23 tzos/templates/terms/add.html:49
 #: tzos/templates/terms/edit.html:41
 msgid "Linguistic information"
-msgstr "Informazioa linguistikoa"
+msgstr "Informazio linguistikoa"
 
 #: tzos/templates/terms/add.html:5 tzos/templates/terms/add.html:7
 msgid "Add terms"

@@ -8,6 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import SelectField
 
 class DynamicSelectField(SelectField):
@@ -27,4 +28,4 @@ class DynamicSelectField(SelectField):
                 if self.data == v:
                     break
             else:
-                raise ValueError(self.gettext(u'Not a valid choice'))
+                raise ValueError(_(u'Not a valid choice'))

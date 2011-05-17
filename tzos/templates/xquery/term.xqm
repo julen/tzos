@@ -163,7 +163,7 @@ return
         <li class="more">[[ _('Hyponym:') ]] { term:asLink2(term:subordinate_cg($term)) }</li>
         else () }
         { if (term:superordinate_cg($term)) then
-        <li class="more">[[ _('Hyperonym:') ]] { term:asLink2(term:superordinate_cg($term)) }</li>
+        <li class="more">[[ _('Hypernym:') ]] { term:asLink2(term:superordinate_cg($term)) }</li>
         else () }
         { if (term:antonym_concept($term)) then
         <li class="more">[[ _('Antonym:') ]] { term:asLink2(term:antonym_concept($term)) }</li>

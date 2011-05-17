@@ -148,7 +148,7 @@ class BaseTermForm(Form):
     # TODO: check if the passed terms exist in the DB
     subordinate_concept_generic = TextField(_('Hyponym'), validators=[
         check_exists])
-    superordinate_concept_generic = TextField(_('Hyperonym'), validators=[
+    superordinate_concept_generic = TextField(_('Hypernym'), validators=[
         check_exists])
     antonym_concept = TextField(_('Antonym'), validators=[
         check_exists])

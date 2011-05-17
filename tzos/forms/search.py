@@ -30,7 +30,7 @@ class SearchForm(Form):
         ('example', _('Example')),
         ('explanation', _('Explanation')),
         ('hyponym', _('Hyponym')),
-        ('hyperonym', _('Hyperonym')),
+        ('hypernym', _('Hypernym')),
         ('antonym', _('Antonym')),
         ('related', _('Related concept')),
     )

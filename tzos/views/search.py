@@ -37,7 +37,7 @@ def _get_search_predicate(q):
         'example': '$term/../descrip[@type="example"]/string()',
         'explanation': '$term/../descrip[@type="explanation"]/string()',
         'hyponym': '$term/../../../descrip[@type="subordinateConceptGeneric"]/string()',
-        'hyperonym': '$term/../../../descrip[@type="superordinateConceptGeneric"]/string()',
+        'hypernym': '$term/../../../descrip[@type="superordinateConceptGeneric"]/string()',
         'antonym': '$term/../../../descrip[@type="antonymConcept"]/string()',
         'related': '$term/../../../descrip[@type="relatedConcept"]/string()',
     }

@@ -19,7 +19,7 @@
     {% if entry_source %}
     <admin type="entrySource">[[ entry_source ]]</admin>
     {% endif %}
-    {% if product_subset != "none" %}
+    {% if product_subset != -1 %}
     <admin type="productSubset">[[ product_subset ]]</admin>
     {% endif %}
     {% if example %}

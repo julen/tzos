@@ -133,8 +133,9 @@ class BaseTermForm(Form):
     example = TextAreaField(_('Example'))
     explanation = TextAreaField(_('Explanation'))
 
-    ps_choices = dropdown_list(PRODUCT_SUBSET)
-    product_subset = SelectField(_('Appears in'), choices=ps_choices)
+    ps_choices = dropdown_list(PRODUCT_SUBSET, key=-1)
+    product_subset = SelectField(_('Appears in'), choices=ps_choices,
+        coerce=int)
 
     #
     # Linguistic fields

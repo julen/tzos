@@ -284,3 +284,11 @@ PRODUCT_SUBSET = [
     ('2', _('Research projects')),
     ('3', _('Theses')),
 ]
+
+WORKING_STATUS = [
+    ('starterElement', _('Starter')),
+    ('workingElement', _('Working')),
+    ('consolidatedElement', _('Consolidated')),
+    ('archiveElement', _('Archived')),
+    ('importedElement', _('Imported')),
+]

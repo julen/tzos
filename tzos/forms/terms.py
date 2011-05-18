@@ -169,4 +169,7 @@ class AddTermForm(BaseTermForm):
 
 class EditTermForm(BaseTermForm):
 
+    ws_choices = WORKING_STATUS
+    working_status = DynamicSelectField(_("Working status."), choices=ws_choices)
+
     submit = SubmitField(_("Save changes"))

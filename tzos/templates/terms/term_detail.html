@@ -13,7 +13,7 @@
 <h2 class="h1">[[ _('Term not found.') ]]</h2>
 {% endif %}
 
-<h2 class="h4 hr">[[ _('Comments') ]]</h2>
+<h2 class="h4 hr">[[ _('Comments (%(count)d)', count=term_comments|count) ]]</h2>
 {% if g.user %}
 <p class="p5">[[ _('Read what people have said about this term and add your comment!') ]]</p>
 {% else %}

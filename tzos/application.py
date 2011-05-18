@@ -12,7 +12,7 @@ from flask import Flask, flash, g, redirect, render_template, request, \
     session, url_for
 
 from flaskext.assets import Bundle, Environment
-from flaskext.babel import Babel, gettext as _, format_date
+from flaskext.babel import Babel, gettext as _, format_date, format_datetime
 from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
@@ -146,6 +146,10 @@ def configure_jinja(app):
     @app.template_filter()
     def dateformat(value, format):
         return format_date(value, format=format)
+
+    @app.template_filter()
+    def datetimeformat(value, format, rebase=True):
+        return format_datetime(value, format, rebase)
 
 
 def configure_context_processors(app):

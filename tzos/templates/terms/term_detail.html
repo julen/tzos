@@ -29,7 +29,7 @@
 <div id="comments">
     <ul>
     {% for c in term_comments %}
-    <li id="comment-[[ c.id ]]"><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]"><img class="fl" src="[[ c.author.gravatar_url(32) ]]" /></a><strong><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]">[[ c.author.username ]]</a></strong><span class="weak small datetime">[[ c.date_created ]]</span><span class="permalink"><a href="[[ c.permalink ]]">[[ _('Permalink') ]]</a></span><br />[[ c.comment ]]</li>
+    <li id="comment-[[ c.id ]]"><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]"><img class="fl" src="[[ c.author.gravatar_url(32) ]]" /></a><strong><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]">[[ c.author.username ]]</a></strong><span class="weak small datetime">[[ c.date_created|datetimeformat(_('d/M/yyyy HH:mm')) ]]</span><span class="permalink"><a href="[[ c.permalink ]]">[[ _('Permalink') ]]</a></span><br />[[ c.comment ]]</li>
     {% endfor %}
     </ul>
 </div>

@@ -182,7 +182,7 @@ return
         <li class="more">[[ _('See also:') ]] <a href="[[ url_for('terms.detail', id='{ term:xref_id($term) }') ]]">{ term:asLink2(term:xref($term)) }</a></li>
         else () }
     </ul>
-    <ul class="termActions in hideme small weak">
+    <ul class="termActions in small">
         {{% if g.user %}}
         <li><a href="[[ url_for('terms.add', lang='{ $termLang }', term='{ $term/string() }') ]]">[[ _('Add synonym/translation') ]]</a></li>
         {{% if g.user.owns_term('{ $termID }') %}}

@@ -736,10 +736,11 @@ ul.termActions {
     position: absolute;
     top: 0;
     right: 5%;
+    visibility: hidden;
 }
 
 div.term:hover .termActions {
-    display: block!important;
+    visibility: visible;
 }
 
 

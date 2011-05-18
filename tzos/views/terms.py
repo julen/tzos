@@ -21,7 +21,7 @@ from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs, \
 
 terms = Module(__name__)
 
-@terms.route('/<id>/')
+@terms.route('/<int:id>/')
 def detail(id):
 
     ctx = { 'id': id, 'current_user': getattr(g.user, 'username', '') }
@@ -86,7 +86,7 @@ def add_single():
 
     return render_template('terms/add.html', add_form=form)
 
-@terms.route('/<id>/edit/')
+@terms.route('/<int:id>/edit/')
 def edit(id):
 
     if not g.user or not g.user.owns_term(id):

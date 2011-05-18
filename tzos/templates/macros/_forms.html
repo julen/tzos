@@ -29,8 +29,8 @@
 {% endif %}
 {% endmacro %}
 
-{% macro render_form(form, action='.') %}
-<form method="POST" action="[[ action ]]" class="f1">
+{% macro render_form(form, action='.', form_class="f1") %}
+<form method="POST" action="[[ action ]]" class="[[ form_class ]]">
     [[ form.hidden_tag() ]]
     <ul>
         {% for field in form if not field.type == 'SubmitField' and

@@ -35,7 +35,7 @@
     <ul>
         {% for field in form if not field.type == 'SubmitField' and
                                 not field.type == 'HiddenField' %}
-        [[ render_field(field, class="input") ]]
+        [[ render_field(field, class="input", **kwargs) ]]
         {% endfor %}
     </ul>
     [[ render_field(form.submit) ]]

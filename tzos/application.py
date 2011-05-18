@@ -145,7 +145,7 @@ def configure_jinja(app):
 
     @app.template_filter()
     def dateformat(value, format):
-        return format_date(value, format=format)
+        return format_date(value, format)
 
     @app.template_filter()
     def datetimeformat(value, format, rebase=True):

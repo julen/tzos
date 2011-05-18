@@ -95,6 +95,9 @@ def edit(id):
     term = Term(id)
     term.populate()
 
+    # Handle SelectMultipleFields
+    term.subject_field = term.subject_field.split(';')
+
     form = generate_term_form(EditTermForm, obj=term)
 
     return render_template('terms/edit.html', form=form)

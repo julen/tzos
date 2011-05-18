@@ -875,8 +875,17 @@ ul.searchResults li {
     margin-left: -42px;
 }
 
-#comments ul li strong {
+#comments ul li strong,
+#comments ul li span.datetime {
     margin-right: 5px;
+}
+
+#comments ul li span.permalink {
+    visibility: hidden;
+}
+
+#comments ul li:hover span.permalink {
+    visibility: visible;
 }
 
 

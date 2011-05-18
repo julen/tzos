@@ -56,7 +56,7 @@ def _get_search_predicate(q):
 
 def _get_search_filters():
 
-    f_str = "true()"
+    f_str = ""
 
     filters = (
         ('lang', '$term/../..[@xml:lang="{0}"]'),
@@ -87,13 +87,14 @@ def quick():
         predicate = _get_search_predicate(q)
         filter = _get_search_filters()
 
-        non_default = filter and request.args.get('field', None)
+        field = request.args.get('field', 'term')
+        non_default = filter or field != 'term'
 
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
 
         for $term in collection($collection)//term
-        where term:is_public($term) and {0} and {1}
+        where term:is_public($term) and {0}{1}
         return term:asLink($term)
         """.format(predicate.encode('utf-8'),
                    filter.encode('utf-8'))

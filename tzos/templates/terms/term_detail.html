@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% from "macros/_forms.html" import render_form %}
+
 {% block title %}[[ super() ]][[ _('Term details') ]]{% endblock %}
 
 {% block intro %}{% endblock %}
@@ -10,5 +12,23 @@
 {% else %}
 <h2 class="h1">[[ _('Term not found.') ]]</h2>
 {% endif %}
-{% endblock %}
 
+<h2 class="h4 hr">[[ _('Comments') ]]</h2>
+{% if g.user %}
+<p class="p5">[[ _('Read what people have said about this term and add your comment!') ]]</p>
+{% else %}
+<p class="p5">[[ _('Read what people have said about this term.') ]]</p>
+{% endif %}
+{% if term_comments %}
+    {% for c in term_comments %}
+    [[ c.author.username ]] --- [[ c.comment ]]<br />
+    {% endfor %}
+{% else %}
+<h3 class="h5">[[ _('No comments yet.') ]]</h3>
+{% endif %}
+
+{% if g.user %}
+{% set form_action = url_for('terms.add_comment', term_id=term_id) %}
+[[ render_form(comment_form, action=form_action, labeled=False) ]]
+{% endif %}
+{% endblock %}

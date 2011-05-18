@@ -13,11 +13,12 @@ from flask import Module, abort, flash, g, render_template, redirect, \
 
 from flaskext.babel import gettext as _
 
-from tzos.extensions import dbxml
-from tzos.forms import AddTermForm, EditTermForm
-from tzos.models import Term
+from tzos.extensions import db, dbxml
+from tzos.forms import AddTermForm, CommentForm, EditTermForm
+from tzos.models import Comment, Term
 from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs, \
     require_valid_dict
+from tzos.permissions import auth
 
 terms = Module(__name__)
 
@@ -29,8 +30,15 @@ def detail(id):
                                                   context=ctx) \
                                   .as_rendered().first_or_404()
 
+    comment_form = CommentForm(term_id=id)
+
+    term_comments = Comment.query.filter(Comment.term_id==id).all()
+
     return render_template('terms/term_detail.html',
-                           rendered_term=rendered_term)
+                           rendered_term=rendered_term,
+                           comment_form=comment_form,
+                           term_id=id,
+                           term_comments=term_comments)
 
 def generate_term_form(form_cls, **form_args):
 
@@ -101,3 +109,23 @@ def edit(id):
     form = generate_term_form(EditTermForm, obj=term)
 
     return render_template('terms/edit.html', form=form)
+
+@terms.route("/<int:term_id>/comment/", methods=("POST",))
+@auth.require(401)
+def add_comment(term_id):
+
+    form = CommentForm()
+
+    if form.validate_on_submit():
+        comment = Comment(author=g.user)
+
+        form.populate_obj(comment)
+
+        db.session.add(comment)
+        db.session.commit()
+
+        flash(_("Thanks for your comment."), "success")
+
+        return redirect(comment.url)
+
+    return redirect(url_for("terms.detail", id=term_id))

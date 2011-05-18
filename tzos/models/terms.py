@@ -10,7 +10,7 @@
 """
 from time import strftime
 
-from flask import g, render_template
+from flask import g, render_template, url_for
 
 from werkzeug import cached_property
 

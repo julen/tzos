@@ -20,9 +20,13 @@
 <p class="p5">[[ _('Read what people have said about this term.') ]]</p>
 {% endif %}
 {% if term_comments %}
+<div id="comments">
+    <ul>
     {% for c in term_comments %}
-    [[ c.author.username ]] --- [[ c.comment ]]<br />
+    <li><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]"><img class="fl" src="[[ c.author.gravatar_url(32) ]]" /></a><strong><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]">[[ c.author.username ]]</a></strong><span class="weak small">[[ c.date_created ]]</span><br />[[ c.comment ]]</li>
     {% endfor %}
+    </ul>
+</div>
 {% else %}
 <h3 class="h5">[[ _('No comments yet.') ]]</h3>
 {% endif %}

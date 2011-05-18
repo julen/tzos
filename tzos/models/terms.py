@@ -12,6 +12,8 @@ from time import strftime
 
 from flask import g, render_template
 
+from werkzeug import cached_property
+
 from tzos.extensions import dbxml
 
 class Term(object):
@@ -35,6 +37,19 @@ class Term(object):
             self.term_id = result
 
         return result
+
+    def _url(self, _external=False):
+        return url_for('terms.detail',
+                       id=self.id,
+                       _external=_external)
+
+    @cached_property
+    def url(self):
+        return self._url()
+
+    @cached_property
+    def permalink(self):
+        return self._url(True)
 
     def exists(self):
         """Returns True if the current term exists in the DB."""

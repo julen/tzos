@@ -37,5 +37,7 @@
     {% endfor %}
 </ul>
 [[ render_pagination(page, 'search.quick') ]]
+{% else %}
+<div class="searchResults hr clBoth"><h2>[[ _('No terms found.') ]]</h2></div>
 {% endif %}
 {% endblock %}

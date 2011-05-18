@@ -60,7 +60,7 @@ def _get_search_filters():
 
     filters = (
         ('lang', '$term/../..[@xml:lang="{0}"]'),
-        ('subject_field', '$term/../../../descrip[@type="subjectField"]/string() = "{0}"'),
+        ('subject_field', '(let $fields := tokenize(term:subject_field($term), ";") return some $f in $fields satisfies $f = "{0}")'),
         ('product_subset', '$term/../admin[@type="productSubset"]/string() = "{0}"'),
         # TODO: Concept origin
         ('na', '$term/../termNote[@type="normativeAuthorization"]/string() = "{0}"'),

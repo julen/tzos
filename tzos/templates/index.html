@@ -6,7 +6,8 @@
 {% block intro_text %}[[ _('TZOS is an online community for building and sharing terminology.') ]]{% endblock %}
 
 {% block content %}
-<form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
+<form class="f1 simpleSearch" action="[[ url_for('search.quick') ]]" method="GET">
     {% include "search/core.html" %}
+    <p><a href="[[ url_for('search.quick') ]]">[[ _("Advanced search") ]]</a></p>
 </form>
 {% endblock %}

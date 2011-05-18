@@ -802,11 +802,12 @@ ul.pagination li a:hover {
 
 /* Search */
 
-/* Advanced */
-
-.coreFields {
+form.advancedSearch,
+form.simpleSearch {
     margin-left: 2em;
 }
+
+/* Advanced */
 
 .coreFields #q {
     width: 600px;
@@ -820,12 +821,8 @@ ul.pagination li a:hover {
     vertical-align: baseline;
 }
 
-.searchOpts {
-    margin-left: 2em;
-}
-
 .advancedSearch .extra {
-    margin: 1.5em;
+    margin: 1.5em 0;
 }
 .advancedSearch .extra li {
     float: left;

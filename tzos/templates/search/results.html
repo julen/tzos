@@ -11,7 +11,7 @@
 {% block content %}
 <form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
     {% include "search/core.html" %}
-    <p class="clLeft showme searchOpts" style="display:none;"><i class="{% if non_default %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Search options") ]]</a></p>
+    <p class="clLeft showme" style="display:none;"><i class="{% if non_default %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Search options") ]]</a></p>
     <div class="extra hideme{% if non_default %} doNotHide{% endif %}">
         <ul>
             <h2 class="h4 clBoth">[[ _('General') ]]</h2>

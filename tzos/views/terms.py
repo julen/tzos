@@ -53,6 +53,7 @@ def generate_term_form(form_cls, **form_args):
     return form
 
 @terms.route('/add/')
+@auth.require(401)
 def add():
 
     form_args = None
@@ -72,6 +73,7 @@ def add():
     return render_template('terms/add.html', add_form=add_form)
 
 @terms.route('/add/single/', methods=('POST',))
+@auth.require(401)
 def add_single():
 
     form = generate_term_form(AddTermForm)
@@ -95,9 +97,10 @@ def add_single():
     return render_template('terms/add.html', add_form=form)
 
 @terms.route('/<int:id>/edit/')
+@auth.require(401)
 def edit(id):
 
-    if not g.user or not g.user.owns_term(id):
+    if not g.user.owns_term(id):
         abort(403)
 
     term = Term(id)

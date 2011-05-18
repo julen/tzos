@@ -15,19 +15,13 @@
             [[ render_field(form.language, class="input") ]]
             [[ render_field(form.subject_field, class="input") ]]
             [[ render_field(form.concept_origin, class="input") ]]
-            [[ render_field(form.make_public, class="input", tag_class="singleLine") ]]
-        </ul>
-        <ul class="fields clLeft">
-            [[ render_field(form.syntrans, class="input", tag_class="showSyntrans singleLine") ]]
-            [[ render_field(form.syntrans_term, class="input", tag_class="hideme") ]]
-            [[ render_field(form.syntrans_lang, class="input", tag_class="hideme") ]]
+            [[ render_field(form.working_status, class="input", tag_class="singleLine") ]]
         </ul>
         <ul class="fields clLeft">
             [[ render_field(form.not_mine, tag_class="showSource") ]]
             [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
         </ul>
-        <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide" rel="tipsy-ns" title="[[ _("Show optional fields for more advanced use cases.") ]]">[[ _("Show advanced fields") ]]</a></p>
-        <div class="extra hideme">
+        <div class="extra">
             <ul class="fields">
                 [[ render_field(form.definition, class="input") ]]
                 [[ render_field(form.context, class="input") ]]

@@ -21,22 +21,38 @@ from tzos.permissions import admin as admin_permission
 admin = Module(__name__)
 
 
-@admin.route('/')
-@admin_permission.require(401)
-def settings():
-    users = User.query.filter(User.role > User.MEMBER) \
-                      .order_by('-role', 'username')
+def gen_users_form():
 
-    users_form = ModifyUserPermissionForm()
-    users_form.user.choices = [(u.id, u.username) for u in \
+    form = ModifyUserPermissionForm()
+    form.user.choices = [(u.id, u.username) for u in \
         User.query.filter(User.username!=g.user.username)
                   .order_by('username')]
 
-    langs_form = AddLanguagesForm()
+    return form
 
-    origin_choices = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
-    origins_form = AddTermOriginForm()
-    origins_form.parent_id.choices = origin_choices
+
+def gen_add_origins_form():
+
+    form = AddTermOriginForm()
+
+    origins = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
+    origin_choices = origins
+
+    form.parent_id.choices = origin_choices
+
+    return form
+
+
+@admin.route('/')
+@admin_permission.require(401)
+def settings():
+
+    users = User.query.filter(User.role > User.MEMBER) \
+                      .order_by('-role', 'username')
+
+    users_form = gen_users_form()
+    langs_form = AddLanguagesForm()
+    origins_form = gen_add_origins_form()
 
     return render_template("admin/settings.html", users=users,
                                                   users_form=users_form,
@@ -46,9 +62,8 @@ def settings():
 @admin.route('/users/', methods=('POST',))
 @admin_permission.require(401)
 def users():
-    form = ModifyUserPermissionForm()
-    form.user.choices = [(u.id, u.username) for u in \
-        User.query.filter(User.username!=g.user.username)]
+
+    form = users_form()
 
     if form and form.validate_on_submit():
         user = User.query.filter_by(id=form.user.data).first_or_404()
@@ -66,9 +81,8 @@ def users():
 @admin.route('/origin/add/', methods=('POST',))
 @admin_permission.require(401)
 def add_origin():
-    origin_choices = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
-    form = AddTermOriginForm()
-    form.parent_id.choices = origin_choices
+
+    form = gen_add_origins_form()
 
     if form and form.validate_on_submit():
         origin = TermOrigin()

@@ -635,10 +635,15 @@ section.admin ul.sideTabs li a.selected {
     padding: 10px;
 }
 
+/* Latest activity */
+
+.activity {
+    margin-top: 2em;
+}
+
 /* User profile */
 
-.profileHead,
-.vcard {
+.profileHead {
     padding: 10px 0;
 }
 

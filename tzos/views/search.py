@@ -52,7 +52,7 @@ def _get_search_predicate(q):
     except KeyError:
         predicate = predicates[default_field]
 
-    return '{0}({1}, "{2}")'.format(search_func, predicate, q)
+    return u'{0}({1}, "{2}")'.format(search_func, predicate, q)
 
 def _get_search_filters():
 

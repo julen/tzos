@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% from "macros/_util.html" import render_comments %}
+
 {% block title %}[[ super() ]][[ _("%(user)s's profile", user=user.username) ]]{% endblock %}
 
 {% block intro %}{% endblock %}
@@ -11,34 +13,45 @@
         <h1 class="in">[[ user.username ]]</h1>{% if user.display_name %}<h1 class="in dead">([[ user.display_name ]])</h1>{% endif %}{% if user.username == g.user.username %}<a href="[[ url_for('account.settings') ]]" class="b small strong action">[[ _('Edit profile') ]]</a>{% endif %}
     </div>
 </div>
-<div class="hr">
-    <div class="vcard">
-        {% if user.display_name %}
-        <dl>
-            <dt>[[ _('Name') ]]</dt><dd class="fn">[[ user.display_name ]]</dd>
-        </dl>
+<div class="vcard hr">
+    {% if user.display_name %}
+    <dl>
+        <dt>[[ _('Name') ]]</dt><dd class="fn">[[ user.display_name ]]</dd>
+    </dl>
+    {% endif %}
+    {% if user.website %}
+    <dl>
+        <dt>[[ _('Website') ]]</dt><dd class="url"><a href="[[ user.website ]]" class="url">[[ user.website ]]</a></dd>
+    </dl>
+    {% endif %}
+    {% if user.company %}
+    <dl>
+        <dt>[[ _('Company/Organization') ]]</dt><dd class="org">[[ user.company ]]</dd>
+    </dl>
+    {% endif %}
+    {% if user.location %}
+    <dl>
+        <dt>[[ _('Location') ]]</dt><dd class="adr locality">[[ user.location ]]</dd>
+    </dl>
+    {% endif %}
+    <dl>
+        <dt>[[ _('Role') ]]</dt><dd>[[ user.natural_role ]]</dd>
+    </dl>
+    <dl>
+        <dt>[[ _('Date joined') ]]</dt><dd>[[ user.date_joined|dateformat(_('d/M/Y')) ]]</dd>
+    </dl>
+</div>
+<div class="activity columns hr">
+    <div class="half">
+        <h2 class="h4">[[ _("Latest additions") ]]</h2>
+    </div>
+    <div class="comments profile half">
+        <h2 class="h4">[[ _("Latest comments") ]]</h2>
+        {% if user_comments %}
+        [[ render_comments(user_comments, gravatar=False, username=False) ]]
+        {% else %}
+        <p>[[ _("This user hasn't made any comments yet.") ]]</p>
         {% endif %}
-        {% if user.website %}
-        <dl>
-            <dt>[[ _('Website') ]]</dt><dd class="url"><a href="[[ user.website ]]" class="url">[[ user.website ]]</a></dd>
-        </dl>
-        {% endif %}
-        {% if user.company %}
-        <dl>
-            <dt>[[ _('Company/Organization') ]]</dt><dd class="org">[[ user.company ]]</dd>
-        </dl>
-        {% endif %}
-        {% if user.location %}
-        <dl>
-            <dt>[[ _('Location') ]]</dt><dd class="adr locality">[[ user.location ]]</dd>
-        </dl>
-        {% endif %}
-        <dl>
-            <dt>[[ _('Role') ]]</dt><dd>[[ user.natural_role ]]</dd>
-        </dl>
-        <dl>
-            <dt>[[ _('Date joined') ]]</dt><dd>[[ user.date_joined|dateformat(_('d/M/Y')) ]]</dd>
-        </dl>
     </div>
 </div>
 {% endblock %}

@@ -600,6 +600,12 @@ section.admin ul.sideTabs li a.selected {
     width: 640px;
 }
 
+.columns .half {
+    float: left;
+    width: 460px;
+    margin-bottom: 1.5em;
+}
+
 .hTabs .columns .main {
     width: 440px;
 }
@@ -631,8 +637,8 @@ section.admin ul.sideTabs li a.selected {
 
 /* User profile */
 
-.profileHead {
-    margin: 15px 0 0;
+.profileHead,
+.vcard {
     padding: 10px 0;
 }
 

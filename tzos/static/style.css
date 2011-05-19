@@ -861,31 +861,36 @@ ul.searchResults li {
 
 /* Comments */
 
-#comments ul {
+.comments ul {
     padding: 0.5em;
 }
 
-#comments ul li {
+.comments ul li {
     border-top: 1px solid #f1f1f1;
     font-size: 0.9em;
     line-height: 1.4;
     padding: 5px 0 5px 42px;
 }
 
-#comments ul li img {
+.comments.profile ul li {
+    padding-left: 0;
+    border-top: 0 none;
+}
+
+.comments ul li img {
     margin-left: -42px;
 }
 
-#comments ul li strong,
-#comments ul li span.datetime {
+.comments ul li strong,
+.comments ul li span.datetime {
     margin-right: 5px;
 }
 
-#comments ul li span.permalink {
+.comments ul li span.permalink {
     visibility: hidden;
 }
 
-#comments ul li:hover span.permalink {
+.comments ul li:hover span.permalink {
     visibility: visible;
 }
 

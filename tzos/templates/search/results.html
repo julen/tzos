@@ -30,14 +30,14 @@
     </div>
 </form>
 
-{% if page.items %}
+{% if page and page.items %}
 <ul class="searchResults hr clBoth">
     {% for term in page.items %}
     <li>[[ term|safe ]]</li>
     {% endfor %}
 </ul>
 [[ render_pagination(page, 'search.quick') ]]
-{% else %}
+{% elif q %}
 <div class="searchResults hr clBoth"><h2>[[ _('No terms found.') ]]</h2></div>
 {% endif %}
 {% endblock %}

@@ -15,6 +15,7 @@ from flaskext.babel import gettext as _
 from tzos.extensions import db
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, \
         EditTermOriginForm, ModifyUserPermissionForm
+from tzos.helpers import dropdown_list
 from tzos.models import TermOrigin, User
 from tzos.permissions import admin as admin_permission
 
@@ -36,9 +37,7 @@ def gen_add_origins_form():
     form = AddTermOriginForm()
 
     origins = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
-    origin_choices = origins
-
-    form.parent_id.choices = origin_choices
+    form.parent_id.choices = dropdown_list(list(origins), key=None, value='')
 
     return form
 

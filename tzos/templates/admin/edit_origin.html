@@ -1,0 +1,9 @@
+<div class="fields">
+    <h2 class="h4">[[ _('Edit origin') ]]</h2>
+    <form method="POST" action="[[ url_for('admin.edit_origin', id=origin.id) ]]" class="f1">
+        [[ form.hidden_tag() ]]
+        <dl>
+            <dd>[[ form.name(class="input") ]][[ form.parent_id(class="input") ]][[ form.submit(class="button") ]]</dd>
+        </dl>
+    </form>
+</div>

@@ -126,3 +126,29 @@ def add_origin():
         flash(_("Error while adding term origin."), "error")
 
     return redirect(url_for("admin.settings"))
+
+@admin.route('/origin/edit/<int:id>', methods=('GET','POST'))
+@admin_permission.require(401)
+def edit_origin(id):
+
+    origin = TermOrigin.query.get_or_404(id)
+    form = gen_origins_form(EditTermOriginForm, obj=origin)
+
+    if form and form.validate_on_submit():
+
+        origin.name = form.name.data
+
+        if form.parent_id.data > -1:
+            origin.parent_id = form.parent_id.data
+        else:
+            origin.parent_id = None
+
+        db.session.commit()
+
+        flash(_(u"Term origin ‘%(origin)s’ has been edited.",
+                origin=origin.name), "success")
+
+        return redirect(url_for("admin.settings"))
+
+    return render_template("admin/edit_origin.html", form=form,
+                                                     origin=origin)

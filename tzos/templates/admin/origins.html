@@ -1,9 +1,23 @@
 {% from "macros/_forms.html" import render_form %}
 <div class="columns">
-    <div class="column">
-        <div class="fields">
-            {% set origins_action = url_for('admin.add_origin') %}
-            [[ render_form(origins_form, action=origins_action) ]]
-        </div>
+    <h2 class="h4">[[ _('Current origins') ]]</h2>
+    <p>[[ _('These are the current term origins available on the system. To edit an origin, just click on it.') ]]</p>
+    <ul class="origins">
+        {%- for origin in origins recursive %}
+        <li>[[ origin.name ]]</a>
+        {%- if origin.children -%}
+        <ul class="submenu">[[ loop(origin.children) ]]</ul>
+        {%- endif %}
+        </li>
+        {%- endfor %}
+    </ul>
+    <div class="hr fields">
+        <h2 class="h4">[[ _('Add a new origin') ]]</h2>
+        <form method="POST" action="[[ url_for('admin.add_origin') ]]" class="f1">
+            [[ origins_form.hidden_tag() ]]
+            <dl>
+                <dd>[[ origins_form.name(class="input") ]][[ origins_form.parent_id(class="input") ]][[ origins_form.submit(class="button") ]]</dd>
+            </dl>
+        </form>
     </div>
 </div>

@@ -73,12 +73,15 @@ def settings():
 
     users = User.query.filter(User.role > User.MEMBER) \
                       .order_by('-role', 'username')
+    origins = TermOrigin.query.filter(TermOrigin.parent_id==None) \
+                              .order_by('name').all()
 
     users_form = gen_users_form()
     langs_form = AddLanguagesForm()
     origins_form = gen_add_origins_form()
 
     return render_template("admin/settings.html", users=users,
+                                                  origins=origins,
                                                   users_form=users_form,
                                                   langs_form=langs_form,
                                                   origins_form=origins_form)

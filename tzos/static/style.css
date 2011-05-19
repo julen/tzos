@@ -905,6 +905,26 @@ ul.searchResults li {
     visibility: visible;
 }
 
+/* Admin */
+
+#edit_permissions dd .input {
+    width: 190px;
+}
+
+#edit_origins dd .input {
+    width: 220px;
+}
+
+ul.origins {
+    margin: 0.5em 20px 1.5em;
+}
+
+ul.origins li {
+    line-height: 1.5;
+    list-style-type: square;
+    margin-left: 1em;
+}
+
 
 /* HTML5 compatibility */
 

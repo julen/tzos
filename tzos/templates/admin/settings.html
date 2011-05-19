@@ -12,7 +12,7 @@
     <ul class="inlineTabs sideTabs">
         <li><a href="#edit_permissions">[[ _("User permissions") ]]</a></li>
         <li><a href="#edit_languages">[[ _("Languages") ]]</a></li>
-        <li><a href="#edit_torigins">[[ _("Term origins") ]]</a></li>
+        <li><a href="#edit_origins">[[ _("Term origins") ]]</a></li>
         <li><a href="#edit_kfields">[[ _("Knowledge fields") ]]</a></li>
     </ul>
 
@@ -24,13 +24,8 @@
         {% include "admin/languages.html" %}
     </div>
 
-    <div id="edit_torigins" class="tabContent">
-        <div class="columns">
-            <div class="column">
-                <div class="fields">
-                </div>
-            </div>
-        </div>
+    <div id="edit_origins" class="tabContent">
+        {% include "admin/origins.html" %}
     </div>
 
     <div id="edit_kfields" class="tabContent">

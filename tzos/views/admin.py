@@ -13,8 +13,9 @@ from flask import Module, flash, g, redirect, render_template, request, url_for
 from flaskext.babel import gettext as _
 
 from tzos.extensions import db
-from tzos.forms import AddLanguagesForm, ModifyUserPermissionForm
-from tzos.models import User
+from tzos.forms import AddLanguagesForm, AddTermOriginForm, \
+        EditTermOriginForm, ModifyUserPermissionForm
+from tzos.models import TermOrigin, User
 from tzos.permissions import admin as admin_permission
 
 admin = Module(__name__)
@@ -33,9 +34,14 @@ def settings():
 
     languagesform = AddLanguagesForm()
 
+    origin_choices = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
+    origins_form = AddTermOriginForm()
+    origins_form.parent_id.choices = origin_choices
+
     return render_template("admin/settings.html", users=users,
                                                   usersform=usersform,
-                                                  languagesform=languagesform)
+                                                  languagesform=languagesform,
+                                                  origins_form=origins_form)
 
 @admin.route('/users/', methods=('POST',))
 @admin_permission.require(401)
@@ -54,5 +60,26 @@ def users():
                 user=user.username), "success")
     else:
         flash(_("Error while updating permissions."), "error")
+
+    return redirect(url_for("admin.settings"))
+
+@admin.route('/origin/add/', methods=('POST',))
+@admin_permission.require(401)
+def add_origin():
+    origin_choices = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
+    form = AddTermOriginForm()
+    form.parent_id.choices = origin_choices
+
+    if form and form.validate_on_submit():
+        origin = TermOrigin()
+        form.populate_obj(origin)
+
+        db.session.add(origin)
+        db.session.commit()
+
+        flash(_(u"Term origin ‘%(origin)s’ has been added.",
+                origin=origin.name), "success")
+    else:
+        flash(_("Error while adding term origin."), "error")
 
     return redirect(url_for("admin.settings"))

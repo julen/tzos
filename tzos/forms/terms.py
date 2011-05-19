@@ -18,6 +18,23 @@ from tzos.forms.fields import DynamicSelectField
 from tzos.helpers import dropdown_list
 from tzos.strings import *
 
+
+class BaseTermOriginForm(Form):
+
+    name = TextField(validators=[
+                     required(message=_("Name is required."))])
+
+    parent_id = DynamicSelectField(_("Parent"))
+
+class AddTermOriginForm(BaseTermOriginForm):
+
+    submit = SubmitField(_("Create"))
+
+class EditTermOriginForm(BaseTermOriginForm):
+
+    submit = SubmitField(_("Edit"))
+
+
 class BaseTermForm(Form):
 
     def check_collision(form, field):

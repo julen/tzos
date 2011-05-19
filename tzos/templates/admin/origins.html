@@ -1,6 +1,9 @@
+{% from "macros/_forms.html" import render_form %}
 <div class="columns">
     <div class="column">
         <div class="fields">
+            {% set origins_action = url_for('admin.add_origin') %}
+            [[ render_form(origins_form, action=origins_action) ]]
         </div>
     </div>
 </div>

@@ -14,7 +14,21 @@ from flask import g, render_template, url_for
 
 from werkzeug import cached_property
 
-from tzos.extensions import dbxml
+from tzos.extensions import db, dbxml
+
+
+class TermOrigin(db.Model):
+    __tablename__ = 'origins'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    name = db.Column(db.UnicodeText)
+
+    parent_id = db.Column(db.Integer,
+                          db.ForeignKey('origins.id', ondelete='CASCADE'))
+
+    parent = db.relation('TermOrigin', remote_side=[id], backref='children')
+
 
 class Term(object):
 

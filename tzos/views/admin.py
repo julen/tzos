@@ -62,7 +62,7 @@ def gen_add_origins_form():
     form = AddTermOriginForm()
 
     origins = gen_origins_dropdown()
-    form.parent_id.choices = dropdown_list(origins, key=-1, value='')
+    form.parent_id.choices = dropdown_list(origins, key=-1, value=_(u'Parent…'))
 
     return form
 

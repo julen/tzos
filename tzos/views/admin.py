@@ -78,7 +78,7 @@ def settings():
 
     users_form = gen_users_form()
     langs_form = AddLanguagesForm()
-    origins_form = gen_origins_form(AddOriginForm)
+    origins_form = gen_origins_form(AddTermOriginForm)
 
     return render_template("admin/settings.html", users=users,
                                                   origins=origins,

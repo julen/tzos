@@ -17,3 +17,11 @@
 </ul>
 {% endif %}
 {% endmacro %}
+
+{% macro render_comments(comments, gravatar=True, username=True) %}
+<ul>
+    {%- for c in comments %}
+    <li id="comment-[[ c.id ]]">{% if gravatar %}<a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]"><img class="fl" src="[[ c.author.gravatar_url(32) ]]" /></a>{% endif %}{% if username %}<strong><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]">[[ c.author.username ]]</a></strong>{% endif %}<span class="weak small datetime">[[ c.date_created|datetimeformat(_('d/M/yyyy HH:mm')) ]]</span><span class="permalink"><a href="[[ c.permalink ]]">[[ _('Permalink') ]]</a></span><br />[[ c.comment ]]</li>
+    {%- endfor %}
+</ul>
+{% endmacro %}

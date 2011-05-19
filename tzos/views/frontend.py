@@ -16,6 +16,7 @@ from babel import Locale
 
 from tzos.forms import SearchForm
 from tzos.helpers import dropdown_list, get_dict_langs
+from tzos.models import Comment
 
 frontend = Module(__name__)
 
@@ -24,7 +25,10 @@ def index():
     form = SearchForm()
     form.lang.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
 
-    return render_template('index.html', form=form)
+    latest_comments = Comment.query.order_by(Comment.date_created.desc())[0:5]
+
+    return render_template('index.html', form=form,
+                                         latest_comments=latest_comments)
 
 @frontend.route('/dict/')
 def dict():

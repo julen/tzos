@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% from "macros/_forms.html" import render_field, render_form %}
 
 {% block title %}[[ super() ]][[ _('Administration') ]]{% endblock %}
 
@@ -18,64 +17,11 @@
     </ul>
 
     <div id="edit_permissions" class="tabContent">
-        <div class="permissions">
-        <h2 class="h4">[[ _('Privileged users') ]]</h2>
-        <p>[[ _('The following users have special privileges on the system.') ]]</p>
-            <div class="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>[[ _('User') ]]</th><th>[[ _('Role') ]]</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        <tr>
-                            <td><div class="gravatar in"><img src="[[ user.gravatar_url(24) ]]" /></div><span class="strong">[[ user.username ]]</span>{% if user.display_name %} <span class="small weak">([[ user.display_name ]])</span>{% endif %}<span class="block small weak">[[ user.email ]]</span></td><td>[[ user.natural_role ]]</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="hr fields">
-            <h2 class="h4">[[ _('Modify user permissions') ]]</h2>
-            <p>[[ _('Select a user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') ]]</p>
-            <form method="POST" action="[[ url_for('admin.users') ]]" class="f1">
-                [[ usersform.hidden_tag() ]]
-                <dl>
-                    <dd>[[ usersform.user(class="input") ]][[ usersform.role(class="input") ]][[ usersform.submit(class="button") ]]</dd>
-                </dl>
-            </form>
-        </div>
+        {% include "admin/permissions.html" %}
     </div>
 
     <div id="edit_languages" class="tabContent">
-        <div class="languages">
-        <h2 class="h4">[[ _('Current languages') ]]</h2>
-        <p>[[ _('These are the dictionary languages that are currently available on the system.') ]]</p>
-            <div class="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>[[ _('Code') ]]</th><th>[[ _('Language name') ]]</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for dict_lang, dict_langname in dict_langs %}
-                        <tr>
-                            <td>[[ dict_lang ]]</td><td>[[ dict_langname ]]</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="hr fields">
-            <h2 class="h4">[[ _('Add a new language') ]]</h2>
-            <p>[[ _('Select a language from the drop-down box in order to have it available on the system.') ]]</p>
-            [[ render_form(languagesform) ]]
-        </div>
+        {% include "admin/languages.html" %}
     </div>
 
     <div id="edit_torigins" class="tabContent">

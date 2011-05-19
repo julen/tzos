@@ -37,7 +37,7 @@ def gen_add_origins_form():
     form = AddTermOriginForm()
 
     origins = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
-    form.parent_id.choices = dropdown_list(list(origins), key=None, value='')
+    form.parent_id.choices = dropdown_list(list(origins), key=-1, value='')
 
     return form
 
@@ -84,8 +84,10 @@ def add_origin():
     form = gen_add_origins_form()
 
     if form and form.validate_on_submit():
-        origin = TermOrigin()
-        form.populate_obj(origin)
+        origin = TermOrigin(name=form.name.data)
+
+        if form.parent_id.data > -1:
+            origin.parent_id = form.parent_id.data
 
         db.session.add(origin)
         db.session.commit()

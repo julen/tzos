@@ -24,7 +24,7 @@ class BaseTermOriginForm(Form):
     name = TextField(validators=[
                      required(message=_("Name is required."))])
 
-    parent_id = DynamicSelectField(_("Parent"))
+    parent_id = DynamicSelectField(_("Parent"), coerce=int)
 
 class AddTermOriginForm(BaseTermOriginForm):
 

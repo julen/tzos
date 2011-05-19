@@ -57,9 +57,9 @@ def gen_origins_dropdown():
     return dropdown
 
 
-def gen_add_origins_form():
+def gen_origins_form(form_cls, **kwargs):
 
-    form = AddTermOriginForm()
+    form = form_cls(**kwargs)
 
     origins = gen_origins_dropdown()
     form.parent_id.choices = dropdown_list(origins, key=-1, value=_(u'Parent…'))
@@ -78,7 +78,7 @@ def settings():
 
     users_form = gen_users_form()
     langs_form = AddLanguagesForm()
-    origins_form = gen_add_origins_form()
+    origins_form = gen_origins_form(AddOriginForm)
 
     return render_template("admin/settings.html", users=users,
                                                   origins=origins,

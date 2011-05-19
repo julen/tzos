@@ -27,20 +27,20 @@ def settings():
     users = User.query.filter(User.role > User.MEMBER) \
                       .order_by('-role', 'username')
 
-    usersform = ModifyUserPermissionForm()
-    usersform.user.choices = [(u.id, u.username) for u in \
+    users_form = ModifyUserPermissionForm()
+    users_form.user.choices = [(u.id, u.username) for u in \
         User.query.filter(User.username!=g.user.username)
                   .order_by('username')]
 
-    languagesform = AddLanguagesForm()
+    langs_form = AddLanguagesForm()
 
     origin_choices = TermOrigin.query.values(TermOrigin.id, TermOrigin.name)
     origins_form = AddTermOriginForm()
     origins_form.parent_id.choices = origin_choices
 
     return render_template("admin/settings.html", users=users,
-                                                  usersform=usersform,
-                                                  languagesform=languagesform,
+                                                  users_form=users_form,
+                                                  langs_form=langs_form,
                                                   origins_form=origins_form)
 
 @admin.route('/users/', methods=('POST',))

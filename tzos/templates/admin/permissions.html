@@ -22,9 +22,9 @@
     <h2 class="h4">[[ _('Modify user permissions') ]]</h2>
     <p>[[ _('Select a user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') ]]</p>
     <form method="POST" action="[[ url_for('admin.users') ]]" class="f1">
-        [[ usersform.hidden_tag() ]]
+        [[ users_form.hidden_tag() ]]
         <dl>
-            <dd>[[ usersform.user(class="input") ]][[ usersform.role(class="input") ]][[ usersform.submit(class="button") ]]</dd>
+            <dd>[[ users_form.user(class="input") ]][[ users_form.role(class="input") ]][[ users_form.submit(class="button") ]]</dd>
         </dl>
     </form>
 </div>

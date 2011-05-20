@@ -834,6 +834,10 @@ form.simpleSearch {
     margin-left: 2em;
 }
 
+form.simpleSearch i.iSrch {
+    margin-right: 5px;
+}
+
 /* Advanced */
 
 .coreFields #q {

@@ -8,7 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Markup, Module, flash, g, redirect, render_template, \
+from flask import Module, flash, g, redirect, render_template, \
         request, url_for
 
 from flaskext.babel import gettext as _
@@ -16,7 +16,7 @@ from flaskext.babel import gettext as _
 from tzos.extensions import db
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, \
         EditTermOriginForm, ModifyUserPermissionForm
-from tzos.helpers import dropdown_list
+from tzos.helpers import dropdown_list, get_origins_dropdown
 from tzos.models import TermOrigin, User
 from tzos.permissions import admin as admin_permission
 
@@ -33,35 +33,11 @@ def gen_users_form():
     return form
 
 
-def gen_origins_dropdown():
-
-    def _get_children(parent_id, depth):
-
-        for origin in origins:
-
-            if origin.parent_id == parent_id:
-                name = Markup((u'&nbsp;' * 3) * depth + origin.name).unescape()
-                dropdown.append((origin.id, name))
-
-                if origin.children:
-                    _get_children(origin.id, depth + 1)
-
-    dropdown = []
-    origins = TermOrigin.query.order_by('name').all()
-    parents = [(o.id, o.name) for o in origins if o.parent_id is None]
-
-    for id, name in parents:
-        dropdown.append((id, name))
-        _get_children(id, 1)
-
-    return dropdown
-
-
 def gen_origins_form(form_cls, **kwargs):
 
     form = form_cls(**kwargs)
 
-    origins = gen_origins_dropdown()
+    origins = get_origins_dropdown()
     form.parent_id.choices = dropdown_list(origins, key=-1, value=_(u'Parent…'))
 
     return form

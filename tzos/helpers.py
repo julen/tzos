@@ -8,12 +8,14 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import _request_ctx_stack, abort, current_app, g, request, url_for
+from flask import Markup, _request_ctx_stack, abort, current_app, g, \
+        request, url_for
 
 from babel import Locale
 from functools import wraps
 
 from tzos.extensions import dbxml
+from tzos.models import TermOrigin
 from tzos import strings
 
 import random
@@ -129,6 +131,32 @@ def get_responsible_orgs():
     orgs_list = zip(result, result[1:])[::2]
 
     return orgs_list
+
+
+def get_origins_dropdown():
+    """Returns a list of (key, value) tuples including all the allowed
+    conceptOrigins."""
+
+    def _get_children(parent_id, depth):
+
+        for origin in origins:
+
+            if origin.parent_id == parent_id:
+                name = Markup((u'&nbsp;' * 3) * depth + origin.name).unescape()
+                dropdown.append((origin.id, name))
+
+                if origin.children:
+                    _get_children(origin.id, depth + 1)
+
+    dropdown = []
+    origins = TermOrigin.query.order_by('name').all()
+    parents = [(o.id, o.name) for o in origins if o.parent_id is None]
+
+    for id, name in parents:
+        dropdown.append((id, name))
+        _get_children(id, 1)
+
+    return dropdown
 
 
 def dropdown_list(list, key='none', value='-----'):

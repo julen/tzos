@@ -241,6 +241,18 @@ textarea {
     float: right;
 }
 
+/* Centered forms */
+
+.centerWrap {
+    display: block;
+    margin: 0 auto;
+    width: 65%;
+}
+
+.centerWrap .input {
+    width: 100%;
+}
+
 /* Tables */
 
 .table {
@@ -700,7 +712,6 @@ header .gravatar img {
     padding-top: 10px;
     line-height: 1;
 }
-
 
 /* Terms */
 

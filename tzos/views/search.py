@@ -14,7 +14,8 @@ from flaskext.babel import lazy_gettext as _
 
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
-from tzos.helpers import dropdown_list, get_dict_langs, get_responsible_orgs
+from tzos.helpers import dropdown_list, get_dict_langs, \
+        get_origins_dropdown, get_responsible_orgs
 
 search = Module(__name__)
 
@@ -62,7 +63,7 @@ def _get_search_filters():
         ('lang', '$term/../..[@xml:lang="{0}"]'),
         ('subject_field', '(let $fields := tokenize(term:subject_field($term), ";") return some $f in $fields satisfies $f = "{0}")'),
         ('product_subset', '$term/../admin[@type="productSubset"]/string() = "{0}"'),
-        # TODO: Concept origin
+        ('concept_origin', '$term/../admin[@type="conceptOrigin"]/string() = "{0}"'),
         ('na', '$term/../termNote[@type="normativeAuthorization"]/string() = "{0}"'),
         ('na_org', '$term/../termNote[@type="normativeAuthorization"][@target="{0}"]'),
         ('pos', '$term/../termNote[@type="partOfSpeech"]/string() = "{0}"'),
@@ -108,8 +109,10 @@ def quick():
     form = SearchForm(request.args, csrf_enabled=False)
 
     form.lang.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
+    form.concept_origin.choices = \
+            dropdown_list(get_origins_dropdown(), 'all', _('All'))
     form.na_org.choices = \
-        dropdown_list(get_responsible_orgs(), 'all', _('All'))
+            dropdown_list(get_responsible_orgs(), 'all', _('All'))
 
     ctx = {'form': form, 'q': q, 'page': page, 'non_default': non_default}
     return render_template('search/results.html', **ctx)

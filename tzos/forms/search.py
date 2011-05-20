@@ -54,7 +54,7 @@ class SearchForm(Form):
     ps_choices = dropdown_list(PRODUCT_SUBSET, 'all', _('All'))
     product_subset = SelectField(_('Appears in'), choices=ps_choices)
 
-    concept_origin = TextField(_('Origin'))
+    concept_origin = SelectField(_("Origin"))
 
     #
     # Linguistic information

@@ -9,9 +9,9 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import Form, SelectField, SubmitField
+from flaskext.wtf import Form, Length, SelectField, SubmitField, TextField, \
+        required
 
-from tzos.helpers import get_all_langs
 from tzos.models import User
 
 class ModifyUserPermissionForm(Form):
@@ -25,7 +25,15 @@ class ModifyUserPermissionForm(Form):
 
 
 class AddLanguagesForm(Form):
-    language_choices = get_all_langs()
-    language = SelectField(_("Language"), choices=language_choices)
+
+    language_code = TextField(_("Language name"), validators=[
+        required(message=_("Language name is required."))
+        ])
+
+    language_name = TextField(_("Language code"), validators=[
+        Length(min=2, max=2,
+               message=_("Language code must be exactly two characters length.")),
+        required(message=_("Language code is required."))
+        ])
 
     submit = SubmitField(_("Add language"))

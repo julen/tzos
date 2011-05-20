@@ -49,26 +49,6 @@ def tzos_gettext(key):
     return key
 
 
-def get_all_langs(only_codes=False):
-    """Returns a list with tuples of all the languages known by Babel.
-    The tuple elements are language codes and language names.
-
-    :param only_codes: if set to True, returns a list of language codes.
-                       Defaults to False.
-    """
-    langs = []
-
-    from babel import localedata
-
-    for code in localedata.list():
-        l = Locale.parse(code)
-        locale = l.language if only_codes else (l.language,
-                                                l.display_name)
-        langs.append(locale)
-
-    return langs
-
-
 def get_dict_langs(only_codes=False):
     """Returns a list with tuples of all the available dictionaries.
     The tuple elements are language codes and language names.

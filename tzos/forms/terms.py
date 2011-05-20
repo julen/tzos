@@ -109,7 +109,7 @@ class BaseTermForm(Form):
         check_required_dropdown])
 
 
-    concept_origin = TextField(_("Origin"), validators=[
+    concept_origin = SelectField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
 
     # Affects elementWorkingStatus

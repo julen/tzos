@@ -773,6 +773,10 @@ ul li.singleLine {
     min-height: 40px;
 }
 
+ul li.showSource {
+    min-height: 40px;
+}
+
 
 /* Pagination */
 

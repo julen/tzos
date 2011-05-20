@@ -37,6 +37,7 @@
                 </ul>
                 <p class="clLeft showme" style="display:none;"><i class="{% if add_form.errors %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Advanced fields") ]]</a></p>
                 <div class="extra hideme{% if add_form.errors %} doNotHide{% endif %}">
+                    <h2 class="h4 m4 clBoth">[[ _("Optional fields") ]]</h2>
                     <ul class="fields">
                         [[ render_field(add_form.definition, class="input", rel="tipsy-ns", title=_("A descriptive statement which serves to differentiate from related concepts.")) ]]
                         [[ render_field(add_form.context, class="input", rel="tipsy-ns", title=_("A text which illustrates a concept or a term by containing the concept designation itself. It must be authentic.")) ]]

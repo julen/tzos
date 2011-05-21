@@ -90,6 +90,20 @@ class Term(object):
 
         return False
 
+    def is_public(self):
+        """Returns True if the current term has an elementWorkingStatus
+        with a value of `workingElement` or higher."""
+
+        if not hasattr(self, 'working_status'):
+            qs = '//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'.format(self.id)
+            self.working_status = dbxml.get_db().query(qs).as_str().first()
+        if not self.working_status:
+            return False
+
+        return self.working_status != "starterElement" and \
+               self.working_status != "importedElement" and \
+               self.working_status != "archiveElement"
+
     def populate(self):
         """Populates current term's fields by querying fields by id."""
 

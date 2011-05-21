@@ -8,7 +8,7 @@
 
 {% block content %}
 <div>
-    <h2>[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
+    <h2 class="h1 m4">[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
     <form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm">
         [[ form.hidden_tag() ]]
         <ul class="fields">

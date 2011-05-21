@@ -113,7 +113,7 @@ class BaseTermForm(Form):
         required(message=_("Origin is required."))])
 
     # Affects elementWorkingStatus
-    make_public = BooleanField(_("I want this term to be public immediately."))
+    working_status = BooleanField(_("I want this term to be public immediately."))
 
     subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown],

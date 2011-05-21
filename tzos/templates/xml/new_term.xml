@@ -15,7 +15,7 @@
     {% if concept_origin %}
     <admin type="conceptOrigin">[[ concept_origin ]]</admin>
     {% endif %}
-    <admin type="elementWorkingStatus">{% if make_public %}workingElement{% else %}starterElement{% endif %}</admin>
+    <admin type="elementWorkingStatus">{% if working_status %}workingElement{% else %}starterElement{% endif %}</admin>
     {% if entry_source %}
     <admin type="entrySource">[[ entry_source ]]</admin>
     {% endif %}

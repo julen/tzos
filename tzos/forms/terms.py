@@ -37,17 +37,6 @@ class EditTermOriginForm(BaseTermOriginForm):
 
 class BaseTermForm(Form):
 
-    def check_collision(form, field):
-        message = _("This term already exists in the database.")
-
-        # FIXME: Also check in subject field?
-        qs = "//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
-                format(form.language.data, form.term.data)
-        result = dbxml.get_db().query(qs).as_str().first()
-
-        if result:
-            raise ValidationError(message)
-
     def check_syntrans(form, field):
         message = _("You must specify a term.")
 
@@ -100,14 +89,6 @@ class BaseTermForm(Form):
     #
     # Core fields
     #
-
-    term = TextField(_("Term"), validators=[
-        required(message=_("Term is required.")),
-        check_collision])
-
-    language = DynamicSelectField(_("Language"), validators=[
-        check_required_dropdown])
-
 
     concept_origin = DynamicSelectField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
@@ -179,6 +160,32 @@ class BaseTermForm(Form):
 
 
 class AddTermForm(BaseTermForm):
+
+    def check_collision(form, field):
+        message = _("This term already exists in the database.")
+
+        # FIXME: Also check in subject field?
+        qs = "//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                format(form.language.data, form.term.data)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result:
+            raise ValidationError(message)
+
+    # TODO: we should avoid code duplication
+    def check_required_dropdown(form, field):
+        message = _("You must choose a valid option.")
+
+        if not field.data or field.data in ('none',):
+            raise ValidationError(message)
+
+    term = TextField(_("Term"), validators=[
+        required(message=_("Term is required.")),
+        check_collision])
+
+    language = DynamicSelectField(_("Language"), validators=[
+        check_required_dropdown])
+
 
     submit = SubmitField(_("Add"))
 

@@ -112,8 +112,6 @@ class Term(object):
             ('language', '//term[@id="{0}"]/../../data(@xml:lang)'),
             ('concept_origin',
              '//term[@id="{0}"]/../admin[@type="conceptOrigin"]/string()'),
-            #conceptOrigin missing
-
             ('subject_field',
              '//term[@id="{0}"]/../../../descrip[@type="subjectField"]/string()'),
             ('working_status',

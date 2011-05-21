@@ -109,7 +109,7 @@ class Term(object):
 
         fields = [
             ('term', '//term[@id="{0}"]/string()'),
-            ('language', '//term[@id="{0}"]/../langSet/@xml:lang'),
+            ('language', '//term[@id="{0}"]/../../data(@xml:lang)'),
             ('concept_origin',
              '//term[@id="{0}"]/../admin[@type="conceptOrigin"]/string()'),
             #conceptOrigin missing

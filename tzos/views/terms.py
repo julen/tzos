@@ -102,7 +102,7 @@ def add_single():
 @auth.require(401)
 def edit(id):
 
-    if not g.user.owns_term(id):
+    if not g.user.owns_term(id) or g.user.is_moderator or g.user.is_admin:
         abort(403)
 
     term = Term(id)

@@ -14,7 +14,7 @@ from flask import Module, abort, flash, g, render_template, redirect, \
 from flaskext.babel import gettext as _
 
 from tzos.extensions import db, dbxml
-from tzos.forms import AddTermForm, CommentForm, EditTermForm
+from tzos.forms import AddTermForm, CommentForm, EditTermForm, ModEditTermForm
 from tzos.models import Comment, Term
 from tzos.helpers import dropdown_list, get_dict_langs, \
         get_origins_dropdown, get_responsible_orgs, require_valid_dict
@@ -44,8 +44,9 @@ def generate_term_form(form_cls, **form_args):
 
     form = form_cls(**form_args)
 
-    form.language.choices = get_dict_langs()
     form.syntrans_lang.choices = get_dict_langs()
+    if form_cls.__name__ == 'AddTermForm':
+        form.language.choices = get_dict_langs()
 
     form.concept_origin.choices = get_origins_dropdown()
 
@@ -98,7 +99,7 @@ def add_single():
 
     return render_template('terms/add.html', add_form=form)
 
-@terms.route('/<int:id>/edit/')
+@terms.route('/<int:id>/edit/', methods=('GET', 'POST'))
 @auth.require(401)
 def edit(id):
 
@@ -113,9 +114,22 @@ def edit(id):
     # Handle SelectMultipleFields
     term.subject_field = term.subject_field.split(';')
 
-    form = generate_term_form(EditTermForm, obj=term)
+    # BooleanFields
+    if not g.user.is_moderator:
+        term.working_status = term.is_public()
 
-    return render_template('terms/edit.html', form=form)
+    if g.user.is_moderator:
+        form_cls = ModEditTermForm
+    else:
+        form_cls = EditTermForm
+
+    form = generate_term_form(form_cls, obj=term)
+
+    if form.validate_on_submit():
+        # TODO: actual term updating
+        flash(_(u"Term '' has been edited."), "success")
+
+    return render_template('terms/edit.html', form=form, term=term)
 
 @terms.route("/<int:term_id>/comment/", methods=("POST",))
 @auth.require(401)

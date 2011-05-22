@@ -192,7 +192,24 @@ class AddTermForm(BaseTermForm):
 
 class EditTermForm(BaseTermForm):
 
-    ws_choices = WORKING_STATUS
-    working_status = DynamicSelectField(_("Working status."), choices=ws_choices)
+    language = HiddenField(_("Language"))
 
     submit = SubmitField(_("Save changes"))
+
+
+class ModEditTermForm(EditTermForm):
+
+    ws_choices = WORKING_STATUS[2:]
+    ws_desc = _("If you consolidate this term, you must set "
+                "its administrative status.")
+    working_status = DynamicSelectField(_("Working status"),
+                                        choices=ws_choices,
+                                        description=ws_desc)
+
+    as_choices = dropdown_list(ADMINISTRATIVE_STATUS)
+    as_desc = _("This field has no effect if the working status "
+                "of this term is other than 'Consolidated'.")
+    # TODO: VALIDATE
+    administrative_status = DynamicSelectField(_("Administrative status "
+                                                 "within the TZOS environment"),
+                                               choices=as_choices)

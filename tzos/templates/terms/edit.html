@@ -14,7 +14,10 @@
         <ul class="fields">
             [[ render_field(form.subject_field, class="input") ]]
             [[ render_field(form.concept_origin, class="input") ]]
+            {% if not g.user.is_moderator and not term.is_consolidated() or
+               g.user.is_moderator and term.is_public() %}
             [[ render_field(form.working_status, class="input", tag_class="singleLine") ]]
+            {% endif %}
         </ul>
         <ul class="fields clLeft">
             [[ render_field(form.not_mine, tag_class="showSource") ]]
@@ -34,6 +37,9 @@
             </ul>
             <h2 class="h4 m4 clBoth">[[ _("Linguistic information") ]]</h2>
             <ul class="fields">
+                {% if g.user.is_moderator and term.is_public() %}
+                [[ render_field(form.administrative_status, class="input") ]]
+                {% endif %}
                 [[ render_field(form.normative_authorization, class="input") ]]
                 [[ render_field(form.normative_authorization_org, class="input") ]]
                 [[ render_field(form.subordinate_concept_generic, class="input") ]]

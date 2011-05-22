@@ -14,5 +14,5 @@ from .account import LoginForm, SignupForm, RecoverPasswordForm, \
 from .admin import AddLanguagesForm, ModifyUserPermissionForm
 from .comments import CommentForm
 from .search import SearchForm
-from .terms import AddTermForm, AddTermOriginForm, AdminEditTermForm, \
-        EditTermOriginForm, EditTermForm, ModEditTermForm
+from .terms import AddTermForm, AddTermOriginForm, EditTermOriginForm, \
+        EditTermForm, ModEditTermForm

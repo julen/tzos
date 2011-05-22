@@ -125,6 +125,12 @@ def edit(id):
 
     form = generate_term_form(form_cls, obj=term)
 
+    # BooleanField
+    form.not_mine.data = not term.is_mine()
+
+    if term.is_mine():
+        form.originating_person.data = u""
+
     if form.validate_on_submit():
         # TODO: actual term updating
         flash(_(u"Term '' has been edited."), "success")

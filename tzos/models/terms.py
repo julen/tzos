@@ -128,7 +128,7 @@ class Term(object):
         if self.originating_person is None:
             return False
 
-        return self.originating_person != "starterElement"
+        return self.originating_person != self.owner()
 
     def owner(self):
         """Returns the term owner, ie the username who first inserted

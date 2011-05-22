@@ -23,7 +23,11 @@
         [[ field.label ]]
         {% endif %}
         [[ render_errors(field) ]]
+        {% if field.description %}
+        [[ field(title=field.description, **kwargs)|safe ]]
+        {% else %}
         [[ field(**kwargs)|safe ]]
+        {% endif %}
     {% endif %}
     </[[ tag ]]>
 {% endif %}

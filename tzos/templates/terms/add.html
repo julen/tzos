@@ -39,12 +39,12 @@
                 <div class="extra hideme{% if add_form.errors %} doNotHide{% endif %}">
                     <h2 class="h4 m4 clBoth">[[ _("Optional fields") ]]</h2>
                     <ul class="fields">
-                        [[ render_field(add_form.definition, class="input", rel="tipsy-ns", title=_("A descriptive statement which serves to differentiate from related concepts.")) ]]
-                        [[ render_field(add_form.context, class="input", rel="tipsy-ns", title=_("A text which illustrates a concept or a term by containing the concept designation itself. It must be authentic.")) ]]
-                        [[ render_field(add_form.example, class="input", rel="tipsy-ns", title=_("A text which illustrates a concept or a term. It can be an invented sentence.")) ]]
-                        [[ render_field(add_form.explanation, class="input", rel="tipsy-ns", title=_("A statement that describes and clarifies a concept and makes it understandable, but does not necessarily differentiate it from other concepts.")) ]]
-                        [[ render_field(add_form.entry_source, class="input", rel="tipsy-ns", title=_("The source of the terminological entry.")) ]]
-                        [[ render_field(add_form.cross_reference, class="input", rel="tipsy-ns", title=_("A related term.")) ]]
+                        [[ render_field(add_form.definition, class="input", rel="tipsy-ns") ]]
+                        [[ render_field(add_form.context, class="input", rel="tipsy-ns") ]]
+                        [[ render_field(add_form.example, class="input", rel="tipsy-ns") ]]
+                        [[ render_field(add_form.explanation, class="input", rel="tipsy-ns") ]]
+                        [[ render_field(add_form.entry_source, class="input", rel="tipsy-ns") ]]
+                        [[ render_field(add_form.cross_reference, class="input", rel="tipsy-ns") ]]
 
                         [[ render_field(add_form.product_subset, class="input") ]]
                     </ul>
@@ -55,7 +55,7 @@
                         [[ render_field(add_form.subordinate_concept_generic, class="input") ]]
                         [[ render_field(add_form.superordinate_concept_generic, class="input") ]]
                         [[ render_field(add_form.antonym_concept, class="input") ]]
-                        [[ render_field(add_form.related_concept, class="input", rel="tipsy-ns", title=_("A concept that has an associative relation to another concept, such as teacher and school.")) ]]
+                        [[ render_field(add_form.related_concept, class="input", rel="tipsy-ns") ]]
                         [[ render_field(add_form.part_of_speech, class="input") ]]
                         [[ render_field(add_form.term_type, class="input") ]]
                     </ul>

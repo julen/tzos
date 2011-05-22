@@ -123,13 +123,31 @@ class BaseTermForm(Form):
     #
     # Optional fields
     #
-    context = TextAreaField(_('Context'))
-    cross_reference = TextField(_('Cross reference'), validators=[
-        check_exists])
-    definition = TextAreaField(_('Definition'))
-    entry_source = TextField(_('Entry source'))
-    example = TextAreaField(_('Example'))
-    explanation = TextAreaField(_('Explanation'))
+
+    ctx_desc = _("A text which illustrates a concept or a term by "
+                 "containing the concept designation itself. "
+                 "It must be authentic.")
+    context = TextAreaField(_('Context'), description=ctx_desc)
+
+    xref_desc = _("A related term.")
+    cross_reference = TextField(_('Cross reference'), description=xref_desc,
+                                validators=[check_exists])
+
+    def_desc = _("A descriptive statement which serves to differentiate "
+                 "from related concepts.")
+    definition = TextAreaField(_('Definition'), description=def_desc)
+
+    es_desc = _("The source of the terminological entry.")
+    entry_source = TextField(_('Entry source'), description=es_desc)
+
+    example_desc = _("A text which illustrates a concept or a term. "
+                     "It can be an invented sentence.")
+    example = TextAreaField(_('Example'), description=example_desc)
+
+    explan_desc = _("A statement that describes and clarifies a concept "
+                    "and makes it understandable, but does not necessarily "
+                    "differentiate it from other concepts.")
+    explanation = TextAreaField(_('Explanation'), description=explan_desc)
 
     ps_choices = dropdown_list(PRODUCT_SUBSET)
     product_subset = SelectField(_('Appears in'), choices=ps_choices)
@@ -148,9 +166,11 @@ class BaseTermForm(Form):
         check_exists])
     antonym_concept = TextField(_('Antonym'), validators=[
         check_exists])
-    related_concept = TextField(_('Related concept'), validators=[
 
-        check_exists])
+    rltd_desc = _("A concept that has an associative relation to another "
+                  "concept, such as teacher and school.")
+    related_concept = TextField(_('Related concept'), description=rltd_desc,
+                                validators=[check_exists])
 
     pos_choices = dropdown_list(PART_OF_SPEECH)
     part_of_speech = SelectField(_('Part of Speech'), choices=pos_choices)

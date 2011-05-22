@@ -7,24 +7,37 @@
 {% block intro %}{% endblock %}
 
 {% block content %}
-<div>
-    <h2 class="h1 m4">[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
-    <form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm">
-        [[ form.hidden_tag() ]]
-        <ul class="fields">
-            [[ render_field(form.subject_field, class="input") ]]
-            [[ render_field(form.concept_origin, class="input") ]]
-            {% if not g.user.is_moderator and not term.is_consolidated() or
-               g.user.is_moderator and term.is_public() %}
-            [[ render_field(form.working_status, class="input", tag_class="singleLine") ]]
-            {% endif %}
-        </ul>
-        <ul class="fields clLeft">
-            [[ render_field(form.not_mine, tag_class="showSource") ]]
-            [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
-        </ul>
-        <div class="extra">
-            <h2 class="h4 m4 clBoth">[[ _("Optional fields") ]]</h2>
+<h2 class="h1 m4">[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
+
+<form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm">
+[[ form.hidden_tag() ]]
+
+<div class="hTabs">
+    <ul class="inlineTabs sideTabs">
+        <li><a href="#general">[[ _("General") ]]</a></li>
+        <li><a href="#optional">[[ _("Optional fields") ]]</a></li>
+        <li><a href="#linguistic">[[ _("Linguistic information") ]]</a></li>
+    </ul>
+
+    <div id="general" class="tabContent">
+        <div class="column">
+            <ul class="fields">
+                [[ render_field(form.subject_field, class="input") ]]
+                [[ render_field(form.concept_origin, class="input") ]]
+                {% if not g.user.is_moderator and not term.is_consolidated() or
+                   g.user.is_moderator and term.is_public() %}
+                [[ render_field(form.working_status, class="input", tag_class="singleLine") ]]
+                {% endif %}
+            </ul>
+            <ul class="fields clLeft">
+                [[ render_field(form.not_mine, tag_class="showSource") ]]
+                [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
+            </ul>
+        </div>
+    </div>
+
+    <div id="optional" class="tabContent">
+        <div class="column">
             <ul class="fields">
                 [[ render_field(form.definition, class="input") ]]
                 [[ render_field(form.context, class="input") ]]
@@ -35,7 +48,11 @@
 
                 [[ render_field(form.product_subset, class="input") ]]
             </ul>
-            <h2 class="h4 m4 clBoth">[[ _("Linguistic information") ]]</h2>
+        </div>
+    </div>
+
+    <div id="linguistic" class="tabContent">
+        <div class="column">
             <ul class="fields">
                 {% if g.user.is_moderator and term.is_public() %}
                 [[ render_field(form.administrative_status, class="input") ]]
@@ -50,10 +67,14 @@
                 [[ render_field(form.term_type, class="input") ]]
             </ul>
         </div>
-        <p class="fAction hr">
-            [[ form.submit(class="button") ]]
-        </p>
-    </form>
+    </div>
+
+    <p class="fAction hr">
+    [[ form.submit(class="button") ]]
+    </p>
+
 </div>
+
+</form>
 {% endblock %}
 

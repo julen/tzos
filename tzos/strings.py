@@ -286,9 +286,16 @@ PRODUCT_SUBSET = [
 ]
 
 WORKING_STATUS = [
+    ('importedElement', _('Imported')),
     ('starterElement', _('Starter')),
     ('workingElement', _('Working')),
     ('consolidatedElement', _('Consolidated')),
     ('archiveElement', _('Archived')),
-    ('importedElement', _('Imported')),
+]
+
+ADMINISTRATIVE_STATUS = [
+    ('preferredTerm-admn-sts', _('Preferred')),
+    ('admittedTerm-admn-sts', _('Admitted')),
+    ('deprecatedTerm-admn-sts', _('Deprecated')),
+    ('supersededTerm-admn-sts', _('Superseded')),
 ]

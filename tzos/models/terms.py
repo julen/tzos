@@ -128,20 +128,20 @@ class Term(object):
         if self.originating_person is None:
             return False
 
-        return self.originating_person != self.owner()
+        return self.originating_person == self.owner()
 
+    # FIXME: optimize this with a property
     def owner(self):
         """Returns the term owner, ie the username who first inserted
         this term."""
 
-        qs = '//tig[term/@id="{0}" and (transacGrp/transacNote[@type="transactionType"]/string()="origination" or transacGrp/transacNote[@type="transactionType"]/string()="importation" or transacGrp/transacNote[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
+        qs = '//tig[term/@id="{0}" and (transacGrp/transac[@type="transactionType"]/string()="origination" or transacGrp/transac[@type="transactionType"]/string()="importation" or transacGrp/transac[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
         result = dbxml.get_db().query(qs).as_str().first()
 
         if result is not None:
-            self.owner = result
             return result
 
-        return ""
+        return u""
 
     def populate(self):
         """Populates current term's fields by querying fields by id."""

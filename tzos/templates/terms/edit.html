@@ -26,7 +26,7 @@
                 [[ render_field(form.concept_origin, class="input") ]]
                 {% if not g.user.is_moderator and not term.is_consolidated() or
                    g.user.is_moderator and term.is_public() %}
-                [[ render_field(form.working_status, class="input", tag_class="singleLine") ]]
+                [[ render_field(form.working_status, class="input") ]]
                 {% endif %}
             </ul>
             <ul class="fields clLeft">

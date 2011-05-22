@@ -779,6 +779,10 @@ ul.fields > li {
     min-height: 75px;
 }
 
+.editTerm ul.fields > li {
+    clear: both;
+}
+
 ul li.singleLine {
     width: 95%!important;
     min-height: 40px;

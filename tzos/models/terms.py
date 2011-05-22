@@ -118,6 +118,31 @@ class Term(object):
                self.working_status != "importedElement" and \
                self.working_status != "workingElement"
 
+    def is_mine(self):
+        """Returns True if the term's `origintatingPerson` is the same
+        as the user who committed the term."""
+
+        if not hasattr(self, 'originating_person'):
+            qs = '//term[@id="{0}"]/../admin[@type="originatingPerson"]/string()'.format(self.id)
+            self.originating_person = dbxml.get_db().query(qs).as_str().first()
+        if self.originating_person is None:
+            return False
+
+        return self.originating_person != "starterElement"
+
+    def owner(self):
+        """Returns the term owner, ie the username who first inserted
+        this term."""
+
+        qs = '//tig[term/@id="{0}" and (transacGrp/transacNote[@type="transactionType"]/string()="origination" or transacGrp/transacNote[@type="transactionType"]/string()="importation" or transacGrp/transacNote[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if result is not None:
+            self.owner = result
+            return result
+
+        return ""
+
     def populate(self):
         """Populates current term's fields by querying fields by id."""
 

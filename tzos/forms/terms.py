@@ -199,17 +199,23 @@ class EditTermForm(BaseTermForm):
 
 class ModEditTermForm(EditTermForm):
 
+    def check_as_is_set(form, field):
+        message = _("Administrative status is not set.")
+
+        if form.administrative_status.data == 'none' and \
+           field.data == "consolidatedElement":
+            raise ValidationError(message)
+
     ws_choices = WORKING_STATUS[2:]
     ws_desc = _("If you consolidate this term, you must set "
-                "its administrative status.")
+                "its administrative status ('Linguistic information' tab).")
     working_status = DynamicSelectField(_("Working status"),
-                                        choices=ws_choices,
-                                        description=ws_desc)
+            choices=ws_choices, description=ws_desc,
+            validators=[check_as_is_set])
 
     as_choices = dropdown_list(ADMINISTRATIVE_STATUS)
     as_desc = _("This field has no effect if the working status "
                 "of this term is other than 'Consolidated'.")
-    # TODO: VALIDATE
     administrative_status = DynamicSelectField(_("Administrative status "
-                                                 "within the TZOS environment"),
-                                               choices=as_choices)
+        "within the TZOS environment"),
+        choices=as_choices)

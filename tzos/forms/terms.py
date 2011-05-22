@@ -37,27 +37,6 @@ class EditTermOriginForm(BaseTermOriginForm):
 
 class BaseTermForm(Form):
 
-    def check_syntrans(form, field):
-        message = _("You must specify a term.")
-
-        if form.syntrans.data and field.data == "":
-            raise ValidationError(message)
-
-    def check_syntrans_exists(form, field):
-        if form.syntrans.data and field.data != "":
-            message = _("This term doesn't exist in the database.")
-
-            lang = form.syntrans_lang.data
-            term = field.data
-
-            # FIXME: Also check in subject field?
-            qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
-                    format(lang, term)
-            result = dbxml.get_db().query(qs).as_str().first()
-
-            if not result:
-                raise ValidationError(message)
-
     def check_exists(form, field):
         if field.data != "":
             message = _("This term doesn't exist in the database.")
@@ -99,17 +78,6 @@ class BaseTermForm(Form):
     subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown],
         choices=SUBJECT_FIELDS)
-
-
-    syntrans = BooleanField(_("This term is a synonym or a translation for another term."))
-
-    syntrans_term = TextField(_("Term"), validators=[
-        check_syntrans,
-        check_syntrans_exists])
-
-    syntrans_lang = DynamicSelectField(_("Language"), validators=[
-        check_required_dropdown])
-
 
     not_mine = BooleanField(_("The author of this term is another person."))
     originating_person = TextField(_("Author"), validators=[
@@ -192,6 +160,27 @@ class AddTermForm(BaseTermForm):
         if result:
             raise ValidationError(message)
 
+    def check_syntrans(form, field):
+        message = _("You must specify a term.")
+
+        if form.syntrans.data and field.data == "":
+            raise ValidationError(message)
+
+    def check_syntrans_exists(form, field):
+        if form.syntrans.data and field.data != "":
+            message = _("This term doesn't exist in the database.")
+
+            lang = form.syntrans_lang.data
+            term = field.data
+
+            # FIXME: Also check in subject field?
+            qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                    format(lang, term)
+            result = dbxml.get_db().query(qs).as_str().first()
+
+            if not result:
+                raise ValidationError(message)
+
     # TODO: we should avoid code duplication
     def check_required_dropdown(form, field):
         message = _("You must choose a valid option.")
@@ -204,6 +193,16 @@ class AddTermForm(BaseTermForm):
         check_collision])
 
     language = DynamicSelectField(_("Language"), validators=[
+        check_required_dropdown])
+
+    syntrans = BooleanField(_("This term is a synonym or a "
+                              "translation for another term."))
+
+    syntrans_term = TextField(_("Term"), validators=[
+        check_syntrans,
+        check_syntrans_exists])
+
+    syntrans_lang = DynamicSelectField(_("Language"), validators=[
         check_required_dropdown])
 
 

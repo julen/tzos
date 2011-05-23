@@ -152,7 +152,7 @@ def edit(id):
                         failure.append(field.name)
 
         #
-        # Treat excepcional cases (xref, normative_auth, admn-sts)
+        # Treat excepcional cases (xref, normative_auth)
         #
 
         if form.cross_reference.data != term.cross_reference:

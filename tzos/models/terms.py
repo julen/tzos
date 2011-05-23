@@ -256,15 +256,8 @@ class Term(object):
              '//term[@id="{0}"]/../descrip[@type="explanation"]',
             'entry_source':
              '//term[@id="{0}"]/../admin[@type="entrySource"]',
-            'cross_reference':
-             '//term[@id="{0}"]/../ref[@type="crossReference"]',
             'product_subset':
              '//term[@id="{0}"]/../admin[@type="productSubset"]',
-
-            'normative_authorization':
-             '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]',
-            'normative_authorization_org':
-             '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]/@target',
             'subordinate_concept_generic':
              '//term[@id="{0}"]/../../../descrip[@type="subordinateConceptGeneric"]',
             'superordinate_concept_generic':
@@ -277,6 +270,8 @@ class Term(object):
              '//term[@id="{0}"]/../termNote[@type="partOfSpeech"]',
             'term_type':
              '//term[@id="{0}"]/../termNote[@type="termType"]',
+            'administrative_status':
+             '//term[@id="{0}"]/../termNote[@type="administrativeStatus"]',
         }
 
         try:

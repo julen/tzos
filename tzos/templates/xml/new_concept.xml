@@ -2,21 +2,11 @@
 <termEntry id="[[ concept_id ]]">
     <admin type="originatingPerson">[[ orig_person ]]</admin>
     <descrip type="subjectField">[[ subject_field ]]</descrip>
-    {% if subordinate_concept_generic %}
-    <descrip type="subordinateConceptGeneric">[[ subordinate_concept_generic ]]</descrip>
-    {% endif %}
-    {% if superordinate_concept_generic %}
-    <descrip type="superordinateConceptGeneric">[[ subordinate_concept_generic ]]</descrip>
-    {% endif %}
-    {% if antonym_concept %}
-    <descrip type="antonymConcept">[[ antonym_concept ]]</descrip>
-    {% endif %}
-    {% if related_concept %}
-    <descrip type="relatedConcept">[[ related_concept ]]</descrip>
-    {% endif %}
-    {% if cross_reference %}
-    <ref target="[[ xref_id ]]" type="crossReference">[[ cross_reference ]]</ref>
-    {% endif %}
+    <descrip type="subordinateConceptGeneric">{% if subordinate_concept_generic %}[[ subordinate_concept_generic ]]{% endif %}</descrip>
+    <descrip type="superordinateConceptGeneric">{% if superordinate_concept_generic %}[[ subordinate_concept_generic ]]{% endif %}</descrip>
+    <descrip type="antonymConcept">{% if antonym_concept %}[[ antonym_concept ]]{% endif %}</descrip>
+    <descrip type="relatedConcept">{% if related_concept %}[[ related_concept ]]{% endif %}</descrip>
+    <ref{% if xref_id %} target="[[ xref_id ]]"{% endif %} type="crossReference">{% if cross_reference %}[[ cross_reference ]]{% endif %}</ref>
     [[ render_transaction(transac_type, date, username) ]]
     {% include "xml/new_langset.xml" %}
 </termEntry>

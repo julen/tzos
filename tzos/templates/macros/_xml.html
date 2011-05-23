@@ -3,8 +3,6 @@
     <transac type="transactionType">[[ type ]]</transac>
     <date>[[ date ]]</date>
     <transacNote type="responsibility">[[ username ]]</transacNote>
-    {% if note %}
-    <note>[[ note ]]</note>
-    {% endif %}
+    <note>{% if note %}[[ note ]]{% endif %}</note>
 </transacGrp>
 {% endmacro %}

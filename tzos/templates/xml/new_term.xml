@@ -5,34 +5,16 @@
     <termNote type="normativeAuthorization"
         target="[[ normative_authorization_org ]]">[[ normative_authorization ]]</termNote>
     {% endif %}
-    {% if term_type != "none" %}
-    <termNote type="termType">[[ term_type ]]</termNote>
-    {% endif %}
-    {% if part_of_speech != "none" %}
-    <termNote type="partOfSpeech">[[ part_of_speech ]]</termNote>
-    {% endif %}
+    <termNote type="termType">{% if term_type != "none" %}[[ term_type ]]{% endif %}</termNote>
+    <termNote type="partOfSpeech">{% if part_of_speech != "none" %}[[ part_of_speech ]]{% endif %}</termNote>
     <admin type="originatingPerson">[[ orig_person ]]</admin>
-    {% if concept_origin %}
-    <admin type="conceptOrigin">[[ concept_origin ]]</admin>
-    {% endif %}
+    <admin type="conceptOrigin">{% if concept_origin %}[[ concept_origin ]]{% endif %}</admin>
     <admin type="elementWorkingStatus">{% if working_status %}workingElement{% else %}starterElement{% endif %}</admin>
-    {% if entry_source %}
-    <admin type="entrySource">[[ entry_source ]]</admin>
-    {% endif %}
-    {% if product_subset != "none" %}
-    <admin type="productSubset">[[ product_subset ]]</admin>
-    {% endif %}
-    {% if example %}
-    <descrip type="example">[[ example ]]</descrip>
-    {% endif %}
-    {% if explanation %}
-    <descrip type="explanation">[[ explanation ]]</descrip>
-    {% endif %}
-    {% if context %}
-    <descrip type="context">[[ context ]]</descrip>
-    {% endif %}
-    {% if cross_reference %}
-    <ref target="[[ xref_id ]]" type="crossReference">[[ cross_reference ]]</ref>
-    {% endif %}
+    <admin type="entrySource">{% if entry_source %}[[ entry_source ]]{% endif %}</admin>
+    <admin type="productSubset">{% if product_subset != "none" %}[[ product_subset ]]{% endif %}</admin>
+    <descrip type="example">{% if example %}[[ example ]]{% endif %}</descrip>
+    <descrip type="explanation">{% if explanation %}[[ explanation ]]{% endif %}</descrip>
+    <descrip type="context">{% if context %}[[ context ]]{% endif %}</descrip>
+    <ref{% if xref_id %} target="[[ xref_id ]]"{% endif %} type="crossReference">{% if cross_reference %}[[ cross_reference ]]{% endif %}</ref>
     [[ render_transaction(transac_type, date, username) ]]
 </tig>

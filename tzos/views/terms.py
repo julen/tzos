@@ -134,7 +134,34 @@ def edit(id):
 
     if form.validate_on_submit():
         # TODO: actual term updating
-        flash(_(u"Term '' has been edited."), "success")
+        success = []
+        failure = []
+
+        blacklist = ('not_mine', 'submit', 'administrative_status')
+
+        for field in form:
+
+            if field.type != 'HiddenField' and field.name not in blacklist:
+                old_data = getattr(term, field.name)
+
+                if field.data != old_data:
+                    print field.data
+                    print "We have to edit this"
+
+                    if term.update(field.name, field.data):
+                        success.append(field.name)
+                    else:
+                        failure.append(field.name)
+
+        if failure:
+            flash(_(u"Failed to edit some fields."), "error")
+        else:
+            flash(_(u"Term '%(term)s' has been edited.", term=term.term),
+                    "success")
+
+    elif request.method == 'POST' and not form.validate():
+        flash(_(u"Failed to edit term. Please review the data you "
+                 "entered is correct."), "error")
 
     return render_template('terms/edit.html', form=form, term=term)
 

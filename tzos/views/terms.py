@@ -45,7 +45,9 @@ def generate_term_form(form_cls, **form_args):
     form = form_cls(**form_args)
 
     if form_cls.__name__ == 'AddTermForm':
-        form.language.choices = get_dict_langs()
+        dict_langs = get_dict_langs()
+        form.syntrans_lang.choices = dict_langs
+        form.language.choices = dict_langs
 
     form.concept_origin.choices = get_origins_dropdown()
 

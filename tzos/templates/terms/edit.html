@@ -28,10 +28,7 @@
                    g.user.is_moderator and term.is_public() %}
                 [[ render_field(form.working_status, class="input") ]]
                 {% endif %}
-            </ul>
-            <ul class="fields clLeft">
-                [[ render_field(form.not_mine, tag_class="showSource") ]]
-                [[ render_field(form.originating_person, tag_class="hideme", class="input") ]]
+                [[ render_field(form.originating_person, class="input", rel="tipsy-ns") ]]
             </ul>
         </div>
     </div>

@@ -1,10 +1,8 @@
 {% from "macros/_xml.html" import render_transaction %}
 <tig>
     <term id="[[ term_id ]]">[[ term ]]</term>
-    {% if normative_authorization != "none" and normative_authorization_org != "none" %}
     <termNote type="normativeAuthorization"
-        target="[[ normative_authorization_org ]]">[[ normative_authorization ]]</termNote>
-    {% endif %}
+        target="{% if normative_authorization_org %}[[ normative_authorization_org ]]"{% endif %}>{% if normative_authorization != "none" and normative_authorization_org != "none" %}[[ normative_authorization ]]{% endif %}</termNote>
     <termNote type="termType">{% if term_type != "none" %}[[ term_type ]]{% endif %}</termNote>
     <termNote type="partOfSpeech">{% if part_of_speech != "none" %}[[ part_of_speech ]]{% endif %}</termNote>
     <admin type="originatingPerson">[[ orig_person ]]</admin>

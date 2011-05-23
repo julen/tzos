@@ -137,21 +137,45 @@ def edit(id):
         success = []
         failure = []
 
-        blacklist = ('not_mine', 'submit', 'administrative_status')
+        blacklist = ('not_mine', 'submit', 'administrative_status',
+                     'cross_reference', 'normative_authorization',
+                     'normative_authorization_org')
+
+        # Handle SelectMultipleFields
+        form.subject_field.data = ";".join(form.subject_field.data)
 
         for field in form:
 
             if field.type != 'HiddenField' and field.name not in blacklist:
                 old_data = getattr(term, field.name)
+                new_data = field.data
 
-                if field.data != old_data:
-                    print field.data
-                    print "We have to edit this"
+                if new_data != old_data:
 
-                    if term.update(field.name, field.data):
+                    if term.update(field.name, new_data):
                         success.append(field.name)
                     else:
                         failure.append(field.name)
+
+        #
+        # Treat excepcional cases (xref, normative_auth, admn-sts)
+        #
+        if form.cross_reference.data != term.cross_reference:
+            xref_term = Term(term=form.cross_reference.data)
+            xref_id = xref_term.id
+
+            olds = ('//term[@id="{0}"]/../ref[@type="crossReference"]', '//term[@id="{0}"]/../../../ref[@type="crossReference"]')
+
+            new = '<ref target="{0}" type="crossReference">{1}</ref>'. \
+                    format(xref_id, form.cross_reference.data)
+
+            for old in olds:
+                old = old.format(term.id)
+
+                if dbxml.get_db().replace(old, new):
+                    success.append(field.name)
+                else:
+                    failure.append(field.name)
 
         if failure:
             flash(_(u"Failed to edit some fields."), "error")

@@ -137,7 +137,7 @@ def edit(id):
         success = []
         failure = []
 
-        blacklist = ('not_mine', 'submit', 'administrative_status',
+        blacklist = ('not_mine', 'submit',
                      'cross_reference', 'normative_authorization',
                      'normative_authorization_org')
 

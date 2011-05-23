@@ -188,6 +188,8 @@ class Term(object):
              '//term[@id="{0}"]/../termNote[@type="partOfSpeech"]/string()'),
             ('term_type',
              '//term[@id="{0}"]/../termNote[@type="termType"]/string()'),
+            ('administrative_status',
+             '//term[@id="{0}"]/../termNote[@type="administrativeStatus"]/string()'),
         ]
 
         for key, qs in fields:

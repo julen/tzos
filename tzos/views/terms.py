@@ -160,6 +160,7 @@ def edit(id):
         #
         # Treat excepcional cases (xref, normative_auth, admn-sts)
         #
+
         if form.cross_reference.data != term.cross_reference:
             xref_term = Term(term=form.cross_reference.data)
             xref_id = xref_term.id
@@ -176,6 +177,23 @@ def edit(id):
                     success.append(field.name)
                 else:
                     failure.append(field.name)
+
+        if form.normative_authorization.data != \
+           term.normative_authorization or \
+           form.normative_authorization_org.data != \
+           term.normative_authorization_org:
+
+            old = '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]'. \
+                format(term.id)
+            new = '<termNote type="normativeAuthorization" '\
+                  'target="{0}">{1}</termNote>'. \
+                format(form.normative_authorization_org.data,
+                       form.normative_authorization.data)
+
+            if dbxml.get_db().replace(old, new):
+                success.append(field.name)
+            else:
+                failure.append(field.name)
 
         if failure:
             flash(_(u"Failed to edit some fields."), "error")

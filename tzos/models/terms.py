@@ -233,3 +233,60 @@ class Term(object):
             return True
 
         return False
+
+    def update(self, field, value):
+        """Updates current term's DB data with the object's data."""
+
+        fields_map = {
+            'concept_origin':
+             '//term[@id="{0}"]/../admin[@type="conceptOrigin"]',
+            'subject_field':
+             '//term[@id="{0}"]/../../../descrip[@type="subjectField"]',
+            'working_status':
+             '//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]',
+            'originating_person':
+             '//term[@id="{0}"]/../admin[@type="originatingPerson"]',
+            'definition':
+             '//term[@id="{0}"]/../../descrip[@type="definition"]',
+            'context':
+             '//term[@id="{0}"]/../descrip[@type="context"]',
+            'example':
+             '//term[@id="{0}"]/../descrip[@type="example"]',
+            'explanation':
+             '//term[@id="{0}"]/../descrip[@type="explanation"]',
+            'entry_source':
+             '//term[@id="{0}"]/../admin[@type="entrySource"]',
+            'cross_reference':
+             '//term[@id="{0}"]/../ref[@type="crossReference"]',
+            'product_subset':
+             '//term[@id="{0}"]/../admin[@type="productSubset"]',
+
+            'normative_authorization':
+             '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]',
+            'normative_authorization_org':
+             '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]/@target',
+            'subordinate_concept_generic':
+             '//term[@id="{0}"]/../../../descrip[@type="subordinateConceptGeneric"]',
+            'superordinate_concept_generic':
+             '//term[@id="{0}"]/../../../descrip[@type="superordinateConceptGeneric"]',
+            'antonym_concept':
+             '//term[@id="{0}"]/../../../descrip[@type="antonymConcept"]',
+            'related_concept':
+             '//term[@id="{0}"]/../../../descrip[@type="relatedConcept"]',
+            'part_of_speech':
+             '//term[@id="{0}"]/../termNote[@type="partOfSpeech"]',
+            'term_type':
+             '//term[@id="{0}"]/../termNote[@type="termType"]',
+        }
+
+        try:
+            qs = fields_map[field]
+
+            old = qs.format(self.id)
+
+            if dbxml.get_db().replace_value(old, value):
+                return True
+
+            return False
+        except KeyError:
+            return False

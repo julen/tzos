@@ -52,12 +52,6 @@ class BaseTermForm(Form):
             if not result:
                 raise ValidationError(message)
 
-    def check_not_mine(form, field):
-        message = _("You must specify the author's name.")
-
-        if form.not_mine.data and field.data == "":
-            raise ValidationError(message)
-
     def check_required_dropdown(form, field):
         message = _("You must choose a valid option.")
 
@@ -78,10 +72,6 @@ class BaseTermForm(Form):
     subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown],
         choices=SUBJECT_FIELDS)
-
-    not_mine = BooleanField(_("The author of this term is another person."))
-    originating_person = TextField(_("Author"), validators=[
-        check_not_mine])
 
     #
     # Transaction-related stuff
@@ -188,6 +178,12 @@ class AddTermForm(BaseTermForm):
         if not field.data or field.data in ('none',):
             raise ValidationError(message)
 
+    def check_not_mine(form, field):
+        message = _("You must specify the author's name.")
+
+        if form.not_mine.data and field.data == "":
+            raise ValidationError(message)
+
     term = TextField(_("Term"), validators=[
         required(message=_("Term is required.")),
         check_collision])
@@ -205,6 +201,10 @@ class AddTermForm(BaseTermForm):
     syntrans_lang = DynamicSelectField(_("Language"), validators=[
         check_required_dropdown])
 
+    not_mine = BooleanField(_("The author of this term is another person."))
+    originating_person = TextField(_("Author"), validators=[
+        check_not_mine])
+
 
     submit = SubmitField(_("Add"))
 
@@ -212,6 +212,10 @@ class AddTermForm(BaseTermForm):
 class EditTermForm(BaseTermForm):
 
     language = HiddenField(_("Language"))
+
+    originating_person = TextField(_("Author"),
+        description=_("If you leave this field blank, that means "
+                      "you are the term author."))
 
     submit = SubmitField(_("Save changes"))
 

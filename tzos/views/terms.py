@@ -192,7 +192,7 @@ def edit(id):
         if failure:
             flash(_(u"Failed to edit some fields."), "error")
         else:
-            flash(_(u"Term '%(term)s' has been edited.", term=term.term),
+            flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
                     "success")
 
     elif request.method == 'POST' and not form.validate():

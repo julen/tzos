@@ -36,6 +36,12 @@ def dropall():
         db.drop_all()
 
 @manager.command
+def import_origins():
+    '''Bootstraps initial term origins.'''
+
+    fixtures.import_origins()
+
+@manager.command
 def initdb():
     '''Initializes some basic data to start playing with the app.'''
     # TODO: find a way to check if the db schema has been initialized

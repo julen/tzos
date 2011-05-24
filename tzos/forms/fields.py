@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import SelectField
+from flaskext.wtf import BooleanField, SelectField
 
 class DynamicSelectField(SelectField):
     """A SelectField that allows disabling pre validation, which complicates
@@ -29,3 +29,13 @@ class DynamicSelectField(SelectField):
                     break
             else:
                 raise ValueError(_(u'Not a valid choice'))
+
+
+class BooleanWorkingField(BooleanField):
+    """A BooleanField that sets specific data according to the choice made."""
+
+    def process_formdata(self, valuelist):
+        if valuelist[0] == u'y':
+            self.data = 'workingElement'
+        else:
+            self.data = 'starterElement'

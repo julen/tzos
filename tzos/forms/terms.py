@@ -14,7 +14,7 @@ from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, NoneOf, \
     ValidationError, required
 
 from tzos.extensions import dbxml
-from tzos.forms.fields import DynamicSelectField
+from tzos.forms.fields import BooleanWorkingField, DynamicSelectField
 from tzos.helpers import dropdown_list
 from tzos.strings import *
 
@@ -67,7 +67,7 @@ class BaseTermForm(Form):
         required(message=_("Origin is required."))])
 
     # Affects elementWorkingStatus
-    working_status = BooleanField(_("I want this term to be public."))
+    working_status = BooleanWorkingField(_("I want this term to be public."))
 
     subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown],

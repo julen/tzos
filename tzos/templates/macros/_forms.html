@@ -15,7 +15,7 @@
 </p>
 {% else %}
     <[[ tag ]]{% if tag_class %} class="[[ tag_class ]]"{% endif %}>
-    {% if field.type == 'BooleanField' %}
+    {% if field.type == 'BooleanField' or field.type == 'BooleanWorkingField' %}
         [[ field(class="in")|safe ]]
         [[ field.label(class="in") ]]
     {% else %}

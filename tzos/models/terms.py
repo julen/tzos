@@ -226,7 +226,15 @@ class Term(object):
         else:
             ctx.update({'concept_id': dbxml.get_db().generate_id('concept')})
             template_name = 'xml/new_concept.xml'
-            where = '//termEntry[1]'
+            where = '//body'
+
+            xml = render_template(template_name, **ctx)
+
+            if dbxml.get_db().insert_as_first(xml, where):
+                self.term_id = ctx['term_id']
+                return True
+
+            return False
 
         xml = render_template(template_name, **ctx)
 

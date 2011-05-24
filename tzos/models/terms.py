@@ -290,6 +290,9 @@ class Term(object):
             old = qs.format(self.id)
 
             if dbxml.get_db().replace_value(old, value):
+                # Update object's value as well
+                setattr(self, field, value)
+
                 return True
 
             return False

@@ -1978,7 +1978,7 @@ msgstr "Errorea baimenak eguneratzean."
 #: tzos/views/admin.py:99
 #, python-format
 msgid "Term origin ‘%(origin)s’ has been added."
-msgstr "‘%(user)s’ termino-jatorria gehitu egin da."
+msgstr "‘%(origin)s’ termino-jatorria gehitu egin da."
 
 #: tzos/views/admin.py:102
 msgid "Error while adding term origin."
@@ -1987,7 +1987,7 @@ msgstr "Errorea terminoaren jatorria gehitzean."
 #: tzos/views/admin.py:124
 #, python-format
 msgid "Term origin ‘%(origin)s’ has been edited."
-msgstr "‘%(user)s’ termino-jatorria editatu egin da."
+msgstr "‘%(origin)s’ termino-jatorria editatu egin da."
 
 #: tzos/views/frontend.py:40
 #, python-format
@@ -2010,7 +2010,7 @@ msgstr "Huts zenbait eremu editatzean."
 #: tzos/views/terms.py:220
 #, python-format
 msgid "Term ‘%(term)s’ has been edited."
-msgstr "‘%(user)s’ terminoa editatu egin da."
+msgstr "‘%(term)s’ terminoa editatu egin da."
 
 #: tzos/views/terms.py:224
 msgid "Failed to edit term. Please review the data you entered is correct."

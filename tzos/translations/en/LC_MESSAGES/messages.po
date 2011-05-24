@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-05-17 09:39+0200\n"
+"PO-Revision-Date: 2011-05-24 19:50+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -20,18 +20,6 @@ msgstr ""
 
 #: tzos/application.py:87
 msgid "You must login to see this page."
-msgstr ""
-
-#: tzos/models.py:64
-msgid "Member"
-msgstr ""
-
-#: tzos/models.py:65
-msgid "Moderator"
-msgstr ""
-
-#: tzos/models.py:66
-msgid "Administrator"
 msgstr ""
 
 #: tzos/strings.py:14
@@ -826,19 +814,19 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
-#: tzos/strings.py:233
+#: tzos/strings.py:233 tzos/strings.py:297
 msgid "Preferred"
 msgstr ""
 
-#: tzos/strings.py:234
+#: tzos/strings.py:234 tzos/strings.py:298
 msgid "Admitted"
 msgstr ""
 
-#: tzos/strings.py:235
+#: tzos/strings.py:235 tzos/strings.py:299
 msgid "Deprecated"
 msgstr ""
 
-#: tzos/strings.py:236
+#: tzos/strings.py:236 tzos/strings.py:300
 msgid "Superseded"
 msgstr ""
 
@@ -958,44 +946,64 @@ msgstr ""
 msgid "Variant"
 msgstr ""
 
-#: tzos/strings.py:269 tzos/strings.py:279
+#: tzos/strings.py:269 tzos/strings.py:278
 msgid "Other"
 msgstr ""
 
-#: tzos/strings.py:274
+#: tzos/strings.py:273
 msgid "Noun"
 msgstr ""
 
-#: tzos/strings.py:275
+#: tzos/strings.py:274
 msgid "Verb"
 msgstr ""
 
-#: tzos/strings.py:276
+#: tzos/strings.py:275
 msgid "Adjective"
 msgstr ""
 
-#: tzos/strings.py:277
+#: tzos/strings.py:276
 msgid "Adverb"
 msgstr ""
 
-#: tzos/strings.py:278
+#: tzos/strings.py:277
 msgid "Proper noun"
 msgstr ""
 
-#: tzos/strings.py:283
+#: tzos/strings.py:282
 msgid "Notes"
 msgstr ""
 
-#: tzos/strings.py:284
+#: tzos/strings.py:283
 msgid "End of degree projects"
 msgstr ""
 
-#: tzos/strings.py:285
+#: tzos/strings.py:284
 msgid "Research projects"
 msgstr ""
 
-#: tzos/strings.py:286
+#: tzos/strings.py:285
 msgid "Theses"
+msgstr ""
+
+#: tzos/strings.py:289
+msgid "Imported"
+msgstr ""
+
+#: tzos/strings.py:290
+msgid "Starter"
+msgstr ""
+
+#: tzos/strings.py:291
+msgid "Working"
+msgstr ""
+
+#: tzos/strings.py:292
+msgid "Consolidated"
+msgstr ""
+
+#: tzos/strings.py:293
+msgid "Archived"
 msgstr ""
 
 #: tzos/forms/account.py:21
@@ -1103,7 +1111,7 @@ msgstr ""
 msgid "Display name"
 msgstr ""
 
-#: tzos/forms/account.py:103 tzos/templates/user/profile.html:23
+#: tzos/forms/account.py:103 tzos/templates/user/profile.html:24
 msgid "Website"
 msgstr ""
 
@@ -1111,11 +1119,11 @@ msgstr ""
 msgid "The URL must be valid."
 msgstr ""
 
-#: tzos/forms/account.py:107 tzos/templates/user/profile.html:28
+#: tzos/forms/account.py:107 tzos/templates/user/profile.html:29
 msgid "Company/Organization"
 msgstr ""
 
-#: tzos/forms/account.py:109 tzos/templates/user/profile.html:33
+#: tzos/forms/account.py:109 tzos/templates/user/profile.html:34
 msgid "Location"
 msgstr ""
 
@@ -1123,8 +1131,8 @@ msgstr ""
 msgid "Update information"
 msgstr ""
 
-#: tzos/forms/admin.py:22 tzos/templates/admin/settings.html:27
-#: tzos/templates/user/profile.html:37
+#: tzos/forms/admin.py:22 tzos/templates/admin/permissions.html:8
+#: tzos/templates/user/profile.html:38
 msgid "Role"
 msgstr ""
 
@@ -1132,16 +1140,43 @@ msgstr ""
 msgid "Modify permissions"
 msgstr ""
 
-#: tzos/forms/admin.py:29 tzos/forms/search.py:21 tzos/forms/terms.py:90
-#: tzos/forms/terms.py:112
-msgid "Language"
+#: tzos/forms/admin.py:29 tzos/templates/admin/languages.html:9
+msgid "Language name"
 msgstr ""
 
-#: tzos/forms/admin.py:31
+#: tzos/forms/admin.py:30
+msgid "Language name is required."
+msgstr ""
+
+#: tzos/forms/admin.py:33
+msgid "Language code"
+msgstr ""
+
+#: tzos/forms/admin.py:35
+msgid "Language code must be exactly two characters length."
+msgstr ""
+
+#: tzos/forms/admin.py:36
+msgid "Language code is required."
+msgstr ""
+
+#: tzos/forms/admin.py:39
 msgid "Add language"
 msgstr ""
 
-#: tzos/forms/fields.py:30
+#: tzos/forms/comments.py:19
+msgid "Term id is required."
+msgstr ""
+
+#: tzos/forms/comments.py:22
+msgid "Comment is required."
+msgstr ""
+
+#: tzos/forms/comments.py:24
+msgid "Save"
+msgstr ""
+
+#: tzos/forms/fields.py:31
 msgid "Not a valid choice"
 msgstr ""
 
@@ -1149,155 +1184,254 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#. l10n: Translate as 'Term'
-#: tzos/forms/search.py:28 tzos/forms/terms.py:86 tzos/forms/terms.py:108
+#: tzos/forms/search.py:21 tzos/forms/terms.py:191 tzos/forms/terms.py:201
+#: tzos/forms/terms.py:214
+msgid "Language"
+msgstr ""
+
+#: tzos/forms/search.py:27 tzos/forms/terms.py:187 tzos/forms/terms.py:197
 msgid "Term"
 msgstr ""
 
-#: tzos/forms/search.py:29 tzos/forms/terms.py:131
+#: tzos/forms/search.py:28 tzos/forms/terms.py:96
 msgid "Definition"
 msgstr ""
 
-#: tzos/forms/search.py:30 tzos/forms/terms.py:128
+#: tzos/forms/search.py:29 tzos/forms/terms.py:88
 msgid "Context"
 msgstr ""
 
-#: tzos/forms/search.py:31 tzos/forms/terms.py:133
+#: tzos/forms/search.py:30 tzos/forms/terms.py:103
 msgid "Example"
 msgstr ""
 
-#: tzos/forms/search.py:32 tzos/forms/terms.py:134
+#: tzos/forms/search.py:31 tzos/forms/terms.py:108
 msgid "Explanation"
 msgstr ""
 
-#: tzos/forms/search.py:33 tzos/forms/terms.py:147
+#: tzos/forms/search.py:32 tzos/forms/terms.py:121
 msgid "Hyponym"
 msgstr ""
 
-#: tzos/forms/search.py:34 tzos/forms/terms.py:148
-msgid "Hyperonym"
+#: tzos/forms/search.py:33 tzos/forms/terms.py:123
+msgid "Hypernym"
 msgstr ""
 
-#: tzos/forms/search.py:35 tzos/forms/terms.py:149
+#: tzos/forms/search.py:34 tzos/forms/terms.py:125
 msgid "Antonym"
 msgstr ""
 
-#: tzos/forms/search.py:36
+#: tzos/forms/search.py:35 tzos/forms/terms.py:130
 msgid "Related concept"
 msgstr ""
 
-#: tzos/forms/search.py:38
+#: tzos/forms/search.py:37
 msgid "Search field"
 msgstr ""
 
-#: tzos/forms/search.py:47
+#: tzos/forms/search.py:46
 msgid "Terms per page"
 msgstr ""
 
-#: tzos/forms/search.py:52 tzos/forms/search.py:60 tzos/forms/search.py:66
-#: tzos/forms/search.py:69 tzos/views/frontend.py:25 tzos/views/search.py:108
-#: tzos/views/search.py:110
+#: tzos/forms/search.py:51 tzos/forms/search.py:54 tzos/forms/search.py:62
+#: tzos/forms/search.py:68 tzos/forms/search.py:71 tzos/views/frontend.py:26
+#: tzos/views/search.py:111 tzos/views/search.py:113 tzos/views/search.py:115
 msgid "All"
 msgstr ""
 
-#: tzos/forms/search.py:53 tzos/forms/terms.py:101
+#: tzos/forms/search.py:52 tzos/forms/terms.py:72
 msgid "Subject field"
 msgstr ""
 
-#: tzos/forms/search.py:55 tzos/forms/terms.py:94
-msgid "Origin"
-msgstr ""
-
-#: tzos/forms/search.py:61
-msgid "Normative level"
-msgstr ""
-
-#: tzos/forms/search.py:64
-msgid "Normative organization"
-msgstr ""
-
-#: tzos/forms/search.py:67 tzos/forms/terms.py:153
-msgid "Part of Speech"
-msgstr ""
-
-#: tzos/forms/search.py:70 tzos/forms/terms.py:156
-msgid "Term type"
-msgstr ""
-
-#: tzos/forms/search.py:72
-msgid "Search"
-msgstr ""
-
-#: tzos/forms/terms.py:23
-msgid "This term already exists in the database."
-msgstr ""
-
-#: tzos/forms/terms.py:34
-msgid "You must specify a term."
-msgstr ""
-
-#: tzos/forms/terms.py:41 tzos/forms/terms.py:56
-msgid "This term doesn't exist in the database."
-msgstr ""
-
-#: tzos/forms/terms.py:70
-msgid "You must specify the author's name."
-msgstr ""
-
-#: tzos/forms/terms.py:76
-msgid "You must choose a valid option."
-msgstr ""
-
-#: tzos/forms/terms.py:87
-msgid "Term is required."
-msgstr ""
-
-#: tzos/forms/terms.py:95
-msgid "Origin is required."
-msgstr ""
-
-#: tzos/forms/terms.py:98
-msgid "I want this term to be public immediately."
-msgstr ""
-
-#: tzos/forms/terms.py:106
-msgid "This term is a synonym or a translation for another term."
-msgstr ""
-
-#: tzos/forms/terms.py:116
-msgid "The author of this term is another person."
-msgstr ""
-
-#: tzos/forms/terms.py:117
-msgid "Author"
-msgstr ""
-
-#: tzos/forms/terms.py:129
-msgid "Cross reference"
-msgstr ""
-
-#: tzos/forms/terms.py:132
-msgid "Entry source"
-msgstr ""
-
-#: tzos/forms/terms.py:136
+#: tzos/forms/search.py:55 tzos/forms/terms.py:111
 msgid "Appears in"
 msgstr ""
 
-#: tzos/forms/terms.py:142
+#: tzos/forms/search.py:57 tzos/forms/terms.py:66
+msgid "Origin"
+msgstr ""
+
+#: tzos/forms/search.py:63
+msgid "Normative level"
+msgstr ""
+
+#: tzos/forms/search.py:66
+msgid "Normative organization"
+msgstr ""
+
+#: tzos/forms/search.py:69 tzos/forms/terms.py:134
+msgid "Part of Speech"
+msgstr ""
+
+#: tzos/forms/search.py:72 tzos/forms/terms.py:137
+msgid "Term type"
+msgstr ""
+
+#: tzos/forms/search.py:74
+msgid "Search"
+msgstr ""
+
+#: tzos/forms/terms.py:25
+msgid "Name is required."
+msgstr ""
+
+#: tzos/forms/terms.py:27
+msgid "Parent"
+msgstr ""
+
+#: tzos/forms/terms.py:31
+msgid "Create"
+msgstr ""
+
+#: tzos/forms/terms.py:35
+msgid "Edit"
+msgstr ""
+
+#: tzos/forms/terms.py:42 tzos/forms/terms.py:161
+msgid "This term doesn't exist in the database."
+msgstr ""
+
+#: tzos/forms/terms.py:56 tzos/forms/terms.py:176
+msgid "You must choose a valid option."
+msgstr ""
+
+#: tzos/forms/terms.py:67
+msgid "Origin is required."
+msgstr ""
+
+#: tzos/forms/terms.py:70
+msgid "I want this term to be public."
+msgstr ""
+
+#: tzos/forms/terms.py:85
+msgid ""
+"A text which illustrates a concept or a term by containing the concept "
+"designation itself. It must be authentic."
+msgstr ""
+
+#: tzos/forms/terms.py:90
+msgid "A related term."
+msgstr ""
+
+#: tzos/forms/terms.py:91
+msgid "Cross reference"
+msgstr ""
+
+#: tzos/forms/terms.py:94
+msgid ""
+"A descriptive statement which serves to differentiate from related "
+"concepts."
+msgstr ""
+
+#: tzos/forms/terms.py:98
+msgid "The source of the terminological entry."
+msgstr ""
+
+#: tzos/forms/terms.py:99
+msgid "Entry source"
+msgstr ""
+
+#: tzos/forms/terms.py:101
+msgid ""
+"A text which illustrates a concept or a term. It can be an invented "
+"sentence."
+msgstr ""
+
+#: tzos/forms/terms.py:105
+msgid ""
+"A statement that describes and clarifies a concept and makes it "
+"understandable, but does not necessarily differentiate it from other "
+"concepts."
+msgstr ""
+
+#: tzos/forms/terms.py:117
 msgid "Normative authorization"
 msgstr ""
 
-#: tzos/forms/terms.py:144
+#: tzos/forms/terms.py:119
 msgid "Organization"
 msgstr ""
 
-#: tzos/forms/terms.py:161
+#: tzos/forms/terms.py:128
+msgid ""
+"A concept that has an associative relation to another concept, such as "
+"teacher and school."
+msgstr ""
+
+#: tzos/forms/terms.py:143
+msgid "This term already exists in the database."
+msgstr ""
+
+#: tzos/forms/terms.py:154
+msgid "You must specify a term."
+msgstr ""
+
+#: tzos/forms/terms.py:182
+msgid "You must specify the author's name."
+msgstr ""
+
+#: tzos/forms/terms.py:188
+msgid "Term is required."
+msgstr ""
+
+#: tzos/forms/terms.py:194
+msgid "This term is a synonym or a translation for another term."
+msgstr ""
+
+#: tzos/forms/terms.py:204
+msgid "The author of this term is another person."
+msgstr ""
+
+#: tzos/forms/terms.py:205 tzos/forms/terms.py:216
+msgid "Author"
+msgstr ""
+
+#: tzos/forms/terms.py:209
 msgid "Add"
 msgstr ""
 
-#: tzos/forms/terms.py:166
+#: tzos/forms/terms.py:217
+msgid "If you leave this field blank, that means you are the term author."
+msgstr ""
+
+#: tzos/forms/terms.py:220
 msgid "Save changes"
+msgstr ""
+
+#: tzos/forms/terms.py:226
+msgid "Administrative status is not set."
+msgstr ""
+
+#: tzos/forms/terms.py:233
+msgid ""
+"If you consolidate this term, you must set its administrative status "
+"('Linguistic information' tab)."
+msgstr ""
+
+#: tzos/forms/terms.py:235
+msgid "Working status"
+msgstr ""
+
+#: tzos/forms/terms.py:240
+msgid ""
+"This field has no effect if the working status of this term is other than"
+" 'Consolidated'."
+msgstr ""
+
+#: tzos/forms/terms.py:242
+msgid "Administrative status within the TZOS environment"
+msgstr ""
+
+#: tzos/models/users.py:61
+msgid "Member"
+msgstr ""
+
+#: tzos/models/users.py:62
+msgid "Moderator"
+msgstr ""
+
+#: tzos/models/users.py:63
+msgid "Administrator"
 msgstr ""
 
 #: tzos/templates/dict.html:3
@@ -1312,16 +1446,33 @@ msgstr ""
 msgid "Please select the dictionary language of your choice."
 msgstr ""
 
-#: tzos/templates/index.html:3
+#: tzos/templates/index.html:5
 msgid "Online System for Terminology Service"
 msgstr ""
 
-#: tzos/templates/index.html:5
+#: tzos/templates/index.html:7
 msgid "Welcome"
 msgstr ""
 
-#: tzos/templates/index.html:6
+#: tzos/templates/index.html:8
 msgid "TZOS is an online community for building and sharing terminology."
+msgstr ""
+
+#: tzos/templates/index.html:13 tzos/templates/search/results.html:6
+#: tzos/templates/search/results.html:8
+msgid "Advanced search"
+msgstr ""
+
+#: tzos/templates/index.html:17 tzos/templates/user/profile.html:46
+msgid "Latest additions"
+msgstr ""
+
+#: tzos/templates/index.html:20 tzos/templates/user/profile.html:49
+msgid "Latest comments"
+msgstr ""
+
+#: tzos/templates/index.html:24 tzos/templates/terms/term_detail.html:27
+msgid "No comments yet."
 msgstr ""
 
 #: tzos/templates/account/change_password.html:4
@@ -1441,74 +1592,90 @@ msgstr ""
 msgid "Type your new password and confirm it."
 msgstr ""
 
-#: tzos/templates/admin/settings.html:4 tzos/templates/admin/settings.html:8
-msgid "Administration"
+#: tzos/templates/admin/edit_origin.html:2
+msgid "Edit origin"
 msgstr ""
 
-#: tzos/templates/admin/settings.html:9
-msgid "You can change the settings that affect to the whole system below."
-msgstr ""
-
-#: tzos/templates/admin/settings.html:14
-msgid "User permissions"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:15
-msgid "Languages"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:16
-msgid "Knowledge fields"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:21
-msgid "Privileged users"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:22
-msgid "The following users have special privileges on the system."
-msgstr ""
-
-#: tzos/templates/admin/settings.html:27
-msgid "User"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:41
-msgid "Modify user permissions"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:42
-msgid ""
-"Select a user and the permission level you want to grant. If the selected"
-" user already has special privileges they will be updated."
-msgstr ""
-
-#: tzos/templates/admin/settings.html:54
+#: tzos/templates/admin/languages.html:3
 msgid "Current languages"
 msgstr ""
 
-#: tzos/templates/admin/settings.html:55
+#: tzos/templates/admin/languages.html:4
 msgid ""
 "These are the dictionary languages that are currently available on the "
 "system."
 msgstr ""
 
-#: tzos/templates/admin/settings.html:60
+#: tzos/templates/admin/languages.html:9
 msgid "Code"
 msgstr ""
 
-#: tzos/templates/admin/settings.html:60
-msgid "Language name"
-msgstr ""
-
-#: tzos/templates/admin/settings.html:74
+#: tzos/templates/admin/languages.html:23
 msgid "Add a new language"
 msgstr ""
 
-#: tzos/templates/admin/settings.html:75
+#: tzos/templates/admin/languages.html:24
+msgid "To add a new language, simply write its full name and language code."
+msgstr ""
+
+#: tzos/templates/admin/origins.html:2
+msgid "Current origins"
+msgstr ""
+
+#: tzos/templates/admin/origins.html:3
 msgid ""
-"Select a language from the drop-down box in order to have it available on"
-" the system."
+"These are the current term origins available on the system. To edit an "
+"origin, just click on it."
+msgstr ""
+
+#: tzos/templates/admin/origins.html:14
+msgid "Add a new origin"
+msgstr ""
+
+#: tzos/templates/admin/permissions.html:2
+msgid "Privileged users"
+msgstr ""
+
+#: tzos/templates/admin/permissions.html:3
+msgid "The following users have special privileges on the system."
+msgstr ""
+
+#: tzos/templates/admin/permissions.html:8
+msgid "User"
+msgstr ""
+
+#: tzos/templates/admin/permissions.html:22
+msgid "Modify user permissions"
+msgstr ""
+
+#: tzos/templates/admin/permissions.html:23
+msgid ""
+"Select a user and the permission level you want to grant. If the selected"
+" user already has special privileges they will be updated."
+msgstr ""
+
+#: tzos/templates/admin/settings.html:3 tzos/templates/admin/settings.html:7
+msgid "Administration"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:8
+msgid "You can change the settings that affect to the whole system below."
+msgstr ""
+
+#: tzos/templates/admin/settings.html:13
+msgid "User permissions"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:14
+msgid "Languages"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:15
+msgid "Term origins"
+msgstr ""
+
+#: tzos/templates/admin/settings.html:16
+msgid "Knowledge fields"
 msgstr ""
 
 #: tzos/templates/emails/recover_password.html:1
@@ -1555,16 +1722,26 @@ msgid "« Back to the home page"
 msgstr ""
 
 #: tzos/templates/glossary/list_letter.html:16
+#: tzos/templates/search/results.html:41
 #, fuzzy
 msgid "No terms found."
 msgstr ""
 
-#: tzos/templates/search/results.html:6
-msgid "Search results"
+#: tzos/templates/macros/_util.html:24 tzos/templates/user/profile.html:5
+#, python-format
+msgid "%(user)s's profile"
 msgstr ""
 
-#: tzos/templates/search/results.html:6 tzos/templates/search/results.html:8
-msgid "Advanced search"
+#: tzos/templates/macros/_util.html:24
+msgid "d/M/yyyy HH:mm"
+msgstr ""
+
+#: tzos/templates/macros/_util.html:24
+msgid "Permalink"
+msgstr ""
+
+#: tzos/templates/search/results.html:6
+msgid "Search results"
 msgstr ""
 
 #: tzos/templates/search/results.html:9
@@ -1582,7 +1759,7 @@ msgstr ""
 msgid "Search options"
 msgstr ""
 
-#: tzos/templates/search/results.html:17
+#: tzos/templates/search/results.html:17 tzos/templates/terms/edit.html:17
 msgid "General"
 msgstr ""
 
@@ -1590,8 +1767,8 @@ msgstr ""
 msgid "Classification"
 msgstr ""
 
-#: tzos/templates/search/results.html:23 tzos/templates/terms/add.html:49
-#: tzos/templates/terms/edit.html:41
+#: tzos/templates/search/results.html:24 tzos/templates/terms/add.html:51
+#: tzos/templates/terms/edit.html:19
 msgid "Linguistic information"
 msgstr ""
 
@@ -1611,92 +1788,108 @@ msgstr ""
 msgid "From file"
 msgstr ""
 
-#: tzos/templates/terms/add.html:37 tzos/templates/terms/edit.html:29
-msgid "Show optional fields for more advanced use cases."
+#: tzos/templates/terms/add.html:24
+msgid "Select…"
 msgstr ""
 
-#: tzos/templates/terms/add.html:37 tzos/templates/terms/edit.html:29
-msgid "Show advanced fields"
+#: tzos/templates/terms/add.html:38
+msgid "Advanced fields"
 msgstr ""
 
-#: tzos/templates/terms/edit.html:5 tzos/templates/xquery/term.xqm:176
+#: tzos/templates/terms/add.html:40 tzos/templates/terms/edit.html:18
+msgid "Optional fields"
+msgstr ""
+
+#: tzos/templates/terms/edit.html:5 tzos/templates/xquery/term.xqm:189
 msgid "Edit term"
 msgstr ""
 
-#: tzos/templates/terms/term_detail.html:3
+#: tzos/templates/terms/term_detail.html:6
 msgid "Term details"
 msgstr ""
 
-#: tzos/templates/terms/term_detail.html:11
+#: tzos/templates/terms/term_detail.html:14
 msgid "Term not found."
 msgstr ""
 
-#: tzos/templates/user/profile.html:3
-#, python-format
-msgid "%(user)s's profile"
+#: tzos/templates/terms/term_detail.html:18
+msgid "Add a comment"
 msgstr ""
 
-#: tzos/templates/user/profile.html:10
+#: tzos/templates/terms/term_detail.html:23
+#, python-format
+msgid "Comments (%(count)d)"
+msgstr ""
+
+#: tzos/templates/terms/term_detail.html:25
+msgid "Read what people have said about this term."
+msgstr ""
+
+#: tzos/templates/user/profile.html:12
 msgid "Change your avatar at gravatar.com"
 msgstr ""
 
-#: tzos/templates/user/profile.html:11
+#: tzos/templates/user/profile.html:13
 msgid "Edit profile"
 msgstr ""
 
-#: tzos/templates/user/profile.html:18
+#: tzos/templates/user/profile.html:19
 msgid "Name"
 msgstr ""
 
-#: tzos/templates/user/profile.html:40
+#: tzos/templates/user/profile.html:41
 msgid "Date joined"
 msgstr ""
 
-#: tzos/templates/user/profile.html:40
+#: tzos/templates/user/profile.html:41
 msgid "d/M/Y"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:139
+#: tzos/templates/user/profile.html:53
+msgid "This user hasn't made any comments yet."
+msgstr ""
+
+#: tzos/templates/xquery/term.xqm:145
 msgid "Synonyms"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:139
+#: tzos/templates/xquery/term.xqm:145
 msgid "syn."
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:146
+#: tzos/templates/xquery/term.xqm:152
 msgid "Origin:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:151
+#: tzos/templates/xquery/term.xqm:157
 msgid "Appears in:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:154
+#: tzos/templates/xquery/term.xqm:160
 msgid "Classification:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:157
+#: tzos/templates/xquery/term.xqm:170
 msgid "Hyponym:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:160
-msgid "Hyperonym:"
+#: tzos/templates/xquery/term.xqm:173
+msgid "Hypernym:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:163
+#: tzos/templates/xquery/term.xqm:176
 msgid "Antonym:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:166
+#: tzos/templates/xquery/term.xqm:179
 msgid "Related concept:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:169
+#: tzos/templates/xquery/term.xqm:182
 msgid "See also:"
 msgstr ""
 
-#: tzos/templates/xquery/term.xqm:174
+#: tzos/templates/xquery/term.xqm:187
 msgid "Add synonym/translation"
 msgstr ""
 
@@ -1729,26 +1922,82 @@ msgstr ""
 msgid "Your account has been updated."
 msgstr ""
 
-#: tzos/views/admin.py:53
+#: tzos/views/admin.py:41
+msgid "Parent…"
+msgstr ""
+
+#: tzos/views/admin.py:77
 #, python-format
 msgid "Permissions for ‘%(user)s’ have been updated."
 msgstr ""
 
-#: tzos/views/admin.py:56
+#: tzos/views/admin.py:80
 msgid "Error while updating permissions."
 msgstr ""
 
-#: tzos/views/frontend.py:36
+#: tzos/views/admin.py:99
+#, python-format
+msgid "Term origin ‘%(origin)s’ has been added."
+msgstr ""
+
+#: tzos/views/admin.py:102
+msgid "Error while adding term origin."
+msgstr ""
+
+#: tzos/views/admin.py:124
+#, python-format
+msgid "Term origin ‘%(origin)s’ has been edited."
+msgstr ""
+
+#: tzos/views/frontend.py:40
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr ""
 
-#: tzos/views/terms.py:77
+#: tzos/views/terms.py:100
 #, python-format
 msgid "Term added successfully. <a href=\"%(url)s\">Go to the term</a>."
 msgstr ""
 
-#: tzos/views/terms.py:80
+#: tzos/views/terms.py:103
 msgid "Error while trying to add the term."
 msgstr ""
+
+#: tzos/views/terms.py:202
+msgid "Failed to edit some fields."
+msgstr ""
+
+#: tzos/views/terms.py:220
+#, python-format
+msgid "Term ‘%(term)s’ has been edited."
+msgstr ""
+
+#: tzos/views/terms.py:224
+msgid "Failed to edit term. Please review the data you entered is correct."
+msgstr ""
+
+#: tzos/views/terms.py:247
+msgid "Thanks for your comment."
+msgstr ""
+
+#~ msgid "Hyperonym"
+#~ msgstr ""
+
+#~ msgid "I want this term to be public immediately."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Select a language from the drop-"
+#~ "down box in order to have it "
+#~ "available on the system."
+#~ msgstr ""
+
+#~ msgid "Show optional fields for more advanced use cases."
+#~ msgstr ""
+
+#~ msgid "Show advanced fields"
+#~ msgstr ""
+
+#~ msgid "Hyperonym:"
+#~ msgstr ""
 

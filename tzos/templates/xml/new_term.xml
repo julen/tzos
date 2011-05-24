@@ -8,7 +8,7 @@
     <termNote type="partOfSpeech">{% if part_of_speech != "none" %}[[ part_of_speech ]]{% endif %}</termNote>
     <admin type="originatingPerson">[[ orig_person ]]</admin>
     <admin type="conceptOrigin">{% if concept_origin %}[[ concept_origin ]]{% endif %}</admin>
-    <admin type="elementWorkingStatus">{% if working_status %}workingElement{% else %}starterElement{% endif %}</admin>
+    <admin type="elementWorkingStatus">{% if working_status %}[[ working_status ]]{% endif %}</admin>
     <admin type="entrySource">{% if entry_source %}[[ entry_source ]]{% endif %}</admin>
     <admin type="productSubset">{% if product_subset != "none" %}[[ product_subset ]]{% endif %}</admin>
     <descrip type="example">{% if example %}[[ example ]]{% endif %}</descrip>

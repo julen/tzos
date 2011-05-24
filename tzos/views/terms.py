@@ -40,7 +40,7 @@ def detail(id):
                            term_id=id,
                            term_comments=term_comments)
 
-def generate_term_form(form_cls, **form_args):
+def generate_term_form(form_cls, public_term=False, **form_args):
 
     form = form_cls(**form_args)
 
@@ -48,6 +48,10 @@ def generate_term_form(form_cls, **form_args):
         dict_langs = get_dict_langs()
         form.syntrans_lang.choices = dict_langs
         form.language.choices = dict_langs
+
+    if form_cls.__name__ == 'ModEditTermForm':
+        if public_term and not g.user.is_admin:
+            form.working_status.choices = form.working_status.choices[2:]
 
     form.concept_origin.choices = get_origins_dropdown()
 
@@ -124,7 +128,7 @@ def edit(id):
     else:
         form_cls = EditTermForm
 
-    form = generate_term_form(form_cls, obj=term)
+    form = generate_term_form(form_cls, term.is_public(), obj=term)
 
     if form.validate_on_submit():
         success = []

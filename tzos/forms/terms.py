@@ -229,7 +229,7 @@ class ModEditTermForm(EditTermForm):
            field.data == "consolidatedElement":
             raise ValidationError(message)
 
-    ws_choices = WORKING_STATUS[2:]
+    ws_choices = WORKING_STATUS
     ws_desc = _("If you consolidate this term, you must set "
                 "its administrative status ('Linguistic information' tab).")
     working_status = DynamicSelectField(_("Working status"),

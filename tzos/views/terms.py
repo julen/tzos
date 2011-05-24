@@ -8,6 +8,8 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from time import strftime
+
 from flask import Module, abort, flash, g, render_template, redirect, \
     request, url_for
 
@@ -199,6 +201,22 @@ def edit(id):
         if failure:
             flash(_(u"Failed to edit some fields."), "error")
         else:
+            # XXX: adapt 'modification'? add note?
+            ctx = {
+                'transac_type': 'modification',
+                'date': strftime('%Y-%m-%d'),
+                'username': g.user.username
+            }
+
+            xml = render_template('xml/transaction.xml', **ctx)
+
+            locations = ('//term[@id="{0}"]/..',
+                         '//term[@id="{0}"]/../../..')
+
+            for location in locations:
+                location = location.format(id)
+                dbxml.get_db().insert_as_last(xml, location)
+
             flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
                     "success")
 

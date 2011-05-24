@@ -16,6 +16,8 @@ configs/__init__.py
 configs/fabric.py
 configs/production.py
 
+bootstrap/
+
 tzos/production.py
 tzos/tzos.wsgi
 

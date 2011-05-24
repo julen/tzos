@@ -35,7 +35,10 @@ class BooleanWorkingField(BooleanField):
     """A BooleanField that sets specific data according to the choice made."""
 
     def process_formdata(self, valuelist):
-        if valuelist[0] == u'y':
-            self.data = 'workingElement'
-        else:
+        try:
+            if valuelist[0] == u'y':
+                self.data = 'workingElement'
+            else:
+                self.data = 'starterElement'
+        except IndexError:
             self.data = 'starterElement'

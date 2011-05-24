@@ -201,7 +201,7 @@ class Term(object):
 
         ctx = {
             'orig_person': self.originating_person if self.not_mine else g.user.username,
-            'date': strftime('%Y-%m-%d %H:%M:%S%z'),
+            'date': strftime('%Y-%m-%d'),
             'username': g.user.username,
             'term_id': dbxml.get_db().generate_id('term'),
             }

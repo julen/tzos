@@ -127,7 +127,6 @@ def edit(id):
     form = generate_term_form(form_cls, obj=term)
 
     if form.validate_on_submit():
-        # TODO: actual term updating
         success = []
         failure = []
 

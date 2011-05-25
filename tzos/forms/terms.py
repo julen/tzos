@@ -143,7 +143,7 @@ class AddTermForm(BaseTermForm):
         message = _("This term already exists in the database.")
 
         # FIXME: Also check in subject field?
-        qs = "//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+        qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
                 format(form.language.data, form.term.data)
         result = dbxml.get_db().query(qs).as_str().first()
 
@@ -164,7 +164,7 @@ class AddTermForm(BaseTermForm):
             term = field.data
 
             # FIXME: Also check in subject field?
-            qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+            qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
                     format(lang, term)
             result = dbxml.get_db().query(qs).as_str().first()
 

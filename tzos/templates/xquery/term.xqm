@@ -4,7 +4,7 @@ import module namespace util = "http://tzos.net/util" at "util.xqm";
 
 
 declare function term:owner($term as element(term))
-as xs:string {
+{
     $term/../transacGrp[./transac[@type="transactionType"]/string()="origination" or ./transac[@type="transactionType"]/string()="input" or ./transac[@type="transactionType"]/string()="importation"]/transacNote[@type="responsibility"]/string()
 };
 

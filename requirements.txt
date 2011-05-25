@@ -5,7 +5,9 @@ Flask-Mail
 Flask-Principal
 Flask-SQLAlchemy
 Flask-Script
-Flask-WTF
+
+# Flask-WTF with fixes
+-e hg+https://bitbucket.org/julen/flask-wtf/#egg=flask-wtf
 
 # Flask-DBXML
 -e git://github.com/julen/flask-dbxml.git#egg=flask-dbxml

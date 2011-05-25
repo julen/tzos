@@ -21,6 +21,7 @@ from tzos.models import Comment, Term
 from tzos.helpers import dropdown_list, get_dict_langs, \
         get_origins_dropdown, get_responsible_orgs, require_valid_dict
 from tzos.permissions import auth
+from tzos.strings import *
 
 terms = Module(__name__)
 
@@ -56,6 +57,7 @@ def generate_term_form(form_cls, public_term=False, **form_args):
             form.working_status.choices = form.working_status.choices[2:]
 
     form.concept_origin.choices = get_origins_dropdown()
+    form.subject_field.choices = sorted(SUBJECT_FIELDS, key=lambda x: x[1])
 
     form.normative_authorization_org.choices = \
         dropdown_list(get_responsible_orgs())

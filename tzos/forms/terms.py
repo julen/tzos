@@ -70,8 +70,7 @@ class BaseTermForm(Form):
     working_status = BooleanWorkingField(_("I want this term to be public."))
 
     subject_field = SelectMultipleField(_("Subject field"), validators=[
-        check_required_dropdown],
-        choices=SUBJECT_FIELDS)
+        check_required_dropdown])
 
     #
     # Transaction-related stuff

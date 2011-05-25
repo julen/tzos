@@ -16,6 +16,7 @@ from tzos.extensions import dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import dropdown_list, get_dict_langs, \
         get_origins_dropdown, get_responsible_orgs
+from tzos.strings import *
 
 search = Module(__name__)
 
@@ -113,6 +114,9 @@ def quick():
             dropdown_list(get_origins_dropdown(), 'all', _('All'))
     form.na_org.choices = \
             dropdown_list(get_responsible_orgs(), 'all', _('All'))
+    form.subject_field.choices = \
+            dropdown_list(sorted(SUBJECT_FIELDS, key=lambda x: x[1]),
+                          'all', _('All'))
 
     ctx = {'form': form, 'q': q, 'page': page, 'non_default': non_default}
     return render_template('search/results.html', **ctx)

@@ -228,6 +228,7 @@ class Term(object):
             template_name = 'xml/new_concept.xml'
             where = u'//body'
 
+            # XXX: Ugly to repeat code here but necessary for now
             xml = render_template(template_name, **ctx)
 
             if dbxml.get_db().insert_as_first(xml, where):

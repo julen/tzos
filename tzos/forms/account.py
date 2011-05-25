@@ -58,6 +58,17 @@ class SignupForm(Form):
     submit = SubmitField(_("Signup"))
 
 
+    def validate_username(self, field):
+        user = User.query.filter(User.username.like(field.data)).first()
+        if user:
+            raise ValidationError, gettext("This username is taken.")
+
+    def validate_email(self, field):
+        user = User.query.filter(User.email.like(field.data)).first()
+        if user:
+            raise ValidationError, gettext("This email is taken.")
+
+
 class RecoverPasswordForm(Form):
     email = TextField(_("Your email address"), validators=[
                       email(message=_("A valid email address is required."))])

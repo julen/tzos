@@ -44,7 +44,7 @@ class Term(object):
         if hasattr(self, 'term_id'):
             return self.term_id
 
-        qs = "//term[string()='{0}']/data(@id)".format(self.term)
+        qs = u'//term[string()="{0}"]/data(@id)'.format(self.term)
         result = dbxml.get_db().query(qs).as_str().first()
 
         if result:
@@ -71,7 +71,7 @@ class Term(object):
         if not self.id:
             return False
 
-        qs = "//term[@id='{0}']".format(self.id)
+        qs = u'//term[@id="{0}"]'.format(self.id)
         result = dbxml.get_db().query(qs).as_str().first()
 
         if result is not None:
@@ -95,7 +95,7 @@ class Term(object):
         with a value of `workingElement` or higher."""
 
         if not hasattr(self, 'working_status'):
-            qs = '//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'.format(self.id)
+            qs = u'//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'.format(self.id)
             self.working_status = dbxml.get_db().query(qs).as_str().first()
         if not self.working_status:
             return False
@@ -109,7 +109,7 @@ class Term(object):
         with a value of `consolidatedElement` or higher."""
 
         if not hasattr(self, 'working_status'):
-            qs = '//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'.format(self.id)
+            qs = u'//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'.format(self.id)
             self.working_status = dbxml.get_db().query(qs).as_str().first()
         if not self.working_status:
             return False
@@ -123,7 +123,7 @@ class Term(object):
         as the user who committed the term."""
 
         if not hasattr(self, 'originating_person'):
-            qs = '//term[@id="{0}"]/../admin[@type="originatingPerson"]/string()'.format(self.id)
+            qs = u'//term[@id="{0}"]/../admin[@type="originatingPerson"]/string()'.format(self.id)
             self.originating_person = dbxml.get_db().query(qs).as_str().first()
         if self.originating_person is None:
             return False
@@ -135,7 +135,7 @@ class Term(object):
         """Returns the term owner, ie the username who first inserted
         this term."""
 
-        qs = '//tig[term/@id="{0}" and (transacGrp/transac[@type="transactionType"]/string()="origination" or transacGrp/transac[@type="transactionType"]/string()="importation" or transacGrp/transac[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
+        qs = u'//tig[term/@id="{0}" and (transacGrp/transac[@type="transactionType"]/string()="origination" or transacGrp/transac[@type="transactionType"]/string()="importation" or transacGrp/transac[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
         result = dbxml.get_db().query(qs).as_str().first()
 
         if result is not None:
@@ -147,49 +147,49 @@ class Term(object):
         """Populates current term's fields by querying fields by id."""
 
         fields = [
-            ('term', '//term[@id="{0}"]/string()'),
-            ('language', '//term[@id="{0}"]/../../data(@xml:lang)'),
+            ('term', u'//term[@id="{0}"]/string()'),
+            ('language', u'//term[@id="{0}"]/../../data(@xml:lang)'),
             ('concept_origin',
-             '//term[@id="{0}"]/../admin[@type="conceptOrigin"]/string()'),
+             u'//term[@id="{0}"]/../admin[@type="conceptOrigin"]/string()'),
             ('subject_field',
-             '//term[@id="{0}"]/../../../descrip[@type="subjectField"]/string()'),
+             u'//term[@id="{0}"]/../../../descrip[@type="subjectField"]/string()'),
             ('working_status',
-             '//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'),
+             u'//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]/string()'),
             ('originating_person',
-             '//term[@id="{0}"]/../admin[@type="originatingPerson"]/string()'),
+             u'//term[@id="{0}"]/../admin[@type="originatingPerson"]/string()'),
             ('definition',
-             '//term[@id="{0}"]/../../descrip[@type="definition"]/string()'),
+             u'//term[@id="{0}"]/../../descrip[@type="definition"]/string()'),
             ('context',
-             '//term[@id="{0}"]/../descrip[@type="context"]/string()'),
+             u'//term[@id="{0}"]/../descrip[@type="context"]/string()'),
             ('example',
-             '//term[@id="{0}"]/../descrip[@type="example"]/string()'),
+             u'//term[@id="{0}"]/../descrip[@type="example"]/string()'),
             ('explanation',
-             '//term[@id="{0}"]/../descrip[@type="explanation"]/string()'),
+             u'//term[@id="{0}"]/../descrip[@type="explanation"]/string()'),
             ('entry_source',
-             '//term[@id="{0}"]/../admin[@type="entrySource"]/string()'),
+             u'//term[@id="{0}"]/../admin[@type="entrySource"]/string()'),
             ('cross_reference',
-             '//term[@id="{0}"]/../ref[@type="crossReference"]/string()'),
+             u'//term[@id="{0}"]/../ref[@type="crossReference"]/string()'),
             ('product_subset',
-             '//term[@id="{0}"]/../admin[@type="productSubset"]/string()'),
+             u'//term[@id="{0}"]/../admin[@type="productSubset"]/string()'),
 
             ('normative_authorization',
-             '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]/string()'),
+             u'//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]/string()'),
             ('normative_authorization_org',
-             '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]/data(@target)'),
+             u'//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]/data(@target)'),
             ('subordinate_concept_generic',
-             '//term[@id="{0}"]/../../../descrip[@type="subordinateConceptGeneric"]/string()'),
+             u'//term[@id="{0}"]/../../../descrip[@type="subordinateConceptGeneric"]/string()'),
             ('superordinate_concept_generic',
-             '//term[@id="{0}"]/../../../descrip[@type="superordinateConceptGeneric"]/string()'),
+             u'//term[@id="{0}"]/../../../descrip[@type="superordinateConceptGeneric"]/string()'),
             ('antonym_concept',
-             '//term[@id="{0}"]/../../../descrip[@type="antonymConcept"]/string()'),
+             u'//term[@id="{0}"]/../../../descrip[@type="antonymConcept"]/string()'),
             ('related_concept',
-             '//term[@id="{0}"]/../../../descrip[@type="relatedConcept"]/string()'),
+             u'//term[@id="{0}"]/../../../descrip[@type="relatedConcept"]/string()'),
             ('part_of_speech',
-             '//term[@id="{0}"]/../termNote[@type="partOfSpeech"]/string()'),
+             u'//term[@id="{0}"]/../termNote[@type="partOfSpeech"]/string()'),
             ('term_type',
-             '//term[@id="{0}"]/../termNote[@type="termType"]/string()'),
+             u'//term[@id="{0}"]/../termNote[@type="termType"]/string()'),
             ('administrative_status',
-             '//term[@id="{0}"]/../termNote[@type="administrativeStatus"]/string()'),
+             u'//term[@id="{0}"]/../termNote[@type="administrativeStatus"]/string()'),
         ]
 
         for key, qs in fields:
@@ -218,15 +218,15 @@ class Term(object):
 
             if syntrans_term.has_langset(self.language):
                 template_name = 'xml/new_term.xml'
-                where = '//langSet[@xml:lang="{0}"]/tig[../..//term[@id="{1}"]][1]' \
+                where = u'//langSet[@xml:lang="{0}"]/tig[../..//term[@id="{1}"]][1]' \
                     .format(self.language, syntrans_term.id)
             else:
                 template_name = 'xml/new_langset.xml'
-                where = '//langSet[..//term[@id="{0}"]][1]'.format(syntrans_term.id)
+                where = u'//langSet[..//term[@id="{0}"]][1]'.format(syntrans_term.id)
         else:
             ctx.update({'concept_id': dbxml.get_db().generate_id('concept')})
             template_name = 'xml/new_concept.xml'
-            where = '//body'
+            where = u'//body'
 
             xml = render_template(template_name, **ctx)
 
@@ -249,39 +249,39 @@ class Term(object):
 
         fields_map = {
             'concept_origin':
-             '//term[@id="{0}"]/../admin[@type="conceptOrigin"]',
+             u'//term[@id="{0}"]/../admin[@type="conceptOrigin"]',
             'subject_field':
-             '//term[@id="{0}"]/../../../descrip[@type="subjectField"]',
+             u'//term[@id="{0}"]/../../../descrip[@type="subjectField"]',
             'working_status':
-             '//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]',
+             u'//term[@id="{0}"]/../admin[@type="elementWorkingStatus"]',
             'originating_person':
-             '//term[@id="{0}"]/../admin[@type="originatingPerson"]',
+             u'//term[@id="{0}"]/../admin[@type="originatingPerson"]',
             'definition':
-             '//term[@id="{0}"]/../../descrip[@type="definition"]',
+             u'//term[@id="{0}"]/../../descrip[@type="definition"]',
             'context':
-             '//term[@id="{0}"]/../descrip[@type="context"]',
+             u'//term[@id="{0}"]/../descrip[@type="context"]',
             'example':
-             '//term[@id="{0}"]/../descrip[@type="example"]',
+             u'//term[@id="{0}"]/../descrip[@type="example"]',
             'explanation':
-             '//term[@id="{0}"]/../descrip[@type="explanation"]',
+             u'//term[@id="{0}"]/../descrip[@type="explanation"]',
             'entry_source':
-             '//term[@id="{0}"]/../admin[@type="entrySource"]',
+             u'//term[@id="{0}"]/../admin[@type="entrySource"]',
             'product_subset':
-             '//term[@id="{0}"]/../admin[@type="productSubset"]',
+             u'//term[@id="{0}"]/../admin[@type="productSubset"]',
             'subordinate_concept_generic':
-             '//term[@id="{0}"]/../../../descrip[@type="subordinateConceptGeneric"]',
+             u'//term[@id="{0}"]/../../../descrip[@type="subordinateConceptGeneric"]',
             'superordinate_concept_generic':
-             '//term[@id="{0}"]/../../../descrip[@type="superordinateConceptGeneric"]',
+             u'//term[@id="{0}"]/../../../descrip[@type="superordinateConceptGeneric"]',
             'antonym_concept':
-             '//term[@id="{0}"]/../../../descrip[@type="antonymConcept"]',
+             u'//term[@id="{0}"]/../../../descrip[@type="antonymConcept"]',
             'related_concept':
-             '//term[@id="{0}"]/../../../descrip[@type="relatedConcept"]',
+             u'//term[@id="{0}"]/../../../descrip[@type="relatedConcept"]',
             'part_of_speech':
-             '//term[@id="{0}"]/../termNote[@type="partOfSpeech"]',
+             u'//term[@id="{0}"]/../termNote[@type="partOfSpeech"]',
             'term_type':
-             '//term[@id="{0}"]/../termNote[@type="termType"]',
+             u'//term[@id="{0}"]/../termNote[@type="termType"]',
             'administrative_status':
-             '//term[@id="{0}"]/../termNote[@type="administrativeStatus"]',
+             u'//term[@id="{0}"]/../termNote[@type="administrativeStatus"]',
         }
 
         try:

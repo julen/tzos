@@ -26,6 +26,12 @@ from tzos.strings import *
 
 terms = Module(__name__)
 
+ALLOWED_EXTENSIONS = set(['txt', 'csv'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 @terms.route('/<int:id>/')
 def detail(id):
 
@@ -66,7 +72,7 @@ def generate_term_form(form_cls, public_term=False, **form_args):
 
     return form
 
-@terms.route('/add/')
+@terms.route('/add/', methods=('GET', 'POST'))
 @auth.require(401)
 def add():
 
@@ -82,24 +88,18 @@ def add():
         del form_args['term']
         del form_args['lang']
 
-    add_form = generate_term_form(AddTermForm, formdata=form_args)
-    upload_form = generate_term_form(UploadForm, formdata=form_args)
+    add_form = generate_term_form(AddTermForm, formdata=form_args,
+                                  prefix='add')
+    upload_form = generate_term_form(UploadForm, formdata=form_args,
+                                     prefix='upload')
 
-    return render_template('terms/add.html', add_form=add_form,
-                                             upload_form=upload_form)
+    if add_form.submit.data and add_form.validate_on_submit():
 
-@terms.route('/add/single/', methods=('POST',))
-@auth.require(401)
-def add_single():
-
-    form = generate_term_form(AddTermForm)
-
-    if form and form.validate_on_submit():
         term = Term()
-        form.populate_obj(term)
+        add_form.populate_obj(term)
 
         # Handle SelectMultipleFields
-        term.subject_field = ";".join(form.subject_field.data)
+        term.subject_field = ";".join(add_form.subject_field.data)
 
         if term.insert():
             msg = _('Term added successfully. <a href="%(url)s">Go to the term</a>.',
@@ -108,9 +108,17 @@ def add_single():
         else:
             flash(_('Error while trying to add the term.'), 'error')
 
-        return redirect(url_for('terms.add'))
+    elif upload_form.submit.data and upload_form.validate_on_submit():
+        file = request.files['upload-file']
 
-    return render_template('terms/add.html', add_form=form)
+        if file and allowed_file(file.filename):
+            pass
+            # TODO: upload logic
+        else:
+            flash(_('Not a valid file.'), 'error')
+
+    return render_template('terms/add.html', add_form=add_form,
+                                             upload_form=upload_form)
 
 @terms.route('/<int:id>/edit/', methods=('GET', 'POST'))
 @auth.require(401)
@@ -136,7 +144,7 @@ def edit(id):
     else:
         form_cls = EditTermForm
 
-    form = generate_term_form(form_cls, term.is_public(), obj=term)
+    form = generate_term_form(form_cls, term.is_public(), obj=term, prefix='edit')
 
     if form.validate_on_submit():
         success = []

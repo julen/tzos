@@ -45,8 +45,9 @@ $(document).ready(function () {
         source: $AUTOCOMPLETE_URL + '?type=entrySource'
     });
 
-    $("form.addTerm select#subject_field, \
-       form.editTerm select#subject_field").bsmSelect({
+    $("select#add-subject_field, \
+       select#edit-subject_field, \
+       select#upload-subject_field").bsmSelect({
         removeLabel: '<strong>X</strong>',
         selectClass: 'input bsmSelect',
         containerClass: 'bsmContainer',

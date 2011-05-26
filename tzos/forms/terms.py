@@ -244,6 +244,7 @@ class ModEditTermForm(EditTermForm):
 
 class UploadForm(CoreTermForm):
 
-    file = FileField(_("File"))
+    file_desc = _("Allowed file extensions: .csv and .txt")
+    file = FileField(_("File"), description=file_desc)
 
     submit = SubmitField(_("Upload"))

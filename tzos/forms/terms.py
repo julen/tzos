@@ -244,11 +244,13 @@ class ModEditTermForm(EditTermForm):
 
 class UploadForm(CoreTermForm):
 
-    file_desc = _("Allowed file extensions: .csv and .txt")
-    file = FileField(_("File"), description=file_desc)
-
     not_mine = BooleanField(_("The author of these terms is another person."))
     originating_person = TextField(_("Author"), validators=[
         check_not_mine])
+
+    file_desc = _("Allowed file extensions: .csv and .txt")
+    file = FileField(_("File"), description=file_desc)
+
+    file_fields = SelectField(_("Column contents"))
 
     submit = SubmitField(_("Upload"))

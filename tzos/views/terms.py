@@ -63,6 +63,17 @@ def generate_term_form(form_cls, public_term=False, **form_args):
         if public_term and not g.user.is_admin:
             form.working_status.choices = form.working_status.choices[2:]
 
+    if form_cls.__name__ == 'UploadForm':
+        dict_langs = get_dict_langs()
+
+        choices = [(u'term-' + code, _(u"Term in %(lang)s", lang=lang)) \
+                for code, lang in dict_langs]
+        choices.extend([(u'trans-' + code, _(u"Translation in %(lang)s", lang=lang)) \
+                for code, lang in dict_langs])
+        choices.append(('syn', _("Synonym")))
+
+        form.file_fields.choices = choices
+
     form.concept_origin.choices = get_origins_dropdown()
     form.subject_field.choices = sorted(SUBJECT_FIELDS, key=lambda x: x[1])
 

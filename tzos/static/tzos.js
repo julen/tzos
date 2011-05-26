@@ -54,4 +54,13 @@ $(document).ready(function () {
         listItemClass: 'b small bsmListItem',
     });
 
+    $("a.addCol").click(function () {
+        $("ul.fileFields > li:first-child").clone(true)
+                                           .insertAfter("ul.fileFields > li:last-child");
+    });
+
+    $("a.rmCol").click(function () {
+        $(this).parent().remove();
+    });
+
 });

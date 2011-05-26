@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% from "macros/_forms.html" import render_field, render_form %}
+{% from "macros/_forms.html" import render_field %}
 
 {% block title %}[[ super() ]][[ _('Add terms') ]]{% endblock %}
 
@@ -16,7 +16,7 @@
 
     <div id="add_manually" class="tabContent">
         <div class="column">
-            <form method="POST" action="[[ url_for('terms.add_single') ]]" class="f1 addTerm">
+            <form method="POST" action="[[ url_for('terms.add') ]]" class="f1 addTerm">
                 [[ add_form.hidden_tag() ]]
                 <ul class="fields">
                     [[ render_field(add_form.term, class="input") ]]
@@ -69,7 +69,19 @@
 
     <div id="add_from_file" class="tabContent">
         <div class="column">
-            [[ render_form(upload_form) ]]
+            <form method="POST" action="[[ url_for('terms.add') ]]" class="f1 uploadTerm" enctype="multipart/form-data">
+                [[ upload_form.hidden_tag() ]]
+                <ul class="fields">
+                    {% set placeholder = _("Select…") %}
+                    [[ render_field(upload_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) ]]
+                    [[ render_field(upload_form.concept_origin, class="input", tag_class="singleLine") ]]
+                    [[ render_field(upload_form.working_status, class="input", tag_class="singleLine") ]]
+                    [[ render_field(upload_form.file, class="input", tag_class="singleLine") ]]
+                </ul>
+                <p class="fAction hr">
+                    [[ upload_form.submit(class="button") ]]
+                </p>
+            </form>
         </div>
     </div>
 

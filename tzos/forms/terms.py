@@ -247,4 +247,8 @@ class UploadForm(CoreTermForm):
     file_desc = _("Allowed file extensions: .csv and .txt")
     file = FileField(_("File"), description=file_desc)
 
+    not_mine = BooleanField(_("The author of this term is another person."))
+    originating_person = TextField(_("Author"), validators=[
+        check_not_mine])
+
     submit = SubmitField(_("Upload"))

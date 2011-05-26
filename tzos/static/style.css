@@ -601,6 +601,11 @@ section.admin ul.sideTabs li a.selected {
     width: 90%;
 }
 
+.tabContent p {
+    margin: 10px 0;
+}
+
+
 /* Column-based layouts */
 
 .columns {
@@ -629,10 +634,6 @@ section.admin ul.sideTabs li a.selected {
 
 .hTabs .columns .sidebar {
     width: 200px;
-}
-
-.column p {
-    margin: 10px 0;
 }
 
 .sidebar .sidebarBlock {

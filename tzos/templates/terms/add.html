@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% from "macros/_forms.html" import render_field %}
+{% from "macros/_forms.html" import render_field, render_form %}
 
 {% block title %}[[ super() ]][[ _('Add terms') ]]{% endblock %}
 
@@ -66,16 +66,10 @@
             </form>
         </div>
     </div>
-    </div>
 
     <div id="add_from_file" class="tabContent">
-        <div class="columns">
-            <div class="column main">
-                <div class="fields">
-                </div>
-            </div>
-            <div class="column sidebar">
-            </div>
+        <div class="column">
+            [[ render_form(upload_form) ]]
         </div>
     </div>
 

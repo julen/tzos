@@ -9,14 +9,89 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import AnyOf, BooleanField, Form, HiddenField, NoneOf, \
-    SelectField, SelectMultipleField, SubmitField, TextAreaField, TextField, \
-    ValidationError, required
+from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
+        NoneOf, SelectField, SelectMultipleField, SubmitField, TextAreaField, \
+        TextField, ValidationError, required
 
 from tzos.extensions import dbxml
 from tzos.forms.fields import BooleanWorkingField, DynamicSelectField
 from tzos.helpers import dropdown_list
 from tzos.strings import *
+
+
+#
+# Validators
+#
+
+def check_exists(form, field):
+    if field.data != "":
+        message = _("This term doesn't exist in the database.")
+
+        lang = form.language.data
+        term = field.data
+
+        # FIXME: Also check in subject field?
+        qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                format(lang, term)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if not result:
+            raise ValidationError(message)
+
+def check_required_dropdown(form, field):
+    message = _("You must choose a valid option.")
+
+    if not field.data or field.data in ('none',):
+        raise ValidationError(message)
+
+def check_collision(form, field):
+    message = _("This term already exists in the database.")
+
+    # FIXME: Also check in subject field?
+    qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
+            format(form.language.data, form.term.data)
+    result = dbxml.get_db().query(qs).as_str().first()
+
+    if result:
+        raise ValidationError(message)
+
+def check_syntrans(form, field):
+    message = _("You must specify a term.")
+
+    if form.syntrans.data and field.data == "":
+        raise ValidationError(message)
+
+def check_syntrans_exists(form, field):
+    if form.syntrans.data and field.data != "":
+        message = _("This term doesn't exist in the database.")
+
+        lang = form.syntrans_lang.data
+        term = field.data
+
+        # FIXME: Also check in subject field?
+        qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
+                format(lang, term)
+        result = dbxml.get_db().query(qs).as_str().first()
+
+        if not result:
+            raise ValidationError(message)
+
+def check_not_mine(form, field):
+    message = _("You must specify the author's name.")
+
+    if form.not_mine.data and field.data == "":
+        raise ValidationError(message)
+
+def check_as_is_set(form, field):
+    message = _("Administrative status is not set.")
+
+    if form.administrative_status.data == 'none' and \
+       field.data == "consolidatedElement":
+        raise ValidationError(message)
+
+#
+# Forms
+#
 
 
 class BaseTermOriginForm(Form):
@@ -35,33 +110,7 @@ class EditTermOriginForm(BaseTermOriginForm):
     submit = SubmitField(_("Edit"))
 
 
-class BaseTermForm(Form):
-
-    def check_exists(form, field):
-        if field.data != "":
-            message = _("This term doesn't exist in the database.")
-
-            lang = form.language.data
-            term = field.data
-
-            # FIXME: Also check in subject field?
-            qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
-                    format(lang, term)
-            result = dbxml.get_db().query(qs).as_str().first()
-
-            if not result:
-                raise ValidationError(message)
-
-    def check_required_dropdown(form, field):
-        message = _("You must choose a valid option.")
-
-        if not field.data or field.data in ('none',):
-            raise ValidationError(message)
-
-
-    #
-    # Core fields
-    #
+class CoreTermForm(Form):
 
     concept_origin = DynamicSelectField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
@@ -71,6 +120,12 @@ class BaseTermForm(Form):
 
     subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown])
+
+    originating_person = TextField(_("Author"),
+        description=_("If you leave this field blank, that means "
+                      "you are the term author."))
+
+class BaseTermForm(CoreTermForm):
 
     #
     # Transaction-related stuff
@@ -138,51 +193,6 @@ class BaseTermForm(Form):
 
 class AddTermForm(BaseTermForm):
 
-    def check_collision(form, field):
-        message = _("This term already exists in the database.")
-
-        # FIXME: Also check in subject field?
-        qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
-                format(form.language.data, form.term.data)
-        result = dbxml.get_db().query(qs).as_str().first()
-
-        if result:
-            raise ValidationError(message)
-
-    def check_syntrans(form, field):
-        message = _("You must specify a term.")
-
-        if form.syntrans.data and field.data == "":
-            raise ValidationError(message)
-
-    def check_syntrans_exists(form, field):
-        if form.syntrans.data and field.data != "":
-            message = _("This term doesn't exist in the database.")
-
-            lang = form.syntrans_lang.data
-            term = field.data
-
-            # FIXME: Also check in subject field?
-            qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
-                    format(lang, term)
-            result = dbxml.get_db().query(qs).as_str().first()
-
-            if not result:
-                raise ValidationError(message)
-
-    # TODO: we should avoid code duplication
-    def check_required_dropdown(form, field):
-        message = _("You must choose a valid option.")
-
-        if not field.data or field.data in ('none',):
-            raise ValidationError(message)
-
-    def check_not_mine(form, field):
-        message = _("You must specify the author's name.")
-
-        if form.not_mine.data and field.data == "":
-            raise ValidationError(message)
-
     term = TextField(_("Term"), validators=[
         required(message=_("Term is required.")),
         check_collision])
@@ -212,21 +222,10 @@ class EditTermForm(BaseTermForm):
 
     language = HiddenField(_("Language"))
 
-    originating_person = TextField(_("Author"),
-        description=_("If you leave this field blank, that means "
-                      "you are the term author."))
-
     submit = SubmitField(_("Save changes"))
 
 
 class ModEditTermForm(EditTermForm):
-
-    def check_as_is_set(form, field):
-        message = _("Administrative status is not set.")
-
-        if form.administrative_status.data == 'none' and \
-           field.data == "consolidatedElement":
-            raise ValidationError(message)
 
     ws_choices = WORKING_STATUS
     ws_desc = _("If you consolidate this term, you must set "
@@ -241,3 +240,10 @@ class ModEditTermForm(EditTermForm):
     administrative_status = DynamicSelectField(_("Administrative status "
         "within the TZOS environment"),
         choices=as_choices)
+
+
+class UploadForm(CoreTermForm):
+
+    file = FileField(_("File"))
+
+    submit = SubmitField(_("Upload"))

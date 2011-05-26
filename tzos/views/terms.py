@@ -16,7 +16,8 @@ from flask import Module, abort, flash, g, render_template, redirect, \
 from flaskext.babel import gettext as _
 
 from tzos.extensions import db, dbxml
-from tzos.forms import AddTermForm, CommentForm, EditTermForm, ModEditTermForm
+from tzos.forms import AddTermForm, CommentForm, EditTermForm, \
+        ModEditTermForm, UploadForm
 from tzos.models import Comment, Term
 from tzos.helpers import dropdown_list, get_dict_langs, \
         get_origins_dropdown, get_responsible_orgs, require_valid_dict
@@ -59,8 +60,9 @@ def generate_term_form(form_cls, public_term=False, **form_args):
     form.concept_origin.choices = get_origins_dropdown()
     form.subject_field.choices = sorted(SUBJECT_FIELDS, key=lambda x: x[1])
 
-    form.normative_authorization_org.choices = \
-        dropdown_list(get_responsible_orgs())
+    if hasattr(form, 'normative_authorization_org'):
+        form.normative_authorization_org.choices = \
+            dropdown_list(get_responsible_orgs())
 
     return form
 
@@ -81,8 +83,10 @@ def add():
         del form_args['lang']
 
     add_form = generate_term_form(AddTermForm, formdata=form_args)
+    upload_form = generate_term_form(UploadForm, formdata=form_args)
 
-    return render_template('terms/add.html', add_form=add_form)
+    return render_template('terms/add.html', add_form=add_form,
+                                             upload_form=upload_form)
 
 @terms.route('/add/single/', methods=('POST',))
 @auth.require(401)

@@ -14,10 +14,10 @@ $(document).ready(function () {
     $('ul.inlineTabs').tabs();
 
     if ($('li.showSource input:checkbox').is(':checked')) {
-        $('li.showSource').next('li').removeClass('hideme');
+        $(this).next('li').removeClass('hideme');
     }
     if ($('li.showSyntrans input:checkbox').is(':checked')) {
-        $('li.showSyntrans').nextAll('li').removeClass('hideme');
+        $(this).parent().nextAll('li').removeClass('hideme');
     }
 
     $('div.doNotHide').removeClass('hideme');

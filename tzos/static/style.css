@@ -769,6 +769,7 @@ div.term:hover .termActions {
 /* Adding terms */
 
 .f1.addTerm ul.fields > li,
+.f1.uploadTerm ul.fields > li,
 ul.errors li {
     float: left;
     margin-right: 20px;

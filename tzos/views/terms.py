@@ -66,13 +66,13 @@ def generate_term_form(form_cls, public_term=False, **form_args):
     if form_cls.__name__ == 'UploadForm':
         dict_langs = get_dict_langs()
 
-        choices = [(u'term-' + code, _(u"Term in %(lang)s", lang=lang)) \
-                for code, lang in dict_langs]
-        choices.extend([(u'trans-' + code, _(u"Translation in %(lang)s", lang=lang)) \
-                for code, lang in dict_langs])
-        choices.append(('syn', _("Synonym")))
+        term_choices = [(u'term-' + code, lang) for code, lang in dict_langs]
+        form.term_field.choices = term_choices
 
-        form.file_fields.choices = choices
+        other_choices = [(u'trans-' + code,
+            _(u"Synonym/translation in %(lang)s", lang=lang)) \
+            for code, lang in dict_langs]
+        form.other_fields.choices = other_choices
 
     form.concept_origin.choices = get_origins_dropdown()
     form.subject_field.choices = sorted(SUBJECT_FIELDS, key=lambda x: x[1])
@@ -116,11 +116,16 @@ def add():
             msg = _('Term added successfully. <a href="%(url)s">Go to the term</a>.',
                     url=url_for('terms.detail', id=term.id))
             flash(msg, 'success')
+
+            return redirect(url_for("terms.add"))
         else:
             flash(_('Error while trying to add the term.'), 'error')
 
     elif upload_form.submit.data and upload_form.validate_on_submit():
         file = request.files['upload-file']
+
+        fields = upload_form.columns.data.split(";")
+        fields.insert(0, upload_form.term_field.data)
 
         if file and allowed_file(file.filename):
             pass

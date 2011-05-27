@@ -251,7 +251,9 @@ class UploadForm(CoreTermForm):
     file_desc = _("Allowed file extensions: .csv and .txt")
     file = FileField(_("File"), description=file_desc)
 
-    file_fields = SelectField()
+    term_field = SelectField(_("Term column"))
+
+    other_fields = SelectField()
 
     columns = HiddenField()
 

@@ -83,12 +83,13 @@
                     <noscript>[[ _("You must enable JavaScript in order to set file columns.") ]]</noscript>
                     <ul>
                     [[ render_field(upload_form.file, class="input", rel="tipsy-ns", tag_class="singleLine") ]]
+                    [[ render_field(upload_form.term_field, class="input") ]]
                     </ul>
                     <label>[[ _("Column contents") ]]</label>
-                    <ul class="fileFields">
-                        <li>[[ upload_form.file_fields(class="input", tag_class="singleLine") ]]<a href="#" class="rmCol b"><strong>X</strong></a></li>
+                    <ul class="otherFields">
+                        <li style="display:none;">[[ upload_form.other_fields(class="input", tag_class="singleLine") ]]<a class="rmCol b"><strong>X</strong></a></li>
                     </ul>
-                    <p><a href="#" class="addCol">[[ _("Add column") ]]</a></p>
+                    <p><a class="addCol">[[ _("Add column") ]]</a></p>
                 </div>
                 <div class="sidebar">
                     <p class="p5 weak">[[ _("Files must be CSV (comma-separated value) files, either with .csv or .txt extension. CSV files can be generated in spreadsheets such as Excel or LibreOffice Calc.") ]]</p>

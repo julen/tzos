@@ -794,14 +794,18 @@ ul li.showSource {
     min-height: 40px;
 }
 
-ul.fileFields select {
+ul.otherFields select {
     display: inline-block;
     margin-right: 5px;
     width: 70%;
 }
 
-ul.fileFields > li:first-child a.rmCol {
+ul.otherFields > li:first-child a.rmCol {
     visibility: hidden;
+}
+
+a.addCol, a.rmCol {
+    cursor: pointer;
 }
 
 

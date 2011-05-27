@@ -55,12 +55,21 @@ $(document).ready(function () {
     });
 
     $("a.addCol").click(function () {
-        $("ul.fileFields > li:first-child").clone(true)
-                                           .insertAfter("ul.fileFields > li:last-child");
+        var newEl = $("ul.otherFields > li:first-child").clone(true);
+        newEl.insertAfter("ul.otherFields > li:last-child").show();
     });
 
     $("a.rmCol").click(function () {
         $(this).parent().remove();
+    });
+
+    $("#upload-submit").click(function () {
+        var cols = $("li:visible select#upload-other_fields option:selected").
+        map(function () {
+            return $(this).val();
+        }).toArray().join(";");
+
+        $("#upload-columns").val(cols)
     });
 
 });

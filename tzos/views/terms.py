@@ -198,9 +198,9 @@ def edit(id):
             xref_term = Term(term=form.cross_reference.data)
             xref_id = xref_term.id
 
-            olds = ('//term[@id="{0}"]/../ref[@type="crossReference"]', '//term[@id="{0}"]/../../../ref[@type="crossReference"]')
+            olds = (u'//term[@id="{0}"]/../ref[@type="crossReference"]', u'//term[@id="{0}"]/../../../ref[@type="crossReference"]')
 
-            new = '<ref target="{0}" type="crossReference">{1}</ref>'. \
+            new = u'<ref target="{0}" type="crossReference">{1}</ref>'. \
                     format(xref_id, form.cross_reference.data)
 
             for old in olds:

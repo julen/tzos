@@ -207,13 +207,13 @@ class Term(object):
             }
         ctx.update(self.__dict__)
 
-        if self.cross_reference:
+        if hasattr(self, 'cross_reference') and self.cross_reference:
             xref_term = Term(term=self.cross_reference)
             xref_id = xref_term.id
 
             ctx.update({'xref_id': xref_id})
 
-        if self.syntrans:
+        if hasattr(self, 'syntrans') and self.syntrans:
             syntrans_term = Term(term=self.syntrans_term)
 
             if syntrans_term.has_langset(self.language):

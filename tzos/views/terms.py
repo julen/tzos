@@ -128,8 +128,63 @@ def add():
         fields.insert(0, upload_form.term_field.data)
 
         if file and allowed_file(file.filename):
-            pass
-            # TODO: upload logic
+            import csv
+
+            reader = csv.DictReader(file, fieldnames=fields, skipinitialspace=True)
+
+            print "Will need to parse these fields", fields
+            results = []
+
+            for row in reader:
+                term = Term()
+                upload_form.populate_obj(term)
+
+                # Handle SelectMultipleFields
+                term.subject_field = ";".join(upload_form.subject_field.data)
+                # Handle elementWorkingStatus
+                if term.working_status == 'starterElement':
+                    term.working_status = 'importedElement'
+
+                for field in fields:
+
+                    if not row[field]:
+                        print "No data! skipping"
+                        continue
+
+                    value = unicode(row[field], 'utf-8').strip()
+
+                    if not value:
+                        print "No value passed! skipping"
+                        continue
+
+                    if field.startswith('term-'):
+                        print "Adding term", value, field[5:]
+
+                        # Fill in fields
+                        term.term = value
+                        term.language = field[5:]
+
+                        if term.exists():
+                            print "Oops, term exists!"
+                            msg = _(u"Term %(term)s already exists", term=value)
+                            results.append((msg, 'error'))
+                            break
+                        else:
+                            if term.insert():
+                                msg = _(u"Term %(term)s added successfully",
+                                        term=value)
+                                results.append((msg, 'success'))
+                            else:
+                                msg = _(u"Error while adding term %(term)s",
+                                        term=value)
+                                results.append((msg, 'error'))
+                    elif field.startswith('trans-'):
+                        msg = _(u"Translation %(trans)s added successfully",
+                                trans=value)
+                        print "Adding trans", value, field[6:]
+                        results.append((msg, 'success'))
+
+            return render_template('terms/upload_results.html', results=results)
         else:
             flash(_('Not a valid file.'), 'error')
 

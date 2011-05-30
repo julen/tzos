@@ -11,7 +11,7 @@
 from flask import current_app
 
 from flaskext.assets import Environment, ManageAssets
-from flaskext.script import Manager, prompt_bool
+from flaskext.script import Manager, prompt_bool, Server
 
 from tzos import create_app
 from tzos import fixtures
@@ -21,6 +21,17 @@ manager = Manager(create_app)
 
 
 manager.add_command("assets", ManageAssets(Environment()))
+
+
+class CustomServer(Server):
+
+    def __init__(self, *args, **kwargs):
+
+        server_opts = {'threaded': True}
+        super(CustomServer, self).__init__(*args, **server_opts)
+
+manager.add_command('runserver', CustomServer())
+
 
 @manager.command
 def createall():

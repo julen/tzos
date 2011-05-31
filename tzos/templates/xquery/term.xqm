@@ -192,3 +192,14 @@ return
     </ul>
 </div>
 };
+
+
+declare function term:values($term as element(term)) {
+let $termLang := data($term/../../@xml:lang)
+let $termID := data($term/@id)
+return string-join(
+    ($termID, (: term ID :)
+     $termLang, (: language of the term :)
+     $term/string() (: actual term :)
+     ), ";")
+};

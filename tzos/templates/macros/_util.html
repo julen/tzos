@@ -18,10 +18,88 @@
 {% endif %}
 {% endmacro %}
 
+
 {% macro render_comments(comments, gravatar=True, username=True) %}
 <ul>
     {%- for c in comments %}
     <li id="comment-[[ c.id ]]">{% if gravatar %}<a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]"><img class="fl" src="[[ c.author.gravatar_url(32) ]]" /></a>{% endif %}{% if username %}<strong><a href="[[ url_for('user.profile', username=c.author.username) ]]" title="[[ _("%(user)s's profile", user=c.author.username) ]]">[[ c.author.username ]]</a></strong>{% endif %}<span class="weak small datetime">[[ c.date_created|datetimeformat(_('d/M/yyyy HH:mm')) ]]</span><span class="permalink"><a href="[[ c.permalink ]]">[[ _('Permalink') ]]</a></span><br />[[ c.comment ]]</li>
     {%- endfor %}
 </ul>
+{% endmacro %}
+
+
+{% macro term_link(term) %}
+<a href="[[ url_for('terms.detail', id=term.id) ]]">[[ term.term ]]</a>
+{% endmacro %}
+
+{% macro render_term(term) %}
+<div class="term">
+    <ul class="term">
+        <li class="term">[[ term_link(term) ]]</li>
+        {#
+        { if (term:type($term)) then
+        <li class="meta weak">[[ _t("{ term:type($term) }") ]]</li>
+        else () }
+        { if (term:pos($term)) then
+        <li class="meta weak">[[ _t("{ term:pos($term) }") ]]</li>
+        else () }
+        { if (term:norm_auth($term)) then
+        <li class="meta weak">[[ _t("{ term:norm_auth($term) }") ]] ({ term:norm_auth_org($term) })</li>
+        else () }
+        <li>
+        { (: If any, display synonyms :)
+            let $syns := term:synonyms($term)
+            return
+            if (exists($syns)) then
+                <dl class="syn">
+                    <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
+                    <dd class="in">{ util:join_seq($syns) }</dd>
+                </dl>
+            else ()
+        }
+            <dl class="trans">{ term:translations($term) }</dl>
+        </li>
+        <li class="more">[[ _('Origin:') ]] { term:concept_origin($term) }
+            { if (term:orig_person($term)) then
+                <span class="weak"> ({ term:orig_person($term) })</span>
+              else () }</li>
+        { if (term:product_subset($term)) then
+        <li class="more">[[ _('Appears in:') ]] [[ _t("{ term:product_subset($term) }") ]]</li>
+        else () }
+        { if (term:subject_field($term)) then
+        <li class="more">[[ _('Classification:') ]]
+        {
+            let $fields :=
+                for $field in tokenize(term:subject_field($term), ";")
+                return <span>[[ _t("{ $field }") ]]</span>
+            return util:join_seq($fields)
+        }
+        </li>
+        else () }
+        { if (term:subordinate_cg($term)) then
+        <li class="more">[[ _('Hyponym:') ]] { term:asLink2(term:subordinate_cg($term)) }</li>
+        else () }
+        { if (term:superordinate_cg($term)) then
+        <li class="more">[[ _('Hypernym:') ]] { term:asLink2(term:superordinate_cg($term)) }</li>
+        else () }
+        { if (term:antonym_concept($term)) then
+        <li class="more">[[ _('Antonym:') ]] { term:asLink2(term:antonym_concept($term)) }</li>
+        else () }
+        { if (term:related_concept($term)) then
+        <li class="more">[[ _('Related concept:') ]] { term:asLink2(term:related_concept($term)) }</li>
+        else () }
+        { if (term:xref($term)) then
+        <li class="more">[[ _('See also:') ]] <a href="[[ url_for('terms.detail', id='{ term:xref_id($term) }') ]]">{ term:asLink2(term:xref($term)) }</a></li>
+        else () }
+    </ul>
+    #}
+    <ul class="termActions in small">
+        {% if g.user %}
+        <li><a href="#">[[ _('Add synonym/translation') ]]</a></li>
+        {% if g.user.owns_term('{ $termID }') %}
+        <li><a href="#">[[ _('Edit term') ]]</a></li>
+        {% endif %}
+        {% endif %}
+    </ul>
+</div>
 {% endmacro %}

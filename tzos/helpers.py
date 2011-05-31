@@ -15,7 +15,7 @@ from babel import Locale
 from functools import wraps
 
 from tzos.extensions import dbxml
-from tzos.models import TermOrigin
+from tzos.models import Term, TermOrigin
 from tzos import strings
 
 import random
@@ -167,3 +167,19 @@ def dropdown_list(list, key='none', value='-----'):
     newlist.insert(0, (key, value))
 
     return newlist
+
+def get_terms_from_values(values):
+    """Returns a list of Term objects after parsing a list of values
+    extracted after a query to the DB."""
+
+    items = []
+
+    for value in values:
+        parts = value.split(";")
+
+        term = Term(parts[0], parts[2])
+        term.language = parts[1]
+
+        items.append(term)
+
+    return items

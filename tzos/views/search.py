@@ -15,7 +15,8 @@ from flaskext.babel import lazy_gettext as _
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import dropdown_list, get_dict_langs, \
-        get_origins_dropdown, get_responsible_orgs
+        get_origins_dropdown, get_responsible_orgs, get_terms_from_values
+from tzos.pagination import paginate
 from tzos.strings import *
 
 search = Module(__name__)
@@ -97,15 +98,18 @@ def quick():
 
         for $term in collection($collection)//term
         where term:is_public($term) and {0}{1}
-        return term:asLink($term)
+        return term:values($term)
         """.format(predicate.encode('utf-8'),
                    filter.encode('utf-8'))
 
         pn = int(request.args.get('p', 1))
         pp = int(request.args.get('pp', 10))
 
-        page = dbxml.get_db().raw_query(qs).as_rendered(). \
-                                            paginate(pn, pp, error_out=False)
+        values = dbxml.get_db().raw_query(qs).as_str().all()
+
+        items = get_terms_from_values(values)
+        page = paginate(items, pn, pp)
+
 
     form = SearchForm(request.args, csrf_enabled=False)
 

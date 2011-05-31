@@ -13,7 +13,8 @@ from flask import Module, g, render_template, request
 from flaskext.babel import gettext as _
 
 from tzos.extensions import dbxml
-from tzos.helpers import require_valid_dict
+from tzos.helpers import get_terms_from_values, require_valid_dict
+from tzos.pagination import paginate
 
 glossary = Module(__name__)
 
@@ -26,8 +27,10 @@ def list_letter(dict, letter):
 
     pn = int(request.args.get('p', 1))
 
-    page = dbxml.get_db().template_query('glossary/term_detail.xq',
-                                         context=ctx).as_rendered(). \
-                                                      paginate(pn, 10)
+    values = dbxml.get_db().template_query('glossary/term_detail.xq',
+                                           context=ctx).as_str().all()
+
+    items = get_terms_from_values(values)
+    page = paginate(items, pn, 10)
 
     return render_template('glossary/list_letter.html', page=page, letter=letter)

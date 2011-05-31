@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% from "macros/_util.html" import render_pagination %}
+{% from "macros/_util.html" import render_pagination, term_link %}
 {% from "macros/_forms.html" import render_field %}
 
 {% block title %}[[ super() ]]{% if q %}[[ _('Search results') ]]{% else %}[[ _('Advanced search') ]]{% endif %}{% endblock %}
@@ -33,7 +33,7 @@
 {% if page and page.items %}
 <ul class="searchResults hr clBoth">
     {% for term in page.items %}
-    <li>[[ term|safe ]]</li>
+    <li>[[ term_link(term) ]]</li>
     {% endfor %}
 </ul>
 [[ render_pagination(page, 'search.quick') ]]

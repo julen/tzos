@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% from "macros/_util.html" import render_pagination %}
+{% from "macros/_util.html" import render_term with context %}
 
 {% block title %}[[ super() ]][[ letter|upper ]]{% endblock %}
 
@@ -9,7 +10,7 @@
 {% block content %}
 {% if page.items %}
     {% for term in page.items %}
-        [[ term|safe ]]
+        [[ render_term(term) ]]
     {% endfor %}
 [[ render_pagination(page, 'glossary.list_letter') ]]
 {% else %}

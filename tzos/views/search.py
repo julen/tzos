@@ -81,7 +81,7 @@ def _get_search_filters():
     return f_str
 
 @search.route('/')
-def quick():
+def results():
     page = None
     non_default = False
     q = request.args.get('q', '').strip()

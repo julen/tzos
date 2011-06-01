@@ -8,9 +8,9 @@
 {% block intro_text %}[[ _('TZOS is an online community for building and sharing terminology.') ]]{% endblock %}
 
 {% block content %}
-<form class="f1 simpleSearch" action="[[ url_for('search.quick') ]]" method="GET">
+<form class="f1 simpleSearch" action="[[ url_for('search.results') ]]" method="GET">
     {% include "search/core.html" %}
-    <p><i class="iSrch">[search]</i><a href="[[ url_for('search.quick') ]]">[[ _("Advanced search") ]]</a></p>
+    <p><i class="iSrch">[search]</i><a href="[[ url_for('search.results') ]]">[[ _("Advanced search") ]]</a></p>
 </form>
 <div class="activity columns">
     <div class="half">

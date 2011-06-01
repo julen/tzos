@@ -9,7 +9,7 @@
 {% block intro_text %}{% if q %}[[ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', page.total ) ]]{% else %}[[ _('Search the needle on the haystack.') ]]{% endif %}{% endblock %}
 
 {% block content %}
-<form class="f1 advancedSearch" action="[[ url_for('search.quick') ]]" method="GET">
+<form class="f1 advancedSearch" action="" method="GET">
     {% include "search/core.html" %}
     <p class="clLeft showme" style="display:none;"><i class="{% if non_default %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Search options") ]]</a></p>
     <div class="extra hideme{% if non_default %} doNotHide{% endif %}">
@@ -36,7 +36,7 @@
     <li>[[ term_link(term) ]]</li>
     {% endfor %}
 </ul>
-[[ render_pagination(page, 'search.quick') ]]
+[[ render_pagination(page, 'search.results') ]]
 {% elif q %}
 <div class="searchResults hr clBoth"><h2>[[ _('No terms found.') ]]</h2></div>
 {% endif %}

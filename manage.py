@@ -71,10 +71,10 @@ def add_indexes():
     '''Adds proper indexes to the DB-XML container.'''
 
     indexes = [
-        ('', 'id', 'node-attribute-equality-string'),
+        ('', 'id', 'node-attribute-equality-string edge-attribute-equality-string'),
         ('', 'term',
             'node-element-equality-string node-element-substring-string'),
-        ('', 'type', 'node-attribute-equality-string'),
+        ('', 'type', 'node-attribute-equality-string edge-attribute-equality-string'),
         ('http://www.w3.org/1999/xhtml',
             'lang', 'node-attribute-equality-string'),
         ('', 'admin', 'node-element-equality-string'),

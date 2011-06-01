@@ -95,9 +95,9 @@
     #}
     <ul class="termActions in small">
         {% if g.user %}
-        <li><a href="#">[[ _('Add synonym/translation') ]]</a></li>
-        {% if g.user.owns_term('{ $termID }') %}
-        <li><a href="#">[[ _('Edit term') ]]</a></li>
+        <li><a href="[[ url_for('terms.add', lang=term.language, term=term.term) ]]">[[ _('Add synonym/translation') ]]</a></li>
+        {% if g.user.owns_term(term.id) %}
+        <li><a href="[[ url_for('terms.edit', id=term.id) ]]">[[ _('Edit term') ]]</a></li>
         {% endif %}
         {% endif %}
     </ul>

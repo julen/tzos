@@ -279,9 +279,9 @@ def edit(id):
            form.normative_authorization_org.data != \
            term.normative_authorization_org:
 
-            old = '//tig[@id="{0}"]/termNote[@type="normativeAuthorization"]'. \
+            old = u'//tig[@id="{0}"]/termNote[@type="normativeAuthorization"]'. \
                 format(term.id)
-            new = '<termNote type="normativeAuthorization" '\
+            new = u'<termNote type="normativeAuthorization" '\
                   'target="{0}">{1}</termNote>'. \
                 format(form.normative_authorization_org.data,
                        form.normative_authorization.data)
@@ -303,8 +303,8 @@ def edit(id):
 
             xml = render_template('xml/transaction.xml', **ctx)
 
-            locations = ('//tig[@id="{0}"]',
-                         '//tig[@id="{0}"]/../..')
+            locations = (u'//tig[@id="{0}"]',
+                         u'//tig[@id="{0}"]/../..')
 
             for location in locations:
                 location = location.format(id)

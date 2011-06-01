@@ -168,6 +168,16 @@ def dropdown_list(list, key='none', value='-----'):
 
     return newlist
 
+def get_term_from_value(value):
+    """Parses a series of values to extract a Term object."""
+
+    parts = value.split(";")
+
+    term = Term(parts[0], parts[2])
+    term.language = parts[1]
+
+    return term
+
 def get_terms_from_values(values):
     """Returns a list of Term objects after parsing a list of values
     extracted after a query to the DB."""
@@ -175,11 +185,7 @@ def get_terms_from_values(values):
     items = []
 
     for value in values:
-        parts = value.split(";")
-
-        term = Term(parts[0], parts[2])
-        term.language = parts[1]
-
+        term = get_term_from_value(value)
         items.append(term)
 
     return items

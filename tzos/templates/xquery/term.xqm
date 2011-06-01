@@ -59,6 +59,11 @@ declare function term:pos($term as element(term)) {
 };
 
 
+declare function term:admn_sts($term as element(term)) {
+    $term/../termNote[@type="administrativeStatus"]/string()
+};
+
+
 declare function term:norm_auth($term as element(term)) {
     (: TODO: Remove [1] once we make sure there will be a single element :)
     $term/../termNote[@type="normativeAuthorization"][1]/string()
@@ -83,6 +88,16 @@ declare function term:orig_person($term as element(term)) {
 
 declare function term:product_subset($term as element(term)) {
     $term/../admin[@type="productSubset"]/string()
+};
+
+
+declare function term:working_status($term as element(term)) {
+    $term/../admin[@type="elementWorkingStatus"]/string()
+};
+
+
+declare function term:entry_source($term as element(term)) {
+    $term/../admin[@type="entrySource"]/string()
 };
 
 
@@ -111,12 +126,32 @@ declare function term:related_concept($term as element(term)) {
 };
 
 
+declare function term:definition($term as element(term)) {
+    $term/../../descrip[@type="definition"]/string()
+};
+
+
+declare function term:context($term as element(term)) {
+    $term/../descrip[@type="context"]/string()
+};
+
+
+declare function term:example($term as element(term)) {
+    $term/../descrip[@type="example"]/string()
+};
+
+
+declare function term:explanation($term as element(term)) {
+    $term/../descrip[@type="explanation"]/string()
+};
+
+
 declare function term:xref($term as element(term)) {
-    $term/../../../ref[@type="crossReference"]/string()
+    $term/../ref[@type="crossReference"]/string()
 };
 
 declare function term:xref_id($term as element(term)) {
-    $term/../../../ref[@type="crossReference"]/data(@target)
+    $term/../ref[@type="crossReference"]/data(@target)
 };
 
 
@@ -195,11 +230,28 @@ return
 
 
 declare function term:values($term as element(term)) {
-let $termLang := data($term/../../@xml:lang)
-let $termID := data($term/@id)
-return string-join(
-    ($termID, (: term ID :)
-     $termLang, (: language of the term :)
-     $term/string() (: actual term :)
+string-join(
+    ($term/data(@id), (: term ID :)
+     $term/../../data(@xml:lang), (: language of the term :)
+     $term/string(), (: actual term :)
+     term:concept_origin($term),
+     term:subject_field($term),
+     term:orig_person($term),
+     term:definition($term),
+     term:context($term),
+     term:example($term),
+     term:explanation($term),
+     term:entry_source($term),
+     term:xref($term),
+     term:product_subset($term),
+     term:norm_auth($term),
+     term:norm_auth_org($term),
+     term:subordinate_cg($term),
+     term:superordinate_cg($term),
+     term:antonym_concept($term),
+     term:related_concept($term),
+     term:pos($term),
+     term:type($term),
+     term:admn_sts($term)
      ), ";")
 };

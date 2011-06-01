@@ -175,6 +175,29 @@ def get_term_from_value(value):
 
     term = Term(parts[0], parts[2])
     term.language = parts[1]
+    term.concept_origin = parts[3]
+    term.subject_field = parts[4]
+    term.originating_person = parts[5]
+    term.definition = parts[6]
+    term.context = parts[7]
+    term.example = parts[8]
+    term.explanation = parts[9]
+    term.entry_source = parts[10]
+    term.cross_reference = parts[11]
+    term.product_subset = parts[12]
+    term.normative_authorization = parts[13]
+    term.normative_authorization_org = parts[14]
+    term.subordinate_concept_generic = parts[15]
+    term.superordinate_concept_generic = parts[16]
+    term.antonym_concept = parts[17]
+    term.related_concept = parts[18]
+    term.part_of_speech = parts[19]
+    term.term_type = parts[20]
+    try:
+        # When the last string is empyt, we need to treat it specially
+        term.administrative_status = parts[21]
+    except IndexError:
+        term.administrative_status = u''
 
     return term
 

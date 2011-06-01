@@ -194,7 +194,7 @@ def get_term_from_value(value):
     term.part_of_speech = parts[19]
     term.term_type = parts[20]
     try:
-        # When the last string is empyt, we need to treat it specially
+        # When the last string is empty, we need to treat it specially
         term.administrative_status = parts[21]
     except IndexError:
         term.administrative_status = u''

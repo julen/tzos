@@ -223,7 +223,7 @@ def edit(id):
     else:
         form_cls = EditTermForm
 
-    form = generate_term_form(form_cls, term.is_public(), obj=term, prefix='edit')
+    form = generate_term_form(form_cls, term.is_public(), obj=term)
 
     if form.validate_on_submit():
         success = []

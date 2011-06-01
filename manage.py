@@ -66,6 +66,25 @@ def initdbxml(filename, docname):
 
     dbxml.init_dbxml(filename, docname)
 
+@manager.command
+def add_indexes():
+    '''Adds proper indexes to the DB-XML container.'''
+
+    indexes = [
+        ('', 'id', 'node-attribute-equality-string'),
+        ('', 'term',
+            'node-element-equality-string node-element-substring-string'),
+        ('', 'type', 'node-attribute-equality-string'),
+        ('http://www.w3.org/1999/xhtml',
+            'lang', 'node-attribute-equality-string'),
+        ('', 'admin', 'node-element-equality-string'),
+        ('', 'descrip', 'node-element-equality-string'),
+        ('', 'ref', 'node-element-equality-string'),
+        ('', 'termNote', 'node-element-equality-string'),
+    ]
+
+    dbxml.add_indexes(indexes)
+
 @manager.shell
 def make_shell_context():
     return dict(app=current_app)

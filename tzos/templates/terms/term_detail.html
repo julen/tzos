@@ -2,21 +2,22 @@
 
 {% from "macros/_forms.html" import render_form %}
 {% from "macros/_util.html" import render_comments %}
+{% from "macros/_util.html" import render_term with context %}
 
 {% block title %}[[ super() ]][[ _('Term details') ]]{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
-{% if rendered_term %}
-    [[ rendered_term|safe ]]
+{% if term %}
+    [[ render_term(term) ]]
 {% else %}
 <h2 class="h1">[[ _('Term not found.') ]]</h2>
 {% endif %}
 
 {% if g.user %}
 <h2 class="h4 hr">[[ _('Add a comment') ]]</h2>
-{% set form_action = url_for('terms.add_comment', term_id=term_id) %}
+{% set form_action = url_for('terms.add_comment', term_id=term.id) %}
 [[ render_form(comment_form, action=form_action, labeled=False) ]]
 {% endif %}
 

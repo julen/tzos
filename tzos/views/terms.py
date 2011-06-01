@@ -20,7 +20,8 @@ from tzos.forms import AddTermForm, CommentForm, EditTermForm, \
         ModEditTermForm, UploadForm
 from tzos.models import Comment, Term
 from tzos.helpers import dropdown_list, get_dict_langs, \
-        get_origins_dropdown, get_responsible_orgs, require_valid_dict
+        get_origins_dropdown, get_responsible_orgs, get_term_from_value, \
+        require_valid_dict
 from tzos.permissions import auth
 from tzos.strings import *
 
@@ -35,19 +36,26 @@ def allowed_file(filename):
 @terms.route('/<int:id>/')
 def detail(id):
 
-    ctx = { 'id': id, 'current_user': getattr(g.user, 'username', '') }
-    rendered_term = dbxml.get_db().template_query('terms/term_detail.xq',
-                                                  context=ctx) \
-                                  .as_rendered().first_or_404()
+    qs = """
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+    for $term in collection($collection)//term[@id="{0}"]
+    where term:owner($term) = "{1}" or term:is_public($term)
+    return term:values($term)
+    """.format(unicode(id).encode('utf-8'),
+               getattr(g.user, 'username', u'').encode('utf-8'))
+
+
+    value = dbxml.get_db().raw_query(qs).as_str().first_or_404()
+    term = get_term_from_value(value)
 
     comment_form = CommentForm(term_id=id)
 
     term_comments = Comment.query.filter(Comment.term_id==id).all()
 
     return render_template('terms/term_detail.html',
-                           rendered_term=rendered_term,
+                           term=term,
                            comment_form=comment_form,
-                           term_id=id,
                            term_comments=term_comments)
 
 def generate_term_form(form_cls, public_term=False, **form_args):

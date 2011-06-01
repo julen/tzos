@@ -39,9 +39,9 @@ def detail(id):
     qs = """
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-    for $term in collection($collection)//term[@id="{0}"]
-    where term:owner($term) = "{1}" or term:is_public($term)
-    return term:values($term)
+    let $tig := collection($collection)//tig[@id="{0}"]
+    where term:owner($tig) = "{1}" or term:is_public($tig)
+    return term:values($tig)
     """.format(unicode(id).encode('utf-8'),
                getattr(g.user, 'username', u'').encode('utf-8'))
 
@@ -261,7 +261,7 @@ def edit(id):
             xref_term = Term(term=form.cross_reference.data)
             xref_id = xref_term.id
 
-            olds = (u'//term[@id="{0}"]/../ref[@type="crossReference"]', u'//term[@id="{0}"]/../../../ref[@type="crossReference"]')
+            olds = (u'//tig[@id="{0}"]/ref[@type="crossReference"]', u'//tig[@id="{0}"]/../../ref[@type="crossReference"]')
 
             new = u'<ref target="{0}" type="crossReference">{1}</ref>'. \
                     format(xref_id, form.cross_reference.data)
@@ -279,7 +279,7 @@ def edit(id):
            form.normative_authorization_org.data != \
            term.normative_authorization_org:
 
-            old = '//term[@id="{0}"]/../termNote[@type="normativeAuthorization"]'. \
+            old = '//tig[@id="{0}"]/termNote[@type="normativeAuthorization"]'. \
                 format(term.id)
             new = '<termNote type="normativeAuthorization" '\
                   'target="{0}">{1}</termNote>'. \
@@ -303,8 +303,8 @@ def edit(id):
 
             xml = render_template('xml/transaction.xml', **ctx)
 
-            locations = ('//term[@id="{0}"]/..',
-                         '//term[@id="{0}"]/../../..')
+            locations = ('//tig[@id="{0}"]',
+                         '//tig[@id="{0}"]/../..')
 
             for location in locations:
                 location = location.format(id)

@@ -1,6 +1,6 @@
 {% from "macros/_xml.html" import render_transaction %}
-<tig>
-    <term id="[[ term_id ]]">[[ term ]]</term>
+<tig id="[[ term_id ]]">
+    <term>[[ term ]]</term>
     <termNote type="administrativeStatus">{% if administrative_status %}[[ administrative_status ]]{% endif %}</termNote>
     <termNote type="normativeAuthorization"
         target="{% if normative_authorization_org %}[[ normative_authorization_org ]]{% endif %}">{% if normative_authorization != "none" and normative_authorization_org != "none" %}[[ normative_authorization ]]{% endif %}</termNote>

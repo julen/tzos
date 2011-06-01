@@ -27,12 +27,12 @@ def list_letter(dict, letter):
     qs = """
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-    for $term in collection($collection)//term
-    where $term[starts-with(lower-case(string()), "{0}")] and
-          $term/../..[@xml:lang="{1}"] and
-          (term:is_public($term) or term:owner($term) = "{2}")
-    order by $term/string() ascending
-    return term:values($term)
+    for $tig in collection($collection)//tig
+    where $tig[starts-with(lower-case(term/string()), "{0}")] and
+          $tig/..[@xml:lang="{1}"] and
+          (term:is_public($tig) or term:owner($tig) = "{2}")
+    order by $tig/term/string() ascending
+    return term:values($tig)
     """.format(letter.encode('utf-8'),
                dict.encode('utf-8'),
                getattr(g.user, 'username', u'').encode('utf-8'))

@@ -34,15 +34,15 @@ def _get_search_predicate(q):
     search_func = 'dbxml:contains'
 
     predicates = {
-        'term': '$term/string()',
-        'definition': '$term/../../descrip[@type="definition"]/string()',
-        'context': '$term/../descrip[@type="context"]/string()',
-        'example': '$term/../descrip[@type="example"]/string()',
-        'explanation': '$term/../descrip[@type="explanation"]/string()',
-        'hyponym': '$term/../../../descrip[@type="subordinateConceptGeneric"]/string()',
-        'hypernym': '$term/../../../descrip[@type="superordinateConceptGeneric"]/string()',
-        'antonym': '$term/../../../descrip[@type="antonymConcept"]/string()',
-        'related': '$term/../../../descrip[@type="relatedConcept"]/string()',
+        'term': 'term:term($tig)',
+        'definition': 'term:definition($tig)',
+        'context': 'term:context($tig)',
+        'example': 'term:example($tig)',
+        'explanation': 'term:explanation($tig)',
+        'hyponym': 'term:subordinate_cg($tig)',
+        'hypernym': 'term:superordinate_cg($tig)',
+        'antonym': 'term:antonym_concept($tig)',
+        'related': 'term:related_concept($tig)',
     }
 
     field = _get_search_param('field')
@@ -62,14 +62,14 @@ def _get_search_filters():
     f_str = ""
 
     filters = (
-        ('lang', '$term/../..[@xml:lang="{0}"]'),
-        ('subject_field', '(let $fields := tokenize(term:subject_field($term), ";") return some $f in $fields satisfies $f = "{0}")'),
-        ('product_subset', '$term/../admin[@type="productSubset"]/string() = "{0}"'),
-        ('concept_origin', '$term/../admin[@type="conceptOrigin"]/string() = "{0}"'),
-        ('na', '$term/../termNote[@type="normativeAuthorization"]/string() = "{0}"'),
-        ('na_org', '$term/../termNote[@type="normativeAuthorization"][@target="{0}"]'),
-        ('pos', '$term/../termNote[@type="partOfSpeech"]/string() = "{0}"'),
-        ('tt', '$term/../termNote[@type="termType"]/string() = "{0}"'),
+        ('lang', '$tig/..[@xml:lang="{0}"]'),
+        ('subject_field', '(let $fields := tokenize(term:subject_field($tig), ";") return some $f in $fields satisfies $f = "{0}")'),
+        ('product_subset', 'term:product_subset($tig) = "{0}"'),
+        ('concept_origin', 'term:concept_origin($tig) = "{0}"'),
+        ('na', 'term:norm_auth($tig) = "{0}"'),
+        ('na_org', '$tig/termNote[@type="normativeAuthorization"][@target="{0}"]'),
+        ('pos', 'term:pos($tig) = "{0}"'),
+        ('tt', 'term:type($tig) = "{0}"'),
     )
 
     for f in filters:
@@ -96,9 +96,9 @@ def results():
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-        for $term in collection($collection)//term
-        where term:is_public($term) and {0}{1}
-        return term:values($term)
+        for $tig in collection($collection)//tig
+        where term:is_public($tig) and {0}{1}
+        return term:values($tig)
         """.format(predicate.encode('utf-8'),
                    filter.encode('utf-8'))
 

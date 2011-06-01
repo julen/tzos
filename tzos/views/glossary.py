@@ -28,7 +28,6 @@ def list_letter(dict, letter):
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
     for $term in collection($collection)//term
-    let $workingStatus := $term/../admin[@type="elementWorkingStatus"]/string()
     where $term[starts-with(lower-case(string()), "{0}")] and
           $term/../..[@xml:lang="{1}"] and
           (term:is_public($term) or term:owner($term) = "{2}")

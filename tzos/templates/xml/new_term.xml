@@ -2,8 +2,7 @@
 <tig id="[[ term_id ]]">
     <term>[[ term ]]</term>
     <termNote type="administrativeStatus">{% if administrative_status %}[[ administrative_status ]]{% endif %}</termNote>
-    <termNote type="normativeAuthorization"
-        target="{% if normative_authorization_org %}[[ normative_authorization_org ]]{% endif %}">{% if normative_authorization and normative_authorization_org %}[[ normative_authorization ]]{% endif %}</termNote>
+    <termNote type="normativeAuthorization" {% if normative_authorization_org %}target="[[ normative_authorization_org ]]"{% endif %}>{% if normative_authorization and normative_authorization_org %}[[ normative_authorization ]]{% endif %}</termNote>
     <termNote type="termType">{% if term_type %}[[ term_type ]]{% endif %}</termNote>
     <termNote type="partOfSpeech">{% if part_of_speech %}[[ part_of_speech ]]{% endif %}</termNote>
     <admin type="originatingPerson">[[ orig_person ]]</admin>

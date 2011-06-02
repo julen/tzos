@@ -68,20 +68,9 @@
         {% if term.product_subset %}
         <li class="more">[[ _('Appears in:') ]] [[ _t(term.product_subset) ]]</li>
         {% endif %}
-
-{#
-        {% if term.subject_field %}
-        <li class="more">[[ _('Classification:') ]]
-        {
-            let $fields :=
-                for $field in tokenize(term:subject_field($term), ";")
-                return <span>[[ _t("{ $field }") ]]</span>
-            return util:join_seq($fields)
-        }
-        </li>
-        {% endif %}
-#}
-
+        {%- if term.subject_field %}
+        <li class="more">[[ _('Classification:') ]] {% for field in term.subject_field %}<span>[[ _t(field) ]]</span>{% if not loop.last %}, {% endif %}{% endfor %}</li>
+        {%- endif %}
         {% if term.subordinate_concept_generic %}
         <li class="more">[[ _('Hyponym:') ]] [[ term.subordinate_concept_generic ]]</li>
         {% endif %}

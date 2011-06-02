@@ -127,6 +127,10 @@ class CoreTermForm(Form):
 
 class BaseTermForm(CoreTermForm):
 
+    def __init__(self, *args, **kwargs):
+        kwargs['csrf_enabled'] = False
+        super(BaseTermForm, self).__init__(*args, **kwargs)
+
     #
     # Transaction-related stuff
     #

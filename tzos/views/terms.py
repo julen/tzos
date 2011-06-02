@@ -100,9 +100,9 @@ def add():
     if request.args and 'term' in request.args and 'lang' in request.args:
         form_args = request.args.copy()
 
-        form_args['syntrans_term'] = request.args['term']
-        form_args['syntrans_lang'] = request.args['lang']
-        form_args['syntrans'] = True
+        form_args['add-syntrans_term'] = request.args['term']
+        form_args['add-syntrans_lang'] = request.args['lang']
+        form_args['add-syntrans'] = True
 
         del form_args['term']
         del form_args['lang']

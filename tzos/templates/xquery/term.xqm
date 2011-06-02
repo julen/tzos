@@ -256,5 +256,5 @@ string-join(
      term:pos($tig),
      term:type($tig),
      term:admn_sts($tig)
-     ), ";")
+     ), "|")
 };

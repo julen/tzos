@@ -171,7 +171,7 @@ def dropdown_list(list, key='', value='-----'):
 def get_term_from_value(value):
     """Parses a series of values to extract a Term object."""
 
-    parts = value.split(";")
+    parts = value.split("|")
 
     term = Term(parts[0], parts[2])
     term.language = parts[1]

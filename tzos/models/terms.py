@@ -108,7 +108,7 @@ class Term(object):
 
     def has_langset(self, langcode):
         """Returns True if the current term has a langSet for langcode."""
-        qs = '//langSet[@xml:lang="{0}" and ..//term[string()="{1}"]]'. \
+        qs = u'//langSet[@xml:lang="{0}" and ..//term[string()="{1}"]]'. \
             format(langcode, self.term)
         result = dbxml.get_db().query(qs).as_str().first()
 

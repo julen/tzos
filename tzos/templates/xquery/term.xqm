@@ -33,10 +33,9 @@ as element(a) {
 
 declare function term:synonyms($tig as element(tig))
 as element(a)* {
-    for $syn in $tig/..//tig[term/string()!=term:term($tig)]
-    let $workingStatus := term:working_status($syn)
-    where $workingStatus != "starterElement" and $workingStatus != "importedElement"
-    return term:asLink($syn)
+    for $syn in $tig/..//tig[term/string() != term:term($tig)]
+    where term:is_public($syn)
+    return $syn
 };
 
 

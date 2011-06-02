@@ -26,8 +26,6 @@ jQuery.fn.tabs = function () {
           previousPart = editPart.show();
           previousSelected = $(this).addClass("selected");
 
-          window.location.hash = parseId(this.href);
-
           return false;
         });
 

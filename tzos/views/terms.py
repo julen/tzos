@@ -117,9 +117,6 @@ def add():
         term = Term()
         add_form.populate_obj(term)
 
-        # Handle SelectMultipleFields
-        term.subject_field = ";".join(add_form.subject_field.data)
-
         if term.insert():
             msg = _('Term added successfully. <a href="%(url)s">Go to the term</a>.',
                     url=url_for('terms.detail', id=term.id))
@@ -147,9 +144,6 @@ def add():
                 term = Term()
                 upload_form.populate_obj(term)
 
-                # Handle SelectMultipleFields
-                term.subject_field = ";".join(upload_form.subject_field.data)
-                # Handle elementWorkingStatus
                 if term.working_status == 'starterElement':
                     term.working_status = 'importedElement'
 
@@ -211,9 +205,6 @@ def edit(id):
     term = Term(id)
     term.populate()
 
-    # Handle SelectMultipleFields
-    term.subject_field = term.subject_field.split(';')
-
     # BooleanFields
     if not g.user.is_moderator:
         term.working_status = term.is_public()
@@ -232,9 +223,6 @@ def edit(id):
         blacklist = ('not_mine', 'submit',
                      'cross_reference', 'normative_authorization',
                      'normative_authorization_org')
-
-        # Handle SelectMultipleFields
-        form.subject_field.data = ";".join(form.subject_field.data)
 
         for field in form:
 

@@ -39,6 +39,7 @@ class Term(object):
         if term:
             self.term = term
 
+        self._subject_field = []
         self._synonyms = []
 
     @property
@@ -53,6 +54,19 @@ class Term(object):
             self.term_id = result
 
         return result
+
+    def _get_subject_field(self):
+        return self._subject_field
+
+    def _set_subject_field(self, value):
+        if isinstance(value, list):
+            self._subject_field = value
+        else:
+            for part in value.split(u";"):
+                if part:
+                    self._subject_field.append(part)
+
+    subject_field = property(_get_subject_field, _set_subject_field)
 
     def _get_synonyms(self):
         return self._synonyms
@@ -302,6 +316,9 @@ class Term(object):
             qs = fields_map[field]
 
             old = qs.format(self.id)
+
+            if isinstance(value, list):
+                value = ";".join(value)
 
             if dbxml.get_db().replace_value(old, value):
                 # Update object's value as well

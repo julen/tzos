@@ -3,14 +3,14 @@
     <term>[[ term ]]</term>
     <termNote type="administrativeStatus">{% if administrative_status %}[[ administrative_status ]]{% endif %}</termNote>
     <termNote type="normativeAuthorization"
-        target="{% if normative_authorization_org %}[[ normative_authorization_org ]]{% endif %}">{% if normative_authorization != "" and normative_authorization_org != "" %}[[ normative_authorization ]]{% endif %}</termNote>
-    <termNote type="termType">{% if term_type != "" %}[[ term_type ]]{% endif %}</termNote>
-    <termNote type="partOfSpeech">{% if part_of_speech != "" %}[[ part_of_speech ]]{% endif %}</termNote>
+        target="{% if normative_authorization_org %}[[ normative_authorization_org ]]{% endif %}">{% if normative_authorization and normative_authorization_org %}[[ normative_authorization ]]{% endif %}</termNote>
+    <termNote type="termType">{% if term_type %}[[ term_type ]]{% endif %}</termNote>
+    <termNote type="partOfSpeech">{% if part_of_speech %}[[ part_of_speech ]]{% endif %}</termNote>
     <admin type="originatingPerson">[[ orig_person ]]</admin>
     <admin type="conceptOrigin">{% if concept_origin %}[[ concept_origin ]]{% endif %}</admin>
     <admin type="elementWorkingStatus">{% if working_status %}[[ working_status ]]{% endif %}</admin>
     <admin type="entrySource">{% if entry_source %}[[ entry_source ]]{% endif %}</admin>
-    <admin type="productSubset">{% if product_subset != "" %}[[ product_subset ]]{% endif %}</admin>
+    <admin type="productSubset">{% if product_subset %}[[ product_subset ]]{% endif %}</admin>
     <descrip type="example">{% if example %}[[ example ]]{% endif %}</descrip>
     <descrip type="explanation">{% if explanation %}[[ explanation ]]{% endif %}</descrip>
     <descrip type="context">{% if context %}[[ context ]]{% endif %}</descrip>

@@ -74,7 +74,11 @@ declare function term:norm_auth($tig as element(tig)) {
 
 declare function term:norm_auth_org($tig as element(tig)) {
     let $nao := $tig/termNote[@type="normativeAuthorization"]/data(@target)
-    return collection($collection)//refObjectList[@type="respOrg"]/refObject[@id=$nao]/item[@type="org"]/string()
+    let $org := collection($collection)//refObjectList[@type="respOrg"]/refObject[@id=$nao]/item[@type="org"]/string()
+    return
+        if (exists($org)) then
+            $org
+        else ("")
 };
 
 

@@ -159,7 +159,7 @@ def get_origins_dropdown():
     return dropdown
 
 
-def dropdown_list(list, key='none', value='-----'):
+def dropdown_list(list, key='', value='-----'):
     """Inserts a placeholder tuple entry in a list, suitable for using
     in dropdown lists."""
 

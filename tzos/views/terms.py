@@ -240,11 +240,7 @@ def edit(id):
 
             if field.type != 'HiddenField' and field.name not in blacklist:
                 old_data = getattr(term, field.name)
-                if field.type in ('DynamicSelectField', 'SelectField') \
-                and field.data == 'none':
-                    new_data = ''
-                else:
-                    new_data = field.data
+                new_data = field.data
 
                 if new_data != old_data:
 

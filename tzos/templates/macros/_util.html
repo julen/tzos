@@ -36,37 +36,41 @@
 <div class="term">
     <ul class="term">
         <li class="term">[[ term_link(term) ]]</li>
-        {#
-        { if (term:type($term)) then
-        <li class="meta weak">[[ _t("{ term:type($term) }") ]]</li>
-        else () }
-        { if (term:pos($term)) then
-        <li class="meta weak">[[ _t("{ term:pos($term) }") ]]</li>
-        else () }
-        { if (term:norm_auth($term)) then
-        <li class="meta weak">[[ _t("{ term:norm_auth($term) }") ]] ({ term:norm_auth_org($term) })</li>
-        else () }
+        {% if term.term_type %}
+        <li class="meta weak">[[ _t(term.term_type) ]]</li>
+        {% endif %}
+        {% if term.part_of_speech %}
+        <li class="meta weak">[[ _t(term.part_of_speech) ]]</li>
+        {% endif %}
+        {% if term.normative_authorization %}
+        <li class="meta weak">[[ _t(term.normative_authorization) ]]{% if term.normative_authorization_org %} ([[ term.normative_authorization_org ]]){% endif %}</li>
+        {% endif %}
+        {% if term.synonyms %}
         <li>
-        { (: If any, display synonyms :)
-            let $syns := term:synonyms($term)
-            return
-            if (exists($syns)) then
-                <dl class="syn">
-                    <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
-                    <dd class="in">{ util:join_seq($syns) }</dd>
-                </dl>
-            else ()
-        }
+            <dl class="syn">
+                <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
+                <dd class="in">{% for syn in term.synonyms %}<a href="[[ syn.url ]]">[[ syn.term ]]</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+            </dl>
+        </li>
+        {% endif %}
+
+{#
+        <li>
             <dl class="trans">{ term:translations($term) }</dl>
         </li>
-        <li class="more">[[ _('Origin:') ]] { term:concept_origin($term) }
-            { if (term:orig_person($term)) then
-                <span class="weak"> ({ term:orig_person($term) })</span>
-              else () }</li>
-        { if (term:product_subset($term)) then
-        <li class="more">[[ _('Appears in:') ]] [[ _t("{ term:product_subset($term) }") ]]</li>
-        else () }
-        { if (term:subject_field($term)) then
+#}
+
+        <li class="more">[[ _('Origin:') ]] [[ term.concept_origin ]]
+            {%- if term.originating_person %}
+            <span class="weak"> ([[ term.originating_person ]])</span>
+            {% endif %}
+        </li>
+        {% if term.product_subset %}
+        <li class="more">[[ _('Appears in:') ]] [[ _t(term.product_subset) ]]</li>
+        {% endif %}
+
+{#
+        {% if term.subject_field %}
         <li class="more">[[ _('Classification:') ]]
         {
             let $fields :=
@@ -75,24 +79,25 @@
             return util:join_seq($fields)
         }
         </li>
-        else () }
-        { if (term:subordinate_cg($term)) then
-        <li class="more">[[ _('Hyponym:') ]] { term:asLink2(term:subordinate_cg($term)) }</li>
-        else () }
-        { if (term:superordinate_cg($term)) then
-        <li class="more">[[ _('Hypernym:') ]] { term:asLink2(term:superordinate_cg($term)) }</li>
-        else () }
-        { if (term:antonym_concept($term)) then
-        <li class="more">[[ _('Antonym:') ]] { term:asLink2(term:antonym_concept($term)) }</li>
-        else () }
-        { if (term:related_concept($term)) then
-        <li class="more">[[ _('Related concept:') ]] { term:asLink2(term:related_concept($term)) }</li>
-        else () }
-        { if (term:xref($term)) then
-        <li class="more">[[ _('See also:') ]] <a href="[[ url_for('terms.detail', id='{ term:xref_id($term) }') ]]">{ term:asLink2(term:xref($term)) }</a></li>
-        else () }
+        {% endif %}
+#}
+
+        {% if term.subordinate_concept_generic %}
+        <li class="more">[[ _('Hyponym:') ]] [[ term.subordinate_concept_generic ]]</li>
+        {% endif %}
+        {% if term.superordinate_concept_generic %}
+        <li class="more">[[ _('Hypernym:') ]] [[ term.superordinate_concept_generic ]]</li>
+        {% endif %}
+        {% if term.antonym_concept %}
+        <li class="more">[[ _('Antonym:') ]] [[ term.antonym_concept ]]</li>
+        {% endif %}
+        {% if term.related_concept %}
+        <li class="more">[[ _('Related concept:') ]] [[ term.related_concept ]]</li>
+        {% endif %}
+        {% if term.cross_reference %}
+        <li class="more">[[ _('See also:') ]] [[ term.cross_reference ]]</li>
+        {% endif %}
     </ul>
-    #}
     <ul class="termActions in small">
         {% if g.user %}
         <li><a href="[[ url_for('terms.add', lang=term.language, term=term.term) ]]">[[ _('Add synonym/translation') ]]</a></li>

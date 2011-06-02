@@ -14,10 +14,10 @@ $(document).ready(function () {
     $('ul.inlineTabs').tabs();
 
     if ($('li.showSource input:checkbox').is(':checked')) {
-        $(this).next('li').removeClass('hideme');
+        $('li.showSource').next('li').removeClass('hideme');
     }
     if ($('li.showSyntrans input:checkbox').is(':checked')) {
-        $(this).parent().nextAll('li').removeClass('hideme');
+        $('li.showSyntrans').nextAll('li').removeClass('hideme');
     }
 
     $('div.doNotHide').removeClass('hideme');
@@ -35,10 +35,10 @@ $(document).ready(function () {
     });
 
     $('li.showSource input:checkbox').click(function () {
-        $(this).parent().next('li').toggle('slow');
+        $('li.showSource').next('li').toggle('slow');
     });
     $('li.showSyntrans input:checkbox').click(function () {
-        $(this).parent().nextAll('li').toggle('slow');
+        $('li.showSyntrans').nextAll('li').toggle('slow');
     });
 
     $("input#entry_source").autocomplete({

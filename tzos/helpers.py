@@ -193,11 +193,12 @@ def get_term_from_value(value):
     term.related_concept = parts[18]
     term.part_of_speech = parts[19]
     term.term_type = parts[20]
+    term.administrative_status = parts[21]
     try:
         # When the last string is empty, we need to treat it specially
-        term.administrative_status = parts[21]
+        term.synonyms = parts[22]
     except IndexError:
-        term.administrative_status = u''
+        term.synonyms = u''
 
     return term
 

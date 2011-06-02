@@ -39,6 +39,8 @@ class Term(object):
         if term:
             self.term = term
 
+        self._synonyms = []
+
     @property
     def id(self):
         if hasattr(self, 'term_id'):
@@ -51,6 +53,17 @@ class Term(object):
             self.term_id = result
 
         return result
+
+    def _get_synonyms(self):
+        return self._synonyms
+
+    def _set_synonyms(self, value):
+        for part in value.split(u";"):
+            if part:
+                syn = Term(term=part)
+                self._synonyms.append(syn)
+
+    synonyms = property(_get_synonyms, _set_synonyms)
 
     def _url(self, _external=False):
         return url_for('terms.detail',

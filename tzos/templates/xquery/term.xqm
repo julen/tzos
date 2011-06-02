@@ -31,11 +31,12 @@ as element(a) {
 };
 
 
-declare function term:synonyms($tig as element(tig))
-as element(a)* {
-    for $syn in $tig/..//tig[term/string() != term:term($tig)]
-    where term:is_public($syn)
-    return $syn
+declare function term:synonyms($tig as element(tig)) {
+    let $synonyms :=
+        for $syn in $tig/..//tig[term/string() != term:term($tig)]
+        where term:is_public($syn)
+        return term:term($syn)
+    return string-join($synonyms, ";")
 };
 
 
@@ -176,6 +177,7 @@ string-join(
      term:entry_source($tig),
      term:xref($tig),
      term:product_subset($tig),
+     (: working status??? :)
      term:norm_auth($tig),
      term:norm_auth_org($tig),
      term:subordinate_cg($tig),
@@ -184,6 +186,7 @@ string-join(
      term:related_concept($tig),
      term:pos($tig),
      term:type($tig),
-     term:admn_sts($tig)
+     term:admn_sts($tig),
+     term:synonyms($tig)
      ), "|")
 };

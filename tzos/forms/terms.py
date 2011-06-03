@@ -252,8 +252,7 @@ class UploadForm(CoreTermForm):
     originating_person = TextField(_("Author"), validators=[
         check_not_mine])
 
-    file_desc = _("Allowed file extensions: .csv and .txt")
-    file = FileField(_("File"), description=file_desc)
+    file = FileField(_("File"))
 
     term_field = SelectField(_("Term column"))
 

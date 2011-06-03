@@ -10,11 +10,12 @@
 """
 from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
-        NoneOf, SelectField, SelectMultipleField, SubmitField, TextAreaField, \
-        TextField, ValidationError, required
+        NoneOf, Optional, SelectField, SelectMultipleField, SubmitField, \
+        TextAreaField, TextField, ValidationError, regexp, required
 
 from tzos.extensions import dbxml
-from tzos.forms.fields import BooleanWorkingField, DynamicSelectField
+from tzos.forms.fields import BooleanWorkingField, DynamicSelectField, \
+        OriginatingPerson
 from tzos.helpers import dropdown_list
 from tzos.strings import *
 
@@ -22,6 +23,11 @@ from tzos.strings import *
 #
 # Validators
 #
+
+DISPLAY_NAME_RE = r'^[^_0-9\+]+$'
+
+is_display_name = regexp(DISPLAY_NAME_RE,
+                         message=_("You can only use letters."))
 
 def check_exists(form, field):
     if field.data != "":
@@ -76,12 +82,6 @@ def check_syntrans_exists(form, field):
         if not result:
             raise ValidationError(message)
 
-def check_not_mine(form, field):
-    message = _("You must specify the author's name.")
-
-    if form.not_mine.data and field.data == "":
-        raise ValidationError(message)
-
 def check_as_is_set(form, field):
     message = _("Administrative status is not set.")
 
@@ -121,9 +121,10 @@ class CoreTermForm(Form):
     subject_field = SelectMultipleField(_("Subject field"), validators=[
         check_required_dropdown])
 
-    originating_person = TextField(_("Author"),
+    originating_person = OriginatingPerson(_("Author"),
         description=_("If you leave this field blank, that means "
-                      "you are the term author."))
+                      "you are the term author."),
+        validators=[Optional(), is_display_name])
 
 class BaseTermForm(CoreTermForm):
 
@@ -214,10 +215,6 @@ class AddTermForm(BaseTermForm):
     syntrans_lang = DynamicSelectField(_("Language"), validators=[
         check_required_dropdown])
 
-    not_mine = BooleanField(_("The author of this term is another person."))
-    originating_person = TextField(_("Author"), validators=[
-        check_not_mine])
-
 
     submit = SubmitField(_("Add"))
 
@@ -247,10 +244,6 @@ class ModEditTermForm(EditTermForm):
 
 
 class UploadForm(CoreTermForm):
-
-    not_mine = BooleanField(_("The author of these terms is another person."))
-    originating_person = TextField(_("Author"), validators=[
-        check_not_mine])
 
     file = FileField(_("File"))
 

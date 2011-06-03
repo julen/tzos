@@ -297,13 +297,11 @@ def edit(id):
             flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
                     "success")
 
+            return redirect(url_for("terms.edit", id=id))
+
     elif request.method == 'POST' and not form.validate():
         flash(_(u"Failed to edit term. Please review the data you "
                  "entered is correct."), "error")
-
-    # BooleanField
-    if term.is_mine():
-        form.originating_person.data = u""
 
     return render_template('terms/edit.html', form=form, term=term)
 

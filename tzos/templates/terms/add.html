@@ -23,16 +23,13 @@
                 {% set placeholder = _("Select…") %}
                 [[ render_field(add_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) ]]
                 [[ render_field(add_form.concept_origin, class="input", tag_class="singleLine") ]]
+                [[ render_field(add_form.originating_person, rel="tipsy-ns", tag_class="singleLine", class="input") ]]
                 [[ render_field(add_form.working_status, class="input", tag_class="singleLine") ]]
             </ul>
             <ul class="fields clLeft">
                 [[ render_field(add_form.syntrans, class="input", tag_class="showSyntrans singleLine") ]]
                 [[ render_field(add_form.syntrans_term, class="input", tag_class="hideme") ]]
                 [[ render_field(add_form.syntrans_lang, class="input", tag_class="hideme") ]]
-            </ul>
-            <ul class="fields clLeft">
-                [[ render_field(add_form.not_mine, tag_class="showSource") ]]
-                [[ render_field(add_form.originating_person, tag_class="hideme", class="input") ]]
             </ul>
             <p class="clLeft showme" style="display:none;"><i class="{% if add_form.errors %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Advanced fields") ]]</a></p>
             <div class="extra hideme{% if add_form.errors %} doNotHide{% endif %}">
@@ -72,11 +69,8 @@
                 {% set placeholder = _("Select…") %}
                 [[ render_field(upload_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) ]]
                 [[ render_field(upload_form.concept_origin, class="input", tag_class="singleLine") ]]
+                [[ render_field(upload_form.originating_person, rel="tipsy-ns", class="input", tag_class="singleLine") ]]
                 [[ render_field(upload_form.working_status, class="input", tag_class="singleLine") ]]
-            </ul>
-            <ul class="fields clLeft">
-                [[ render_field(upload_form.not_mine, tag_class="showSource") ]]
-                [[ render_field(upload_form.originating_person, tag_class="hideme", class="input") ]]
             </ul>
             <div class="columns">
                 <div class="main">

@@ -8,8 +8,10 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from flask import g
+
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import BooleanField, SelectField
+from flaskext.wtf import BooleanField, SelectField, TextField
 
 class DynamicSelectField(SelectField):
     """A SelectField that allows disabling pre validation, which complicates
@@ -42,3 +44,20 @@ class BooleanWorkingField(BooleanField):
                 self.data = 'starterElement'
         except IndexError:
             self.data = 'starterElement'
+
+class OriginatingPerson(TextField):
+    """A TextField for defining originatingPerson fields."""
+
+    def process_data(self, value):
+        if value and value.startswith(u"_"):
+            self.data = u''
+        else:
+            self.data = value
+
+    def process_formdata(self, valuelist):
+        if valuelist and valuelist[0] != u'':
+            self.data = valuelist[0]
+        else:
+            # As underscores are forbidden for usernames, we use this
+            # character to differentiate from non-system names.
+            self.data = u"_" + g.user.username

@@ -25,9 +25,8 @@ from tzos.strings import *
 #
 
 DISPLAY_NAME_RE = r'^[^_0-9\+]+$'
-
 is_display_name = regexp(DISPLAY_NAME_RE,
-                         message=_("You can only use letters."))
+                         message=_(u"You can only use letters."))
 
 def check_exists(form, field):
     if field.data != "":

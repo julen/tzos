@@ -46,7 +46,7 @@ $(document).ready(function () {
     });
 
     $("select#add-subject_field, \
-       select#subject_field, \
+       .editTerm select#subject_field, \
        select#upload-subject_field").bsmSelect({
         removeLabel: '<strong>X</strong>',
         selectClass: 'input bsmSelect',

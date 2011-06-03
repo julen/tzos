@@ -14,6 +14,8 @@ from datetime import datetime
 
 from werkzeug import cached_property, check_password_hash, generate_password_hash
 
+from flask import url_for
+
 from flaskext.babel import gettext as _, lazy_gettext as _l
 from flaskext.sqlalchemy import BaseQuery
 from flaskext.principal import RoleNeed, UserNeed
@@ -124,6 +126,10 @@ class User(db.Model):
     @cached_property
     def natural_role(self):
         return self.role_map[self.role]
+
+    @cached_property
+    def url(self):
+        return url_for('user.profile', username=self.username)
 
     @cached_property
     def gravatar(self):

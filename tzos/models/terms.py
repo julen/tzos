@@ -10,11 +10,12 @@
 """
 from time import strftime
 
-from flask import g, render_template, url_for
+from flask import g, Markup, render_template, url_for
 
 from werkzeug import cached_property
 
 from tzos.extensions import db, dbxml
+from tzos.models.users import User
 
 
 class TermOrigin(db.Model):
@@ -54,6 +55,27 @@ class Term(object):
             self.term_id = result
 
         return result
+
+    @cached_property
+    def originating_person_display(self):
+
+        display_name = self.originating_person
+
+        if display_name.startswith(u"_"):
+            username = display_name[1:]
+            user = User.query.filter_by(username=username).first()
+
+            if user:
+                if user.display_name:
+                    dn = user.display_name
+                else:
+                    dn = user.username
+
+                html = Markup(u'<a href="{0}">{1}</a>'.format(user.url, dn))
+                display_name = html
+
+        return display_name
+
 
     def _get_subject_field(self):
         return self._subject_field

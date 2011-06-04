@@ -36,7 +36,7 @@ declare function term:synonyms($tig as element(tig)) {
         for $syn in $tig/..//tig[term/string() != term:term($tig)]
         where term:is_public($syn)
         return term:term($syn)
-    return string-join($synonyms, ";")
+    return string-join($synonyms, ";;;")
 };
 
 
@@ -187,6 +187,6 @@ string-join(
      term:pos($tig),
      term:type($tig),
      term:admn_sts($tig),
-     term:synonyms($tig)
-     ), "|")
+     term:synonyms($tig),
+     ), "|||")
 };

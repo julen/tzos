@@ -55,7 +55,7 @@ class OriginatingPerson(TextField):
             self.data = value
 
     def process_formdata(self, valuelist):
-        if valuelist and valuelist[0] != u'':
+        if valuelist and valuelist[0] != u"":
             self.data = valuelist[0]
         else:
             # As underscores are forbidden for usernames, we use this
@@ -68,7 +68,7 @@ class OriginatingPerson(TextField):
 
         # No username given so let's overwrite what `process_formdata`
         # could have processed.
-        if valuelist and valuelist[0] == u'':
+        if valuelist and valuelist[0] == u"":
             self.data = valuelist[0]
         elif self.data and self.data.startswith(u"_"):
             self.data = u""

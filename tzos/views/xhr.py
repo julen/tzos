@@ -24,11 +24,11 @@ def autocomplete():
         return json.dumps({})
 
     type_map = {
-        'entrySource': 'distinct-values(collection($collection)//admin[@type="entrySource"][dbxml:contains(./string(), "{0}")]/string())',
+        'entrySource': u'distinct-values(collection($collection)//admin[@type="entrySource"][dbxml:contains(./string(), "{0}")]/string())',
     }
 
     try:
-        qs = type_map[t].format(q)
+        qs = type_map[t].format(q).encode('utf-8')
     except KeyError:
         qs = None
 
@@ -36,8 +36,5 @@ def autocomplete():
 
     if qs:
         results = dbxml.get_db().raw_query(qs).as_str().all()
-
-    print qs
-    print results
 
     return json.dumps(results)

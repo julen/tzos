@@ -77,7 +77,7 @@ def users():
         flash(_(u"Permissions for ‘%(user)s’ have been updated.",
                 user=user.username), "success")
     else:
-        flash(_("Error while updating permissions."), "error")
+        flash(_(u"Error while updating permissions."), "error")
 
     return redirect(url_for("admin.settings"))
 
@@ -99,7 +99,7 @@ def add_origin():
         flash(_(u"Term origin ‘%(origin)s’ has been added.",
                 origin=origin.name), "success")
     else:
-        flash(_("Error while adding term origin."), "error")
+        flash(_(u"Error while adding term origin."), "error")
 
     return redirect(url_for("admin.settings"))
 

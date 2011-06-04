@@ -140,18 +140,19 @@ def add():
         add_form.populate_obj(term)
 
         if term.insert():
-            msg = _('Term added successfully. <a href="%(url)s">Go to the term</a>.',
+            msg = _(u'Term added successfully. '
+                    '<a href="%(url)s">Go to the term</a>.',
                     url=url_for('terms.detail', id=term.id))
             flash(msg, 'success')
 
             return redirect(url_for("terms.add"))
         else:
-            flash(_('Error while trying to add the term.'), 'error')
+            flash(_(u'Error while trying to add the term.'), 'error')
 
     elif upload_form.submit.data and upload_form.validate_on_submit():
         file = request.files['upload-file']
 
-        fields = upload_form.columns.data.split(";")
+        fields = upload_form.columns.data.split(u";")
         fields.insert(0, upload_form.term_field.data)
 
         if file and allowed_file(file.filename):
@@ -175,8 +176,8 @@ def add():
                     term = Term()
                     upload_form.populate_obj(term)
 
-                    if term.working_status == 'starterElement':
-                        term.working_status = 'importedElement'
+                    if term.working_status == u'starterElement':
+                        term.working_status = u'importedElement'
 
                     if not row[field]:
                         continue
@@ -207,7 +208,7 @@ def add():
 
             return render_template('terms/upload_results.html', results=results)
         else:
-            flash(_('Not a valid file.'), 'error')
+            flash(_(u'Not a valid file.'), 'error')
 
     return render_template('terms/add.html', add_form=add_form,
                                              upload_form=upload_form)
@@ -338,7 +339,7 @@ def add_comment(term_id):
         db.session.add(comment)
         db.session.commit()
 
-        flash(_("Thanks for your comment."), "success")
+        flash(_(u"Thanks for your comment."), "success")
 
         return redirect(comment.url)
 

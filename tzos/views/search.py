@@ -113,14 +113,14 @@ def results():
 
     form = SearchForm(request.args, csrf_enabled=False)
 
-    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
+    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _(u'All'))
     form.concept_origin.choices = \
-            dropdown_list(get_origins_dropdown(), 'all', _('All'))
+            dropdown_list(get_origins_dropdown(), 'all', _(u'All'))
     form.na_org.choices = \
-            dropdown_list(get_responsible_orgs(), 'all', _('All'))
+            dropdown_list(get_responsible_orgs(), 'all', _(u'All'))
     form.subject_field.choices = \
             dropdown_list(sorted(SUBJECT_FIELDS, key=lambda x: x[1]),
-                          'all', _('All'))
+                          'all', _(u'All'))
 
     ctx = {'form': form, 'q': q, 'page': page, 'non_default': non_default}
     return render_template('search/results.html', **ctx)

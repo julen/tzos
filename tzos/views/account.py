@@ -39,7 +39,7 @@ def register():
         identity_changed.send(current_app._get_current_object(),
                               identity=Identity(user.id))
 
-        flash(_("Welcome, %(name)s.", name=user.username), "success")
+        flash(_(u"Welcome, %(name)s.", name=user.username), "success")
 
         next_url = form.next.data
 
@@ -76,14 +76,14 @@ def login():
 
             return redirect(next_url)
         else:
-            flash(_('Wrong username or password.'), 'error')
+            flash(_(u'Wrong username or password.'), 'error')
 
     return render_template('account/login.html', form=form)
 
 
 @account.route("/logout/")
 def logout():
-    flash(_("You are now logged out."), "success")
+    flash(_(u"You are now logged out."), "success")
 
     identity_changed.send(current_app._get_current_object(),
                           identity=AnonymousIdentity())
@@ -99,8 +99,8 @@ def forgot_password():
         user = User.query.filter_by(email=form.email.data).first()
 
         if user:
-            flash(_("Please check your email for instructions on "
-                  "how to access your account."), "success")
+            flash(_(u"Please check your email for instructions on "
+                    "how to access your account."), "success")
 
             user.activation_key = str(uuid.uuid4())
             db.session.commit()
@@ -108,14 +108,14 @@ def forgot_password():
             body = render_template("emails/recover_password.html",
                                    user=user)
 
-            message = Message(subject=_("Recover your password"),
+            message = Message(subject=_(u"Recover your password"),
                               body=body,
                               recipients=[user.email])
             mail.send(message)
 
             return redirect(url_for("frontend.index"))
         else:
-            flash(_("Sorry, no user found for that email address."), "error")
+            flash(_(u"Sorry, no user found for that email address."), "error")
 
     return render_template("account/recover_password.html", form=form)
 
@@ -142,7 +142,7 @@ def change_password():
 
         db.session.commit()
 
-        flash(_("Your password has been changed, "
+        flash(_(u"Your password has been changed, "
                 "please log in again."), "success")
 
         # TODO: if user is already authenticated redirect it to its account page
@@ -173,7 +173,7 @@ def settings():
         form.populate_obj(g.user)
         db.session.commit()
 
-        flash(_("Your account has been updated."), "success")
+        flash(_(u"Your account has been updated."), "success")
 
         return redirect(url_for("account.settings"))
 

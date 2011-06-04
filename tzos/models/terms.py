@@ -163,9 +163,9 @@ class Term(object):
         if not self.working_status:
             return False
 
-        return self.working_status != "starterElement" and \
-               self.working_status != "importedElement" and \
-               self.working_status != "archiveElement"
+        return self.working_status != u"starterElement" and \
+               self.working_status != u"importedElement" and \
+               self.working_status != u"archiveElement"
 
     def is_consolidated(self):
         """Returns True if the current term has an elementWorkingStatus
@@ -177,9 +177,9 @@ class Term(object):
         if not self.working_status:
             return False
 
-        return self.working_status != "starterElement" and \
-               self.working_status != "importedElement" and \
-               self.working_status != "workingElement"
+        return self.working_status != u"starterElement" and \
+               self.working_status != u"importedElement" and \
+               self.working_status != u"workingElement"
 
     def is_mine(self):
         """Returns True if the term's `origintatingPerson` is the same
@@ -354,7 +354,7 @@ class Term(object):
             old = qs.format(self.id)
 
             if isinstance(value, list):
-                value = ";".join(value)
+                value = u";".join(value)
 
             if dbxml.get_db().replace_value(old, value):
                 # Update object's value as well

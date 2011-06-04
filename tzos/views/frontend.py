@@ -23,7 +23,7 @@ frontend = Module(__name__)
 @frontend.route('/')
 def index():
     form = SearchForm()
-    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _('All'))
+    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _(u'All'))
 
     latest_comments = Comment.query.order_by(Comment.date_created.desc())[0:5]
 

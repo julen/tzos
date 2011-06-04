@@ -50,11 +50,11 @@ class NotContains(object):
 
                 raise ValueError(self.message % {'value': value})
 
-is_valid_input = NotContains(('|||', ';;;'))
+is_valid_input = NotContains((u'|||', u';;;'))
 
 def check_exists(form, field):
-    if field.data != "":
-        message = _("This term doesn't exist in the database.")
+    if field.data != u"":
+        message = _(u"This term doesn't exist in the database.")
 
         lang = form.language.data
         term = field.data
@@ -68,13 +68,13 @@ def check_exists(form, field):
             raise ValidationError(message)
 
 def check_required_dropdown(form, field):
-    message = _("You must choose a valid option.")
+    message = _(u"You must choose a valid option.")
 
     if not field.data or field.data in ('none',):
         raise ValidationError(message)
 
 def check_collision(form, field):
-    message = _("This term already exists in the database.")
+    message = _(u"This term already exists in the database.")
 
     # FIXME: Also check in subject field?
     qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
@@ -85,14 +85,14 @@ def check_collision(form, field):
         raise ValidationError(message)
 
 def check_syntrans(form, field):
-    message = _("You must specify a term.")
+    message = _(u"You must specify a term.")
 
     if form.syntrans.data and field.data == "":
         raise ValidationError(message)
 
 def check_syntrans_exists(form, field):
     if form.syntrans.data and field.data != "":
-        message = _("This term doesn't exist in the database.")
+        message = _(u"This term doesn't exist in the database.")
 
         lang = form.syntrans_lang.data
         term = field.data
@@ -106,10 +106,10 @@ def check_syntrans_exists(form, field):
             raise ValidationError(message)
 
 def check_as_is_set(form, field):
-    message = _("Administrative status is not set.")
+    message = _(u"Administrative status is not set.")
 
     if form.administrative_status.data == 'none' and \
-       field.data == "consolidatedElement":
+       field.data == u"consolidatedElement":
         raise ValidationError(message)
 
 #
@@ -120,17 +120,17 @@ def check_as_is_set(form, field):
 class BaseTermOriginForm(Form):
 
     name = TextField(validators=[
-                     required(message=_("Name is required."))])
+                     required(message=_(u"Name is required."))])
 
-    parent_id = DynamicSelectField(_("Parent"), coerce=int)
+    parent_id = DynamicSelectField(_(u"Parent"), coerce=int)
 
 class AddTermOriginForm(BaseTermOriginForm):
 
-    submit = SubmitField(_("Create"))
+    submit = SubmitField(_(u"Create"))
 
 class EditTermOriginForm(BaseTermOriginForm):
 
-    submit = SubmitField(_("Edit"))
+    submit = SubmitField(_(u"Edit"))
 
 
 class CoreTermForm(Form):
@@ -150,19 +150,19 @@ class CoreTermForm(Form):
         return rv
 
 
-    concept_origin = DynamicSelectField(_("Origin"), validators=[
-        required(message=_("Origin is required."))])
+    concept_origin = DynamicSelectField(_(u"Origin"),
+            validators=[required(message=_(u"Origin is required."))])
 
     # Affects elementWorkingStatus
-    working_status = BooleanWorkingField(_("I want this term to be public."))
+    working_status = BooleanWorkingField(_(u"I want this term to be public."))
 
-    subject_field = SelectMultipleField(_("Subject field"), validators=[
-        check_required_dropdown])
+    subject_field = SelectMultipleField(_(u"Subject field"),
+            validators=[check_required_dropdown])
 
-    originating_person = OriginatingPerson(_("Author"),
-        description=_("If you leave this field blank, that means "
-                      "you are the term author."),
-        validators=[Optional(), is_display_name])
+    originating_person = OriginatingPerson(_(u"Author"),
+            description=_(u"If you leave this field blank, that means "
+                          "you are the term author."),
+            validators=[Optional(), is_display_name])
 
 class BaseTermForm(CoreTermForm):
 
@@ -173,133 +173,140 @@ class BaseTermForm(CoreTermForm):
     #
     # Transaction-related stuff
     #
-    transac_type = HiddenField(default='input', validators=[AnyOf('input')])
+    transac_type = HiddenField(default='input',
+            validators=[AnyOf('input')])
 
     #
     # Optional fields
     #
 
-    ctx_desc = _("A text which illustrates a concept or a term by "
+    ctx_desc = _(u"A text which illustrates a concept or a term by "
                  "containing the concept designation itself. "
                  "It must be authentic.")
-    context = TextAreaField(_('Context'), description=ctx_desc,
+    context = TextAreaField(_('Context'),
+            description=ctx_desc,
             validators=[is_valid_input])
 
-    xref_desc = _("A related term.")
-    cross_reference = TextField(_('Cross reference'),
+    xref_desc = _(u"A related term.")
+    cross_reference = TextField(_(u'Cross reference'),
             description=xref_desc,
             validators=[check_exists, is_valid_input])
 
-    def_desc = _("A descriptive statement which serves to differentiate "
+    def_desc = _(u"A descriptive statement which serves to differentiate "
                  "from related concepts.")
-    definition = TextAreaField(_('Definition'),
+    definition = TextAreaField(_(u'Definition'),
             description=def_desc,
             validators=[is_valid_input])
 
-    es_desc = _("The source of the terminological entry.")
-    entry_source = TextField(_('Entry source'),
+    es_desc = _(u"The source of the terminological entry.")
+    entry_source = TextField(_(u'Entry source'),
             description=es_desc,
             validators=[is_valid_input])
 
-    example_desc = _("A text which illustrates a concept or a term. "
+    example_desc = _(u"A text which illustrates a concept or a term. "
                      "It can be an invented sentence.")
-    example = TextAreaField(_('Example'),
+    example = TextAreaField(_(u'Example'),
             description=example_desc,
             validators=[is_valid_input])
 
-    explan_desc = _("A statement that describes and clarifies a concept "
+    explan_desc = _(u"A statement that describes and clarifies a concept "
                     "and makes it understandable, but does not necessarily "
                     "differentiate it from other concepts.")
-    explanation = TextAreaField(_('Explanation'),
+    explanation = TextAreaField(_(u'Explanation'),
             description=explan_desc,
             validators=[is_valid_input])
 
     ps_choices = dropdown_list(PRODUCT_SUBSET)
-    product_subset = SelectField(_('Appears in'), choices=ps_choices)
+    product_subset = SelectField(_(u'Appears in'),
+            choices=ps_choices)
 
     #
     # Linguistic fields
     #
     na_choices = dropdown_list(NORMATIVE_AUTHORIZATIONS)
-    normative_authorization = SelectField(_('Normative authorization'),
-                                          choices=na_choices)
-    normative_authorization_org = SelectField(_('Organization'))
+    normative_authorization = SelectField(_(u'Normative authorization'),
+            choices=na_choices)
+    normative_authorization_org = SelectField(_(u'Organization'))
 
-    subordinate_concept_generic = TextField(_('Hyponym'), validators=[
-        check_exists])
-    superordinate_concept_generic = TextField(_('Hypernym'), validators=[
-        check_exists])
-    antonym_concept = TextField(_('Antonym'), validators=[
-        check_exists])
+    subordinate_concept_generic = TextField(_(u'Hyponym'),
+            validators=[check_exists])
+    superordinate_concept_generic = TextField(_(u'Hypernym'),
+            validators=[check_exists])
+    antonym_concept = TextField(_(u'Antonym'),
+            validators=[check_exists])
 
-    rltd_desc = _("A concept that has an associative relation to another "
+    rltd_desc = _(u"A concept that has an associative relation to another "
                   "concept, such as teacher and school.")
-    related_concept = TextField(_('Related concept'), description=rltd_desc,
-                                validators=[check_exists])
+    related_concept = TextField(_(u'Related concept'),
+            description=rltd_desc,
+            validators=[check_exists])
 
     pos_choices = dropdown_list(PART_OF_SPEECH)
-    part_of_speech = SelectField(_('Part of Speech'), choices=pos_choices)
+    part_of_speech = SelectField(_(u'Part of Speech'),
+            choices=pos_choices)
 
     tt_choices = dropdown_list(TERM_TYPES)
-    term_type = SelectField(_('Term type'), choices=tt_choices)
+    term_type = SelectField(_('Term type'),
+            choices=tt_choices)
 
 
 class AddTermForm(BaseTermForm):
 
-    term = TextField(_("Term"),
-            validators=[required(message=_("Term is required.")),
+    term = TextField(_(u"Term"),
+            validators=[required(message=_(u"Term is required.")),
                         is_valid_input,
                         check_collision])
 
-    language = DynamicSelectField(_("Language"), validators=[
-        check_required_dropdown])
+    language = DynamicSelectField(_(u"Language"),
+            validators=[check_required_dropdown])
 
-    syntrans = BooleanField(_("This term is a synonym or a "
+    syntrans = BooleanField(_(u"This term is a synonym or a "
                               "translation for another term."))
 
-    syntrans_term = TextField(_("Term"), validators=[
-        check_syntrans,
-        check_syntrans_exists])
+    syntrans_term = TextField(_(u"Term"),
+            validators=[check_syntrans,
+                        check_syntrans_exists])
 
-    syntrans_lang = DynamicSelectField(_("Language"), validators=[
-        check_required_dropdown])
+    syntrans_lang = DynamicSelectField(_(u"Language"),
+            validators=[check_required_dropdown])
 
 
-    submit = SubmitField(_("Add"))
+    submit = SubmitField(_(u"Add"))
 
 
 class EditTermForm(BaseTermForm):
 
-    language = HiddenField(_("Language"))
+    language = HiddenField(_(u"Language"))
 
-    submit = SubmitField(_("Save changes"))
+    submit = SubmitField(_(u"Save changes"))
 
 
 class ModEditTermForm(EditTermForm):
 
     ws_choices = WORKING_STATUS
-    ws_desc = _("If you consolidate this term, you must set "
+    ws_desc = _(u"If you consolidate this term, you must set "
                 "its administrative status ('Linguistic information' tab).")
-    working_status = DynamicSelectField(_("Working status"),
-            choices=ws_choices, description=ws_desc,
+    working_status = DynamicSelectField(_(u"Working status"),
+            choices=ws_choices,
+            description=ws_desc,
             validators=[check_as_is_set])
 
     as_choices = dropdown_list(ADMINISTRATIVE_STATUS)
-    as_desc = _("This field has no effect if the working status "
+    as_desc = _(u"This field has no effect if the working status "
                 "of this term is other than 'Consolidated'.")
-    administrative_status = DynamicSelectField(_("Administrative status "
-        "within the TZOS environment"),
-        choices=as_choices)
+    administrative_status = DynamicSelectField(_(u"Administrative status "
+            "within the TZOS environment"),
+            choices=as_choices)
 
 
 class UploadForm(CoreTermForm):
 
-    file = FileField(_("File"))
+    file = FileField(_(u"File"))
 
-    term_field = SelectField(_("Term column"))
+    term_field = SelectField(_(u"Term column"))
 
     other_fields = SelectField()
 
     columns = HiddenField()
 
-    submit = SubmitField(_("Upload"))
+    submit = SubmitField(_(u"Upload"))

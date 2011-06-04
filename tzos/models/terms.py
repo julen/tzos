@@ -97,7 +97,8 @@ class Term(object):
     def _set_synonyms(self, value):
         for part in value.split(u";;;"):
             if part:
-                syn = Term(term=part)
+                id, term = part.split(u";", 1)
+                syn = Term(id=id, term=term)
                 self._synonyms.append(syn)
 
     synonyms = property(_get_synonyms, _set_synonyms)
@@ -108,8 +109,8 @@ class Term(object):
     def _set_translations(self, value):
         for part in value.split(u";;;"):
             if part:
-                lang, term = part.split(u";", 1)
-                trans = Term(term=term)
+                lang, id, term = part.split(u";", 2)
+                trans = Term(id=id, term=term)
                 self._translations.setdefault(lang, []).append(trans)
 
     translations = property(_get_translations, _set_translations)

@@ -4,15 +4,12 @@
 {% from "macros/_util.html" import render_comments %}
 {% from "macros/_util.html" import render_term with context %}
 
-{% block title %}[[ super() ]][[ _('Term details') ]]{% endblock %}
+{% block title %}[[ super() ]][[ term.term ]]{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
-{% if term %}
-    [[ render_term(term) ]]
-{% else %}
-<h2 class="h1">[[ _('Term not found.') ]]</h2>
+[[ render_term(term) ]]
 {% endif %}
 
 {% if g.user %}

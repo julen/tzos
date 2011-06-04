@@ -65,8 +65,8 @@ $(document).ready(function () {
 
     $("#upload-submit").click(function () {
         var cols = $("li:visible select#upload-other_fields option:selected").
-        map(function () {
-            return $(this).val();
+        map(function (i) {
+            return $(this).val() + "-" + i;
         }).toArray().join(";");
 
         $("#upload-columns").val(cols)

@@ -194,11 +194,12 @@ def get_term_from_value(value):
     term.part_of_speech = parts[19]
     term.term_type = parts[20]
     term.administrative_status = parts[21]
+    term.synonyms = parts[22]
     try:
         # When the last string is empty, we need to treat it specially
-        term.synonyms = parts[22]
+        term.translations = parts[23]
     except IndexError:
-        term.synonyms = u''
+        term.translations = {}
 
     return term
 

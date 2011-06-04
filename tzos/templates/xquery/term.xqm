@@ -42,14 +42,14 @@ declare function term:synonyms($tig as element(tig)) {
 
 declare function term:translations($tig as element(tig))
 {
-    for $trans in $tig/../..//tig
-    let $termLang := data($tig/../@xml:lang)
-    let $transLang := data($trans/../@xml:lang)
-    let $workingStatus := term:working_status($trans)
-    where $trans/..[@xml:lang!=$termLang] and $workingStatus != "starterElement" and $workingStatus != "importedElement"
-    return (
-    <dt>{ $transLang }</dt>,
-    <dd lang="{ $transLang }">{ term:asLink($trans) }</dd>)
+    let $translations :=
+        for $trans in $tig/../..//tig
+        let $termLang := data($tig/../@xml:lang)
+        let $transLang := data($trans/../@xml:lang)
+        let $workingStatus := term:working_status($trans)
+        where $trans/..[@xml:lang!=$termLang] and term:is_public($trans)
+        return string-join(($transLang, term:term($trans)), ";")
+    return string-join($translations, ";;;")
 };
 
 
@@ -188,5 +188,6 @@ string-join(
      term:type($tig),
      term:admn_sts($tig),
      term:synonyms($tig),
+     term:translations($tig)
      ), "|||")
 };

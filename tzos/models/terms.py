@@ -42,6 +42,7 @@ class Term(object):
 
         self._subject_field = []
         self._synonyms = []
+        self._translations = {}
 
     @property
     def id(self):
@@ -94,12 +95,24 @@ class Term(object):
         return self._synonyms
 
     def _set_synonyms(self, value):
-        for part in value.split(u";"):
+        for part in value.split(u";;;"):
             if part:
                 syn = Term(term=part)
                 self._synonyms.append(syn)
 
     synonyms = property(_get_synonyms, _set_synonyms)
+
+    def _get_translations(self):
+        return self._translations
+
+    def _set_translations(self, value):
+        for part in value.split(u";;;"):
+            if part:
+                lang, term = part.split(u";", 1)
+                trans = Term(term=term)
+                self._translations.setdefault(lang, []).append(trans)
+
+    translations = property(_get_translations, _set_translations)
 
     def _url(self, _external=False):
         return url_for('terms.detail',

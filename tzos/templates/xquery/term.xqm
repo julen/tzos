@@ -34,7 +34,7 @@ as element(a) {
 declare function term:synonyms($tig as element(tig)) {
     let $synonyms :=
         for $syn in $tig/..//tig[term/string() != term:term($tig)]
-        let $synID := $tig/data(@id)
+        let $synID := $syn/data(@id)
         where term:is_public($syn)
         return string-join(($synID, term:term($syn)), ";")
     return string-join($synonyms, ";;;")
@@ -45,7 +45,7 @@ declare function term:translations($tig as element(tig))
 {
     let $translations :=
         for $trans in $tig/../..//tig
-        let $transID := $tig/data(@id)
+        let $transID := $trans/data(@id)
         let $termLang := data($tig/../@xml:lang)
         let $transLang := data($trans/../@xml:lang)
         let $workingStatus := term:working_status($trans)

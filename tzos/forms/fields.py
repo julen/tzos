@@ -61,3 +61,12 @@ class OriginatingPerson(TextField):
             # As underscores are forbidden for usernames, we use this
             # character to differentiate from non-system names.
             self.data = u"_" + g.user.username
+
+    def postprocess_formdata(self, valuelist):
+        """This is called if validation fails and there are errors so
+        formdata can be postprocessed."""
+
+        # No username given so let's overwrite what `process_formdata`
+        # could have processed.
+        if valuelist and valuelist[0] == u'':
+            self.data = valuelist[0]

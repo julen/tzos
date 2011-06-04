@@ -135,6 +135,21 @@ class EditTermOriginForm(BaseTermOriginForm):
 
 class CoreTermForm(Form):
 
+    def validate(self, *args):
+        """Calls all field validators and if there are any errors calls
+        a postrocessing function for the originating_person field.
+
+        Returns the same boolean value as `validate` would do."""
+
+        rv = super(CoreTermForm, self).validate(*args)
+
+        if self.errors:
+            valuelist = self.originating_person.raw_data
+            self.originating_person.postprocess_formdata(valuelist)
+
+        return rv
+
+
     concept_origin = DynamicSelectField(_("Origin"), validators=[
         required(message=_("Origin is required."))])
 

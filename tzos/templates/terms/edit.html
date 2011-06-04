@@ -37,12 +37,12 @@
     <div id="optional" class="tabContent">
         <div class="column">
             <ul class="fields">
-                [[ render_field(form.definition, class="input") ]]
-                [[ render_field(form.context, class="input") ]]
-                [[ render_field(form.example, class="input") ]]
-                [[ render_field(form.explanation, class="input") ]]
-                [[ render_field(form.entry_source, class="input") ]]
-                [[ render_field(form.cross_reference, class="input") ]]
+                [[ render_field(form.definition, class="input", rel="tipsy-ns") ]]
+                [[ render_field(form.context, class="input", rel="tipsy-ns") ]]
+                [[ render_field(form.example, class="input", rel="tipsy-ns") ]]
+                [[ render_field(form.explanation, class="input", rel="tipsy-ns") ]]
+                [[ render_field(form.entry_source, class="input", rel="tipsy-ns") ]]
+                [[ render_field(form.cross_reference, class="input", rel="tipsy-ns") ]]
 
                 [[ render_field(form.product_subset, class="input") ]]
             </ul>
@@ -60,7 +60,7 @@
                 [[ render_field(form.subordinate_concept_generic, class="input") ]]
                 [[ render_field(form.superordinate_concept_generic, class="input") ]]
                 [[ render_field(form.antonym_concept, class="input") ]]
-                [[ render_field(form.related_concept, class="input") ]]
+                [[ render_field(form.related_concept, class="input", rel="tipsy-ns") ]]
                 [[ render_field(form.part_of_speech, class="input") ]]
                 [[ render_field(form.term_type, class="input") ]]
             </ul>

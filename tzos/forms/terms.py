@@ -28,6 +28,30 @@ DISPLAY_NAME_RE = r'^[^_0-9\+]+$'
 is_display_name = regexp(DISPLAY_NAME_RE,
                          message=_(u"You can only use letters."))
 
+class NotContains(object):
+    """
+    Checks the incoming data doesn't contain a sequence of invalid inputs.
+
+    :param values:
+        A sequence of invalid inputs.
+    :param message:
+        Error message to raise in case of a validation error. `%(values)s`
+        contains the value which caused the error.
+    """
+    def __init__(self, values, message=None):
+        self.values = values
+        self.message = message
+
+    def __call__(self, form, field):
+        for value in self.values:
+            if value in field.data:
+                if self.message is None:
+                    self.message = field.gettext(u"Illegal input, can't contain ‘%(value)s’.")
+
+                raise ValueError(self.message % {'value': value})
+
+is_valid_input = NotContains(('|||', ';;;'))
+
 def check_exists(form, field):
     if field.data != "":
         message = _("This term doesn't exist in the database.")
@@ -143,27 +167,37 @@ class BaseTermForm(CoreTermForm):
     ctx_desc = _("A text which illustrates a concept or a term by "
                  "containing the concept designation itself. "
                  "It must be authentic.")
-    context = TextAreaField(_('Context'), description=ctx_desc)
+    context = TextAreaField(_('Context'), description=ctx_desc,
+            validators=[is_valid_input])
 
     xref_desc = _("A related term.")
-    cross_reference = TextField(_('Cross reference'), description=xref_desc,
-                                validators=[check_exists])
+    cross_reference = TextField(_('Cross reference'),
+            description=xref_desc,
+            validators=[check_exists, is_valid_input])
 
     def_desc = _("A descriptive statement which serves to differentiate "
                  "from related concepts.")
-    definition = TextAreaField(_('Definition'), description=def_desc)
+    definition = TextAreaField(_('Definition'),
+            description=def_desc,
+            validators=[is_valid_input])
 
     es_desc = _("The source of the terminological entry.")
-    entry_source = TextField(_('Entry source'), description=es_desc)
+    entry_source = TextField(_('Entry source'),
+            description=es_desc,
+            validators=[is_valid_input])
 
     example_desc = _("A text which illustrates a concept or a term. "
                      "It can be an invented sentence.")
-    example = TextAreaField(_('Example'), description=example_desc)
+    example = TextAreaField(_('Example'),
+            description=example_desc,
+            validators=[is_valid_input])
 
     explan_desc = _("A statement that describes and clarifies a concept "
                     "and makes it understandable, but does not necessarily "
                     "differentiate it from other concepts.")
-    explanation = TextAreaField(_('Explanation'), description=explan_desc)
+    explanation = TextAreaField(_('Explanation'),
+            description=explan_desc,
+            validators=[is_valid_input])
 
     ps_choices = dropdown_list(PRODUCT_SUBSET)
     product_subset = SelectField(_('Appears in'), choices=ps_choices)
@@ -197,9 +231,10 @@ class BaseTermForm(CoreTermForm):
 
 class AddTermForm(BaseTermForm):
 
-    term = TextField(_("Term"), validators=[
-        required(message=_("Term is required.")),
-        check_collision])
+    term = TextField(_("Term"),
+            validators=[required(message=_("Term is required.")),
+                        is_valid_input,
+                        check_collision])
 
     language = DynamicSelectField(_("Language"), validators=[
         check_required_dropdown])

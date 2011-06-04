@@ -70,3 +70,5 @@ class OriginatingPerson(TextField):
         # could have processed.
         if valuelist and valuelist[0] == u'':
             self.data = valuelist[0]
+        elif self.data.startswith(u"_"):
+            self.data = u""

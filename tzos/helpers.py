@@ -61,7 +61,7 @@ def get_dict_langs(only_codes=False):
     # TODO: cache items not to hit the disk each time we run this
     dicts = []
 
-    qs = "//languages/langInfo/langCode/string()"
+    qs = u"//languages/langInfo/langCode/string()"
     dictlist = dbxml.get_db().query(qs).as_str().all()
 
     for d in dictlist:
@@ -99,7 +99,7 @@ def get_working_statuses(only_statuses=False):
     """
     # TODO: cache items not to hit the disk each time we run this
 
-    qs = "//adminSpec[@name='elementWorkingStatus']/contents/string()"
+    qs = u"//adminSpec[@name='elementWorkingStatus']/contents/string()"
     statuses = dbxml.get_db().query(qs).as_str().all()
 
     try:
@@ -171,7 +171,7 @@ def dropdown_list(list, key='', value='-----'):
 def get_term_from_value(value):
     """Parses a series of values to extract a Term object."""
 
-    parts = value.split("|||")
+    parts = value.split(u"|||")
 
     term = Term(parts[0], parts[2])
     term.language = parts[1]

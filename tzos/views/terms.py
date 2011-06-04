@@ -91,6 +91,28 @@ def generate_term_form(form_cls, public_term=False, **form_args):
 
     return form
 
+
+def _do_the_insert(term):
+
+    results = []
+
+    if term.exists():
+        msg = _(u"Term ‘%(term)s’ already exists.",
+                term=term.term)
+        results.append((msg, 'error'))
+    else:
+        if term.insert():
+            msg = _(u"Term ‘%(term)s’ added successfully.",
+                    term=term.term)
+            results.append((msg, 'success'))
+        else:
+            msg = _(u"Error while adding term ‘%(term)s’.",
+                    term=term.term)
+            results.append((msg, 'error'))
+
+    return results
+
+
 @terms.route('/add/', methods=('GET', 'POST'))
 @auth.require(401)
 def add():
@@ -137,54 +159,51 @@ def add():
 
             reader = csv.DictReader(file, fieldnames=fields, skipinitialspace=True)
 
-            print "Will need to parse these fields", fields
             results = []
 
             for row in reader:
-                term = Term()
-                upload_form.populate_obj(term)
 
-                if term.working_status == 'starterElement':
-                    term.working_status = 'importedElement'
+                # Store current term for using as a reference for
+                # synonyms and translations
+                try:
+                    current_term = unicode(row[fields[0]], 'utf-8').strip()
+                except IndexError:
+                    current_term = None
 
                 for field in fields:
 
+                    term = Term()
+                    upload_form.populate_obj(term)
+
+                    if term.working_status == 'starterElement':
+                        term.working_status = 'importedElement'
+
                     if not row[field]:
-                        print "No data! skipping"
                         continue
 
                     value = unicode(row[field], 'utf-8').strip()
 
                     if not value:
-                        print "No value passed! skipping"
+                        # No value passed, skip this field
                         continue
 
                     if field.startswith('term-'):
-                        print "Adding term", value, field[5:]
 
                         # Fill in fields
                         term.term = value
-                        term.language = field[5:]
+                        term.language = field[5:7]
 
-                        if term.exists():
-                            print "Oops, term exists!"
-                            msg = _(u"Term %(term)s already exists", term=value)
-                            results.append((msg, 'error'))
-                            break
-                        else:
-                            if term.insert():
-                                msg = _(u"Term %(term)s added successfully",
-                                        term=value)
-                                results.append((msg, 'success'))
-                            else:
-                                msg = _(u"Error while adding term %(term)s",
-                                        term=value)
-                                results.append((msg, 'error'))
+                        results += _do_the_insert(term)
+
                     elif field.startswith('trans-'):
-                        msg = _(u"Translation %(trans)s added successfully",
-                                trans=value)
-                        print "Adding trans", value, field[6:]
-                        results.append((msg, 'success'))
+
+                        # Fill in fields
+                        term.term = value
+                        term.language = field[6:8]
+                        term.syntrans = True
+                        term.syntrans_term = current_term
+
+                        results += _do_the_insert(term)
 
             return render_template('terms/upload_results.html', results=results)
         else:

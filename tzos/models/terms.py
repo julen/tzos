@@ -266,6 +266,7 @@ class Term(object):
             'date': strftime('%Y-%m-%d'),
             'username': g.user.username,
             'term_id': dbxml.get_db().generate_id('term'),
+            'subject_field': self.subject_field
             }
         ctx.update(self.__dict__)
 

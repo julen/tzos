@@ -263,7 +263,6 @@ class Term(object):
         """Inserts the current term to the DB."""
 
         ctx = {
-            'orig_person': self.originating_person,
             'date': strftime('%Y-%m-%d'),
             'username': g.user.username,
             'term_id': dbxml.get_db().generate_id('term'),

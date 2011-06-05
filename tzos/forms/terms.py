@@ -138,7 +138,7 @@ class CoreTermForm(Form):
     def __init__(self, *args, **kwargs):
         self._do_postprocess = False
 
-        if 'formdata' in kwargs:
+        if 'formdata' in kwargs and kwargs['formdata']:
             self._do_postprocess = True
 
         super(CoreTermForm, self).__init__(*args, **kwargs)

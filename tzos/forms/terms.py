@@ -108,7 +108,7 @@ def check_syntrans_exists(form, field):
 def check_as_is_set(form, field):
     message = _(u"Administrative status is not set.")
 
-    if form.administrative_status.data == 'none' and \
+    if form.administrative_status.data == u'' and \
        field.data == u"consolidatedElement":
         raise ValidationError(message)
 

@@ -9,7 +9,7 @@
 {% block intro %}{% endblock %}
 
 {% block content %}
-[[ render_term(term) ]]
+[[ render_term(term, show_details=True, show_actions=True) ]]
 
 {% if g.user %}
 <h2 class="h4 hr">[[ _('Add a comment') ]]</h2>

@@ -9,9 +9,9 @@
 
 {% block content %}
 {% if page.items %}
-    {% for term in page.items %}
-        [[ render_term(term) ]]
-    {% endfor %}
+    {%- for term in page.items %}
+        [[ render_term(term, show_actions=True) ]]
+    {%- endfor %}
 [[ render_pagination(page, 'glossary.list_letter') ]]
 {% else %}
 <h2>[[ _('No terms found.') ]]</h2>

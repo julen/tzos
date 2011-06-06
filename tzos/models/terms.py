@@ -58,6 +58,18 @@ class Term(object):
         return result
 
     @cached_property
+    def concept_origin_display(self):
+
+        origin = TermOrigin.query.get(self.concept_origin)
+        origin_list = [origin.name]
+
+        while origin.parent_id:
+            origin = TermOrigin.query.get(origin.parent_id)
+            origin_list.insert(0, origin.name)
+
+        return Markup(u' » '.join(origin_list))
+
+    @cached_property
     def originating_person_display(self):
 
         display_name = self.originating_person

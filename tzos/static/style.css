@@ -904,10 +904,6 @@ form.simpleSearch i.iSrch {
 
 /* Results */
 
-.searchResults h2 {
-    margin-left: 1em;
-}
-
 ul.searchResults > li {
     list-style: square;
     margin-left: 2em;

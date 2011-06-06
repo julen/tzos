@@ -53,7 +53,7 @@ def detail(id):
 
     term_comments = Comment.query.filter(Comment.term_id==id).all()
 
-    return render_template('terms/term_detail.html',
+    return render_template('terms/detail.html',
                            term=term,
                            comment_form=comment_form,
                            term_comments=term_comments)

@@ -37,7 +37,7 @@ a:hover, a:focus { text-decoration:none; }
 
 /* Quotes */
 cite {}
-q {}
+q { font-style: italic; }
 
 /* Icons */
 .i, i {
@@ -716,28 +716,25 @@ header .gravatar img {
 
 /* Terms */
 
-ul.term {
+div.term {
     margin: 1em 0 1em 0.5em;
+    line-height: 1.5;
 }
 
-ul.term li {
+div.term li {
     margin-right: 0.8em;
-    line-height: 1.2;
+    /*line-height: 1.2;*/
 }
 
-ul.term li.term {
+div.term h2 {
     display: inline;
     font-weight: bold;
     font-size: 1.5em;
 }
 
-ul.term li.meta {
+div.term p.meta {
     display: inline;
     font-size: 0.8em;
-}
-
-ul.term li.more {
-    margin-left: 2em;
 }
 
 dl.syn dt,

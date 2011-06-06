@@ -34,64 +34,77 @@
 
 {% macro render_term(term, show_details=False, show_actions=False) %}
 <div class="term">
-    <ul class="term">
-        <li class="term">[[ term_link(term) ]]</li>
-        {%- if term.subject_field %}
-        <li class="meta weak">{% for field in term.subject_field %}<span>[[ _t(field) ]]</span>{% if not loop.last %}, {% endif %}{% endfor %}</li>
-        {%- endif %}
-        {% if term.synonyms %}
-        <li>
-            <dl class="syn">
-                <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
-                <dd class="in">{% for syn in term.synonyms %}<a href="[[ syn.url ]]">[[ syn.term ]]</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
-            </dl>
-        </li>
-        {% endif %}
+    <h2 class="term">[[ term_link(term) ]]</h2>
+    {%- if term.subject_field %}
+    <p class="meta weak">{% for field in term.subject_field %}<span>[[ _t(field) ]]</span>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    {%- endif %}
 
-        {% if term.translations %}
-        <li>
-            <dl class="trans">
-            {% for lang in term.translations %}
-            <dt>[[ lang ]]</dt>
-            <dd lang="[[ lang ]]">{% for trans in term.translations[lang] %}<a href="[[ trans.url ]]">[[ trans.term ]]</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
-            {% endfor %}
-            </dl>
-        </li>
-        {% endif %}
+    {%- if term.synonyms %}
+    <dl class="syn">
+        <dt class="in"><abbr class="small" title="[[ _('Synonyms') ]]">[[ _('syn.') ]]</abbr></dt>
+        <dd class="in">{% for syn in term.synonyms %}<a href="[[ syn.url ]]">[[ syn.term ]]</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+    </dl>
+    {%- endif %}
 
-        {%- if show_details %}
+    {%- if term.translations %}
+    <dl class="trans">
+    {% for lang in term.translations %}
+    <dt>[[ lang ]]</dt>
+    <dd lang="[[ lang ]]">{% for trans in term.translations[lang] %}<a href="[[ trans.url ]]">[[ trans.term ]]</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+    {% endfor %}
+    </dl>
+    {%- endif %}
 
-        {%- if term.term_type %}
-        <li class="more">[[ _t(term.term_type) ]]</li>
-        {%- endif %}
-        {%- if term.part_of_speech %}
-        <li class="more">[[ _t(term.part_of_speech) ]]</li>
-        {%- endif %}
-        {%- if term.normative_authorization %}
-        <li class="more">[[ _t(term.normative_authorization) ]]{% if term.normative_authorization_org %} ([[ term.normative_authorization_org ]]){% endif %}</li>
-        {%- endif %}
-        <li class="more">[[ _('Origin:') ]] [[ term.concept_origin ]] <span class="weak">([[ term.originating_person_display ]])</span></li>
-        {% if term.product_subset %}
-        <li class="more">[[ _('Appears in:') ]] [[ _t(term.product_subset) ]]</li>
-        {% endif %}
-        {% if term.subordinate_concept_generic %}
-        <li class="more">[[ _('Hyponym:') ]] [[ term.subordinate_concept_generic ]]</li>
-        {% endif %}
-        {% if term.superordinate_concept_generic %}
-        <li class="more">[[ _('Hypernym:') ]] [[ term.superordinate_concept_generic ]]</li>
-        {% endif %}
-        {% if term.antonym_concept %}
-        <li class="more">[[ _('Antonym:') ]] [[ term.antonym_concept ]]</li>
-        {% endif %}
-        {% if term.related_concept %}
-        <li class="more">[[ _('Related concept:') ]] [[ term.related_concept ]]</li>
-        {% endif %}
-        {% if term.cross_reference %}
-        <li class="more">[[ _('See also:') ]] [[ term.cross_reference ]]</li>
-        {% endif %}
+    {%- if show_details %}
 
-        {%- endif %}
-    </ul>
+    {%- if term.definition %}
+    <p class="def">[[ term.definition ]]</p>
+    {%- endif %}
+    {%- if term.explanation %}
+    <p class="expl">[[ term.explanation ]]</p>
+    {%- endif %}
+    {%- if term.context %}
+    <p class="ctx"><q>[[ term.context ]]</q></p>
+    {%- endif %}
+    {%- if term.example %}
+    <p class="example">[[ term.example ]]</p>
+    {%- endif %}
+
+    {%- if term.term_type %}
+    <p>[[ _t(term.term_type) ]]</p>
+    {%- endif %}
+    {%- if term.part_of_speech %}
+    <p>[[ _t(term.part_of_speech) ]]</p>
+    {%- endif %}
+    {%- if term.normative_authorization %}
+    <p>[[ _t(term.normative_authorization) ]]{% if term.normative_authorization_org %} ([[ term.normative_authorization_org ]]){% endif %}</p>
+    {%- endif %}
+    <p>[[ _('Origin:') ]] [[ term.concept_origin_display ]] <span class="weak">([[ term.originating_person_display ]])</span></p>
+    {% if term.product_subset %}
+    <p>[[ _('Appears in:') ]] [[ _t(term.product_subset) ]]</p>
+    {% endif %}
+    {% if term.subordinate_concept_generic %}
+    <p>[[ _('Hyponym:') ]] [[ term.subordinate_concept_generic ]]</p>
+    {% endif %}
+    {% if term.superordinate_concept_generic %}
+    <p>[[ _('Hypernym:') ]] [[ term.superordinate_concept_generic ]]</p>
+    {% endif %}
+    {% if term.antonym_concept %}
+    <p>[[ _('Antonym:') ]] [[ term.antonym_concept ]]</p>
+    {% endif %}
+    {% if term.related_concept %}
+    <p>[[ _('Related concept:') ]] [[ term.related_concept ]]</p>
+    {% endif %}
+    {% if term.cross_reference %}
+    <p>[[ _('See also:') ]] [[ term.cross_reference ]]</p>
+    {% endif %}
+
+    {% if term.administrative_status %}
+    <p>[[ _('Administrative status:') ]] [[ _t(term.administrative_status) ]]</p>
+    {% endif %}
+
+    {%- endif %}
+
     {%- if show_actions %}
     <ul class="termActions in small">
         {% if g.user %}

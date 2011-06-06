@@ -902,9 +902,8 @@ form.simpleSearch i.iSrch {
     margin-left: 1em;
 }
 
-ul.searchResults li {
+ul.searchResults > li {
     list-style: square;
-    font-size: 1.5em;
     margin-left: 2em;
     line-height: 1.5;
 }

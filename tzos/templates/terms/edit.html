@@ -25,11 +25,7 @@
                 [[ render_field(form.subject_field, class="input") ]]
                 [[ render_field(form.concept_origin, class="input") ]]
                 [[ render_field(form.originating_person, class="input", rel="tipsy-ns") ]]
-                {% if (not g.user.is_moderator and not term.is_consolidated()) or
-                  (g.user.is_moderator and term.is_public() or term.owner() == g.user.username) or
-                  g.user.is_admin %}
                 [[ render_field(form.working_status, class="input") ]]
-                {% endif %}
             </ul>
         </div>
     </div>

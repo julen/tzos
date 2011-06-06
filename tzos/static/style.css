@@ -785,6 +785,11 @@ ul.fields > li {
     clear: both;
 }
 
+div.editTerm > p {
+    line-height: 5;
+    margin-right: 25px;
+}
+
 ul li.singleLine {
     width: 95%!important;
     min-height: 40px;

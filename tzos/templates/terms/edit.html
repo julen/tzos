@@ -7,9 +7,12 @@
 {% block intro %}{% endblock %}
 
 {% block content %}
-<h2 class="h1 m4">[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
+<div class="editTerm">
+    <h2 class="h1 m4 fl">[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
+    <p class="in fr"><a href="[[ term.url ]]">[[ _("Go to term »") ]]</a></p>
+</div>
 
-<form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm">
+<form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm clBoth">
 [[ form.hidden_tag() ]]
 
 <div class="hTabs">

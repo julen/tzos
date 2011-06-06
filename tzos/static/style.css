@@ -786,8 +786,12 @@ ul.fields > li {
 }
 
 div.editTerm > p {
-    line-height: 5;
-    margin-right: 25px;
+    line-height: 4;
+    margin-right: 55px;
+}
+
+div.editTerm > h2 {
+    margin-bottom: 0.5em;
 }
 
 ul li.singleLine {

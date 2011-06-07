@@ -7,9 +7,9 @@
 {% block content %}
 <h2>{{ _('Upload results') }}</h2>
 
-<ul>
+<ul class="uploadResults">
 {% for text, status in results %}
-    <li>{{ text }}, {{ status }}</li>
+    <li class="{{ status }}">{{ text }}</li>
 {% endfor %}
 </ul>
 {% endblock %}

@@ -841,6 +841,26 @@ a.addCol, a.rmCol {
     cursor: pointer;
 }
 
+ul.uploadResults li {
+    list-style: square;
+    margin: 1em 0 1em 2em;
+    line-height: 1.5;
+}
+
+ul.uploadResults li.error,
+ul.uploadResults li.warning {
+    background-color: inherit;
+    font-weight: bold;
+}
+
+ul.uploadResults li.error {
+    color: #c00;
+}
+
+ul.uploadResults li.warning {
+    color: #f4ad32;
+}
+
 
 /* Pagination */
 

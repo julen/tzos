@@ -99,7 +99,7 @@ def _do_the_insert(term):
     if term.exists():
         msg = _(u"Term ‘%(term)s’ already exists.",
                 term=term.term)
-        results.append((msg, 'error'))
+        results.append((msg, 'warning'))
     else:
         if term.insert():
             msg = _(u"Term ‘%(term)s’ added successfully.",

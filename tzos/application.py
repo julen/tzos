@@ -140,9 +140,6 @@ def configure_jinja(app):
     app.jinja_env.globals.update(url_for2=url_for2)
     app.jinja_env.globals.update(_t=tzos_gettext)
 
-    app.jinja_env.variable_start_string = '[['
-    app.jinja_env.variable_end_string = ']]'
-
     @app.template_filter()
     def dateformat(value, format):
         return format_date(value, format)

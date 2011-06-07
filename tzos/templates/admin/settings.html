@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 
-{% block title %}[[ super() ]][[ _('Administration') ]]{% endblock %}
+{% block title %}{{ super() }}{{ _('Administration') }}{% endblock %}
 
-{% block bodyclass %}[[ super() ]] admin{% endblock %}
+{% block bodyclass %}{{ super() }} admin{% endblock %}
 
-{% block intro_title %}[[ _('Administration') ]]{% endblock %}
-{% block intro_text %}[[ _('You can change the settings that affect to the whole system below.') ]]{% endblock %}
+{% block intro_title %}{{ _('Administration') }}{% endblock %}
+{% block intro_text %}{{ _('You can change the settings that affect to the whole system below.') }}{% endblock %}
 
 {% block content %}
 <div class="hTabs">
     <ul class="inlineTabs sideTabs">
-        <li><a href="#edit_permissions">[[ _("User permissions") ]]</a></li>
-        <li><a href="#edit_languages">[[ _("Languages") ]]</a></li>
-        <li><a href="#edit_origins">[[ _("Term origins") ]]</a></li>
-        <li><a href="#edit_kfields">[[ _("Knowledge fields") ]]</a></li>
+        <li><a href="#edit_permissions">{{ _("User permissions") }}</a></li>
+        <li><a href="#edit_languages">{{ _("Languages") }}</a></li>
+        <li><a href="#edit_origins">{{ _("Term origins") }}</a></li>
+        <li><a href="#edit_kfields">{{ _("Knowledge fields") }}</a></li>
     </ul>
 
     <div id="edit_permissions" class="tabContent">

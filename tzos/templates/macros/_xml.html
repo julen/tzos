@@ -1,8 +1,8 @@
 {% macro render_transaction(type, date, username, note=None) %}
 <transacGrp>
-    <transac type="transactionType">[[ type ]]</transac>
-    <date>[[ date ]]</date>
-    <transacNote type="responsibility">[[ username ]]</transacNote>
-    <note>{% if note %}[[ note ]]{% endif %}</note>
+    <transac type="transactionType">{{ type }}</transac>
+    <date>{{ date }}</date>
+    <transacNote type="responsibility">{{ username }}</transacNote>
+    <note>{% if note %}{{ note }}{% endif %}</note>
 </transacGrp>
 {% endmacro %}

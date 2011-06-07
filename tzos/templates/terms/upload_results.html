@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
-{% block title %}[[ super() ]][[ _('Upload results') ]]{% endblock %}
+{% block title %}{{ super() }}{{ _('Upload results') }}{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
-<h2>[[ _('Upload results') ]]</h2>
+<h2>{{ _('Upload results') }}</h2>
 
 <ul>
 {% for text, status in results %}
-    <li>[[ text ]], [[ status ]]</li>
+    <li>{{ text }}, {{ status }}</li>
 {% endfor %}
 </ul>
 {% endblock %}

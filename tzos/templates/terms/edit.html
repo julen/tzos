@@ -2,33 +2,33 @@
 
 {% from "macros/_forms.html" import render_field %}
 
-{% block title %}[[ super() ]][[ _('Edit term') ]]{% endblock %}
+{% block title %}{{ super() }}{{ _('Edit term') }}{% endblock %}
 
 {% block intro %}{% endblock %}
 
 {% block content %}
 <div class="editTerm">
-    <h2 class="h1 fl">[[ term.term ]] <span class="weak">([[ term.language ]])</span></h2>
-    <p class="in fr"><a href="[[ term.url ]]">[[ _("Go to term »") ]]</a></p>
+    <h2 class="h1 fl">{{ term.term }} <span class="weak">({{ term.language }})</span></h2>
+    <p class="in fr"><a href="{{ term.url }}">{{ _("Go to term »") }}</a></p>
 </div>
 
-<form method="POST" action="[[ url_for('terms.edit', **request.view_args) ]]" class="f1 editTerm clBoth">
-[[ form.hidden_tag() ]]
+<form method="POST" action="{{ url_for('terms.edit', **request.view_args) }}" class="f1 editTerm clBoth">
+{{ form.hidden_tag() }}
 
 <div class="hTabs">
     <ul class="inlineTabs sideTabs">
-        <li><a href="#general">[[ _("General") ]]</a></li>
-        <li><a href="#optional">[[ _("Optional fields") ]]</a></li>
-        <li><a href="#linguistic">[[ _("Linguistic information") ]]</a></li>
+        <li><a href="#general">{{ _("General") }}</a></li>
+        <li><a href="#optional">{{ _("Optional fields") }}</a></li>
+        <li><a href="#linguistic">{{ _("Linguistic information") }}</a></li>
     </ul>
 
     <div id="general" class="tabContent">
         <div class="column">
             <ul class="fields">
-                [[ render_field(form.subject_field, class="input") ]]
-                [[ render_field(form.concept_origin, class="input") ]]
-                [[ render_field(form.originating_person, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.working_status, class="input") ]]
+                {{ render_field(form.subject_field, class="input") }}
+                {{ render_field(form.concept_origin, class="input") }}
+                {{ render_field(form.originating_person, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.working_status, class="input") }}
             </ul>
         </div>
     </div>
@@ -36,14 +36,14 @@
     <div id="optional" class="tabContent">
         <div class="column">
             <ul class="fields">
-                [[ render_field(form.definition, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.context, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.example, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.explanation, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.entry_source, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.cross_reference, class="input", rel="tipsy-ns") ]]
+                {{ render_field(form.definition, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.context, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.example, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.explanation, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.entry_source, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.cross_reference, class="input", rel="tipsy-ns") }}
 
-                [[ render_field(form.product_subset, class="input") ]]
+                {{ render_field(form.product_subset, class="input") }}
             </ul>
         </div>
     </div>
@@ -52,22 +52,22 @@
         <div class="column">
             <ul class="fields">
                 {% if g.user.is_moderator and term.is_public() %}
-                [[ render_field(form.administrative_status, class="input") ]]
+                {{ render_field(form.administrative_status, class="input") }}
                 {% endif %}
-                [[ render_field(form.normative_authorization, class="input") ]]
-                [[ render_field(form.normative_authorization_org, class="input") ]]
-                [[ render_field(form.subordinate_concept_generic, class="input") ]]
-                [[ render_field(form.superordinate_concept_generic, class="input") ]]
-                [[ render_field(form.antonym_concept, class="input") ]]
-                [[ render_field(form.related_concept, class="input", rel="tipsy-ns") ]]
-                [[ render_field(form.part_of_speech, class="input") ]]
-                [[ render_field(form.term_type, class="input") ]]
+                {{ render_field(form.normative_authorization, class="input") }}
+                {{ render_field(form.normative_authorization_org, class="input") }}
+                {{ render_field(form.subordinate_concept_generic, class="input") }}
+                {{ render_field(form.superordinate_concept_generic, class="input") }}
+                {{ render_field(form.antonym_concept, class="input") }}
+                {{ render_field(form.related_concept, class="input", rel="tipsy-ns") }}
+                {{ render_field(form.part_of_speech, class="input") }}
+                {{ render_field(form.term_type, class="input") }}
             </ul>
         </div>
     </div>
 
     <p class="fAction hr">
-    [[ form.submit(class="button") ]]
+    {{ form.submit(class="button") }}
     </p>
 
 </div>

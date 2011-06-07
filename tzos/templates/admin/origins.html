@@ -1,21 +1,21 @@
 <div class="columns">
-    <h2 class="h4">[[ _('Current origins') ]]</h2>
-    <p>[[ _('These are the current term origins available on the system. To edit an origin, just click on it.') ]]</p>
+    <h2 class="h4">{{ _('Current origins') }}</h2>
+    <p>{{ _('These are the current term origins available on the system. To edit an origin, just click on it.') }}</p>
     <ul class="origins">
         {%- for origin in origins recursive %}
-        <li><a href="[[ url_for('admin.edit_origin', id=origin.id) ]]">[[ origin.name ]]</a></a>
+        <li><a href="{{ url_for('admin.edit_origin', id=origin.id) }}">{{ origin.name }}</a></a>
         {%- if origin.children -%}
-        <ul class="submenu">[[ loop(origin.children) ]]</ul>
+        <ul class="submenu">{{ loop(origin.children) }}</ul>
         {%- endif %}
         </li>
         {%- endfor %}
     </ul>
     <div class="hr fields">
-        <h2 class="h4">[[ _('Add a new origin') ]]</h2>
-        <form method="POST" action="[[ url_for('admin.add_origin') ]]" class="f1">
-            [[ origins_form.hidden_tag() ]]
+        <h2 class="h4">{{ _('Add a new origin') }}</h2>
+        <form method="POST" action="{{ url_for('admin.add_origin') }}" class="f1">
+            {{ origins_form.hidden_tag() }}
             <dl>
-                <dd>[[ origins_form.name(class="input") ]][[ origins_form.parent_id(class="input") ]][[ origins_form.submit(class="button") ]]</dd>
+                <dd>{{ origins_form.name(class="input") }}{{ origins_form.parent_id(class="input") }}{{ origins_form.submit(class="button") }}</dd>
             </dl>
         </form>
     </div>

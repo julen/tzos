@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
-{% block title %}[[ super() ]][[ _('Select dictionary language') ]]{% endblock %}
+{% block title %}{{ super() }}{{ _('Select dictionary language') }}{% endblock %}
 
-{% block intro_title %}[[ _('Dictionary language') ]]{% endblock %}
-{% block intro_text %}[[ _('Please select the dictionary language of your choice.') ]]{% endblock %}
+{% block intro_title %}{{ _('Dictionary language') }}{% endblock %}
+{% block intro_text %}{{ _('Please select the dictionary language of your choice.') }}{% endblock %}
 
 {% block content %}
 <ul>
     {% for dict_lang, dict_langname in dict_langs %}
     {% if dict_lang != session.dict_lang %}
-    <li><a href="[[ url_for(request.endpoint, setdict=dict_lang) ]]">[[ dict_langname|capitalize ]]</a></li>
+    <li><a href="{{ url_for(request.endpoint, setdict=dict_lang) }}">{{ dict_langname|capitalize }}</a></li>
     {% endif %}
     {% endfor %}
 </ul>

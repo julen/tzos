@@ -1,18 +1,18 @@
 {% from "macros/_forms.html" import render_field, render_form %}
 <div class="languages">
-    <h2 class="h4">[[ _('Current languages') ]]</h2>
-    <p>[[ _('These are the dictionary languages that are currently available on the system.') ]]</p>
+    <h2 class="h4">{{ _('Current languages') }}</h2>
+    <p>{{ _('These are the dictionary languages that are currently available on the system.') }}</p>
     <div class="table">
         <table>
             <thead>
                 <tr>
-                    <th>[[ _('Code') ]]</th><th>[[ _('Language name') ]]</th>
+                    <th>{{ _('Code') }}</th><th>{{ _('Language name') }}</th>
                 </tr>
             </thead>
             <tbody>
                 {% for dict_lang, dict_langname in dict_langs %}
                 <tr>
-                    <td>[[ dict_lang ]]</td><td>[[ dict_langname ]]</td>
+                    <td>{{ dict_lang }}</td><td>{{ dict_langname }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -20,7 +20,7 @@
     </div>
 </div>
 <div class="hr fields">
-    <h2 class="h4">[[ _('Add a new language') ]]</h2>
-    <p>[[ _('To add a new language, simply write its full name and language code.') ]]</p>
-    [[ render_form(langs_form) ]]
+    <h2 class="h4">{{ _('Add a new language') }}</h2>
+    <p>{{ _('To add a new language, simply write its full name and language code.') }}</p>
+    {{ render_form(langs_form) }}
 </div>

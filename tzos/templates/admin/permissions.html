@@ -1,17 +1,17 @@
 <div class="permissions">
-    <h2 class="h4">[[ _('Privileged users') ]]</h2>
-    <p>[[ _('The following users have special privileges on the system.') ]]</p>
+    <h2 class="h4">{{ _('Privileged users') }}</h2>
+    <p>{{ _('The following users have special privileges on the system.') }}</p>
     <div class="table">
         <table>
             <thead>
                 <tr>
-                    <th>[[ _('User') ]]</th><th>[[ _('Role') ]]</th>
+                    <th>{{ _('User') }}</th><th>{{ _('Role') }}</th>
                 </tr>
             </thead>
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td><div class="gravatar in"><img src="[[ user.gravatar_url(24) ]]" /></div><span class="strong">[[ user.username ]]</span>{% if user.display_name %} <span class="small weak">([[ user.display_name ]])</span>{% endif %}<span class="block small weak">[[ user.email ]]</span></td><td>[[ user.natural_role ]]</td>
+                    <td><div class="gravatar in"><img src="{{ user.gravatar_url(24) }}" /></div><span class="strong">{{ user.username }}</span>{% if user.display_name %} <span class="small weak">({{ user.display_name }})</span>{% endif %}<span class="block small weak">{{ user.email }}</span></td><td>{{ user.natural_role }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -19,12 +19,12 @@
     </div>
 </div>
 <div class="hr fields">
-    <h2 class="h4">[[ _('Modify user permissions') ]]</h2>
-    <p>[[ _('Select a user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') ]]</p>
-    <form method="POST" action="[[ url_for('admin.users') ]]" class="f1">
-        [[ users_form.hidden_tag() ]]
+    <h2 class="h4">{{ _('Modify user permissions') }}</h2>
+    <p>{{ _('Select a user and the permission level you want to grant. If the selected user already has special privileges they will be updated.') }}</p>
+    <form method="POST" action="{{ url_for('admin.users') }}" class="f1">
+        {{ users_form.hidden_tag() }}
         <dl>
-            <dd>[[ users_form.user(class="input") ]][[ users_form.role(class="input") ]][[ users_form.submit(class="button") ]]</dd>
+            <dd>{{ users_form.user(class="input") }}{{ users_form.role(class="input") }}{{ users_form.submit(class="button") }}</dd>
         </dl>
     </form>
 </div>

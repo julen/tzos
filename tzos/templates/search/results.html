@@ -3,29 +3,29 @@
 {% from "macros/_util.html" import render_pagination, render_term %}
 {% from "macros/_forms.html" import render_field %}
 
-{% block title %}[[ super() ]]{% if q %}[[ _('Search results') ]]{% else %}[[ _('Advanced search') ]]{% endif %}{% endblock %}
+{% block title %}{{ super() }}{% if q %}{{ _('Search results') }}{% else %}{{ _('Advanced search') }}{% endif %}{% endblock %}
 
-{% block intro_title %}{% if q %}[[ q ]]{% else %}[[ _('Advanced search') ]]{% endif %}{% endblock %}
-{% block intro_text %}{% if q %}[[ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', page.total ) ]]{% else %}[[ _('Search the needle on the haystack.') ]]{% endif %}{% endblock %}
+{% block intro_title %}{% if q %}{{ q }}{% else %}{{ _('Advanced search') }}{% endif %}{% endblock %}
+{% block intro_text %}{% if q %}{{ ngettext('Your search returned %(num)d result.', 'Your search returned %(num)d results.', page.total ) }}{% else %}{{ _('Search the needle on the haystack.') }}{% endif %}{% endblock %}
 
 {% block content %}
 <form class="f1 advancedSearch" action="" method="GET">
     {% include "search/core.html" %}
-    <p class="clLeft showme" style="display:none;"><i class="{% if non_default %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">[[ _("Search options") ]]</a></p>
+    <p class="clLeft showme" style="display:none;"><i class="{% if non_default %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">{{ _("Search options") }}</a></p>
     <div class="extra hideme{% if non_default %} doNotHide{% endif %}">
         <ul>
-            <h2 class="h4 clBoth">[[ _('General') ]]</h2>
-            [[ render_field(form.field, class="input") ]]
-            [[ render_field(form.pp, class="input") ]]
-            <h2 class="h4 clBoth">[[ _('Classification') ]]</h2>
-            [[ render_field(form.subject_field, class="input") ]]
-            [[ render_field(form.product_subset, class="input") ]]
-            [[ render_field(form.concept_origin, class="input") ]]
-            <h2 class="h4 clBoth">[[ _('Linguistic information') ]]</h2>
-            [[ render_field(form.na, class="input") ]]
-            [[ render_field(form.na_org, class="input") ]]
-            [[ render_field(form.pos, class="input") ]]
-            [[ render_field(form.tt, class="input") ]]
+            <h2 class="h4 clBoth">{{ _('General') }}</h2>
+            {{ render_field(form.field, class="input") }}
+            {{ render_field(form.pp, class="input") }}
+            <h2 class="h4 clBoth">{{ _('Classification') }}</h2>
+            {{ render_field(form.subject_field, class="input") }}
+            {{ render_field(form.product_subset, class="input") }}
+            {{ render_field(form.concept_origin, class="input") }}
+            <h2 class="h4 clBoth">{{ _('Linguistic information') }}</h2>
+            {{ render_field(form.na, class="input") }}
+            {{ render_field(form.na_org, class="input") }}
+            {{ render_field(form.pos, class="input") }}
+            {{ render_field(form.tt, class="input") }}
         </ul>
     </div>
 </form>
@@ -33,11 +33,11 @@
 {% if page and page.items %}
 <ul class="searchResults hr clBoth">
     {% for term in page.items %}
-    <li>[[ render_term(term) ]]</li>
+    <li>{{ render_term(term) }}</li>
     {% endfor %}
 </ul>
-[[ render_pagination(page, 'search.results') ]]
+{{ render_pagination(page, 'search.results') }}
 {% elif q %}
-<div class="searchResults hr clBoth"><h2>[[ _('No terms found.') ]]</h2></div>
+<div class="searchResults hr clBoth"><h2>{{ _('No terms found.') }}</h2></div>
 {% endif %}
 {% endblock %}

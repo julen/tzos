@@ -1,13 +1,13 @@
 {% from "macros/_xml.html" import render_transaction %}
-<termEntry id="[[ concept_id ]]">
-    <admin type="originatingPerson">[[ originating_person ]]</admin>
-    <descrip type="subjectField">[[ subject_field|join(";") ]]</descrip>
-    <descrip type="subordinateConceptGeneric">{% if subordinate_concept_generic %}[[ subordinate_concept_generic ]]{% endif %}</descrip>
-    <descrip type="superordinateConceptGeneric">{% if superordinate_concept_generic %}[[ subordinate_concept_generic ]]{% endif %}</descrip>
-    <descrip type="antonymConcept">{% if antonym_concept %}[[ antonym_concept ]]{% endif %}</descrip>
-    <descrip type="relatedConcept">{% if related_concept %}[[ related_concept ]]{% endif %}</descrip>
-    <ref{% if xref_id %} target="[[ xref_id ]]"{% endif %} type="crossReference">{% if cross_reference %}[[ cross_reference ]]{% endif %}</ref>
-    [[ render_transaction(transac_type, date, username) ]]
+<termEntry id="{{ concept_id }}">
+    <admin type="originatingPerson">{{ originating_person }}</admin>
+    <descrip type="subjectField">{{ subject_field|join(";") }}</descrip>
+    <descrip type="subordinateConceptGeneric">{% if subordinate_concept_generic %}{{ subordinate_concept_generic }}{% endif %}</descrip>
+    <descrip type="superordinateConceptGeneric">{% if superordinate_concept_generic %}{{ subordinate_concept_generic }}{% endif %}</descrip>
+    <descrip type="antonymConcept">{% if antonym_concept %}{{ antonym_concept }}{% endif %}</descrip>
+    <descrip type="relatedConcept">{% if related_concept %}{{ related_concept }}{% endif %}</descrip>
+    <ref{% if xref_id %} target="{{ xref_id }}"{% endif %} type="crossReference">{% if cross_reference %}{{ cross_reference }}{% endif %}</ref>
+    {{ render_transaction(transac_type, date, username) }}
     {% include "xml/new_langset.xml" %}
 </termEntry>
 

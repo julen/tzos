@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-06-07 20:25+0200\n"
+"PO-Revision-Date: 2011-06-07 20:36+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0-rc1\n"
 "Generated-By: Babel 0.9.5\n"
 
 #: tzos/application.py:87
@@ -1469,21 +1471,21 @@ msgstr "Igo"
 #: tzos/models/terms.py:76
 #, python-format
 msgid "Imported term <a href=\"%(term_url)s\">%(term)s</a>."
-msgstr ""
+msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa inportatuta."
 
 #: tzos/models/terms.py:79
-#, fuzzy, python-format
+#, python-format
 msgid "Added term <a href=\"%(term_url)s\">%(term)s</a>."
-msgstr "Terminoa ondo gehitu da. <a href=\"%(url)s\">Joan terminora</a>."
+msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa gehituta."
 
 #: tzos/models/terms.py:82
 #, python-format
 msgid "Edited term <a href=\"%(term_url)s\">%(term)s</a>."
-msgstr ""
+msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa editatuta."
 
 #: tzos/models/terms.py:90
 msgid "No activity details available."
-msgstr ""
+msgstr "Ez dago jardueraren xehetasunik eskuragarri."
 
 #: tzos/models/users.py:63
 msgid "Member"
@@ -1528,12 +1530,11 @@ msgstr "Bilaketa aurreratua"
 
 #: tzos/templates/index.html:17 tzos/templates/user/profile.html:46
 msgid "Latest activity"
-msgstr ""
+msgstr "Azken jarduera"
 
 #: tzos/templates/index.html:21
-#, fuzzy
 msgid "No activity yet."
-msgstr "Ekonomia Jarduerak"
+msgstr "Jarduerarik ez oraindik."
 
 #: tzos/templates/index.html:25 tzos/templates/user/profile.html:54
 msgid "Latest comments"
@@ -1849,7 +1850,6 @@ msgid "Subject fields"
 msgstr "Jakintza-arloak"
 
 #: tzos/templates/macros/_util.html:104
-#, fuzzy
 msgid "Source"
 msgstr "Iturria"
 
@@ -1985,6 +1985,8 @@ msgstr "Gehitu iruzkina"
 #, python-format
 msgid "You must <a href=\"%(next_url)s\">log in</a> in order to comment on terms."
 msgstr ""
+"<a href=\"%(next_url)s\">Saioa hasi</a> behar duzu terminoetan iruzkinak "
+"uzteko."
 
 #: tzos/templates/terms/detail.html:23
 #, python-format
@@ -2025,9 +2027,8 @@ msgid "d/M/Y"
 msgstr "Y/M/d"
 
 #: tzos/templates/user/profile.html:50
-#, fuzzy
 msgid "This user has no activity yet."
-msgstr "Erabiltzaile honek ez du iruzkinik egin oraindik."
+msgstr "Erabiltzaile honek ez du jarduerarik oraindik."
 
 #: tzos/templates/user/profile.html:58
 msgid "This user hasn't made any comments yet."
@@ -2146,4 +2147,3 @@ msgstr "Eskerrik asko iruzkinagatik."
 
 #~ msgid "Latest additions"
 #~ msgstr "Azken gehikuntzak"
-

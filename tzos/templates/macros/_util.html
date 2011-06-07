@@ -140,9 +140,9 @@
 
     <div class="group">
         {%- if term.administrative_status %}
-        {% set meta_text = _('The author of this entry is <span class="origPerson">%(author)s</span>, and it is <span class="adminSts">%(admin_sts)s</span> within the TZOS environment.', author=term.originating_person_display, admin_sts=_t(term.administrative_status)) %}
+        {% set meta_text = _('The author of this term is <span class="origPerson">%(author)s</span>, and it is <span class="adminSts">%(admin_sts)s</span> within the TZOS environment.', author=term.originating_person_display, admin_sts=_t(term.administrative_status)) %}
         {%- else %}
-        {% set meta_text = _('The author of this entry is <span class="origPerson">%(author)s</span>.', author=term.originating_person_display) %}
+        {% set meta_text = _('The author of this term is <span class="origPerson">%(author)s</span>.', author=term.originating_person_display) %}
         {%- endif %}
         <p class="meta">{{ meta_text }}</p>
     </div>

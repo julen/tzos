@@ -35,13 +35,7 @@ def index():
         let $tig := $tx/..
         where term:is_public($tig)
         order by $tx/date descending
-        return string-join(
-            ($tig/data(@id),
-            $tig/term/string(),
-            $tx/transac[@type="transactionType"]/string(),
-            $tx/date/string(),
-            $tx/transacNote[@type="responsibility"]/string()
-            ), "|||")
+        return term:activity($tig, $tx)
     return subsequence($txs, 1, 5)
     '''
 

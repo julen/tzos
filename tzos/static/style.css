@@ -648,12 +648,6 @@ section.admin ul.sideTabs li a.selected {
     padding: 10px;
 }
 
-/* Latest activity */
-
-.activity {
-    margin-top: 2em;
-}
-
 /* User profile */
 
 .profileHead {
@@ -959,6 +953,10 @@ ul.searchResults > li {
 
 /* Comments/Activity */
 
+.profileActivity {
+    margin-top: 2em;
+}
+
 .activity ul,
 .comments ul {
     padding: 0.5em;
@@ -972,6 +970,7 @@ ul.searchResults > li {
     padding: 5px 0 5px 42px;
 }
 
+.activity.profile ul li,
 .comments.profile ul li {
     padding-left: 0;
     border-top: 0 none;

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% from "macros/_util.html" import render_comments %}
+{% from "macros/_util.html" import render_activity, render_comments %}
 
 {% block title %}{{ super() }}{{ _("%(user)s's profile", user=user.username) }}{% endblock %}
 
@@ -41,9 +41,14 @@
         <dt>{{ _('Date joined') }}</dt><dd>{{ user.date_joined|dateformat(_('d/M/Y')) }}</dd>
     </dl>
 </div>
-<div class="activity columns">
-    <div class="half">
+<div class="profileActivity columns">
+    <div class="activity profile half">
         <h2 class="h4">{{ _("Latest activity") }}</h2>
+        {% if user_activity %}
+        {{ render_activity(user_activity, gravatar=False, username=False) }}
+        {% else %}
+        <p>{{ _("This user has no activity yet.") }}</p>
+        {% endif %}
     </div>
     <div class="comments profile half">
         <h2 class="h4">{{ _("Latest comments") }}</h2>

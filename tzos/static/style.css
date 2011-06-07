@@ -982,7 +982,7 @@ ul.searchResults > li {
 }
 
 .activity ul li strong,
-.activity ul li span.date,
+.activity ul li span.datetime,
 .comments ul li strong,
 .comments ul li span.datetime {
     margin-right: 5px;

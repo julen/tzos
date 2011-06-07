@@ -8,6 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from dateutil.parser import parse
 from time import strftime
 
 from flask import g, Markup, render_template, url_for
@@ -56,9 +57,10 @@ class TermChange(object):
     def __init__(self, term_id, term, change_type, date, username):
         self._term_id = term_id
         self._term = term
-        self.type = change_type
-        self.date = date
+        self._date = date
         self._username = username
+
+        self.type = change_type
 
     @cached_property
     def term(self):
@@ -86,6 +88,10 @@ class TermChange(object):
             return Markup(desc_map[self.type])
         except KeyError:
             return _(u'No activity details available.')
+
+    @cached_property
+    def date(self):
+        return parse(self._date)
 
 
 class Term(object):
@@ -332,7 +338,7 @@ class Term(object):
         """Inserts the current term to the DB."""
 
         ctx = {
-            'date': strftime('%Y-%m-%d'),
+            'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,
             'term_id': dbxml.get_db().generate_id('term'),
             'subject_field': self.subject_field

@@ -71,6 +71,9 @@ class TermChange(object):
     @cached_property
     def description(self):
         desc_map = {
+                'importation': _(u'Imported term <a href="%(term_url)s">%(term)s</a>.',
+                    term_url=self.term.url,
+                    term=self.term.term),
                 'input': _(u'Added term <a href="%(term_url)s">%(term)s</a>.',
                     term_url=self.term.url,
                     term=self.term.term),

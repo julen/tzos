@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% from "macros/_util.html" import render_comments %}
+{% from "macros/_util.html" import render_activity, render_comments %}
 
 {% block title %}{{ super() }}{{ _('Online System for Terminology Service') }}{% endblock %}
 
@@ -14,7 +14,12 @@
 </form>
 <div class="activity columns">
     <div class="half">
-        <h2 class="h4">{{ _("Latest changes") }}</h2>
+        <h2 class="h4">{{ _("Latest activity") }}</h2>
+        {% if latest_activity %}
+        {{ render_activity(latest_activity) }}
+        {% else %}
+        <p>{{ _("No activity yet.") }}</p>
+        {% endif %}
     </div>
     <div class="comments half">
         <h2 class="h4">{{ _("Latest comments") }}</h2>

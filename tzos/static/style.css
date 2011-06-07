@@ -957,12 +957,14 @@ ul.searchResults > li {
     line-height: 1.5;
 }
 
-/* Comments */
+/* Comments/Activity */
 
+.activity ul,
 .comments ul {
     padding: 0.5em;
 }
 
+.activity ul li,
 .comments ul li {
     border-top: 1px solid #f1f1f1;
     font-size: 0.9em;
@@ -975,10 +977,13 @@ ul.searchResults > li {
     border-top: 0 none;
 }
 
+.activity ul li img,
 .comments ul li img {
     margin-left: -42px;
 }
 
+.activity ul li strong,
+.activity ul li span.date,
 .comments ul li strong,
 .comments ul li span.datetime {
     margin-right: 5px;

@@ -14,9 +14,10 @@ from flaskext.babel import gettext as _
 
 from babel import Locale
 
+from tzos.extensions import dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import dropdown_list, get_dict_langs
-from tzos.models import Comment
+from tzos.models import Comment, TermChange
 
 frontend = Module(__name__)
 
@@ -27,7 +28,28 @@ def index():
 
     latest_comments = Comment.query.order_by(Comment.date_created.desc())[0:5]
 
+    qs = '''
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+    let $txs :=
+        for $tx in collection($collection)//tig/transacGrp
+        let $tig := $tx/..
+        where term:is_public($tig)
+        order by $tx/date descending
+        return string-join(
+            ($tig/data(@id),
+            $tig/term/string(),
+            $tx/transac[@type="transactionType"]/string(),
+            $tx/date/string(),
+            $tx/transacNote[@type="responsibility"]/string()
+            ), "|||")
+    return subsequence($txs, 1, 5)
+    '''
+
+    latest_activity = \
+            dbxml.get_db().raw_query(qs).as_callback(TermChange.parse).all()
+
     return render_template('index.html', form=form,
+                                         latest_activity=latest_activity,
                                          latest_comments=latest_comments)
 
 @frontend.route('/dict/')

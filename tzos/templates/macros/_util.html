@@ -28,6 +28,16 @@
 {% endmacro %}
 
 
+{% macro render_activity(activity, gravatar=True, username=True) %}
+<ul>
+    {# TODO: datetimeformat #}
+    {%- for act in activity %}
+    <li>{% if gravatar %}<a href="{{ url_for('user.profile', username=act.author.username) }}" title="{{ _("%(user)s's profile", user=act.author.username) }}"><img class="fl" src="{{ act.author.gravatar_url(32) }}" /></a>{% endif %}{% if username %}<strong><a href="{{ url_for('user.profile', username=act.author.username) }}" title="{{ _("%(user)s's profile", user=act.author.username) }}">{{ act.author.username }}</a></strong>{% endif %}<span class="weak small date">{{ act.date }}</span></span><br />{{ act.description }}</li>
+    {%- endfor %}
+</ul>
+{% endmacro %}
+
+
 {% macro term_link(term) %}
 <a href="{{ url_for('terms.detail', id=term.id) }}">{{ term.term }}</a>
 {% endmacro %}

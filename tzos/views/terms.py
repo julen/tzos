@@ -301,7 +301,7 @@ def edit(id):
             # XXX: adapt 'modification'? add note?
             ctx = {
                 'transac_type': 'modification',
-                'date': strftime('%Y-%m-%d'),
+                'date': strftime('%Y-%m-%d %H:%M:%S%z'),
                 'username': g.user.username
             }
 

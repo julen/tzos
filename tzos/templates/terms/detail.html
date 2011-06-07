@@ -11,13 +11,16 @@
 {% block content %}
 {{ render_term(term, show_details=True, show_actions=True) }}
 
-{% if g.user %}
 <h2 class="h4 hr">{{ _('Add a comment') }}</h2>
+{% if g.user %}
 {% set form_action = url_for('terms.add_comment', term_id=term.id) %}
 {{ render_form(comment_form, action=form_action, labeled=False) }}
+{% else %}
+{% set next_url = url_for('account.login', next=request.path) %}
+<p class="f1">{{ _('You must <a href="%(next_url)s">log in</a> in order to comment on terms.', next_url=next_url) }}</p>
 {% endif %}
 
-<h2 class="h4{% if not g.user %} hr{% endif %}">{{ _('Comments (%(count)d)', count=term_comments|count) }}</h2>
+<h2 class="h4">{{ _('Comments (%(count)d)', count=term_comments|count) }}</h2>
 {% if term_comments %}
 <p>{{ _('Read what people have said about this term.') }}</p>
 {% else %}

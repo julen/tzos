@@ -19,18 +19,6 @@ declare function term:term($tig as element(tig)) {
 };
 
 
-declare function term:asLink($tig as element(tig))
-as element(a) {
-    <a href="[[ url_for('terms.detail', id='{ data($tig/@id) }') ]]">{ term:term($tig) }</a>
-};
-
-declare function term:asLink2($term_str as xs:string)
-as element(a) {
-    let $tig := collection($collection)//tig[term/string()=$term_str]
-    return term:asLink($tig)
-};
-
-
 declare function term:synonyms($tig as element(tig)) {
     let $synonyms :=
         for $syn in $tig/..//tig[term/string() != term:term($tig)]

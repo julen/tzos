@@ -12,6 +12,8 @@ from time import strftime
 
 from flask import g, Markup, render_template, url_for
 
+from flaskext.babel import gettext as _
+
 from werkzeug import cached_property
 
 from tzos.extensions import db, dbxml
@@ -29,6 +31,58 @@ class TermOrigin(db.Model):
                           db.ForeignKey('origins.id', ondelete='CASCADE'))
 
     parent = db.relation('TermOrigin', remote_side=[id], backref='children')
+
+
+class TermChange(object):
+
+    @classmethod
+    def parse(cls, value):
+        """Parses a string into a TermChange object"""
+
+        parts = value.split(u"|||")
+
+        try:
+            term_id = parts[0]
+            term = parts[1]
+            change_type = parts[2]
+            date = parts[3]
+            username = parts[4]
+        except IndexError:
+            return None
+
+        return TermChange(term_id, term, change_type, date, username)
+
+
+    def __init__(self, term_id, term, change_type, date, username):
+        self._term_id = term_id
+        self._term = term
+        self.type = change_type
+        self.date = date
+        self._username = username
+
+    @cached_property
+    def term(self):
+        return Term(self._term_id, self._term)
+
+    @cached_property
+    def author(self):
+        return User.query.filter_by(username=self._username).first()
+
+    @cached_property
+    def description(self):
+        desc_map = {
+                'input': _(u'Added term <a href="%(term_url)s">%(term)s</a>.',
+                    term_url=self.term.url,
+                    term=self.term.term),
+                'modification': _(u'Edited term <a href="%(term_url)s">%(term)s</a>.',
+                    term_url=self.term.url,
+                    term=self.term.term),
+                }
+
+        try:
+            return Markup(desc_map[self.type])
+        except KeyError:
+            return _(u'No activity details available.')
 
 
 class Term(object):

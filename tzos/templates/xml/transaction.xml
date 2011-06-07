@@ -1,2 +1,2 @@
 {% from "macros/_xml.html" import render_transaction %}
-[[ render_transaction(transac_type, date, username) ]]
+{{ render_transaction(transac_type, date, username) }}

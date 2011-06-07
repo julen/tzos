@@ -719,6 +719,7 @@ header .gravatar img {
 div.term {
     margin: 1em 0 1em 0.5em;
     line-height: 1.5;
+    position: relative;
 }
 
 div.term li {
@@ -732,24 +733,50 @@ div.term h2 {
     font-size: 1.5em;
 }
 
-div.term p.meta {
+div.term h3 {
+    font-size: 1em;
+    margin-bottom: .3em;
+}
+
+div.term p.head {
+    border-left: 1px dotted #999;
     display: inline;
     font-size: 0.8em;
+    padding-left: 0.5em;
+}
+
+div.term div.group {
+    margin-top: 1em;
+}
+
+div.term dt {
+    float: left;
+    margin-right: 1em;
 }
 
 dl.syn dt,
 dl.trans dt {
-    float: left;
     margin-left: 2em;
-    margin-right: 1em;
+    width: 1.5em;
 }
 
-dl.trans dt {
-    width: 2ch;
+div.group dd {
+    margin-bottom: 5px;
 }
 
-div.term {
-    position: relative;
+div.group dt {
+    line-height: 1.8;
+    width: 10em;
+}
+
+div.group dt,
+div.group p.meta {
+    font-size: .8em;
+}
+
+span.origPerson,
+span.adminSts {
+    font-weight: bold;
 }
 
 ul.termActions {

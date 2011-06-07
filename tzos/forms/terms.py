@@ -293,6 +293,9 @@ class EditTermForm(BaseTermForm):
 
     language = HiddenField(_(u"Language"))
 
+    transac_type = HiddenField(default='modification',
+            validators=[AnyOf('modification')])
+
     submit = SubmitField(_(u"Save changes"))
 
 
@@ -323,5 +326,8 @@ class UploadForm(CoreTermForm):
     other_fields = SelectField()
 
     columns = HiddenField()
+
+    transac_type = HiddenField(default='importation',
+            validators=[AnyOf('importation')])
 
     submit = SubmitField(_(u"Upload"))

@@ -14,3 +14,5 @@ Flask-Script
 bsddb3
 
 cssmin
+
+python-dateutil==1.5

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-06-07 13:05+0200\n"
+"POT-Creation-Date: 2011-06-07 13:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1798,14 +1798,14 @@ msgstr ""
 #: tzos/templates/macros/_util.html:143
 #, python-format
 msgid ""
-"The author of this entry is <span class=\"origPerson\">%(author)s</span>,"
-" and it is <span class=\"adminSts\">%(admin_sts)s</span> within the TZOS "
+"The author of this term is <span class=\"origPerson\">%(author)s</span>, "
+"and it is <span class=\"adminSts\">%(admin_sts)s</span> within the TZOS "
 "environment."
 msgstr ""
 
 #: tzos/templates/macros/_util.html:145
 #, python-format
-msgid "The author of this entry is <span class=\"origPerson\">%(author)s</span>."
+msgid "The author of this term is <span class=\"origPerson\">%(author)s</span>."
 msgstr ""
 
 #: tzos/templates/macros/_util.html:155

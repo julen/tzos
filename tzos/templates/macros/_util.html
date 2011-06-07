@@ -91,6 +91,10 @@
             {%- endif %}
             <dt>{{ _('Origin') }}</dt>
             <dd>{{ term.concept_origin_display }}</dd>
+            {%- if term.entry_source %}
+            <dt>{{ _('Source') }}</dt>
+            <dd>{{ term.entry_source }}</dd>
+            {%- endif %}
             {%- if term.product_subset %}
             <dt>{{ _('Appears in') }}</dt>
             <dd>{{ _t(term.product_subset) }}</dd>

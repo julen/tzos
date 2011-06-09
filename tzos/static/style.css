@@ -53,11 +53,11 @@ q { font-style: italic; }
 .i32 { height:32px; width:32px; }
 .i48 { height:48px; width:48px; }
 
-.iGlobe { background-position:-16px -24px; }
-.iSrch  { background-position:-16px -40px; }
+.iGlobe { background-position:0 -24px; }
 .iWDarr { background-position:0 -40px; }
-.iBDarr { background-position:-32px -24px; }
-.iBRarr { background-position:-32px -40px; }
+.iBDarr { background-position:-16px -24px; }
+.iBRarr { background-position:-16px -40px; }
+.iSrch  { background-position:-84px -40px; }
 
 /* Buttons */
 .b, button, input[type=submit] {
@@ -363,11 +363,17 @@ nav a.register {
 }
 
 form.headerSearch {
+    border-left: 1px dotted #ccc;
+    height: 30px;
     margin-top: 10px;
+    padding-left: 20px;
 }
 
 form.headerSearch input[type=search] {
-    padding: 5px;
+    background-image: url('img/sprite.png');
+    background-position: -80px -37px;
+    background-repeat: no-repeat;
+    padding: 5px 5px 5px 25px;
     width: 140px;
 }
 

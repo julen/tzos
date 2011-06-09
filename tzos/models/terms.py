@@ -112,7 +112,7 @@ class Term(object):
         if hasattr(self, 'term_id'):
             return self.term_id
 
-        qs = u'//tig[term/string()="{0}"]/data(@id)'.format(self.term)
+        qs = u'//langSet[@xml:lang="{0}"]/tig[term/string()="{1}"]/data(@id)'.format(self.language, self.term)
         result = dbxml.get_db().query(qs).as_str().first()
 
         if result:
@@ -353,6 +353,7 @@ class Term(object):
 
         if hasattr(self, 'syntrans') and self.syntrans:
             syntrans_term = Term(term=self.syntrans_term)
+            syntrans_term.language = self.syntrans_language
 
             if syntrans_term.has_langset(self.language):
                 template_name = 'xml/new_term.xml'

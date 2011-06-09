@@ -169,8 +169,10 @@ def add():
                 try:
                     # TODO: clean the input before blindly insert it
                     current_term = unicode(row[fields[0]], 'utf-8').strip()
+                    current_language = fields[0][5:7]
                 except IndexError:
                     current_term = None
+                    current_language = None
 
                 for field in fields:
 
@@ -204,6 +206,7 @@ def add():
                         term.language = field[6:8]
                         term.syntrans = True
                         term.syntrans_term = current_term
+                        term.syntrans_language = current_language
 
                         results += _do_the_insert(term)
 

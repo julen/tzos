@@ -119,8 +119,8 @@ def check_as_is_set(form, field):
 
 class BaseTermOriginForm(Form):
 
-    name = TextField(validators=[
-                     required(message=_(u"Name is required."))])
+    name = TextField(_(u"Name"),
+            validators=[required(message=_(u"Name is required."))])
 
     parent_id = DynamicSelectField(_(u"Parent"), coerce=int)
 
@@ -174,7 +174,7 @@ class CoreTermForm(Form):
     subject_field = SelectMultipleField(_(u"Subject field"),
             validators=[check_required_dropdown])
 
-    originating_person = OriginatingPerson(_(u"Author"),
+    originating_person = OriginatingPerson(_(u"Originating person"),
             description=_(u"If you leave this field blank, that means "
                           "you are the term author."),
             validators=[Optional(), is_display_name])
@@ -232,7 +232,7 @@ class BaseTermForm(CoreTermForm):
             validators=[is_valid_input])
 
     ps_choices = dropdown_list(PRODUCT_SUBSET)
-    product_subset = SelectField(_(u'Appears in'),
+    product_subset = SelectField(_(u'Product subset'),
             choices=ps_choices)
 
     #

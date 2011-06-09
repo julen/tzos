@@ -336,6 +336,15 @@ header a#logo {
     margin: 13px 20px 0 10px;
 }
 
+nav {
+    height: 55px;
+}
+
+nav ul {
+    width: 500px;
+    text-align: right;
+}
+
 nav ul.in li {
     margin-right: 20px;
 }
@@ -381,6 +390,7 @@ section#glossary {
     background-color: #333;
     border-top: 2px solid #f4ad32;
     height: 30px;
+    clear: both;
 }
 
 section#body {

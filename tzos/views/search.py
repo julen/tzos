@@ -98,6 +98,7 @@ def results():
 
         for $tig in collection($collection)//tig
         where term:is_public($tig) and {0}{1}
+        order by $tig/term/string() ascending
         return term:values($tig)
         """.format(predicate.encode('utf-8'),
                    filter.encode('utf-8'))

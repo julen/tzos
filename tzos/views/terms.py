@@ -167,6 +167,7 @@ def add():
                 # Store current term for using as a reference for
                 # synonyms and translations
                 try:
+                    # TODO: clean the input before blindly insert it
                     current_term = unicode(row[fields[0]], 'utf-8').strip()
                 except IndexError:
                     current_term = None

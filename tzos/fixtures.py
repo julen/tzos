@@ -72,7 +72,7 @@ ORIGINS = {
 
     "Medikuntza eta Odontologia Fakultatea": {
         "Medikuntza":
-            ["Giza Anatomia I, Giza Anatomia II", "Psikologia", "Neurologia", "Mikrobiologia Medikoa I", "Erradiologia eta Medikuntza Fisiko Orokorrak", "Farmakologia Klinikoa", "Farmakologia Klinikoa", "Biofisika Medikua/Fisiologia Orokorra", "Histologia Orokorra/Histologia Berezia", "Zelulen Biologia"],
+            ["Giza Anatomia I, Giza Anatomia II", "Psikologia", "Neurologia", "Mikrobiologia Medikoa I", "Erradiologia eta Medikuntza Fisiko Orokorrak", "Farmakologia Klinikoa", "Biofisika Medikua/Fisiologia Orokorra", "Histologia Orokorra/Histologia Berezia", "Zelulen Biologia"],
         "Odontologia":
             ["Giza Anatomia I, Giza Anatomia II", "Fisiologia eta Nutrizioa", "Epidemiologia"],
         "Biokimika":

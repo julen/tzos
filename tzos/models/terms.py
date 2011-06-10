@@ -112,11 +112,21 @@ class Term(object):
         if hasattr(self, 'term_id'):
             return self.term_id
 
+        # FIXME: check subjectField too
         qs = u'//langSet[@xml:lang="{0}"]/tig[term/string()="{1}"]/data(@id)'.format(self.language, self.term)
         result = dbxml.get_db().query(qs).as_str().first()
 
         if result:
             self.term_id = result
+
+        return result
+
+    @cached_property
+    def concept_id(self):
+
+        # FIXME: check subjectField too
+        qs = u'//termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
+        result = dbxml.get_db().query(qs).as_str().first()
 
         return result
 

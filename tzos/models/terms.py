@@ -366,29 +366,25 @@ class Term(object):
             syntrans_term.language = self.syntrans_language
 
             if syntrans_term.has_langset(self.language):
+
                 template_name = 'xml/new_term.xml'
-                where = u'//langSet[@xml:lang="{0}"]/tig[../..//tig[@id="{1}"]][1]' \
-                    .format(self.language, syntrans_term.id)
+                where = u'//termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'.format(syntrans_term.concept_id, self.language)
+
             else:
+
                 template_name = 'xml/new_langset.xml'
-                where = u'//langSet[..//tig[@id="{0}"]][1]'.format(syntrans_term.id)
+                where = u'//termEntry[@id="{0}"]'.format(syntrans_term.concept_id)
+
+
         else:
+
             ctx.update({'concept_id': dbxml.get_db().generate_id('concept')})
             template_name = 'xml/new_concept.xml'
             where = u'//body'
 
-            # XXX: Ugly to repeat code here but necessary for now
-            xml = render_template(template_name, **ctx)
-
-            if dbxml.get_db().insert_as_first(xml, where):
-                self.term_id = ctx['term_id']
-                return True
-
-            return False
-
         xml = render_template(template_name, **ctx)
 
-        if dbxml.get_db().insert_before(xml, where):
+        if dbxml.get_db().insert_as_first(xml, where):
             self.term_id = ctx['term_id']
             return True
 

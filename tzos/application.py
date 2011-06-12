@@ -155,12 +155,15 @@ def configure_context_processors(app):
 
     @app.context_processor
     def get_langs():
-        # TODO: cache items not to hit the disk each time we run this
-        langs = []
-        langlist = app.babel_instance.list_translations()
+        langs = cache.get("lang_list")
 
-        for l in langlist:
-            langs.append((l.language, l.display_name))
+        if langs is None:
+            langs = []
+
+            for l in app.babel_instance.list_translations():
+                langs.append((l.language, l.display_name))
+
+            cache.set("lang_list", langs)
 
         return dict(langs=langs)
 

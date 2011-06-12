@@ -36,8 +36,9 @@ def index():
         let $tig := $tx/..
         where term:is_public($tig)
         order by $tx/date descending
-        return term:activity($tig, $tx)
-    return subsequence($txs, 1, 5)
+        return $tx
+    for $tx in subsequence($txs, 1, 5)
+    return term:activity($tx)
     '''
 
     # TODO: cache latest activity

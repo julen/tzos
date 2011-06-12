@@ -29,8 +29,9 @@ def profile(username):
         where term:is_public($tig) and
               $tx/transacNote[@type="responsibility"]/string()="{0}"
         order by $tx/date descending
-        return term:activity($tig, $tx)
-    return subsequence($txs, 1, 5)
+        return $tx
+    for $tx in subsequence($txs, 1, 5)
+    return term:activity($tx)
     '''.format(username.encode('utf-8'))
 
     user_activity = \

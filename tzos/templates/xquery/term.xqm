@@ -152,11 +152,10 @@ declare function term:xref_id($tig as element(tig)) {
 };
 
 
-declare function term:activity($tig as element(tig),
-                               $tx as element(transacGrp)) {
+declare function term:activity($tx as element(transacGrp)) {
 string-join(
-    ($tig/data(@id),
-     $tig/term/string(),
+    ($tx/../data(@id),
+     $tx/../term/string(),
      $tx/transac[@type="transactionType"]/string(),
      $tx/date/string(),
      $tx/transacNote[@type="responsibility"]/string()

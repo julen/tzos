@@ -14,6 +14,8 @@ SQLALCHEMY_ECHO = False
 DBXML_ENV = '/home/julen/dev/tzos/tzos/dbs/dbxml/'
 DBXML_DATABASE = DBXML_ENV + 'tzos.dbxml'
 DBXML_BASE_URI = 'file:///home/julen/dev/tzos/tzos/templates/xquery/'
+DBXML_CACHESIZE_GB = 0
+DBXML_CACHESIZE_BYTES = 512 * 1024 * 1024
 
 # Babel configuration settings
 BABEL_DEFAULT_LOCALE = 'en'

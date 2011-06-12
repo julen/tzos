@@ -113,8 +113,8 @@ class Term(object):
             return self.term_id
 
         # FIXME: check subjectField too
-        qs = u'//langSet[@xml:lang="{0}"]/tig[term/string()="{1}"]/data(@id)'.format(self.language, self.term)
-        result = dbxml.get_db().query(qs).as_str().first()
+        qs = u'/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig[term/string()="{1}"]/data(@id)'.format(self.language, self.term)
+        result = dbxml.get_db().query(qs, document='tzos.xml').as_str().first()
 
         if result:
             self.term_id = result
@@ -125,10 +125,8 @@ class Term(object):
     def concept_id(self):
 
         # FIXME: check subjectField too
-        qs = u'//termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
-        result = dbxml.get_db().query(qs).as_str().first()
-
-        return result
+        qs = u'/martif/text/body/termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
+        return dbxml.get_db().query(qs, document='tzos.xml').as_str().first()
 
     @cached_property
     def concept_origin_display(self):
@@ -216,34 +214,22 @@ class Term(object):
     def exists(self):
         """Returns True if the current term exists in the DB."""
 
-        if not self.id:
-            return False
-
-        qs = u'//tig[@id="{0}"]'.format(self.id)
-        result = dbxml.get_db().query(qs).as_str().first()
-
-        if result is not None:
-            return True
-
-        return False
+        return self.id is not None
 
     def has_langset(self, langcode):
         """Returns True if the current term has a langSet for langcode."""
-        qs = u'//langSet[@xml:lang="{0}" and ..//term[string()="{1}"]]'. \
-            format(langcode, self.term)
-        result = dbxml.get_db().query(qs).as_str().first()
+        qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \
+            format(self.concept_id, langcode)
+        result = dbxml.get_db().query(qs, document='tzos.xml').as_str().first()
 
-        if result is not None:
-            return True
-
-        return False
+        return result is not None
 
     def is_public(self):
         """Returns True if the current term has an elementWorkingStatus
         with a value of `workingElement` or higher."""
 
         if not hasattr(self, 'working_status'):
-            qs = u'//tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
+            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
             self.working_status = dbxml.get_db().query(qs).as_str().first()
         if not self.working_status:
             return False
@@ -257,7 +243,7 @@ class Term(object):
         with a value of `consolidatedElement` or higher."""
 
         if not hasattr(self, 'working_status'):
-            qs = u'//tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
+            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
             self.working_status = dbxml.get_db().query(qs).as_str().first()
         if not self.working_status:
             return False
@@ -271,7 +257,7 @@ class Term(object):
         as the user who committed the term."""
 
         if not hasattr(self, 'originating_person'):
-            qs = u'//tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'.format(self.id)
+            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'.format(self.id)
             self.originating_person = dbxml.get_db().query(qs).as_str().first()
         if self.originating_person is None:
             return False
@@ -295,53 +281,54 @@ class Term(object):
         """Populates current term's fields by querying fields by id."""
 
         fields = [
-            ('term', u'//tig[@id="{0}"]/term/string()'),
-            ('language', u'//tig[@id="{0}"]/../data(@xml:lang)'),
+            ('term', u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/term/string()'),
+            ('language', u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../data(@xml:lang)'),
             ('concept_origin',
-             u'//tig[@id="{0}"]/admin[@type="conceptOrigin"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="conceptOrigin"]/string()'),
             ('subject_field',
-             u'//tig[@id="{0}"]/../../descrip[@type="subjectField"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="subjectField"]/string()'),
             ('working_status',
-             u'//tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'),
             ('originating_person',
-             u'//tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'),
             ('definition',
-             u'//tig[@id="{0}"]/../descrip[@type="definition"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../descrip[@type="definition"]/string()'),
             ('context',
-             u'//tig[@id="{0}"]/descrip[@type="context"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/descrip[@type="context"]/string()'),
             ('example',
-             u'//tig[@id="{0}"]/descrip[@type="example"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/descrip[@type="example"]/string()'),
             ('explanation',
-             u'//tig[@id="{0}"]/descrip[@type="explanation"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/descrip[@type="explanation"]/string()'),
             ('entry_source',
-             u'//tig[@id="{0}"]/admin[@type="entrySource"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="entrySource"]/string()'),
             ('cross_reference',
-             u'//tig[@id="{0}"]/ref[@type="crossReference"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/ref[@type="crossReference"]/string()'),
             ('product_subset',
-             u'//tig[@id="{0}"]/admin[@type="productSubset"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="productSubset"]/string()'),
 
             ('normative_authorization',
-             u'//tig[@id="{0}"]/termNote[@type="normativeAuthorization"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="normativeAuthorization"]/string()'),
             ('normative_authorization_org',
-             u'//tig[@id="{0}"]/termNote[@type="normativeAuthorization"]/data(@target)'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="normativeAuthorization"]/data(@target)'),
             ('subordinate_concept_generic',
-             u'//tig[@id="{0}"]/../../descrip[@type="subordinateConceptGeneric"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="subordinateConceptGeneric"]/string()'),
             ('superordinate_concept_generic',
-             u'//tig[@id="{0}"]/../../descrip[@type="superordinateConceptGeneric"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="superordinateConceptGeneric"]/string()'),
             ('antonym_concept',
-             u'//tig[@id="{0}"]/../../descrip[@type="antonymConcept"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="antonymConcept"]/string()'),
             ('related_concept',
-             u'//tig[@id="{0}"]/../../descrip[@type="relatedConcept"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="relatedConcept"]/string()'),
             ('part_of_speech',
-             u'//tig[@id="{0}"]/termNote[@type="partOfSpeech"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="partOfSpeech"]/string()'),
             ('term_type',
-             u'//tig[@id="{0}"]/termNote[@type="termType"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="termType"]/string()'),
             ('administrative_status',
-             u'//tig[@id="{0}"]/termNote[@type="administrativeStatus"]/string()'),
+             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="administrativeStatus"]/string()'),
         ]
 
         for key, qs in fields:
-            result = dbxml.get_db().query(qs.format(self.id)).as_str().first()
+            result = dbxml.get_db().query(qs.format(self.id),
+                                          document='tzos.xml').as_str().first()
             setattr(self, key, result)
 
     def insert(self):
@@ -368,23 +355,23 @@ class Term(object):
             if syntrans_term.has_langset(self.language):
 
                 template_name = 'xml/new_term.xml'
-                where = u'//termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'.format(syntrans_term.concept_id, self.language)
+                where = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'.format(syntrans_term.concept_id, self.language)
 
             else:
 
                 template_name = 'xml/new_langset.xml'
-                where = u'//termEntry[@id="{0}"]'.format(syntrans_term.concept_id)
+                where = u'/martif/text/body/termEntry[@id="{0}"]'.format(syntrans_term.concept_id)
 
 
         else:
 
             ctx.update({'concept_id': dbxml.get_db().generate_id('concept')})
             template_name = 'xml/new_concept.xml'
-            where = u'//body'
+            where = u'/martif/text/body'
 
         xml = render_template(template_name, **ctx)
 
-        if dbxml.get_db().insert_as_first(xml, where):
+        if dbxml.get_db().insert_as_first(xml, where, document='tzos.xml'):
             self.term_id = ctx['term_id']
             return True
 

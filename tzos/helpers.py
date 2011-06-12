@@ -14,7 +14,7 @@ from flask import Markup, _request_ctx_stack, abort, current_app, g, \
 from babel import Locale
 from functools import wraps
 
-from tzos.extensions import dbxml
+from tzos.extensions import cache, dbxml
 from tzos.models import Term, TermOrigin
 from tzos import strings
 
@@ -51,6 +51,7 @@ def tzos_gettext(key):
     return key
 
 
+@cache.memoize()
 def get_dict_langs(only_codes=False):
     """Returns a list with tuples of all the available dictionaries.
     The tuple elements are language codes and language names.
@@ -58,7 +59,6 @@ def get_dict_langs(only_codes=False):
     :param only_codes: if set to True, returns a list of language codes.
                        Defaults to False.
     """
-    # TODO: cache items not to hit the disk each time we run this
     dicts = []
 
     qs = u"//languages/langInfo/langCode/string()"
@@ -89,6 +89,7 @@ def require_valid_dict(f):
     return decorator
 
 
+@cache.memoize()
 def get_working_statuses(only_statuses=False):
     """Returns a list with tuples of all the available working statuses
     for a term.
@@ -97,7 +98,6 @@ def get_working_statuses(only_statuses=False):
     :param only_statuses: if set to True, returns a list of status names.
                           Defaults to False.
     """
-    # TODO: cache items not to hit the disk each time we run this
 
     qs = u"//adminSpec[@name='elementWorkingStatus']/contents/string()"
     statuses = dbxml.session.query(qs).as_str().all()
@@ -113,6 +113,7 @@ def get_working_statuses(only_statuses=False):
     return status_list
 
 
+@cache.memoize()
 def get_responsible_orgs():
     """Returns a list with tuples of all the available responsible
     organizations. These organizations are to be used in
@@ -120,7 +121,6 @@ def get_responsible_orgs():
 
     The tuple elements are organization IDs and display names.
     """
-    # TODO: cache items not to hit the disk each time we run this
 
     qs = """
     for $org in collection("{0}")//refObjectList[@type='respOrg']/refObject

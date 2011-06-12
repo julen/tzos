@@ -62,7 +62,7 @@ def check_exists(form, field):
         # FIXME: Also check in subject field?
         qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
                 format(lang, term)
-        result = dbxml.get_db().query(qs).as_str().first()
+        result = dbxml.session.query(qs).as_str().first()
 
         if not result:
             raise ValidationError(message)
@@ -79,7 +79,7 @@ def check_collision(form, field):
     # FIXME: Also check in subject field?
     qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
             format(form.language.data, form.term.data)
-    result = dbxml.get_db().query(qs).as_str().first()
+    result = dbxml.session.query(qs).as_str().first()
 
     if result:
         raise ValidationError(message)
@@ -100,7 +100,7 @@ def check_syntrans_exists(form, field):
         # FIXME: Also check in subject field?
         qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
                 format(lang, term)
-        result = dbxml.get_db().query(qs).as_str().first()
+        result = dbxml.session.query(qs).as_str().first()
 
         if not result:
             raise ValidationError(message)

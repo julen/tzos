@@ -35,6 +35,6 @@ def autocomplete():
     results = []
 
     if qs:
-        results = dbxml.get_db().raw_query(qs).as_str().all()
+        results = dbxml.session.raw_query(qs).as_str().all()
 
     return json.dumps(results)

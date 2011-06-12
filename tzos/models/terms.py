@@ -114,7 +114,7 @@ class Term(object):
 
         # FIXME: check subjectField too
         qs = u'/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig[term/string()="{1}"]/data(@id)'.format(self.language, self.term)
-        result = dbxml.get_db().query(qs, document='tzos.xml').as_str().first()
+        result = dbxml.session.query(qs, document='tzos.xml').as_str().first()
 
         if result:
             self.term_id = result
@@ -126,7 +126,7 @@ class Term(object):
 
         # FIXME: check subjectField too
         qs = u'/martif/text/body/termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
-        return dbxml.get_db().query(qs, document='tzos.xml').as_str().first()
+        return dbxml.session.query(qs, document='tzos.xml').as_str().first()
 
     @cached_property
     def concept_origin_display(self):
@@ -220,7 +220,7 @@ class Term(object):
         """Returns True if the current term has a langSet for langcode."""
         qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \
             format(self.concept_id, langcode)
-        result = dbxml.get_db().query(qs, document='tzos.xml').as_str().first()
+        result = dbxml.session.query(qs, document='tzos.xml').as_str().first()
 
         return result is not None
 
@@ -230,7 +230,7 @@ class Term(object):
 
         if not hasattr(self, 'working_status'):
             qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
-            self.working_status = dbxml.get_db().query(qs).as_str().first()
+            self.working_status = dbxml.session.query(qs).as_str().first()
         if not self.working_status:
             return False
 
@@ -244,7 +244,7 @@ class Term(object):
 
         if not hasattr(self, 'working_status'):
             qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
-            self.working_status = dbxml.get_db().query(qs).as_str().first()
+            self.working_status = dbxml.session.query(qs).as_str().first()
         if not self.working_status:
             return False
 
@@ -258,7 +258,7 @@ class Term(object):
 
         if not hasattr(self, 'originating_person'):
             qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'.format(self.id)
-            self.originating_person = dbxml.get_db().query(qs).as_str().first()
+            self.originating_person = dbxml.session.query(qs).as_str().first()
         if self.originating_person is None:
             return False
 
@@ -270,7 +270,7 @@ class Term(object):
         this term."""
 
         qs = u'//tig[@id="{0}" and (transacGrp/transac[@type="transactionType"]/string()="origination" or transacGrp/transac[@type="transactionType"]/string()="importation" or transacGrp/transac[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
-        result = dbxml.get_db().query(qs).as_str().first()
+        result = dbxml.session.query(qs).as_str().first()
 
         if result is not None:
             return result
@@ -327,7 +327,7 @@ class Term(object):
         ]
 
         for key, qs in fields:
-            result = dbxml.get_db().query(qs.format(self.id),
+            result = dbxml.session.query(qs.format(self.id),
                                           document='tzos.xml').as_str().first()
             setattr(self, key, result)
 
@@ -337,7 +337,7 @@ class Term(object):
         ctx = {
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,
-            'term_id': dbxml.get_db().generate_id('term'),
+            'term_id': dbxml.session.generate_id('term'),
             'subject_field': self.subject_field
             }
         ctx.update(self.__dict__)
@@ -365,13 +365,13 @@ class Term(object):
 
         else:
 
-            ctx.update({'concept_id': dbxml.get_db().generate_id('concept')})
+            ctx.update({'concept_id': dbxml.session.generate_id('concept')})
             template_name = 'xml/new_concept.xml'
             where = u'/martif/text/body'
 
         xml = render_template(template_name, **ctx)
 
-        if dbxml.get_db().insert_as_first(xml, where, document='tzos.xml'):
+        if dbxml.session.insert_as_first(xml, where, document='tzos.xml'):
             self.term_id = ctx['term_id']
             return True
 
@@ -425,7 +425,7 @@ class Term(object):
             if isinstance(value, list):
                 value = u";".join(value)
 
-            if dbxml.get_db().replace_value(old, value):
+            if dbxml.session.replace_value(old, value):
                 # Update object's value as well
                 setattr(self, field, value)
 

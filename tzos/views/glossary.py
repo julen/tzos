@@ -37,7 +37,7 @@ def list_letter(dict, letter):
                dict.encode('utf-8'),
                getattr(g.user, 'username', u'').encode('utf-8'))
 
-    values = dbxml.get_db().raw_query(qs).as_str().all()
+    values = dbxml.session.raw_query(qs).as_str().all()
 
     items = get_terms_from_values(values)
     page = paginate(items, pn, 10)

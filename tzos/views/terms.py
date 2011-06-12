@@ -46,7 +46,7 @@ def detail(id):
                getattr(g.user, 'username', u'').encode('utf-8'))
 
 
-    value = dbxml.get_db().raw_query(qs).as_str().first_or_404()
+    value = dbxml.session.raw_query(qs).as_str().first_or_404()
     term = get_term_from_value(value)
 
     comment_form = CommentForm(term_id=id)
@@ -277,7 +277,7 @@ def edit(id):
             for old in olds:
                 old = old.format(term.id)
 
-                if dbxml.get_db().replace(old, new):
+                if dbxml.session.replace(old, new):
                     success.append(field.name)
                 else:
                     failure.append(field.name)
@@ -294,7 +294,7 @@ def edit(id):
                 format(form.normative_authorization_org.data,
                        form.normative_authorization.data)
 
-            if dbxml.get_db().replace(old, new):
+            if dbxml.session.replace(old, new):
                 success.append(field.name)
             else:
                 failure.append(field.name)
@@ -316,7 +316,7 @@ def edit(id):
 
             for location in locations:
                 location = location.format(id)
-                dbxml.get_db().insert_as_last(xml, location)
+                dbxml.session.insert_as_last(xml, location)
 
             flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
                     "success")

@@ -40,7 +40,7 @@ def index():
     '''
 
     latest_activity = \
-            dbxml.get_db().raw_query(qs).as_callback(TermChange.parse).all()
+            dbxml.session.raw_query(qs).as_callback(TermChange.parse).all()
 
     return render_template('index.html', form=form,
                                          latest_activity=latest_activity,

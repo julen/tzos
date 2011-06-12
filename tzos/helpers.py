@@ -62,7 +62,7 @@ def get_dict_langs(only_codes=False):
     dicts = []
 
     qs = u"//languages/langInfo/langCode/string()"
-    dictlist = dbxml.get_db().query(qs).as_str().all()
+    dictlist = dbxml.session.query(qs).as_str().all()
 
     for d in dictlist:
         l = Locale.parse(d)
@@ -100,7 +100,7 @@ def get_working_statuses(only_statuses=False):
     # TODO: cache items not to hit the disk each time we run this
 
     qs = u"//adminSpec[@name='elementWorkingStatus']/contents/string()"
-    statuses = dbxml.get_db().query(qs).as_str().all()
+    statuses = dbxml.session.query(qs).as_str().all()
 
     try:
         status_split = statuses[0].split()
@@ -125,8 +125,8 @@ def get_responsible_orgs():
     qs = """
     for $org in collection("{0}")//refObjectList[@type='respOrg']/refObject
     return ($org/data(@id), $org/item[@type='org']/string())
-    """.format(dbxml.get_db().collection)
-    result = dbxml.get_db().raw_query(qs).as_str().all()
+    """.format(dbxml.session.collection)
+    result = dbxml.session.raw_query(qs).as_str().all()
 
     orgs_list = zip(result, result[1:])[::2]
 

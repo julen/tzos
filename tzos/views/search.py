@@ -106,7 +106,7 @@ def results():
         pn = int(request.args.get('p', 1))
         pp = int(request.args.get('pp', 10))
 
-        values = dbxml.get_db().raw_query(qs).as_str().all()
+        values = dbxml.session.raw_query(qs).as_str().all()
 
         items = get_terms_from_values(values)
         page = paginate(items, pn, pp)

@@ -34,7 +34,7 @@ def profile(username):
     '''.format(username.encode('utf-8'))
 
     user_activity = \
-            dbxml.get_db().raw_query(qs).as_callback(TermChange.parse).all()
+            dbxml.session.raw_query(qs).as_callback(TermChange.parse).all()
 
     return render_template('user/profile.html', user=user,
                                                 user_activity=user_activity,

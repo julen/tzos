@@ -152,7 +152,7 @@ class User(db.Model):
         """Returns True if the current user owns the term with id `id`."""
 
         qs = '//tig[@id="{0}" and transacGrp/transacNote[@type="responsibility"]/string()="{1}"]'.format(id, self.username)
-        result = dbxml.get_db().query(qs).as_str().first()
+        result = dbxml.session.query(qs).as_str().first()
 
         if result is not None:
             return True

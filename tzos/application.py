@@ -16,7 +16,7 @@ from flaskext.babel import Babel, gettext as _, format_date, format_datetime
 from flaskext.principal import Principal, identity_loaded
 
 from tzos import views
-from tzos.extensions import db, dbxml, mail
+from tzos.extensions import cache, db, dbxml, mail
 from tzos.helpers import get_dict_langs, tzos_gettext, url_for2
 from tzos.models import User
 
@@ -61,6 +61,8 @@ def configure_modules(app):
 
 
 def configure_extensions(app):
+
+    cache.init_app(app)
     mail.init_app(app)
 
     configure_assets(app)

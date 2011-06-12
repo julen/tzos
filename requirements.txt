@@ -1,6 +1,7 @@
 Flask
 Flask-Assets
 Flask-Babel
+Flask-Cache
 Flask-Mail
 Flask-Principal
 Flask-SQLAlchemy

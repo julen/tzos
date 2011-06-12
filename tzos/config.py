@@ -6,6 +6,10 @@ SECRET_KEY = 'f00barbaZ'
 # TZOS stuff
 TZOS_DEFAULT_DICT_LANG = 'eu'
 
+# Caching
+CACHE_TYPE = "simple"
+CACHE_DEFAULT_TIMEOUT = 300
+
 # SQLAlchemy database settings
 SQLALCHEMY_DATABASE_URI = 'sqlite:////home/julen/dev/tzos/tzos/dbs/tzos.db'
 SQLALCHEMY_ECHO = False

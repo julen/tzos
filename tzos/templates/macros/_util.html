@@ -166,9 +166,7 @@
     <ul class="termActions in small">
         {% if g.user %}
         <li><a href="{{ url_for('terms.add', lang=term.language, term=term.term) }}">{{ _('Add synonym/translation') }}</a></li>
-        {% if term.owner == g.user or g.user.is_moderator %}
         <li><a href="{{ url_for('terms.edit', id=term.id) }}">{{ _('Edit term') }}</a></li>
-        {% endif %}
         {% endif %}
     </ul>
     {%- endif %}

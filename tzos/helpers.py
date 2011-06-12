@@ -18,6 +18,7 @@ from tzos.extensions import cache, dbxml
 from tzos.models import Term, TermOrigin
 from tzos import strings
 
+import functools
 import random
 import string
 import types
@@ -50,6 +51,8 @@ def tzos_gettext(key):
 
     return key
 
+anon_cached = functools.partial(cache.cached,
+                                unless=lambda: g.user is not None)
 
 @cache.memoize()
 def get_dict_langs(only_codes=False):

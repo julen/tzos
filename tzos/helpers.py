@@ -61,8 +61,8 @@ def get_dict_langs(only_codes=False):
     """
     dicts = []
 
-    qs = u"//languages/langInfo/langCode/string()"
-    dictlist = dbxml.session.query(qs).as_str().all()
+    qs = u"/TBXXCS/languages/langInfo/langCode/string()"
+    dictlist = dbxml.session.query(qs, document='tzos.xcs').as_str().all()
 
     for d in dictlist:
         l = Locale.parse(d)

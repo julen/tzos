@@ -125,11 +125,12 @@ class Term(object):
         term.term_type = parts[20]
         term.administrative_status = parts[21]
         term.synonyms = parts[22]
+        term.translations = parts[23]
         try:
             # When the last string is empty, we need to treat it specially
-            term.translations = parts[23]
+            term.owner = parts[24]
         except IndexError:
-            term.translations = {}
+            term.owner = None
 
         return term
 

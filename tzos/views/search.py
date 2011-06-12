@@ -76,6 +76,7 @@ def _get_search_filters():
         param = _get_search_param(f[0])
 
         if param:
+            # FIXME: this kind of string concatenation is not sane
             f_str += ' and ' + f[1].format(param)
 
     return f_str

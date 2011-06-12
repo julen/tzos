@@ -39,6 +39,7 @@ def index():
     return subsequence($txs, 1, 5)
     '''
 
+    # TODO: cache latest activity for a fair amount of time
     latest_activity = \
             dbxml.session.raw_query(qs).as_callback(TermChange.parse).all()
 

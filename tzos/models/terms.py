@@ -96,6 +96,43 @@ class TermChange(object):
 
 class Term(object):
 
+    @classmethod
+    def parse(cls, value):
+        """Parses a string into a Term object."""
+
+        parts = value.split(u"|||")
+
+        term = Term(parts[0], parts[2])
+
+        term.language = parts[1]
+        term.concept_origin = parts[3]
+        term.subject_field = parts[4]
+        term.originating_person = parts[5]
+        term.definition = parts[6]
+        term.context = parts[7]
+        term.example = parts[8]
+        term.explanation = parts[9]
+        term.entry_source = parts[10]
+        term.cross_reference = parts[11]
+        term.product_subset = parts[12]
+        term.normative_authorization = parts[13]
+        term.normative_authorization_org = parts[14]
+        term.subordinate_concept_generic = parts[15]
+        term.superordinate_concept_generic = parts[16]
+        term.antonym_concept = parts[17]
+        term.related_concept = parts[18]
+        term.part_of_speech = parts[19]
+        term.term_type = parts[20]
+        term.administrative_status = parts[21]
+        term.synonyms = parts[22]
+        try:
+            # When the last string is empty, we need to treat it specially
+            term.translations = parts[23]
+        except IndexError:
+            term.translations = {}
+
+        return term
+
     def __init__(self, id=None, term=None):
         if id:
             self.term_id = id

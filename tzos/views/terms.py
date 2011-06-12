@@ -20,8 +20,7 @@ from tzos.forms import AddTermForm, CommentForm, EditTermForm, \
         ModEditTermForm, UploadForm
 from tzos.models import Comment, Term
 from tzos.helpers import dropdown_list, get_dict_langs, \
-        get_origins_dropdown, get_responsible_orgs, get_term_from_value, \
-        require_valid_dict
+        get_origins_dropdown, get_responsible_orgs, require_valid_dict
 from tzos.permissions import auth
 from tzos.strings import *
 
@@ -47,7 +46,7 @@ def detail(id):
 
 
     value = dbxml.session.raw_query(qs).as_str().first_or_404()
-    term = get_term_from_value(value)
+    term = Term.parse(value)
 
     comment_form = CommentForm(term_id=id)
 

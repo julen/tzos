@@ -15,8 +15,8 @@ from flaskext.babel import lazy_gettext as _
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import dropdown_list, get_dict_langs, \
-        get_origins_dropdown, get_responsible_orgs, get_terms_from_values
-from tzos.pagination import paginate
+        get_origins_dropdown, get_responsible_orgs
+from tzos.models import Term
 from tzos.strings import *
 
 search = Module(__name__)
@@ -106,10 +106,8 @@ def results():
         pn = int(request.args.get('p', 1))
         pp = int(request.args.get('pp', 10))
 
-        values = dbxml.session.raw_query(qs).as_str().all()
-
-        items = get_terms_from_values(values)
-        page = paginate(items, pn, pp)
+        page = dbxml.session.raw_query(qs). \
+                as_callback(Term.parse).paginate(pn, pp)
 
 
     form = SearchForm(request.args, csrf_enabled=False)

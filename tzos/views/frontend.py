@@ -14,7 +14,7 @@ from flaskext.babel import gettext as _
 
 from babel import Locale
 
-from tzos.extensions import dbxml
+from tzos.extensions import cache, dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import dropdown_list, get_dict_langs
 from tzos.models import Comment, TermChange
@@ -22,6 +22,7 @@ from tzos.models import Comment, TermChange
 frontend = Module(__name__)
 
 @frontend.route('/')
+@cache.cached()
 def index():
     form = SearchForm()
     form.lang.choices = dropdown_list(get_dict_langs(), 'all', _(u'All'))
@@ -39,7 +40,6 @@ def index():
     return subsequence($txs, 1, 5)
     '''
 
-    # TODO: cache latest activity for a fair amount of time
     latest_activity = \
             dbxml.session.raw_query(qs).as_callback(TermChange.parse).all()
 

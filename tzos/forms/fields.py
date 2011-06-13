@@ -40,6 +40,7 @@ class SelectFieldPlus(SelectField):
     """A SelectField which can be sorted and set default placeholder values."""
 
     PLACEHOLDERS = {
+        -1: _(u'Parent…'),
         '': u'----',
         'all': _(u'All'),
     }

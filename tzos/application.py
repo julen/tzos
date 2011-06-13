@@ -54,6 +54,8 @@ def configure_app(app, config):
 
     app.config.from_envvar('TZOS_CONFIG', silent=True)
 
+    app.config.setdefault('TZOS_REGISTER_WHITELIST', None)
+
 
 def configure_modules(app):
     for module, url_prefix in MODULES:

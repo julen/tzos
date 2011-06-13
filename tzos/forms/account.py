@@ -8,6 +8,8 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from flask import current_app
+
 from flaskext.babel import gettext, lazy_gettext as _
 from flaskext.wtf import BooleanField, Form, HiddenField, Optional, \
     PasswordField, RecaptchaField, SubmitField, TextField, URL, \
@@ -67,6 +69,14 @@ class SignupForm(Form):
         user = User.query.filter(User.email.like(field.data)).first()
         if user:
             raise ValidationError, gettext(u"This email is taken.")
+
+        at = field.data.find(u"@")
+        if at == -1:
+            raise ValidationError, gettext(u"A valid email address is required.")
+
+        whitelist = current_app.config['TZOS_REGISTER_WHITELIST']
+        if whitelist and field.data[at:] not in whitelist:
+            raise ValidationError, gettext(u"Email provider not allowed.")
 
 
 class RecoverPasswordForm(Form):

@@ -27,14 +27,13 @@ def list_letter(dict, letter):
     qs = """
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-    for $tig in collection($collection)//tig
-    where $tig[starts-with(lower-case(term/string()), "{0}")] and
-          $tig/..[@xml:lang="{1}"] and
+    for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig
+    where $tig[starts-with(lower-case(term/string()), "{1}")] and
           (term:is_public($tig) or term:owner($tig) = "{2}")
     order by $tig/term/string() ascending
     return term:values($tig)
-    """.format(letter.encode('utf-8'),
-               dict.encode('utf-8'),
+    """.format(dict.encode('utf-8'),
+               letter.encode('utf-8'),
                getattr(g.user, 'username', u'').encode('utf-8'))
 
     page = dbxml.session.raw_query(qs). \

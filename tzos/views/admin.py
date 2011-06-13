@@ -85,7 +85,7 @@ def users():
 @admin_permission.require(401)
 def add_origin():
 
-    form = gen_add_origins_form()
+    form = gen_origins_form(AddTermOriginForm)
 
     if form and form.validate_on_submit():
         origin = TermOrigin(name=form.name.data)

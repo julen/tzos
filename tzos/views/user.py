@@ -24,7 +24,7 @@ def profile(username):
     qs = '''
     import module namespace term = "http://tzos.net/term" at "term.xqm";
     let $txs :=
-        for $tx in collection($collection)//tig/transacGrp
+        for $tx in collection($collection)/martif/text/body/termEntry/langSet/tig/transacGrp
         let $tig := $tx/..
         where term:is_public($tig) and
               $tx/transacNote[@type="responsibility"]/string()="{0}"

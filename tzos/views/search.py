@@ -97,7 +97,7 @@ def results():
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-        for $tig in collection($collection)//tig
+        for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig
         where term:is_public($tig) and {0}{1}
         order by $tig/term/string() ascending
         return term:values($tig)

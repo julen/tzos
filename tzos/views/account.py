@@ -83,7 +83,6 @@ def login():
 
 @account.route("/logout/")
 def logout():
-    flash(_(u"You are now logged out."), "success")
 
     identity_changed.send(current_app._get_current_object(),
                           identity=AnonymousIdentity())

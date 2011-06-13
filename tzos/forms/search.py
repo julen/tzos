@@ -11,14 +11,13 @@
 from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import Form, RadioField, SelectField, SubmitField, TextField
 
-from tzos.forms.fields import DynamicSelectField
-from tzos.helpers import dropdown_list
+from tzos.forms.fields import SelectFieldPlus
 from tzos.strings import *
 
 class SearchForm(Form):
     q = TextField(_('Keywords'))
 
-    lang = DynamicSelectField(_("Language"))
+    lang = SelectFieldPlus(_("Language"), placeholder='all', sort=True)
 
     #
     # Filtering mode
@@ -43,7 +42,8 @@ class SearchForm(Form):
         ('antonym', _('Antonym')),
         ('related', _('Related concept')),
     )
-    field = SelectField(_('Search field'), choices=field_choices)
+    field = SelectFieldPlus(_('Search field'),
+            choices=field_choices, sort=True)
 
     pp_choices = (
         (10, 10),
@@ -57,27 +57,28 @@ class SearchForm(Form):
     #
     # Classification
     #
-    sf_choices = dropdown_list(SUBJECT_FIELDS, 'all', _('All'))
-    subject_field = DynamicSelectField(_('Subject field'), choices=sf_choices)
+    subject_field = SelectFieldPlus(_('Subject field'),
+            choices=SUBJECT_FIELDS, placeholder='all', sort=True)
 
-    ps_choices = dropdown_list(PRODUCT_SUBSET, 'all', _('All'))
-    product_subset = SelectField(_('Appears in'), choices=ps_choices)
+    product_subset = SelectFieldPlus(_('Appears in'),
+            choices=PRODUCT_SUBSET, placeholder='all', sort=True)
 
-    concept_origin = SelectField(_("Origin"))
+    concept_origin = SelectFieldPlus(_("Origin"),
+            placeholder='all')
 
     #
     # Linguistic information
     #
-    na_choices = dropdown_list(NORMATIVE_AUTHORIZATIONS, 'all', _('All'))
-    na = SelectField(_('Normative level'),
-                                          choices=na_choices)
+    na = SelectFieldPlus(_('Normative level'),
+            choices=NORMATIVE_AUTHORIZATIONS, placeholder='all', sort=True)
 
-    na_org = SelectField(_('Normative organization'))
+    na_org = SelectFieldPlus(_('Normative organization'),
+            placeholder='all', sort=True)
 
-    pos_choices = dropdown_list(PART_OF_SPEECH, 'all', _('All'))
-    pos = SelectField(_('Part of Speech'), choices=pos_choices)
+    pos = SelectFieldPlus(_('Part of Speech'), choices=PART_OF_SPEECH,
+            placeholder='all', sort=True, no_sort=('noun',))
 
-    tt_choices = dropdown_list(TERM_TYPES, 'all', _('All'))
-    tt = SelectField(_('Term type'), choices=tt_choices)
+    tt = SelectFieldPlus(_('Term type'), choices=TERM_TYPES,
+            placeholder='all', sort=True)
 
     submit = SubmitField(_('Search'))

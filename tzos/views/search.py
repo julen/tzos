@@ -14,8 +14,8 @@ from flaskext.babel import lazy_gettext as _
 
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
-from tzos.helpers import dropdown_list, get_dict_langs, \
-        get_origins_dropdown, get_responsible_orgs
+from tzos.helpers import get_dict_langs, get_origins_dropdown, \
+        get_responsible_orgs
 from tzos.models import Term
 from tzos.strings import *
 
@@ -116,17 +116,11 @@ def results():
         page = dbxml.session.raw_query(qs). \
                 as_callback(Term.parse).paginate(pn, pp)
 
-
     form = SearchForm(request.args, csrf_enabled=False)
 
-    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _(u'All'))
-    form.concept_origin.choices = \
-            dropdown_list(get_origins_dropdown(), 'all', _(u'All'))
-    form.na_org.choices = \
-            dropdown_list(get_responsible_orgs(), 'all', _(u'All'))
-    form.subject_field.choices = \
-            dropdown_list(sorted(SUBJECT_FIELDS, key=lambda x: x[1]),
-                          'all', _(u'All'))
+    form.lang.choices = get_dict_langs()
+    form.concept_origin.choices = get_origins_dropdown()
+    form.na_org.choices = get_responsible_orgs()
 
     ctx = {'form': form, 'q': q, 'page': page}
     return render_template('search/results.html', **ctx)

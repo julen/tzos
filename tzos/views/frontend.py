@@ -16,7 +16,7 @@ from babel import Locale
 
 from tzos.extensions import cache, dbxml
 from tzos.forms import SearchForm
-from tzos.helpers import anon_cached, dropdown_list, get_dict_langs
+from tzos.helpers import anon_cached, get_dict_langs
 from tzos.models import Comment, TermChange
 
 frontend = Module(__name__)
@@ -24,8 +24,9 @@ frontend = Module(__name__)
 @frontend.route('/')
 @anon_cached()
 def index():
+
     form = SearchForm()
-    form.lang.choices = dropdown_list(get_dict_langs(), 'all', _(u'All'))
+    form.lang.choices = get_dict_langs()
 
     latest_comments = cache.get("latest_comments")
 

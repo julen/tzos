@@ -160,13 +160,3 @@ def get_origins_dropdown():
         _get_children(id, 1)
 
     return dropdown
-
-
-def dropdown_list(list, key='', value='-----'):
-    """Inserts a placeholder tuple entry in a list, suitable for using
-    in dropdown lists."""
-
-    newlist = list[:]
-    newlist.insert(0, (key, value))
-
-    return newlist

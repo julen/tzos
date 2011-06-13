@@ -15,8 +15,7 @@ from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
 
 from tzos.extensions import dbxml
 from tzos.forms.fields import BooleanWorkingField, DynamicSelectField, \
-        OriginatingPerson
-from tzos.helpers import dropdown_list
+        OriginatingPerson, SelectFieldPlus
 from tzos.strings import *
 
 
@@ -122,7 +121,7 @@ class BaseTermOriginForm(Form):
     name = TextField(_(u"Name"),
             validators=[required(message=_(u"Name is required."))])
 
-    parent_id = DynamicSelectField(_(u"Parent"), coerce=int)
+    parent_id = SelectFieldPlus(_(u"Parent"), coerce=int, placeholder=-1)
 
 class AddTermOriginForm(BaseTermOriginForm):
 
@@ -231,17 +230,16 @@ class BaseTermForm(CoreTermForm):
             description=explan_desc,
             validators=[is_valid_input])
 
-    ps_choices = dropdown_list(PRODUCT_SUBSET)
-    product_subset = SelectField(_(u'Product subset'),
-            choices=ps_choices)
+    product_subset = SelectFieldPlus(_(u'Product subset'),
+            choices=PRODUCT_SUBSET, placeholder='', sort=True)
 
     #
     # Linguistic fields
     #
-    na_choices = dropdown_list(NORMATIVE_AUTHORIZATIONS)
-    normative_authorization = SelectField(_(u'Normative authorization'),
-            choices=na_choices)
-    normative_authorization_org = SelectField(_(u'Organization'))
+    normative_authorization = SelectFieldPlus(_(u'Normative level'),
+            choices=NORMATIVE_AUTHORIZATIONS, placeholder='', sort=True)
+    normative_authorization_org = SelectFieldPlus(_(u'Normative organization'),
+            placeholder='', sort=True)
 
     subordinate_concept_generic = TextField(_(u'Hyponym'),
             validators=[check_exists])
@@ -256,13 +254,12 @@ class BaseTermForm(CoreTermForm):
             description=rltd_desc,
             validators=[check_exists])
 
-    pos_choices = dropdown_list(PART_OF_SPEECH)
-    part_of_speech = SelectField(_(u'Part of Speech'),
-            choices=pos_choices)
+    part_of_speech = SelectFieldPlus(_(u'Part of Speech'),
+            choices=PART_OF_SPEECH, placeholder='', sort=True,
+            no_sort=('noun',))
 
-    tt_choices = dropdown_list(TERM_TYPES)
-    term_type = SelectField(_('Term type'),
-            choices=tt_choices)
+    term_type = SelectFieldPlus(_('Term type'),
+            choices=TERM_TYPES, placeholder='', sort=True)
 
 
 class AddTermForm(BaseTermForm):
@@ -309,12 +306,11 @@ class ModEditTermForm(EditTermForm):
             description=ws_desc,
             validators=[check_as_is_set])
 
-    as_choices = dropdown_list(ADMINISTRATIVE_STATUS)
     as_desc = _(u"This field has no effect if the working status "
                 "of this term is other than 'Consolidated'.")
-    administrative_status = DynamicSelectField(_(u"Administrative status "
-            "within the TZOS environment"),
-            choices=as_choices)
+    administrative_status = SelectFieldPlus(_(u"Administrative status "
+            "within the TZOS environment"), description=as_desc,
+            choices=ADMINISTRATIVE_STATUS, placeholder='', sort=True)
 
 
 class UploadForm(CoreTermForm):

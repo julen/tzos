@@ -55,6 +55,9 @@ class SignupForm(Form):
                       required(message=_(u"Email address is required.")),
                       email(message=_(u"A valid email address is required."))])
 
+    display_name = TextField(_(u"Full name"), validators=[
+                             required(message=_(u"Full name is required."))])
+
     recaptcha = RecaptchaField(_(u"Copy the words appearing below"))
 
     submit = SubmitField(_(u"Signup"))
@@ -119,7 +122,8 @@ class EditEmailForm(Form):
 
 
 class EditProfileForm(Form):
-    display_name = TextField(_(u"Display name"))
+    display_name = TextField(_(u"Full name"), validators=[
+                             required(message=_(u"Full name is required."))])
 
     website = TextField(_(u"Website"), validators=[
                         Optional(),

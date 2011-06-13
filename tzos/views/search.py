@@ -57,29 +57,33 @@ def _get_search_predicate(q):
 
     return u'{0}({1}, "{2}")'.format(search_func, predicate, q)
 
-def _get_search_filters():
+def _get_search_filters(or_search=False):
 
-    f_str = ""
+    operator = u" or " if or_search else u" and "
 
     filters = (
-        ('lang', '$tig/..[@xml:lang="{0}"]'),
-        ('subject_field', '(let $fields := tokenize(term:subject_field($tig), ";") return some $f in $fields satisfies $f = "{0}")'),
-        ('product_subset', 'term:product_subset($tig) = "{0}"'),
-        ('concept_origin', 'term:concept_origin($tig) = "{0}"'),
-        ('na', 'term:norm_auth($tig) = "{0}"'),
-        ('na_org', '$tig/termNote[@type="normativeAuthorization"][@target="{0}"]'),
-        ('pos', 'term:pos($tig) = "{0}"'),
-        ('tt', 'term:type($tig) = "{0}"'),
+        ('lang', u'$tig/..[@xml:lang="{0}"]'),
+        ('subject_field', u'(let $fields := tokenize(term:subject_field($tig), ";") return some $f in $fields satisfies $f = "{0}")'),
+        ('product_subset', u'term:product_subset($tig) = "{0}"'),
+        ('concept_origin', u'term:concept_origin($tig) = "{0}"'),
+        ('na', u'term:norm_auth($tig) = "{0}"'),
+        ('na_org', u'$tig/termNote[@type="normativeAuthorization"][@target="{0}"]'),
+        ('pos', u'term:pos($tig) = "{0}"'),
+        ('tt', u'term:type($tig) = "{0}"'),
     )
 
+    result = []
     for f in filters:
         param = _get_search_param(f[0])
 
         if param:
-            # FIXME: this kind of string concatenation is not sane
-            f_str += ' and ' + f[1].format(param)
+            result.append(f[1].format(param))
 
-    return f_str
+    rv = operator.join(result)
+    if rv:
+        rv = u"{0}{1}".format(operator, rv)
+
+    return rv
 
 @search.route('/')
 def results():

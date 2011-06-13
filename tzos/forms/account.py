@@ -20,8 +20,12 @@ from tzos.models import User
 USERNAME_RE = r'^[\w.+-]+$'
 
 is_username = regexp(USERNAME_RE,
-                     message=_(u"You can only use letters, numbers or dashes"))
+                     message=_(u"You can only use letters, numbers or dashes."))
 
+FULLNAME_RE = r'^[A-Za-z\W]+\s[A-Za-z\W]+$'
+
+is_fullname = regexp(FULLNAME_RE,
+                     message=_(u"This doesn't seem to be a full name."))
 
 class LoginForm(Form):
     next = HiddenField()
@@ -56,7 +60,8 @@ class SignupForm(Form):
                       email(message=_(u"A valid email address is required."))])
 
     display_name = TextField(_(u"Full name"), validators=[
-                             required(message=_(u"Full name is required."))])
+                             required(message=_(u"Full name is required.")),
+                             is_fullname])
 
     recaptcha = RecaptchaField(_(u"Copy the words appearing below"))
 
@@ -123,7 +128,8 @@ class EditEmailForm(Form):
 
 class EditProfileForm(Form):
     display_name = TextField(_(u"Full name"), validators=[
-                             required(message=_(u"Full name is required."))])
+                             required(message=_(u"Full name is required.")),
+                             is_fullname])
 
     website = TextField(_(u"Website"), validators=[
                         Optional(),

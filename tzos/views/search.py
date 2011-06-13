@@ -87,8 +87,8 @@ def _get_search_filters(or_search=False):
 
 @search.route('/')
 def results():
+
     page = None
-    non_default = False
     q = request.args.get('q', '').strip()
 
     if q:
@@ -99,7 +99,6 @@ def results():
         filter = _get_search_filters(or_search=or_search)
 
         field = request.args.get('field', 'term')
-        non_default = filter or field != 'term'
 
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
@@ -129,5 +128,5 @@ def results():
             dropdown_list(sorted(SUBJECT_FIELDS, key=lambda x: x[1]),
                           'all', _(u'All'))
 
-    ctx = {'form': form, 'q': q, 'page': page, 'non_default': non_default}
+    ctx = {'form': form, 'q': q, 'page': page}
     return render_template('search/results.html', **ctx)

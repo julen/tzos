@@ -81,7 +81,7 @@ def _get_search_filters(or_search=False):
 
     rv = operator.join(result)
     if rv:
-        rv = u"{0}{1}".format(operator, rv)
+        rv = u" and {0}".format(rv)
 
     return rv
 
@@ -93,7 +93,10 @@ def results():
 
     if q:
         predicate = _get_search_predicate(q)
-        filter = _get_search_filters()
+
+        mode = request.args.get('mode', False)
+        or_search = True if mode == u'or' else False
+        filter = _get_search_filters(or_search=or_search)
 
         field = request.args.get('field', 'term')
         non_default = filter or field != 'term'

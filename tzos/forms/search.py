@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import Form, SelectField, SubmitField, TextField
+from flaskext.wtf import Form, RadioField, SelectField, SubmitField, TextField
 
 from tzos.forms.fields import DynamicSelectField
 from tzos.helpers import dropdown_list
@@ -19,6 +19,15 @@ class SearchForm(Form):
     q = TextField(_('Keywords'))
 
     lang = DynamicSelectField(_("Language"))
+
+    #
+    # Filtering mode
+    #
+    mode_choices = (
+        ('and', _(u"All conditions must be met (AND style search).")),
+        ('or', _(u"Any of the conditions must be met (OR style search)."))
+    )
+    mode = RadioField(_(u"Search mode"), choices=mode_choices)
 
     #
     # General

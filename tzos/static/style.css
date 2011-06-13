@@ -959,6 +959,19 @@ form.simpleSearch i.iSrch {
     margin-right: 10px;
 }
 
+.advancedSearch .extra ul#mode li {
+    width: 600px;
+}
+
+.advancedSearch ul#mode input {
+    margin-right: 5px;
+}
+
+.advancedSearch ul#mode label {
+    line-height: 1.4;
+    width: 90%;
+}
+
 /* Results */
 
 ul.searchResults > li {

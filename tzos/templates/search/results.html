@@ -15,6 +15,7 @@
     <div class="extra hideme{% if non_default %} doNotHide{% endif %}">
         <ul>
             <h2 class="h4 clBoth">{{ _('General') }}</h2>
+            {{ render_field(form.mode, tag_class="singleLine") }}
             {{ render_field(form.field, class="input") }}
             {{ render_field(form.pp, class="input") }}
             <h2 class="h4 clBoth">{{ _('Classification') }}</h2>

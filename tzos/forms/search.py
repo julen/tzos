@@ -27,7 +27,7 @@ class SearchForm(Form):
         ('and', _(u"All conditions must be met (AND style search).")),
         ('or', _(u"Any of the conditions must be met (OR style search)."))
     )
-    mode = RadioField(_(u"Search mode"), choices=mode_choices)
+    mode = RadioField(_(u"Search mode"), default=u"and", choices=mode_choices)
 
     #
     # General

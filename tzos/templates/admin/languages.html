@@ -1,4 +1,4 @@
-{% from "macros/_forms.html" import render_field, render_form %}
+{% from "macros/_forms.html" import render_field %}
 <div class="languages">
     <h2 class="h4">{{ _('Current languages') }}</h2>
     <p>{{ _('These are the dictionary languages that are currently available on the system.') }}</p>
@@ -21,6 +21,13 @@
 </div>
 <div class="hr fields">
     <h2 class="h4">{{ _('Add a new language') }}</h2>
-    <p>{{ _('To add a new language, simply write its full name and language code.') }}</p>
-    {{ render_form(langs_form) }}
+    <p>{{ _('To add a new language or edit existing ones, write its ISO-693-1 language code and its full name.') }}</p>
+    <form method="POST" action="{{ url_for('admin.languages') }}" class="f1">
+        {{ langs_form.hidden_tag() }}
+        <ul class="adminLangs">
+            {{ render_field(langs_form.code, class="input", maxlength="2") }}
+            {{ render_field(langs_form.name, class="input", rel="tipsy-ns") }}
+            {{ render_field(langs_form.submit) }}
+        </ul>
+    </form>
 </div>

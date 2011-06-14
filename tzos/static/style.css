@@ -1045,6 +1045,20 @@ ul.origins li {
     margin-left: 1em;
 }
 
+ul.adminLangs li {
+    display: inline;
+    float: left;
+    margin-right: 20px;
+}
+
+ul.adminLangs input#code {
+    width: 120px;
+}
+
+ul.adminLangs input#name {
+    width: 420px;
+}
+
 
 /* HTML5 compatibility */
 

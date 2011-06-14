@@ -11,7 +11,6 @@
 from flask import Markup, _request_ctx_stack, abort, current_app, g, \
         request, url_for
 
-from babel import Locale
 from functools import wraps
 
 from tzos.extensions import cache, dbxml
@@ -64,13 +63,15 @@ def get_dict_langs(only_codes=False):
     """
     dicts = []
 
-    qs = u"/TBXXCS/languages/langInfo/langCode/string()"
-    dictlist = dbxml.session.query(qs, document='tzos.xcs').as_str().all()
+    qs = '''
+    for $lang in collection($collection)/TBXXCS/languages/langInfo
+    return ($lang/langCode/string(), $lang/langName/string())
+    '''
+    dictlist = dbxml.session.raw_query(qs).as_str().all()
 
-    for d in dictlist:
-        l = Locale.parse(d)
-        locale = l.language if only_codes else (l.language,
-                                                l.display_name.capitalize())
+    for i in range(0, len(dictlist), 2):
+        locale = dictlist[i] if only_codes else (dictlist[i],
+                                                 dictlist[i+1].capitalize())
         dicts.append(locale)
 
     return dicts

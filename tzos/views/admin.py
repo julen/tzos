@@ -13,7 +13,7 @@ from flask import Module, flash, g, redirect, render_template, \
 
 from flaskext.babel import gettext as _
 
-from tzos.extensions import db
+from tzos.extensions import cache, db, dbxml
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, \
         EditTermOriginForm, ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
@@ -77,6 +77,40 @@ def users():
                 user=user.username), "success")
     else:
         flash(_(u"Error while updating permissions."), "error")
+
+    return redirect(url_for("admin.settings"))
+
+@admin.route('/languages/', methods=('POST',))
+@admin_permission.require(401)
+def languages():
+
+    form = AddLanguagesForm()
+
+    if form and form.validate_on_submit():
+
+        qs = '''
+        let $lang := collection($collection)/TBXXCS/languages/langInfo[langCode[string()="{0}"]]
+        let $xml :=
+            <langInfo>
+                <langCode>{0}</langCode><langName>{1}</langName>
+           </langInfo>
+        return
+            if (empty($lang)) then
+                insert node $xml as last into collection($collection)/TBXXCS/languages
+            else
+                replace node $lang with $xml
+        '''.format(form.code.data.encode('utf-8'),
+                   form.name.data.encode('utf-8'))
+
+        if dbxml.session.insert_raw(qs):
+            # Invalidate cache
+            cache.delete_memoized('get_dict_langs')
+
+            flash(_(u"Language ‘%(lang)s’ has been added.",
+                    lang=form.name.data), "success")
+    else:
+        flash(_(u"Error while adding language. Check the inserted "
+                "values are correct."), "error")
 
     return redirect(url_for("admin.settings"))
 

@@ -26,11 +26,12 @@ class ModifyUserPermissionForm(Form):
 
 class AddLanguagesForm(Form):
 
-    language_code = TextField(_("Language name"), validators=[
-        required(message=_("Language name is required."))
-        ])
+    name_desc = _("Original language name as it should be displayed "
+                  "on the interface.")
+    name = TextField(_("Language name"), description=name_desc,
+            validators=[required(message=_("Language name is required."))])
 
-    language_name = TextField(_("Language code"), validators=[
+    code = TextField(_("Language code"), validators=[
         Length(min=2, max=2,
                message=_("Language code must be exactly two characters length.")),
         required(message=_("Language code is required."))

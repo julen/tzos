@@ -500,6 +500,10 @@ ul.in li {
     padding: 20px;
 }
 
+p.welcome {
+    margin: 1em;
+}
+
 /* Form errors */
 
 ul.errors {
@@ -985,6 +989,7 @@ ul.searchResults > li {
 
 /* Comments/Activity */
 
+.activity,
 .profileActivity {
     margin-top: 2em;
 }

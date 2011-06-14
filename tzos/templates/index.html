@@ -4,8 +4,12 @@
 
 {% block title %}{{ super() }}{{ _('Online System for Terminology Service') }}{% endblock %}
 
-{% block intro_title %}{{ _('Welcome') }}{% endblock %}
-{% block intro_text %}{{ _('TZOS is an online community for building and sharing terminology.') }}{% endblock %}
+{% block intro_title %}{{ _('Welcome to TZOS') }}{% endblock %}
+{% block intro_more %}
+<p class="welcome">{% trans %}TZOS (Online System for Terminology Service) is a web application which serves as a tool to gather, make visible and to share the terminology employed by the teachers at the <a href="http://ehu.es/">University of the Basque Country</a> (EHU). The contribution of the teachers will gradually enrich this database, both with terms as well as with the necessary information to delimit the use of each term. Apart from enriching the database, the education community of EHU may consult the database and may contribute with their opinions about the terms by using the interactive interface in TZOS. The ultimate goal is to contribute to fix the terminology used at the university by describing the real specialized oral and written academic production.{% endtrans %}</p>
+<p class="welcome">{% trans %}The database is mainly nourished by the glossaries created by the teachers that participate in the program <a href="http://www.ehu.es/ehusfera/tse/">Terminologia Sareak Ehunduz</a> (Weaving Terminology Nets). Importantly, these glossaries are based on the real production of the teachers at EHU. However, any registered teacher will be allowed to propose and discuss terms and variants of terms in TZOS.{% endtrans %}</p>
+<p class="welcome">{% trans %}This database has no normative value, except for the fact that it attests the real use of professionals. Nevertheless, the platform may be very useful for the groups and institutions involved in the normalization of terminology, since it allows to look up real usage of terminology and to consider the data when taking decisions about the terms.{% endtrans %}</p>
+{% endblock %}
 
 {% block content %}
 <form class="f1 simpleSearch" action="{{ url_for('search.results') }}" method="GET">

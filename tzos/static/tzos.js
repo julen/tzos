@@ -3,12 +3,18 @@ $(document).ready(function () {
     $('[rel=tipsy-ns]').tipsy({gravity: $.fn.tipsy.autoNS});
     $('[rel=tipsy-we]').tipsy({gravity: $.fn.tipsy.autoWE});
 
+    /* Dropdown for picking glossary language */
     $('#tzosDict > a').click(function (e) {
         e.preventDefault();
     });
-
-    $('#tzosDict').hover(function () {
+    $('#tzosDict').click(function (e) {
+        e.stopPropagation();
         $(this).children('ul').toggle();
+    });
+    $('body').not('#tzosDict').click(function (e) {
+        if ($('ul.dictList').is(':visible')) {
+            $('ul.dictList').hide();
+        }
     });
 
     $('ul.inlineTabs').tabs();

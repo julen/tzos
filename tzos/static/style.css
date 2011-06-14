@@ -642,8 +642,8 @@ section.admin ul.sideTabs li a.selected {
 
 .columns .half {
     float: left;
-    width: 460px;
-    margin-bottom: 1.5em;
+    width: 450px;
+    margin: 0 10px 1.5em 0;
 }
 
 .hTabs .columns .main {

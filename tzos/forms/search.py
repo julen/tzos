@@ -42,7 +42,7 @@ class SearchForm(Form):
         ('antonym', _('Antonym')),
         ('related', _('Related concept')),
     )
-    field = SelectFieldPlus(_('Search field'),
+    field = SelectFieldPlus(_('Search field'), default='term',
             choices=field_choices, sort=True)
 
     pp_choices = (

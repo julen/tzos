@@ -11,8 +11,8 @@
 {% block content %}
 <form class="f1 advancedSearch" action="" method="GET">
     {% include "search/core.html" %}
-    <p class="clLeft showme" style="display:none;"><i class="iBRarr">[arrow]</i><a href="#" class="showHide">{{ _("Search options") }}</a></p>
-    <div class="extra hideme">
+    <p class="clLeft showme" style="display:none;"><i class="{% if show_options %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">{{ _("Search options") }}</a></p>
+    <div class="extra hideme{% if show_options %} doNotHide{% endif %}">
         <ul>
             <h2 class="h4 clBoth">{{ _('General') }}</h2>
             {{ render_field(form.mode, tag_class="singleLine") }}

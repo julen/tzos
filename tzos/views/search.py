@@ -122,5 +122,5 @@ def results():
     form.concept_origin.choices = get_origins_dropdown()
     form.na_org.choices = get_responsible_orgs()
 
-    ctx = {'form': form, 'q': q, 'page': page}
+    ctx = {'form': form, 'q': q, 'page': page, 'show_options': not q}
     return render_template('search/results.html', **ctx)

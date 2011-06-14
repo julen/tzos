@@ -66,6 +66,12 @@ def add_document(filename, docname):
 
     dbxml.add_document(filename, docname)
 
+@manager.option('-d', '--docname', dest='docname', default=None)
+def rm_document(docname):
+    '''Removes a document from the XML-DB that matches the given name.'''
+
+    dbxml.rm_document(docname)
+
 @manager.command
 def add_indexes():
     '''Adds proper indexes to the DB-XML container.'''

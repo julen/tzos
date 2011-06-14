@@ -61,10 +61,10 @@ def initdb():
 
 @manager.option('-f', '--filename', dest='filename', default=None, required=True)
 @manager.option('-d', '--docname', dest='docname', default=None)
-def initdbxml(filename, docname):
-    '''Initializes the XML-DB by feeding data from the given file.'''
+def add_document(filename, docname):
+    '''Adds a document to the XML-DB by feeding data from the given file.'''
 
-    dbxml.init_dbxml(filename, docname)
+    dbxml.add_document(filename, docname)
 
 @manager.command
 def add_indexes():

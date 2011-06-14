@@ -14,8 +14,8 @@ from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
         TextAreaField, TextField, ValidationError, regexp, required
 
 from tzos.extensions import dbxml
-from tzos.forms.fields import BooleanWorkingField, DynamicSelectField, \
-        OriginatingPerson, SelectFieldPlus
+from tzos.forms.fields import BooleanWorkingField, OriginatingPerson, \
+        SelectFieldPlus
 from tzos.strings import *
 
 
@@ -164,7 +164,7 @@ class CoreTermForm(Form):
         return rv
 
 
-    concept_origin = DynamicSelectField(_(u"Origin"),
+    concept_origin = SelectFieldPlus(_(u"Origin"),
             validators=[required(message=_(u"Origin is required."))])
 
     # Affects elementWorkingStatus
@@ -269,7 +269,7 @@ class AddTermForm(BaseTermForm):
                         is_valid_input,
                         check_collision])
 
-    language = DynamicSelectField(_(u"Language"),
+    language = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])
 
     syntrans = BooleanField(_(u"This term is a synonym or a "
@@ -279,7 +279,7 @@ class AddTermForm(BaseTermForm):
             validators=[check_syntrans,
                         check_syntrans_exists])
 
-    syntrans_lang = DynamicSelectField(_(u"Language"),
+    syntrans_lang = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])
 
 
@@ -301,7 +301,7 @@ class ModEditTermForm(EditTermForm):
     ws_choices = WORKING_STATUS
     ws_desc = _(u"If you consolidate this term, you must set "
                 "its administrative status ('Linguistic information' tab).")
-    working_status = DynamicSelectField(_(u"Working status"),
+    working_status = SelectFieldPlus(_(u"Working status"),
             choices=ws_choices,
             description=ws_desc,
             validators=[check_as_is_set])

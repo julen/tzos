@@ -16,28 +16,11 @@ from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import BooleanField, SelectField, TextField
 
 
-class DynamicSelectField(SelectField):
-    """A SelectField that allows disabling pre validation, which complicates
-    stuff when using validators in dynamic select fields."""
-
-    def __init__(self, label=None, validators=None, coerce=unicode, \
-                 choices=None, pre_validation=False, **kwargs):
-        super(DynamicSelectField, self).__init__(label, validators, coerce, \
-                                           choices, **kwargs)
-
-        self.pre_validation = pre_validation
-
-    def pre_validate(self, form):
-        if self.pre_validation:
-            for v, _ in self.choices:
-                if self.data == v:
-                    break
-            else:
-                raise ValueError(_(u'Not a valid choice'))
-
-
 class SelectFieldPlus(SelectField):
-    """A SelectField which can be sorted and set default placeholder values."""
+    """A SelectField which can be sorted and set default placeholder values.
+
+    This also allows disabling pre validation, which complicates
+    stuff when using validators in dynamic select fields."""
 
     PLACEHOLDERS = {
         -1: _(u'Parent…'),
@@ -47,7 +30,9 @@ class SelectFieldPlus(SelectField):
 
     def __init__(self, label=None, validators=None, coerce=unicode, \
             choices=None, placeholder=None, sort=False, \
-            no_sort=(), **kwargs):
+            no_sort=(), pre_validation=False, **kwargs):
+
+        self.pre_validation = pre_validation
 
         self.placeholder = placeholder
         self.sort = sort
@@ -86,6 +71,14 @@ class SelectFieldPlus(SelectField):
             self.choices.insert(0, (self.placeholder, value))
 
         return super(SelectFieldPlus, self).iter_choices()
+
+    def pre_validate(self, form):
+        if self.pre_validation:
+            for v, _ in self.choices:
+                if self.data == v:
+                    break
+            else:
+                raise ValueError(_(u'Not a valid choice'))
 
 
 class BooleanWorkingField(BooleanField):

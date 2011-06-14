@@ -125,8 +125,11 @@ def configure_before_handlers(app):
         new_ui_lang = request.args.get('setuilang', None)
 
         # If language is passed explicitely, try to set it
-        if new_ui_lang or new_ui_lang in app.available_languages:
+        if new_ui_lang and new_ui_lang in app.available_languages:
             g.ui_lang = new_ui_lang
+            session['ui_lang'] = new_ui_lang
+        elif 'ui_lang' in session:
+            g.ui_lang = session['ui_lang']
         else:
             # Try to pick the language from the Accept-Lang headers
             accept_languages = app.config.get('ACCEPT_LANGUAGES',
@@ -138,6 +141,7 @@ def configure_before_handlers(app):
                 lang = app.config.get('BABEL_DEFAULT_LOCALE')
 
             g.ui_lang = lang
+            session['ui_lang'] = lang
 
 
 def configure_jinja(app):

@@ -514,7 +514,8 @@ ul.errors li {
 
 /* Glossary menu */
 
-.menu ul li {
+.menu ul li,
+.menu .dictList {
     background-color: #333;
 }
 
@@ -554,15 +555,17 @@ ul.errors li {
 }
 
 .menu .dictList {
+    background-color: #444;
     position: absolute;
     z-index: 9999;
     text-align: right;
     right: 0;
     display: none;
+    width: 200%;
 }
 
 .menu .dictList li {
-    width: 85px;
+    width: 100%;
 }
 
 /* Side tabs */

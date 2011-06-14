@@ -47,6 +47,9 @@
     {%- if term.part_of_speech %}
     <p class="head weak">{{ _t(term.part_of_speech) }}</p>
     {%- endif %}
+    {%- if term.subject_field %}
+    <p class="head weak">{% for field in term.subject_field %}{{ _t(field) }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    {%- endif %}
 
     {%- if term.synonyms %}
     <dl class="syn">
@@ -112,7 +115,8 @@
     </div>
     {% endif %}
 
-    {%- if term.term_type or term.normative_authorization or
+    {%- if term.term_type or term.part_of_speech or
+           term.normative_authorization or
            term.subordinate_concept_generic or
            term.superordinate_concept_generic or
            term.antonym_concept or term.related_concept %}
@@ -122,6 +126,10 @@
             {%- if term.term_type %}
             <dt>{{ _('Term type') }}</dt>
             <dd>{{ _t(term.term_type) }}</dd>
+            {%- endif %}
+            {%- if term.part_of_speech %}
+            <dt>{{ _('Part of speech') }}</dt>
+            <dd>{{ _t(term.part_of_speech) }}</dd>
             {%- endif %}
             {%- if term.normative_authorization %}
             <dt>{{ _('Normative level') }}</dt>

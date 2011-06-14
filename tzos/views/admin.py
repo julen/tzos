@@ -23,7 +23,7 @@ from tzos.permissions import admin as admin_permission
 admin = Module(__name__)
 
 
-def gen_users_form():
+def _gen_users_form():
 
     form = ModifyUserPermissionForm()
     form.user.choices = [(u.id, u.username) for u in \
@@ -33,7 +33,7 @@ def gen_users_form():
     return form
 
 
-def gen_origins_form(form_cls, **kwargs):
+def _gen_origins_form(form_cls, **kwargs):
 
     form = form_cls(**kwargs)
 
@@ -51,9 +51,9 @@ def settings():
     origins = TermOrigin.query.filter(TermOrigin.parent_id==None) \
                               .order_by('name').all()
 
-    users_form = gen_users_form()
+    users_form = _gen_users_form()
     langs_form = AddLanguagesForm()
-    origins_form = gen_origins_form(AddTermOriginForm)
+    origins_form = _gen_origins_form(AddTermOriginForm)
 
     return render_template("admin/settings.html", users=users,
                                                   origins=origins,
@@ -65,7 +65,7 @@ def settings():
 @admin_permission.require(401)
 def users():
 
-    form = users_form()
+    form = _gen_users_form()
 
     if form and form.validate_on_submit():
         user = User.query.filter_by(id=form.user.data).first_or_404()
@@ -84,7 +84,7 @@ def users():
 @admin_permission.require(401)
 def add_origin():
 
-    form = gen_origins_form(AddTermOriginForm)
+    form = _gen_origins_form(AddTermOriginForm)
 
     if form and form.validate_on_submit():
         origin = TermOrigin(name=form.name.data)
@@ -107,7 +107,7 @@ def add_origin():
 def edit_origin(id):
 
     origin = TermOrigin.query.get_or_404(id)
-    form = gen_origins_form(EditTermOriginForm, obj=origin)
+    form = _gen_origins_form(EditTermOriginForm, obj=origin)
 
     if form and form.validate_on_submit():
 

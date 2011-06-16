@@ -31,7 +31,7 @@ class TermOrigin(db.Model):
     parent_id = db.Column(db.Integer,
                           db.ForeignKey('origins.id', ondelete='CASCADE'))
 
-    parent = db.relation('TermOrigin', remote_side=[id], backref='children')
+    parent = db.relationship('TermOrigin', remote_side=[id], backref='children')
 
 
 class TermSubject(db.Model):

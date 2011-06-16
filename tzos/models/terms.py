@@ -34,6 +34,22 @@ class TermOrigin(db.Model):
     parent = db.relation('TermOrigin', remote_side=[id], backref='children')
 
 
+class TermSubject(db.Model):
+    __tablename__ = 'subjectfields'
+
+    code = db.Column('id', db.Integer, autoincrement=False, primary_key=True)
+
+    parent_id = db.Column(db.Integer,
+                          db.ForeignKey('subjectfields.id', ondelete='CASCADE'))
+
+    parent = db.relation('TermSubject', remote_side=[code], backref='children')
+
+    name = db.Column(db.Integer,
+                     db.ForeignKey('translations.id', ondelete='CASCADE'))
+
+    translation = db.relation('Translation', backref='termsubject')
+
+
 class TermChange(object):
 
     @classmethod

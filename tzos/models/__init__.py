@@ -10,5 +10,5 @@
 """
 from tzos.models.comments import Comment
 from tzos.models.users import User
-from tzos.models.terms import Term, TermChange, TermOrigin
+from tzos.models.terms import Term, TermChange, TermOrigin, TermSubject
 from tzos.models.translations import Translation

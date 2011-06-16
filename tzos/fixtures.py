@@ -15,6 +15,7 @@ def install():
     """Installs the initial fixtures in the database."""
 
     create_initial_users()
+    import_origins()
 
 def create_initial_users():
     admin = User()

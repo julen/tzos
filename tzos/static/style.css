@@ -989,7 +989,7 @@ ul.searchResults > li {
 
 /* Comments/Activity */
 
-.activity,
+.homeActivity,
 .profileActivity {
     margin-top: 2em;
 }

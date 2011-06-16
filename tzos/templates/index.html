@@ -16,8 +16,8 @@
     {% include "search/core.html" %}
     <p><i class="iSrch">[search]</i><a href="{{ url_for('search.results') }}">{{ _("Advanced search") }}</a></p>
 </form>
-<div class="activity columns">
-    <div class="half">
+<div class="homeActivity columns">
+    <div class="activity half">
         <h2 class="h4">{{ _("Latest activity") }}</h2>
         {% if latest_activity %}
         {{ render_activity(latest_activity) }}

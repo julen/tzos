@@ -17,7 +17,7 @@ from tzos.extensions import cache, db, dbxml
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, \
         EditTermOriginForm, ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
-from tzos.models import TermOrigin, User
+from tzos.models import TermOrigin, TermSubject, Translation, User
 from tzos.permissions import admin as admin_permission
 
 admin = Module(__name__)
@@ -50,6 +50,11 @@ def settings():
                       .order_by('-role', 'username')
     origins = TermOrigin.query.filter(TermOrigin.parent_id==None) \
                               .order_by('name').all()
+    sfields = TermSubject.query \
+            .join('translations') \
+            .filter((TermSubject.parent_id==None) &
+                    (Translation.locale==g.ui_lang)) \
+            .order_by('text').all()
 
     users_form = _gen_users_form()
     langs_form = AddLanguagesForm()
@@ -57,6 +62,7 @@ def settings():
 
     return render_template("admin/settings.html", users=users,
                                                   origins=origins,
+                                                  sfields=sfields,
                                                   users_form=users_form,
                                                   langs_form=langs_form,
                                                   origins_form=origins_form)

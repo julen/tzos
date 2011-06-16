@@ -42,12 +42,12 @@ class TermSubject(db.Model):
     parent_id = db.Column(db.Integer,
                           db.ForeignKey('subjectfields.id', ondelete='CASCADE'))
 
-    parent = db.relation('TermSubject', remote_side=[code], backref='children')
+    parent = db.relationship('TermSubject', remote_side=[code], backref='children')
 
-    name = db.Column(db.Integer,
-                     db.ForeignKey('translations.id', ondelete='CASCADE'))
+    trans_id = db.Column(db.Integer,
+                         db.ForeignKey('translations.auto_id', ondelete='CASCADE'))
 
-    translation = db.relation('Translation', backref='termsubject')
+    translations = db.relationship('Translation', backref='termsubject')
 
 
 class TermChange(object):

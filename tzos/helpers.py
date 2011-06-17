@@ -14,7 +14,7 @@ from flask import Markup, _request_ctx_stack, abort, current_app, g, \
 from functools import wraps
 
 from tzos.extensions import cache, dbxml
-from tzos.models import Term, TermOrigin
+from tzos.models import Term, TermOrigin, TermSubject, Translation
 from tzos import strings
 
 import functools
@@ -155,6 +155,37 @@ def get_origins_dropdown():
     dropdown = []
     origins = TermOrigin.query.order_by('name').all()
     parents = [(o.id, o.name) for o in origins if o.parent_id is None]
+
+    for id, name in parents:
+        dropdown.append((id, name))
+        _get_children(id, 1)
+
+    return dropdown
+
+
+def get_sfields_dropdown(locale):
+    """Returns a list of (key, value) tuples including all the allowed
+    subjectFields in `locale`."""
+
+    def _get_children(parent_id, depth):
+
+        for field in sfields:
+
+            if field.parent_id == parent_id:
+                trans = field.translations.text
+                name = Markup((u'&nbsp;' * 3) * depth + trans).unescape()
+                dropdown.append((field.code, name))
+
+                if field.children:
+                    _get_children(field.code, depth + 1)
+
+    dropdown = []
+    sfields = TermSubject.query \
+            .join('translations') \
+            .filter(Translation.locale==locale) \
+            .order_by('text').all()
+    parents = [(s.code, s.translations.text) for s in sfields \
+            if s.parent_id is None]
 
     for id, name in parents:
         dropdown.append((id, name))

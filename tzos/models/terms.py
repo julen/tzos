@@ -226,6 +226,20 @@ class Term(object):
 
         return display_name
 
+    @cached_property
+    def subject_field_display(self):
+
+        sf_list = []
+
+        for field in self.subject_field:
+            sfield = TermSubject.query \
+                    .join('translations') \
+                    .filter((TermSubject.code==field) &
+                            (Translation.locale==g.ui_lang)) \
+                                    .order_by('text').first()
+            sf_list.append(sfield.translations.text)
+
+        return set(sf_list)
 
     def _get_subject_field(self):
         return self._subject_field

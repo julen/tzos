@@ -1,7 +1,7 @@
 <div class="columns">
     <h2 class="h4">{{ _('Knowledge fields') }}</h2>
     <p>{{ _('These are the current knowledge fields available on the system. To edit a knowledge field, just click on it.') }}</p>
-    <ul class="origins">
+    <ul class="sfields">
         {%- for field in sfields recursive %}
         <li><a href="">{{ field.translations.text }}</a></a>
         {%- if field.children -%}

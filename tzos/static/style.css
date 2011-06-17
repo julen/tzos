@@ -1043,11 +1043,15 @@ ul.searchResults > li {
     width: 220px;
 }
 
-ul.origins {
+ul.origins,
+ul.sfields,
+ul.sources {
     margin: 0.5em 20px 1.5em;
 }
 
-ul.origins li {
+ul.origins li,
+ul.sfields li,
+ul.sources li {
     line-height: 1.5;
     list-style-type: square;
     margin-left: 1em;

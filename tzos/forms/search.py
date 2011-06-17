@@ -58,7 +58,7 @@ class SearchForm(Form):
     # Classification
     #
     subject_field = SelectFieldPlus(_('Subject field'),
-            choices=SUBJECT_FIELDS, placeholder='all', sort=True)
+            placeholder='all')
 
     product_subset = SelectFieldPlus(_('Appears in'),
             choices=PRODUCT_SUBSET, placeholder='all', sort=True)

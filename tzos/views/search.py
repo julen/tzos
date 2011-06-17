@@ -15,7 +15,7 @@ from flaskext.babel import lazy_gettext as _
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
-        get_responsible_orgs
+        get_responsible_orgs, get_sfields_dropdown
 from tzos.models import Term
 from tzos.strings import *
 
@@ -120,6 +120,7 @@ def results():
 
     form.lang.choices = get_dict_langs()
     form.concept_origin.choices = get_origins_dropdown()
+    form.subject_field.choices = get_sfields_dropdown(g.ui_lang)
     form.na_org.choices = get_responsible_orgs()
 
     ctx = {'form': form, 'q': q, 'page': page, 'show_options': not q}

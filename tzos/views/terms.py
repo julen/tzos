@@ -20,9 +20,8 @@ from tzos.forms import AddTermForm, CommentForm, EditTermForm, \
         ModEditTermForm, UploadForm
 from tzos.models import Comment, Term
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
-        get_responsible_orgs, require_valid_dict
+        get_responsible_orgs, get_sfields_dropdown, require_valid_dict
 from tzos.permissions import auth
-from tzos.strings import *
 
 terms = Module(__name__)
 
@@ -82,7 +81,7 @@ def generate_term_form(form_cls, public_term=False, **form_args):
         form.other_fields.choices = other_choices
 
     form.concept_origin.choices = get_origins_dropdown()
-    form.subject_field.choices = sorted(SUBJECT_FIELDS, key=lambda x: x[1])
+    form.subject_field.choices = get_sfields_dropdown(g.ui_lang)
 
     if hasattr(form, 'normative_authorization_org'):
         form.normative_authorization_org.choices = get_responsible_orgs()

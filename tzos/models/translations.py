@@ -21,3 +21,5 @@ class Translation(db.Model):
     locale = db.Column(db.String(2), default='en', nullable=False)
 
     text = db.Column(db.UnicodeText)
+
+    __mapper_args__ = {'order_by' : text.asc()}

@@ -5,7 +5,7 @@
         {%- for field in sfields recursive %}
         <li><a href="">{{ field.translations.text }}</a></a>
         {%- if field.children -%}
-        <ul class="submenu">{{ loop(field.children) }}</ul>
+        <ul class="submenu">{{ loop(field.children_translations(g.ui_lang)) }}</ul>
         {%- endif %}
         </li>
         {%- endfor %}

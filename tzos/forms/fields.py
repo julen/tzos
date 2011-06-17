@@ -13,7 +13,8 @@ from operator import itemgetter
 from flask import g
 
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import BooleanField, SelectField, TextField
+from flaskext.wtf import BooleanField, SelectField, \
+        SelectMultipleField, TextField
 
 
 class SelectFieldPlus(SelectField):
@@ -81,6 +82,25 @@ class SelectFieldPlus(SelectField):
                 raise ValueError(_(u'Not a valid choice'))
 
 
+class SelectMultipleFieldDyn(SelectMultipleField):
+
+    def __init__(self, label=None, validators=None, coerce=unicode, \
+            choices=None, pre_validation=False, **kwargs):
+
+        self.pre_validation = pre_validation
+
+        super(SelectMultipleFieldDyn, self).__init__(label, validators, \
+                coerce, choices, **kwargs)
+
+    def pre_validate(self, form):
+        if self.pre_validation:
+            if self.data:
+                values = list(c[0] for c in self.choices)
+                for d in self.data:
+                    if d not in values:
+                        raise ValueError(self.gettext(u"'%(value)s' is not a valid choice for this field") % dict(value=d))
+
+
 class BooleanWorkingField(BooleanField):
     """A BooleanField that sets specific data according to the choice made."""
 
@@ -92,6 +112,7 @@ class BooleanWorkingField(BooleanField):
                 self.data = 'starterElement'
         except IndexError:
             self.data = 'starterElement'
+
 
 class OriginatingPerson(TextField):
     """A TextField for defining originatingPerson fields."""

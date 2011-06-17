@@ -10,12 +10,12 @@
 """
 from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
-        NoneOf, Optional, SelectField, SelectMultipleField, SubmitField, \
+        NoneOf, Optional, SelectField, SubmitField, \
         TextAreaField, TextField, ValidationError, regexp, required
 
 from tzos.extensions import dbxml
 from tzos.forms.fields import BooleanWorkingField, OriginatingPerson, \
-        SelectFieldPlus
+        SelectMultipleFieldDyn, SelectFieldPlus
 from tzos.strings import *
 
 
@@ -170,7 +170,7 @@ class CoreTermForm(Form):
     # Affects elementWorkingStatus
     working_status = BooleanWorkingField(_(u"I want this term to be public."))
 
-    subject_field = SelectMultipleField(_(u"Subject field"),
+    subject_field = SelectMultipleFieldDyn(_(u"Subject field"),
             validators=[check_required_dropdown])
 
     originating_person = OriginatingPerson(_(u"Originating person"),

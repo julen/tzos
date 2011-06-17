@@ -14,10 +14,10 @@ from flask import Module, flash, g, redirect, render_template, \
 from flaskext.babel import gettext as _
 
 from tzos.extensions import cache, db, dbxml
-from tzos.forms import AddLanguagesForm, AddTermOriginForm, \
-        EditTermOriginForm, ModifyUserPermissionForm
+from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
+        EditTermOriginForm, EditTermSourceForm, ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
-from tzos.models import TermOrigin, TermSubject, Translation, User
+from tzos.models import TermOrigin, TermSource, TermSubject, Translation, User
 from tzos.permissions import admin as admin_permission
 
 admin = Module(__name__)
@@ -55,17 +55,18 @@ def settings():
             .filter((TermSubject.parent_id==None) &
                     (Translation.locale==g.ui_lang)) \
             .order_by('text').all()
+    sources = TermSource.query.order_by('name').all()
 
     users_form = _gen_users_form()
     langs_form = AddLanguagesForm()
     origins_form = _gen_origins_form(AddTermOriginForm)
+    sources_form = AddTermSourceForm()
 
-    return render_template("admin/settings.html", users=users,
-                                                  origins=origins,
-                                                  sfields=sfields,
-                                                  users_form=users_form,
-                                                  langs_form=langs_form,
-                                                  origins_form=origins_form)
+    ctx = {'users': users, 'origins': origins, 'sfields': sfields,
+            'sources': sources, 'users_form': users_form,
+            'langs_form': langs_form, 'origins_form': origins_form,
+            'sources_form': sources_form}
+    return render_template("admin/settings.html", **ctx)
 
 @admin.route('/users/', methods=('POST',))
 @admin_permission.require(401)
@@ -167,3 +168,44 @@ def edit_origin(id):
 
     return render_template("admin/edit_origin.html", form=form,
                                                      origin=origin)
+
+
+@admin.route('/source/add/', methods=('POST',))
+@admin_permission.require(401)
+def add_source():
+
+    form = AddTermSourceForm()
+
+    if form and form.validate_on_submit():
+        source = TermSource(name=form.name.data)
+
+        db.session.add(source)
+        db.session.commit()
+
+        flash(_(u"Term source ‘%(source)s’ has been added.",
+                source=source.name), "success")
+    else:
+        flash(_(u"Error while adding term source."), "error")
+
+    return redirect(url_for("admin.settings"))
+
+@admin.route('/source/edit/<int:id>', methods=('GET','POST'))
+@admin_permission.require(401)
+def edit_source(id):
+
+    source = TermSource.query.get_or_404(id)
+    form = EditTermSourceForm(obj=source)
+
+    if form and form.validate_on_submit():
+
+        source.name = form.name.data
+
+        db.session.commit()
+
+        flash(_(u"Term source ‘%(source)s’ has been edited.",
+                source=source.name), "success")
+
+        return redirect(url_for("admin.settings"))
+
+    return render_template("admin/edit_source.html", form=form,
+                                                     source=source)

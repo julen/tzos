@@ -12,6 +12,7 @@ from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import Form, Length, SelectField, SubmitField, TextField, \
         required
 
+from tzos.forms.fields import SelectFieldPlus
 from tzos.models import User
 
 class ModifyUserPermissionForm(Form):
@@ -38,3 +39,33 @@ class AddLanguagesForm(Form):
         ])
 
     submit = SubmitField(_("Add language"))
+
+
+class BaseTermOriginForm(Form):
+
+    name = TextField(_(u"Name"),
+            validators=[required(message=_(u"Name is required."))])
+
+    parent_id = SelectFieldPlus(_(u"Parent"), coerce=int, placeholder=-1)
+
+class AddTermOriginForm(BaseTermOriginForm):
+
+    submit = SubmitField(_(u"Create"))
+
+class EditTermOriginForm(BaseTermOriginForm):
+
+    submit = SubmitField(_(u"Edit"))
+
+
+class BaseTermSourceForm(Form):
+
+    name = TextField(_(u"Name"),
+            validators=[required(message=_(u"Name is required."))])
+
+class AddTermSourceForm(BaseTermSourceForm):
+
+    submit = SubmitField(_(u"Create"))
+
+class EditTermSourceForm(BaseTermSourceForm):
+
+    submit = SubmitField(_(u"Edit"))

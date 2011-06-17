@@ -35,6 +35,14 @@ class TermOrigin(db.Model):
     parent = db.relationship('TermOrigin', remote_side=[id], backref='children')
 
 
+class TermSource(db.Model):
+    __tablename__ = 'sources'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    name = db.Column(db.UnicodeText)
+
+
 class TermSubject(db.Model):
     __tablename__ = 'subjectfields'
 

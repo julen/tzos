@@ -1,0 +1,20 @@
+<div class="columns">
+    <h2 class="h4">{{ _('Current sources') }}</h2>
+    <p>{{ _('These are the current term sources available on the system. To edit an origin, click on it.') }}</p>
+    <ul class="sources">
+        {%- for source in sources %}
+        <li><a href="{{ url_for('admin.edit_source', id=source.id) }}">{{ source.name }}</a>
+        </li>
+        {%- endfor %}
+    </ul>
+    <div class="hr fields">
+        <h2 class="h4">{{ _('Add a new source') }}</h2>
+        <form method="POST" action="{{ url_for('admin.add_source') }}" class="f1">
+            {{ sources_form.hidden_tag() }}
+            <dl>
+                <dd>{{ sources_form.name(class="input") }}{{ origins_form.submit(class="button") }}</dd>
+            </dl>
+        </form>
+    </div>
+</div>
+

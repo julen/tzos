@@ -116,22 +116,6 @@ def check_as_is_set(form, field):
 #
 
 
-class BaseTermOriginForm(Form):
-
-    name = TextField(_(u"Name"),
-            validators=[required(message=_(u"Name is required."))])
-
-    parent_id = SelectFieldPlus(_(u"Parent"), coerce=int, placeholder=-1)
-
-class AddTermOriginForm(BaseTermOriginForm):
-
-    submit = SubmitField(_(u"Create"))
-
-class EditTermOriginForm(BaseTermOriginForm):
-
-    submit = SubmitField(_(u"Edit"))
-
-
 class CoreTermForm(Form):
 
     def __init__(self, *args, **kwargs):

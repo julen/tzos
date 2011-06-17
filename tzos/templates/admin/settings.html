@@ -13,6 +13,7 @@
         <li><a href="#edit_permissions">{{ _("User permissions") }}</a></li>
         <li><a href="#edit_languages">{{ _("Languages") }}</a></li>
         <li><a href="#edit_origins">{{ _("Term origins") }}</a></li>
+        <li><a href="#edit_sources">{{ _("Term sources") }}</a></li>
         <li><a href="#edit_sfields">{{ _("Knowledge fields") }}</a></li>
     </ul>
 
@@ -26,6 +27,10 @@
 
     <div id="edit_origins" class="tabContent">
         {% include "admin/origins.html" %}
+    </div>
+
+    <div id="edit_sources" class="tabContent">
+        {% include "admin/sources.html" %}
     </div>
 
     <div id="edit_sfields" class="tabContent">

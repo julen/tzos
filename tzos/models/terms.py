@@ -18,6 +18,7 @@ from flaskext.babel import gettext as _
 from werkzeug import cached_property
 
 from tzos.extensions import db, dbxml
+from tzos.models.translations import Translation
 from tzos.models.users import User
 
 
@@ -42,12 +43,23 @@ class TermSubject(db.Model):
     parent_id = db.Column(db.Integer,
                           db.ForeignKey('subjectfields.id', ondelete='CASCADE'))
 
-    parent = db.relationship('TermSubject', remote_side=[code], backref='children')
+    parent = db.relationship('TermSubject', remote_side=[code],
+            backref=db.backref('children', lazy='dynamic'))
 
     trans_id = db.Column(db.Integer,
-                         db.ForeignKey('translations.auto_id', ondelete='CASCADE'))
+                         db.ForeignKey('translations.auto_id',
+                             ondelete='CASCADE'),
+                         primary_key=True)
 
     translations = db.relationship('Translation', backref='termsubject')
+
+
+    def children_translations(self, locale):
+        return self.children \
+                .join('translations') \
+                .filter((TermSubject.parent_id==self.code) &
+                        (Translation.locale==locale)) \
+                                .order_by('text').all()
 
 
 class TermChange(object):

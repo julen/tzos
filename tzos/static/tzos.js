@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
-    $('[rel=tipsy-ns]').tipsy({gravity: $.fn.tipsy.autoNS});
-    $('[rel=tipsy-we]').tipsy({gravity: $.fn.tipsy.autoWE});
+    $('[rel=tipsy-ns]').tipsy({gravity: $.fn.tipsy.autoNS, live: true});
+    $('[rel=tipsy-we]').tipsy({gravity: $.fn.tipsy.autoWE, live: true});
 
     /* Dropdown for picking glossary language */
     $('#tzosDict > a').click(function (e) {

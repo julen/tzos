@@ -60,11 +60,46 @@ $(document).ready(function () {
         listItemClass: 'b small bsmListItem',
     });
 
+    $(".addEq").change(function () {
+        var value = $(this).val();
+        var langName =  $("option:selected", this).text();
+
+        // Ignore action if the selection is the placeholder
+        if (value == "") {
+            return false;
+        }
+
+        $('option[value="' + value + '"]', this).
+            attr('disabled', 'disabled');
+        var newEl = $("ul.eqFields > div").first().clone(true);
+        var oldId = $("input", newEl).attr("id");
+        var newId = oldId + "-" + $(this).val();
+
+        // Set new ids
+        $("label", newEl).attr("for", newId);
+        $("input", newEl).attr("id", newId);
+
+        // Display language name in label
+        var newLabel = $("label", newEl).text() + " — " + langName;
+        $("label", newEl).text(newLabel);
+
+        newEl.insertAfter("ul.eqFields > div:last-child").show();
+
+        // Finally, reset current selection
+        $(this).val("");
+    });
+    $("a.rmEq").click(function () {
+        var val = $(this).parent().find("input").attr("id");
+        var lang = val.split("-");
+        lang = lang[lang.length - 1];
+        $(".eqFields select").find('option[value="' + lang + '"]').removeAttr('disabled');
+        $(this).parent().remove();
+    });
+
     $("a.addCol").click(function () {
         var newEl = $("ul.otherFields > li:first-child").clone(true);
         newEl.insertAfter("ul.otherFields > li:last-child").show();
     });
-
     $("a.rmCol").click(function () {
         $(this).parent().remove();
     });

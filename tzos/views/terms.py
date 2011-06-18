@@ -64,6 +64,7 @@ def generate_term_form(form_cls, public_term=False, **form_args):
         dict_langs = get_dict_langs()
         form.syntrans_lang.choices = dict_langs
         form.language.choices = dict_langs
+        form.eqlang.choices = dict_langs
 
     if form_cls.__name__ == 'ModEditTermForm':
         if public_term and not g.user.is_admin:

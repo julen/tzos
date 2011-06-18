@@ -257,6 +257,13 @@ class AddTermForm(BaseTermForm):
     language = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])
 
+    eqterm_desc = _(u"Separate terms using commas.")
+    # TODO: validate for clear input
+    eqterm = TextField(u"Equivalents", description=eqterm_desc)
+
+    # l10n: Follows a dropdown box with language names
+    eqlang = SelectFieldPlus(_(u"Add equivalent in"), placeholder='')
+
     syntrans = BooleanField(_(u"This term is a synonym or a "
                               "translation for another term."))
 

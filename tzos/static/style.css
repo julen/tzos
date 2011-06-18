@@ -818,6 +818,20 @@ ul.errors li {
     width: 300px;
 }
 
+div.eqField > li {
+    float: left;
+    margin-right: 0;
+    width: 420px;
+}
+
+div.eqField > li input {
+    width: 95%!important;
+}
+
+a.rmEq {
+    margin-top: 25px;
+}
+
 ul.fields > li {
     min-height: 75px;
 }
@@ -854,7 +868,7 @@ ul.otherFields > li:first-child a.rmCol {
     visibility: hidden;
 }
 
-a.addCol, a.rmCol {
+a.addCol, a.rmCol, a.rmEq {
     cursor: pointer;
 }
 

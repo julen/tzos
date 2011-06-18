@@ -17,9 +17,19 @@
     <div id="add_manually" class="tabContent">
         <form method="POST" action="{{ url_for('terms.add') }}" class="f1 addTerm">
             {{ add_form.hidden_tag() }}
+            <ul class="fields termFields">
+                {{ render_field(add_form.term, class="input in") }}
+                {{ render_field(add_form.language, class="input in") }}
+            </ul>
+            <ul class="fields eqFields">
+                <noscript>{{ _("You must enable JavaScript in order to set equivalents.") }}</noscript>
+                {{ render_field(add_form.eqlang, class="input addEq", tag_class="singleLine") }}
+                <div class="eqField clBoth" style="display:none;">
+                    {{ render_field(add_form.eqterm, class="input", rel="tipsy-ns") }}
+                    <a class="rmEq b"><strong>X</strong></a>
+                </div>
+            </ul>
             <ul class="fields">
-                {{ render_field(add_form.term, class="input") }}
-                {{ render_field(add_form.language, class="input") }}
                 {% set placeholder = _("Select…") %}
                 {{ render_field(add_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) }}
                 {{ render_field(add_form.concept_origin, class="input", tag_class="singleLine") }}

@@ -152,7 +152,8 @@ class CoreTermForm(Form):
             validators=[required(message=_(u"Origin is required."))])
 
     # Affects elementWorkingStatus
-    working_status = BooleanWorkingField(_(u"I want this term to be public."))
+    working_status = BooleanWorkingField(_(u"I want this term to be public."),
+            default="checked")
 
     subject_field = SelectMultipleFieldDyn(_(u"Subject field"),
             validators=[check_required_dropdown])

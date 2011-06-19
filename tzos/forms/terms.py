@@ -257,10 +257,6 @@ class AddTermForm(BaseTermForm):
     language = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])
 
-    eqterm_desc = _(u"Separate terms using commas.")
-    # TODO: validate for clear input
-    eqterm = TextField(u"Equivalents", description=eqterm_desc)
-
     # l10n: Follows a dropdown box with language names
     eqlang = SelectFieldPlus(_(u"Add equivalent in"), placeholder='')
 
@@ -276,6 +272,13 @@ class AddTermForm(BaseTermForm):
 
 
     submit = SubmitField(_(u"Add"))
+
+
+    @property
+    def eqterm_fields(self):
+        fields = [getattr(self, f) for f in self._fields \
+                if f.startswith('eqterm-')]
+        return sorted(fields)
 
 
 class EditTermForm(BaseTermForm):

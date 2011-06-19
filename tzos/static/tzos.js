@@ -61,39 +61,34 @@ $(document).ready(function () {
     });
 
     $(".addEq").change(function () {
+
         var value = $(this).val();
-        var langName =  $("option:selected", this).text();
 
         // Ignore action if the selection is the placeholder
         if (value == "") {
             return false;
         }
 
+        // Disable selected option and display its form field
         $('option[value="' + value + '"]', this).
             attr('disabled', 'disabled');
-        var newEl = $("ul.eqFields > div").first().clone(true);
-        var oldId = $("input", newEl).attr("id");
-        var newId = oldId + "-" + $(this).val();
-
-        // Set new ids
-        $("label", newEl).attr("for", newId);
-        $("input", newEl).attr("id", newId);
-
-        // Display language name in label
-        var newLabel = $("label", newEl).text() + " — " + langName;
-        $("label", newEl).text(newLabel);
-
-        newEl.insertAfter("ul.eqFields > div:last-child").show();
+        $('#add-eqterm-' + value).parent().show();
 
         // Finally, reset current selection
         $(this).val("");
     });
     $("a.rmEq").click(function () {
-        var val = $(this).parent().find("input").attr("id");
+        var input = $(this).parent().find("input");
+        var val = $(input).attr("id");
         var lang = val.split("-");
         lang = lang[lang.length - 1];
+
+        // Enable selecting the option again
         $(".eqFields select").find('option[value="' + lang + '"]').removeAttr('disabled');
-        $(this).parent().remove();
+
+        // Remove any data previously set and hide the form field
+        $(input).val("");
+        $(this).parent().hide();
     });
 
     $("a.addCol").click(function () {

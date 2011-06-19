@@ -13,7 +13,8 @@ from time import strftime
 from flask import Module, abort, flash, g, render_template, redirect, \
     request, url_for
 
-from flaskext.babel import gettext as _
+from flaskext.babel import gettext as _, lazy_gettext as _l
+from flaskext.wtf import TextField
 
 from tzos.extensions import db, dbxml
 from tzos.forms import AddTermForm, CommentForm, EditTermForm, \
@@ -58,19 +59,40 @@ def detail(id):
 
 def generate_term_form(form_cls, public_term=False, **form_args):
 
-    form = form_cls(**form_args)
-
     if form_cls.__name__ == 'AddTermForm':
+
         dict_langs = get_dict_langs()
+
+        # Hack for dynamically generating form fields
+        class F(AddTermForm):
+            pass
+
+        eqterm_desc = _(u"Separate terms using commas.")
+
+        for code, name in dict_langs:
+            field_name = 'eqterm-{0}'.format(code)
+            field_label = _l(u'Equivalents — %(lang)s', lang=name)
+            # TODO: validate for clear input
+            setattr(F, field_name, TextField(field_label,
+                                             description=eqterm_desc))
+
+        form = F(**form_args)
+
         form.syntrans_lang.choices = dict_langs
         form.language.choices = dict_langs
         form.eqlang.choices = dict_langs
 
     if form_cls.__name__ == 'ModEditTermForm':
+
+        form = form_cls(**form_args)
+
         if public_term and not g.user.is_admin:
             form.working_status.choices = form.working_status.choices[2:]
 
     if form_cls.__name__ == 'UploadForm':
+
+        form = form_cls(**form_args)
+
         dict_langs = get_dict_langs()
 
         term_choices = [(u'term-' + code, lang) for code, lang in dict_langs]

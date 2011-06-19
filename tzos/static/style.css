@@ -818,18 +818,10 @@ ul.errors li {
     width: 300px;
 }
 
-div.eqField > li {
-    float: left;
-    margin-right: 0;
-    width: 420px;
-}
-
-div.eqField > li input {
-    width: 95%!important;
-}
-
-a.rmEq {
-    margin-top: 25px;
+li.eqField {
+    float: left!important;
+    margin-right: 0!important;
+    width: 90%!important;
 }
 
 ul.fields > li {

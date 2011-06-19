@@ -22,12 +22,13 @@
                 {{ render_field(add_form.language, class="input in") }}
             </ul>
             <ul class="fields eqFields">
-                <noscript>{{ _("You must enable JavaScript in order to set equivalents.") }}</noscript>
                 {{ render_field(add_form.eqlang, class="input addEq", tag_class="singleLine") }}
-                <div class="eqField clBoth" style="display:none;">
-                    {{ render_field(add_form.eqterm, class="input", rel="tipsy-ns") }}
+                {% for field in add_form.eqterm_fields %}
+                <li class="eqField clBoth" style="display:none;">
+                    {{ render_field(field, class="input in", rel="tipsy-ns", tagged=False) }}
                     <a class="rmEq b"><strong>X</strong></a>
-                </div>
+                </li>
+                {% endfor %}
             </ul>
             <ul class="fields">
                 {% set placeholder = _("Select…") %}

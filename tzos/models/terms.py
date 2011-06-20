@@ -448,6 +448,43 @@ class Term(object):
                                           document='tzos.xml').as_str().first()
             setattr(self, key, result)
 
+    def insert_all(self):
+        """Inserts the current term and the equivalent terms stored
+        in the object to the DB."""
+
+        results = {'success': [], 'failure': []}
+
+        def _insert_single(term, language):
+            t = Term(term=term, language=language)
+            t.subject_field = self.subject_field
+            t.syntrans = True
+            t.syntrans_term = self.term
+            t.syntrans_language = self.language
+            t.concept_origin = self.concept_origin
+            t.originating_person = self.originating_person
+            t.transac_type = self.transac_type
+            t.working_status = self.working_status
+
+            if t.insert():
+                results['success'].append(term)
+            else:
+                results['failure'].append(term)
+
+        if self.insert():
+            results['success'].append(self.term)
+        else:
+            results['failure'].append(self.term)
+
+        for syn in self.raw_synonyms:
+            _insert_single(syn, self.language)
+
+        for lang, items in self.raw_translations.iteritems():
+            for term in items:
+                _insert_single(term, lang)
+
+        return (len(results['failure']) == 0, results)
+
+
     def insert(self):
         """Inserts the current term to the DB."""
 

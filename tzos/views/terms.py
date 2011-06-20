@@ -162,14 +162,18 @@ def add():
         for f in add_form._fields:
             if f.startswith(u'eqterm-'):
                 lang = f.rsplit(u'-', 1)[1]
-                terms = getattr(add_form, f).data.split(u',')
+                terms = getattr(add_form, f).data
 
-                if lang == term.language:
-                    term.append_raw_synonym(terms)
-                else:
-                    term.append_raw_translation(lang, terms)
+                if terms != u"":
+                    terms = terms.split(u',')
 
-        if term.insert():
+                    if lang == term.language:
+                        term.append_raw_synonym(terms)
+                    else:
+                        term.append_raw_translation(lang, terms)
+
+        (success, results) = term.insert_all()
+        if success:
             msg = _(u'Term added successfully. '
                     '<a href="%(url)s">Go to the term</a>.',
                     url=url_for('terms.detail', id=term.id))
@@ -177,7 +181,7 @@ def add():
 
             return redirect(url_for("terms.add"))
         else:
-            flash(_(u'Error while trying to add the term.'), 'error')
+            flash(_(u'Error while trying to add some terms.'), 'error')
 
     elif upload_form.submit.data and upload_form.validate_on_submit():
         file = request.files['upload-file']

@@ -102,7 +102,9 @@ $(document).ready(function () {
         lang = lang[lang.length - 1];
 
         // Enable selecting the option again
-        $(".eqFields select").find('option[value="' + lang + '"]').removeAttr('disabled');
+        $(".eqFields select")
+            .find('option[value="' + lang + '"]')
+            .removeAttr('disabled');
 
         // Remove any data previously set and hide the form field
         $(input).val("");

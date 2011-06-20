@@ -159,6 +159,16 @@ def add():
         term = Term()
         add_form.populate_obj(term)
 
+        for f in add_form._fields:
+            if f.startswith(u'eqterm-'):
+                lang = f.rsplit(u'-', 1)[1]
+                terms = getattr(add_form, f).data.split(u',')
+
+                if lang == term.language:
+                    term.append_raw_synonym(terms)
+                else:
+                    term.append_raw_translation(lang, terms)
+
         if term.insert():
             msg = _(u'Term added successfully. '
                     '<a href="%(url)s">Go to the term</a>.',

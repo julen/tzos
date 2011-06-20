@@ -179,7 +179,9 @@ class Term(object):
 
         self._subject_field = []
         self._synonyms = []
+        self._raw_synonyms = []
         self._translations = {}
+        self._raw_translations = {}
 
     @property
     def id(self):
@@ -274,6 +276,18 @@ class Term(object):
 
     synonyms = property(_get_synonyms, _set_synonyms)
 
+    @property
+    def raw_synonyms(self):
+        return self._raw_synonyms
+
+    def append_raw_synonym(self, value):
+
+        if isinstance(value, list):
+            for term in value:
+                self._raw_synonyms.append(term.strip())
+        else:
+            self._raw_synonyms.append(value.strip())
+
     def _get_translations(self):
         return self._translations
 
@@ -285,6 +299,18 @@ class Term(object):
                 self._translations.setdefault(lang, []).append(trans)
 
     translations = property(_get_translations, _set_translations)
+
+    @property
+    def raw_translations(self):
+        return self._raw_translations
+
+    def append_raw_translation(self, lang, value):
+
+        if isinstance(value, list):
+            for term in value:
+                self._raw_translations.setdefault(lang, []).append(term.strip())
+        else:
+            self._raw_translations.setdefault(lang, []).append(value.strip())
 
     def _url(self, _external=False):
         return url_for('terms.detail',

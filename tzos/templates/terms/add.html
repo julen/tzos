@@ -24,7 +24,7 @@
             <ul class="fields eqFields">
                 {{ render_field(add_form.eqlang, class="input addEq", tag_class="singleLine") }}
                 {% for field in add_form.eqterm_fields %}
-                <li class="eqField clBoth" style="display:none;">
+                <li class="eqField clBoth"{% if not add_form.errors or field.data == "" %} style="display:none;"{% endif %}>
                     {{ render_field(field, class="input in", rel="tipsy-ns", tagged=False) }}
                     <a class="rmEq b"><strong>X</strong></a>
                 </li>

@@ -47,6 +47,9 @@ $(document).ready(function () {
         $('li.showSyntrans').nextAll('li').toggle('slow');
     });
 
+    /*
+     * Autocompletes
+     */
     $("input#entry_source").autocomplete({
         source: $AUTOCOMPLETE_URL + '?type=entrySource'
     });
@@ -58,6 +61,21 @@ $(document).ready(function () {
         selectClass: 'input bsmSelect',
         containerClass: 'bsmContainer',
         listItemClass: 'b small bsmListItem',
+    });
+
+    /*
+     * Adding equivalents on-the-fly
+     */
+
+    // Disable selected option if the eqterm-* field is visible
+    $('li.eqField:visible input').each(function () {
+        var val = $(this).attr('id');
+        var lang = val.split("-");
+        lang = lang[lang.length - 1];
+
+        $(".eqFields select")
+            .find('option[value="' + lang + '"]')
+            .attr('disabled', 'disabled');
     });
 
     $(".addEq").change(function () {

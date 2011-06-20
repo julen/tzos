@@ -170,12 +170,15 @@ class Term(object):
 
         return term
 
-    def __init__(self, id=None, term=None):
+    def __init__(self, id=None, term=None, language=None):
         if id:
             self.term_id = id
 
         if term:
             self.term = term
+
+        if language:
+            self.language = language
 
         self._subject_field = []
         self._synonyms = []

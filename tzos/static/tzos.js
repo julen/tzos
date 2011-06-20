@@ -56,6 +56,15 @@ $(document).ready(function () {
     $('input[id$="originating_person"]').autocomplete({
         source: $OP_AUTOCOMPLETE_URL
     });
+    $('input[id$="syntrans_term"]').autocomplete({
+        source: function (req, res) {
+            $.getJSON($TERM_AUTOCOMPLETE_URL, {
+                term: req.term,
+                lang: $('select[id$="syntrans_lang"]').val(),
+                sf: $('select[id$="subject_field"]').val().join(";")
+            }, res);
+        }
+    });
 
     $("select#add-subject_field, \
        .editTerm select#subject_field, \

@@ -56,3 +56,17 @@ def originating_person(q):
         result_list.append(user.display_name)
 
     return json.dumps(result_list)
+
+@xhr.route('/ac/term/')
+@require_term
+def term(q):
+
+    lang = request.args.get('lang', None)
+    sf = request.args.get('sf', None)
+
+    # FIXME: we should split subjectFields and check for each field
+    qs = u'collection($collection)/martif/text/body/termEntry[descrip[@type="subjectField"]/string()="{0}"]/langSet[@xml:lang="{1}"]/tig/term[dbxml:contains(string(), "{2}")]/string()'.format(sf, lang, q).encode('utf-8')
+
+    results = dbxml.session.raw_query(qs).as_str().all()
+
+    return json.dumps(results)

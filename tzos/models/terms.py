@@ -172,7 +172,7 @@ class Term(object):
 
     def __init__(self, id=None, term=None, language=None):
         if id:
-            self.term_id = id
+            self._id = id
 
         if term:
             self.term = term
@@ -188,15 +188,15 @@ class Term(object):
 
     @property
     def id(self):
-        if hasattr(self, 'term_id'):
-            return self.term_id
+        if hasattr(self, '_id'):
+            return self._id
 
         # FIXME: check subjectField too
         qs = u'/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig[term/string()="{1}"]/data(@id)'.format(self.language, self.term)
         result = dbxml.session.query(qs, document='tzos.xml').as_str().first()
 
         if result:
-            self.term_id = result
+            self._id = result
 
         return result
 
@@ -489,7 +489,7 @@ class Term(object):
         xml = render_template(template_name, **ctx)
 
         if dbxml.session.insert_as_first(xml, where, document='tzos.xml'):
-            self.term_id = ctx['term_id']
+            self._id = ctx['term_id']
             return True
 
         return False

@@ -48,7 +48,8 @@ def entry_source(q):
 @require_term
 def originating_person(q):
 
-    results = User.query.filter(User.display_name.like(u'%{0}%'.format(q))).limit(5)
+    results = User.query \
+            .filter(User.display_name.like(u'%{0}%'.format(q))).limit(5)
 
     result_list = []
     for user in results:

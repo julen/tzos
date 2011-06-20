@@ -10,6 +10,7 @@
         <![endif]-->
         <script type=text/javascript>
             $ES_AUTOCOMPLETE_URL = "{{ url_for('xhr.entry_source') }}";
+            $OP_AUTOCOMPLETE_URL = "{{ url_for('xhr.originating_person') }}";
         </script>
         <script src="{{ url_for('.static', filename='jquery.min.js') }}"></script>
         <title>{% block title %}TZOS — {% endblock %}</title>

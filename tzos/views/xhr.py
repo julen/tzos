@@ -13,6 +13,7 @@ from functools import wraps
 from flask import Module, json, request
 
 from tzos.extensions import dbxml
+from tzos.models import User
 
 xhr = Module(__name__)
 
@@ -39,3 +40,15 @@ def entry_source(q):
     results = dbxml.session.raw_query(qs).as_str().all()
 
     return json.dumps(results)
+
+@xhr.route('/ac/originatingPerson/')
+@require_term
+def originating_person(q):
+
+    results = User.query.filter(User.display_name.like(u'%{0}%'.format(q))).limit(5)
+
+    result_list = []
+    for user in results:
+        result_list.append(user.display_name)
+
+    return json.dumps(result_list)

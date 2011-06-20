@@ -53,6 +53,9 @@ $(document).ready(function () {
     $('input[id$="entry_source"]').autocomplete({
         source: $ES_AUTOCOMPLETE_URL
     });
+    $('input[id$="originating_person"]').autocomplete({
+        source: $OP_AUTOCOMPLETE_URL
+    });
 
     $("select#add-subject_field, \
        .editTerm select#subject_field, \

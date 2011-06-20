@@ -8,19 +8,31 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from functools import wraps
+
 from flask import Module, json, request
 
 from tzos.extensions import dbxml
 
 xhr = Module(__name__)
 
+def require_term(f):
+
+    @wraps(f)
+    def decorator(*args, **kwargs):
+
+        q = request.args.get('term', None)
+
+        if not q:
+            return json.dumps({})
+
+        return f(q, *args, **kwargs)
+
+    return decorator
+
 @xhr.route('/ac/entrySource/')
-def entry_source():
-
-    q = request.args.get('term', None)
-
-    if not q:
-        return json.dumps({})
+@require_term
+def entry_source(q):
 
     qs = u'distinct-values(collection($collection)//admin[@type="entrySource"][dbxml:contains(./string(), "{0}")]/string())'.format(q).encode('utf-8')
 

@@ -268,7 +268,7 @@ class AddTermForm(BaseTermForm):
                         check_syntrans_exists])
 
     syntrans_lang = SelectFieldPlus(_(u"Language"),
-            validators=[check_required_dropdown])
+            validators=[Optional(), check_required_dropdown])
 
 
     submit = SubmitField(_(u"Add"))

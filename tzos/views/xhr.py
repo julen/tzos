@@ -14,27 +14,16 @@ from tzos.extensions import dbxml
 
 xhr = Module(__name__)
 
-@xhr.route('/autocomplete/')
-def autocomplete():
+@xhr.route('/ac/entrySource/')
+def entry_source():
 
-    t = request.args.get('type', None)
     q = request.args.get('term', None)
 
-    if not t or not q:
+    if not q:
         return json.dumps({})
 
-    type_map = {
-        'entrySource': u'distinct-values(collection($collection)//admin[@type="entrySource"][dbxml:contains(./string(), "{0}")]/string())',
-    }
+    qs = u'distinct-values(collection($collection)//admin[@type="entrySource"][dbxml:contains(./string(), "{0}")]/string())'.format(q).encode('utf-8')
 
-    try:
-        qs = type_map[t].format(q).encode('utf-8')
-    except KeyError:
-        qs = None
-
-    results = []
-
-    if qs:
-        results = dbxml.session.raw_query(qs).as_str().all()
+    results = dbxml.session.raw_query(qs).as_str().all()
 
     return json.dumps(results)

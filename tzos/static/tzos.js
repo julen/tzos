@@ -50,8 +50,8 @@ $(document).ready(function () {
     /*
      * Autocompletes
      */
-    $("input#entry_source").autocomplete({
-        source: $AUTOCOMPLETE_URL + '?type=entrySource'
+    $('input[id$="entry_source"]').autocomplete({
+        source: $ES_AUTOCOMPLETE_URL
     });
 
     $("select#add-subject_field, \

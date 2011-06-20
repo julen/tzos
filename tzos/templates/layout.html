@@ -9,7 +9,7 @@
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <script type=text/javascript>
-            $AUTOCOMPLETE_URL = "{{ url_for('xhr.autocomplete') }}";
+            $ES_AUTOCOMPLETE_URL = "{{ url_for('xhr.entry_source') }}";
         </script>
         <script src="{{ url_for('.static', filename='jquery.min.js') }}"></script>
         <title>{% block title %}TZOS — {% endblock %}</title>

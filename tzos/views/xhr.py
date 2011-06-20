@@ -13,7 +13,7 @@ from functools import wraps
 from flask import Module, json, request
 
 from tzos.extensions import dbxml
-from tzos.models import User
+from tzos.models import TermSource, User
 
 xhr = Module(__name__)
 
@@ -35,11 +35,14 @@ def require_term(f):
 @require_term
 def entry_source(q):
 
-    qs = u'distinct-values(collection($collection)//admin[@type="entrySource"][dbxml:contains(./string(), "{0}")]/string())'.format(q).encode('utf-8')
+    results = TermSource.query \
+            .filter(TermSource.name.like(u'%{0}%'.format(q))).limit(5)
 
-    results = dbxml.session.raw_query(qs).as_str().all()
+    result_list = []
+    for source in results:
+        result_list.append(source.name)
 
-    return json.dumps(results)
+    return json.dumps(result_list)
 
 @xhr.route('/ac/originatingPerson/')
 @require_term

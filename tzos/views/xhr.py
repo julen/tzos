@@ -70,7 +70,7 @@ def term(q):
 
     for field in fields:
 
-        # FIXME: we should split subjectFields and check for each field
+        # FIXME: we should look on parent subject fields too
         qs = u'collection($collection)/martif/text/body/termEntry[descrip[@type="subjectField"]/string()="{0}"]/langSet[@xml:lang="{1}"]/tig/term[dbxml:contains(string(), "{2}")]/string()'.format(field, lang, q).encode('utf-8')
 
         res = dbxml.session.raw_query(qs).as_str().all()

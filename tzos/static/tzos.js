@@ -50,6 +50,15 @@ $(document).ready(function () {
     /*
      * Autocompletes
      */
+
+    /* Helper functions */
+    $split = function (val) {
+        return val.split( /,\s*/ );
+    };
+    $extractLast = function (term) {
+        return $split(term).pop();
+    }
+
     $('input[id$="entry_source"]').autocomplete({
         source: $ES_AUTOCOMPLETE_URL
     });
@@ -65,6 +74,37 @@ $(document).ready(function () {
             }, res);
         }
     });
+    $('input[id$="concept_generic"], input[id$="_concept"]')
+        .bind("keydown", function (e) {
+            if (e.keyCode === $.ui.keyCode.TAB &&
+                $(this).data("autocomplete").menu.active) {
+                e.preventDefault();
+            }
+        })
+        .autocomplete({
+            source: function (req, res) {
+                $.getJSON($TERM_AUTOCOMPLETE_URL, {
+                    term: $extractLast(req.term),
+                    lang: $('select[id$="-language"]').val()||$('#langCode').val(),
+                    sf: $('select[id$="subject_field"]').val().join(";")
+                }, res);
+            },
+            focus: function () {
+                // prevent value inserted on focus
+                return false;
+            },
+            select: function (e, ui) {
+                var terms = $split(this.value);
+                // remove the current input
+                terms.pop();
+                // add the selected item
+                terms.push(ui.item.value);
+                // add placeholder to get the comma-and-space at the end
+                terms.push("");
+                this.value = terms.join(", ");
+                return false;
+            }
+        });
 
     /*
      * bsmSelect for multiple select fields

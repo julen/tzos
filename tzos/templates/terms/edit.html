@@ -14,6 +14,7 @@
 
 <form method="POST" action="{{ url_for('terms.edit', **request.view_args) }}" class="f1 editTerm clBoth">
 {{ form.hidden_tag() }}
+<input type="hidden" id="langCode" value="{{ term.language }}" />
 
 <div class="hTabs">
     <ul class="inlineTabs sideTabs">

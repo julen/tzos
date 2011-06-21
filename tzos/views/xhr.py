@@ -13,7 +13,7 @@ from functools import wraps
 from flask import Module, json, request
 
 from tzos.extensions import dbxml
-from tzos.models import TermSource, User
+from tzos.models import TermSource, TermSubject, User
 
 xhr = Module(__name__)
 
@@ -65,17 +65,27 @@ def term(q):
     sf = request.args.get('sf', None)
 
     results = []
+    root_fields = []
 
-    fields = sf.split(u';')
+    sfields = sf.split(u';')
 
-    for field in fields:
+    for code in sfields:
+        root_codes = TermSubject.root_codes(code)
 
-        # FIXME: we should look on parent subject fields too
-        qs = u'collection($collection)/martif/text/body/termEntry[descrip[@type="subjectField"]/string()="{0}"]/langSet[@xml:lang="{1}"]/tig/term[dbxml:contains(string(), "{2}")]/string()'.format(field, lang, q).encode('utf-8')
+        if root_codes:
+            root_fields.extend(root_codes)
 
-        res = dbxml.session.raw_query(qs).as_str().all()
+    root_fields = set(root_fields)
 
-        if res:
-            results.extend(res)
+    # FIXME: we should look on parent subject fields too
+    qs = u'''
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+    for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig[term[dbxml:contains(string(), "{1}")]]
+    where (let $fields := tokenize(term:subject_field($tig), ";") return some $f in $fields satisfies $f = tokenize("{2}", ";"))
+    return term:term($tig)
+    '''.format(lang, q, u";".join(root_fields)).encode('utf-8')
+
+    results = dbxml.session.raw_query(qs).as_str().all()
 
     return json.dumps(sorted(results))

@@ -46,18 +46,19 @@ class SelectFieldPlus(SelectField):
         """Do some black magic before yelding values."""
 
         no_sort = []
+        choices = self.choices[:]
 
         if self.sort_exceptions and self.sort:
 
             for ex in self.sort_exceptions:
                 try:
-                    i = map(itemgetter(0), self.choices).index(ex)
-                    no_sort.insert(0, self.choices.pop(i))
+                    i = map(itemgetter(0), choices).index(ex)
+                    no_sort.insert(0, choices.pop(i))
                 except ValueError:
                     pass
 
         if self.sort:
-            self.choices = sorted(self.choices, key=lambda x: x[1])
+            self.choices = sorted(choices, key=lambda x: x[1])
 
         # If there are exceptions we don't want to sort, insert them
         # at the beginning of the choices list

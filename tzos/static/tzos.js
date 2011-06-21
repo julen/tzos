@@ -74,6 +74,15 @@ $(document).ready(function () {
             }, res);
         }
     });
+    $('input[id$="cross_reference"]').autocomplete({
+        source: function (req, res) {
+            $.getJSON($TERM_AUTOCOMPLETE_URL, {
+                term: req.term,
+                lang: $('select[id$="-language"]').val()||$('#langCode').val(),
+                sf: $('select[id$="subject_field"]').val().join(";")
+            }, res);
+        }
+    });
     $('input[id$="concept_generic"], input[id$="_concept"]')
         .bind("keydown", function (e) {
             if (e.keyCode === $.ui.keyCode.TAB &&

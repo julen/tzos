@@ -53,18 +53,21 @@ is_valid_input = NotContains((u'|||', u';;;'))
 
 def check_exists(form, field):
     if field.data != u"":
-        message = _(u"This term doesn't exist in the database.")
+        message = _(u"Term '{0}' doesn't exist in the database.")
 
         lang = form.language.data
-        term = field.data
+        terms = field.data.split(u',')
 
-        # FIXME: Also check in subject field?
-        qs = u"//langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
-                format(lang, term)
-        result = dbxml.session.query(qs).as_str().first()
+        for term in terms:
+            term = term.strip()
 
-        if not result:
-            raise ValidationError(message)
+            # FIXME: Also check in subject field?
+            qs = u"/martif/text/body/termEntry/langSet[@xml:lang='{0}']/tig/term[string()='{1}']". \
+                    format(lang, term)
+            result = dbxml.session.query(qs).as_str().first()
+
+            if not result:
+                raise ValidationError(message.format(term))
 
 def check_required_dropdown(form, field):
     message = _(u"You must choose a valid option.")

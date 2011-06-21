@@ -66,6 +66,9 @@ $(document).ready(function () {
         }
     });
 
+    /*
+     * bsmSelect for multiple select fields
+     */
     $("select#add-subject_field, \
        .editTerm select#subject_field, \
        select#upload-subject_field").bsmSelect({

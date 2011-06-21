@@ -8,1166 +8,416 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-06-07 20:36+0200\n"
+"PO-Revision-Date: 2011-06-21 17:22+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0-rc1\n"
 "Generated-By: Babel 0.9.5\n"
 
-#: tzos/application.py:87
+#: tzos/application.py:91
 msgid "You must login to see this page."
 msgstr "Saioa hasi behar duzu orri hau ikusteko."
 
 #: tzos/strings.py:14
-msgid "Logic"
-msgstr "Logika"
-
-#: tzos/strings.py:15
-msgid "Application of logic"
-msgstr "Logikaren Aplikazioak"
-
-#: tzos/strings.py:16
-msgid "Deductive logic"
-msgstr "Logika Deduktiboa"
-
-#: tzos/strings.py:17
-msgid "General logic"
-msgstr "Logika Orokorra"
-
-#: tzos/strings.py:18
-msgid "Inductive logic"
-msgstr "Logika Induktiboa"
-
-#: tzos/strings.py:19
-msgid "Methodology"
-msgstr "Metodologia"
-
-#: tzos/strings.py:20
-msgid "Other specialities relating to logic"
-msgstr "Logikarekin lotutako beste espezialitate batzuk"
-
-#: tzos/strings.py:22
-msgid "Mathematics"
-msgstr "Matematika"
-
-#: tzos/strings.py:23
-msgid "Algebra"
-msgstr "Aljebra"
-
-#: tzos/strings.py:24
-msgid "Analysis and functional analysis"
-msgstr "Analisia eta Analisi Funtzionala"
-
-#: tzos/strings.py:25
-msgid "Computer Sciences"
-msgstr "Konputazioa Zientziak"
-
-#: tzos/strings.py:26
-msgid "Geometry"
-msgstr "Geometria"
-
-#: tzos/strings.py:27
-msgid "Number Theory"
-msgstr "Zenbaki Teoria"
-
-#: tzos/strings.py:28
-msgid "Numerical analysis"
-msgstr "Zenbakizko Analisia"
-
-#: tzos/strings.py:29
-msgid "Operations research"
-msgstr "Ikerkuntza eragilea"
-
-#: tzos/strings.py:30
-msgid "Probability"
-msgstr "Probabilitatea"
-
-#: tzos/strings.py:31
-msgid "Statistics"
-msgstr "Estatistika"
-
-#: tzos/strings.py:32
-msgid "Topology"
-msgstr "Topologia"
-
-#: tzos/strings.py:33
-msgid "Other mathematical specialities"
-msgstr "Matematikaren bestelako espezialitateak"
-
-#: tzos/strings.py:35
-msgid "Physics"
-msgstr "Fisika"
-
-#: tzos/strings.py:36
-msgid "Acoustics"
-msgstr "Akustika"
-
-#: tzos/strings.py:37
-msgid "Electro-magnetism"
-msgstr "Elektromagnetismoa"
-
-#: tzos/strings.py:38
-msgid "Electronics"
-msgstr "Elektronika"
-
-#: tzos/strings.py:39
-msgid "Fluids (physics of)"
-msgstr "Fluidoen Fisika"
-
-#: tzos/strings.py:40
-msgid "Mechanics"
-msgstr "Mekanika"
-
-#: tzos/strings.py:41
-msgid "Molecular physics"
-msgstr "Fisika Molekularra"
-
-#: tzos/strings.py:42
-msgid "Nuclear physics"
-msgstr "Fisika Atomiko eta Nuklearra"
-
-#: tzos/strings.py:43
-msgid "Nucleonics"
-msgstr "Nukleonika"
-
-#: tzos/strings.py:44
-msgid "Optics"
-msgstr "Optika"
-
-#: tzos/strings.py:45 tzos/strings.py:60
-msgid "Physical chemistry"
-msgstr "Kimika Fisikoa"
-
-#: tzos/strings.py:46
-msgid "Solid state physics"
-msgstr "Egoera Solidoaren Fisika"
-
-#: tzos/strings.py:47
-msgid "Theoretical physics"
-msgstr "Fisika Teorikoa"
-
-#: tzos/strings.py:48
-msgid "Thermodynamics"
-msgstr "Termodinamika"
-
-#: tzos/strings.py:49
-msgid "Units and constants"
-msgstr "Unitateak eta Konstanteak"
-
-#: tzos/strings.py:50
-msgid "High energy physics"
-msgstr "Energia Altuko Fisika"
-
-#: tzos/strings.py:51
-msgid "Other physical specialities"
-msgstr "Fisikaren bestelako espezialitateak"
-
-#: tzos/strings.py:53
-msgid "Chemistry"
-msgstr "Kimika"
-
-#: tzos/strings.py:54
-msgid "Analytical chemistry"
-msgstr "Kimika Analitikoa"
-
-#: tzos/strings.py:55 tzos/strings.py:66
-msgid "Biochemistry"
-msgstr "Biokimika"
-
-#: tzos/strings.py:56
-msgid "Inorganic chemistry"
-msgstr "Kimika Inorganikoa"
-
-#: tzos/strings.py:57
-msgid "Macromolecular chemistry"
-msgstr "Makromolekulen Kimika"
-
-#: tzos/strings.py:58
-msgid "Nuclear chemistry"
-msgstr "Kimika Nuklearra"
-
-#: tzos/strings.py:59
-msgid "Organic chemistry"
-msgstr "Kimika Organikoa"
-
-#: tzos/strings.py:61
-msgid "Other chemical specialities"
-msgstr "Kimikaren bestelako espezialitateak"
-
-#: tzos/strings.py:63
-msgid "Life sciences"
-msgstr "Biziaren Zientziak"
-
-#: tzos/strings.py:64
-msgid "Animal Biology (Zoology)"
-msgstr "Animalien Biologia (Zoologia)"
-
-#: tzos/strings.py:65
-msgid "Anthropology (physical)"
-msgstr "Antropologia (Fisikoa)"
-
-#: tzos/strings.py:67
-msgid "Biomathematics"
-msgstr "Biomatematika"
-
-#: tzos/strings.py:68
-msgid "Biometrics"
-msgstr "Biometria"
-
-#: tzos/strings.py:69
-msgid "Biophysics"
-msgstr "Biofisika"
-
-#: tzos/strings.py:70
-msgid "Cell biology"
-msgstr "Biologia Zelularra"
-
-#: tzos/strings.py:71
-msgid "Ethology"
-msgstr "Etologia"
-
-#: tzos/strings.py:72
-msgid "Genetics"
-msgstr "Genetika"
-
-#: tzos/strings.py:73
-msgid "Human biology"
-msgstr "Giza Biologia"
-
-#: tzos/strings.py:74
-msgid "Human physiology"
-msgstr "Giza Fisiologia"
-
-#: tzos/strings.py:75
-msgid "Immunology"
-msgstr "Immunologia"
-
-#: tzos/strings.py:76
-msgid "Insect biology"
-msgstr "Intsektuen Biologia (Entomologia)"
-
-#: tzos/strings.py:77
-msgid "Microbiology"
-msgstr "Mikrobiologia"
-
-#: tzos/strings.py:78
-msgid "Molecular biology"
-msgstr "Biologia Molekularra"
-
-#: tzos/strings.py:79
-msgid "Palaeontology"
-msgstr "Paleontologia"
-
-#: tzos/strings.py:80
-msgid "Plant Biology (Botany)"
-msgstr "Landareen Biologia (Botanika)"
-
-#: tzos/strings.py:81
-msgid "Radiobiology"
-msgstr "Erradiobiologia"
-
-#: tzos/strings.py:82
-msgid "Symbiosis"
-msgstr "Sinbiosia"
-
-#: tzos/strings.py:83
-msgid "Virology"
-msgstr "Birologia"
-
-#: tzos/strings.py:84
-msgid "Neurosciences"
-msgstr "Neurozientziak"
-
-#: tzos/strings.py:85
-msgid "Other biological specialities"
-msgstr "Biologiaren bestelako espezialitateak"
-
-#: tzos/strings.py:87
-msgid "Earth and Space Sciences"
-msgstr "Lurraren eta Espazioaren Zientziak"
-
-#: tzos/strings.py:88
-msgid "Atmospheric sciences"
-msgstr "Atmosferaren Zientziak"
-
-#: tzos/strings.py:89
-msgid "Climatology"
-msgstr "Klimatologia"
-
-#: tzos/strings.py:90
-msgid "Geochemistry"
-msgstr "Geokimika"
-
-#: tzos/strings.py:91
-msgid "Geodesy"
-msgstr "Geodesia"
-
-#: tzos/strings.py:92
-msgid "Geography"
-msgstr "Geografia"
-
-#: tzos/strings.py:93
-msgid "Geology"
-msgstr "Geologia"
-
-#: tzos/strings.py:94
-msgid "Geophysics"
-msgstr "Geofisika"
-
-#: tzos/strings.py:95
-msgid "Hydrology"
-msgstr "Hidrologia"
-
-#: tzos/strings.py:96
-msgid "Meteorology"
-msgstr "Meteorologia"
-
-#: tzos/strings.py:97
-msgid "Oceanography"
-msgstr "Ozeanografia"
-
-#: tzos/strings.py:98
-msgid "Soil Science"
-msgstr "Lurzoruaren Zientziak (Edafologia)"
-
-#: tzos/strings.py:99
-msgid "Space Sciences"
-msgstr "Espazioaren Zientziak"
-
-#: tzos/strings.py:100
-msgid "Other Earch, Space or Environmental specialities"
-msgstr "Lurraren eta Espazioaren edo Ingurunearen bestelako espezialitateak"
-
-#: tzos/strings.py:102
-msgid "Medical Sciences"
-msgstr "Osasun Zientziak"
-
-#: tzos/strings.py:103
-msgid "Clinical sciences"
-msgstr "Zientzia Klinikoak"
-
-#: tzos/strings.py:104
-msgid "Epidemiology"
-msgstr "Epidemiologia"
-
-#: tzos/strings.py:105
-msgid "Forensic medicine"
-msgstr "Medikuntza Forensea"
-
-#: tzos/strings.py:106
-msgid "Occupational medicine"
-msgstr "Lan Medikuntza"
-
-#: tzos/strings.py:107
-msgid "Internal medicine"
-msgstr "Barne Medikuntza"
-
-#: tzos/strings.py:108
-msgid "Nutritional sciences"
-msgstr "Elikadura Zientziak"
-
-#: tzos/strings.py:109
-msgid "Pathology"
-msgstr "Patologia"
-
-#: tzos/strings.py:110
-msgid "Pharmacodynamics"
-msgstr "Farmakodinamika"
-
-#: tzos/strings.py:111
-msgid "Pharmacology"
-msgstr "Farmakologia"
-
-#: tzos/strings.py:112
-msgid "Preventive medicine"
-msgstr "Prebentzio Medikuntza"
-
-#: tzos/strings.py:113
-msgid "Psychiatry"
-msgstr "Psikiatria"
-
-#: tzos/strings.py:114
-msgid "Public health"
-msgstr "Osasun Publikoa"
-
-#: tzos/strings.py:115
-msgid "Surgery"
-msgstr "Kirurgia"
-
-#: tzos/strings.py:116
-msgid "Toxicology"
-msgstr "Toxikologia"
-
-#: tzos/strings.py:117
-msgid "Other medical specialities"
-msgstr "Medikuntzaren bestelako espezialitateak"
-
-#: tzos/strings.py:119
-msgid "Technological Sciences"
-msgstr "Zientzia Teknologikoak"
-
-#: tzos/strings.py:120
-msgid "Aeronautical technology and engineering"
-msgstr "Ingeniaritza eta Teknologia Aeronautikoak"
-
-#: tzos/strings.py:121
-msgid "Biochemical technology"
-msgstr "Teknologia Biokimikoa"
-
-#: tzos/strings.py:122
-msgid "Chemical technology and engineering"
-msgstr "Ingeniaritza eta Teknologia Kimikoak"
-
-#: tzos/strings.py:123
-msgid "Computer technology"
-msgstr "Ordenagailuen Teknologia"
-
-#: tzos/strings.py:124
-msgid "Construction technology"
-msgstr "Eraikuntzaren Teknologia"
-
-#: tzos/strings.py:125
-msgid "Electrical technology and engineering"
-msgstr "Ingeniaritza eta Teknologia Elektrikoak"
-
-#: tzos/strings.py:126
-msgid "Electronic technology"
-msgstr "Teknologia Elektronikoa"
-
-#: tzos/strings.py:127
-msgid "Environmental technology and engineering"
-msgstr "Ingurumenaren Ingeniaritza eta Teknologia"
-
-#: tzos/strings.py:128
-msgid "Food technology"
-msgstr "Elikagaien Teknologia"
-
-#: tzos/strings.py:129
-msgid "Industrial technology"
-msgstr "Industria Teknologia"
-
-#: tzos/strings.py:130
-msgid "Instrumentation technology"
-msgstr "Instrumentazio Teknologia"
-
-#: tzos/strings.py:131
-msgid "Materials technology"
-msgstr "Materialen Teknologia"
-
-#: tzos/strings.py:132
-msgid "Mechanical engineering and technology"
-msgstr "Teknologia eta Ingeniaritza Mekanikoak"
-
-#: tzos/strings.py:133
-msgid "Medical technology"
-msgstr "Medikuntza Teknologia"
-
-#: tzos/strings.py:134
-msgid "Metallurgical technology"
-msgstr "Metalurgiaren Teknologia"
-
-#: tzos/strings.py:135
-msgid "Metal products technology"
-msgstr "Produktu Metalikoen Teknologia"
-
-#: tzos/strings.py:136
-msgid "Motor vehicle technology"
-msgstr "Ibilgailu Motordunen Teknologia"
-
-#: tzos/strings.py:137
-msgid "Mining technology"
-msgstr "Mehatze Teknologia"
-
-#: tzos/strings.py:138
-msgid "Naval techonology"
-msgstr "Ontzigintzaren Teknologia"
-
-#: tzos/strings.py:139
-msgid "Nuclear technology"
-msgstr "Teknologia Nuklearra"
-
-#: tzos/strings.py:140
-msgid "Petroleum and coal technology"
-msgstr "Ikatzaren eta Petrolioaren Teknologia"
-
-#: tzos/strings.py:141
-msgid "Power technology"
-msgstr "Energiaren Teknologia"
-
-#: tzos/strings.py:142
-msgid "Railway technology"
-msgstr "Tren Sistemen Teknologia"
-
-#: tzos/strings.py:143
-msgid "Space technology"
-msgstr "Espazioaren Teknologia"
-
-#: tzos/strings.py:144
-msgid "Telecommunications technology"
-msgstr "Telekomunikazioen Teknologia"
-
-#: tzos/strings.py:145
-msgid "Textile technology"
-msgstr "Ehungintzaren Teknologia"
-
-#: tzos/strings.py:146
-msgid "Transportation systems technology"
-msgstr "Garraio Sistemen Teknologia"
-
-#: tzos/strings.py:147
-msgid "Unit operations technology"
-msgstr "Prozesu Teknologikoak"
-
-#: tzos/strings.py:148
-msgid "Urban planning"
-msgstr "Hirigintza"
-
-#: tzos/strings.py:149
-msgid "Other technological specialities"
-msgstr "Teknologiaren bestelako espezialitateak"
-
-#: tzos/strings.py:151
-msgid "Anthropology"
-msgstr "Antropologia"
-
-#: tzos/strings.py:152
-msgid "Cultural anthropology"
-msgstr "Kulturen Antropologia"
-
-#: tzos/strings.py:153
-msgid "Ethnography and Ethnology"
-msgstr "Etnografia eta Etnologia"
-
-#: tzos/strings.py:154
-msgid "Social anthropology"
-msgstr "Gizarte Antropologia"
-
-#: tzos/strings.py:155
-msgid "Other anthropological specialities"
-msgstr "Antropologiaren bestelako espezialitateak"
-
-#: tzos/strings.py:157
-msgid "Economic Sciences"
-msgstr "Ekonomia Zientziak"
-
-#: tzos/strings.py:158
-msgid "Domestic fiscal policy and public finance"
-msgstr "Zerga Politika eta Ogasun Publiko Nazionalak"
-
-#: tzos/strings.py:159
-msgid "Econometrics"
-msgstr "Ekonometria"
-
-#: tzos/strings.py:160
-msgid "Economic accounting"
-msgstr "Ekonomia Kontabilitatea"
-
-#: tzos/strings.py:161
-msgid "Economic activity"
-msgstr "Ekonomia Jarduerak"
-
-#: tzos/strings.py:162
-msgid "Economic systems"
-msgstr "Ekonomia Sistemak"
-
-#: tzos/strings.py:163
-msgid "Economics of technological change"
-msgstr "Aldaketa Teknologikoaren Ekonomia"
-
-#: tzos/strings.py:164
-msgid "Economic theory"
-msgstr "Ekonomiaren Teoria"
-
-#: tzos/strings.py:165
-msgid "General economics"
-msgstr "Ekonomia Orokorra"
-
-#: tzos/strings.py:166
-msgid "Industrial organization and public policy"
-msgstr "Industria Antolakuntza eta Zuzendaritza"
-
-#: tzos/strings.py:167
-msgid "International economics"
-msgstr "Nazioarteko Ekonomia"
-
-#: tzos/strings.py:168
-msgid "Organization and management of enterprises"
-msgstr "Enpresen Antolakuntza eta Zuzendaritza"
-
-#: tzos/strings.py:169
-msgid "Sectorial economics"
-msgstr "Ekonomia Sektoriala"
-
-#: tzos/strings.py:170
-msgid "Other economics specialities"
-msgstr "Ekonomiaren bestelako espezialitateak"
-
-#: tzos/strings.py:172
-msgid "Juridical Sciences & Law"
-msgstr "Zientzia Juridikoak eta Zuzenbidea"
-
-#: tzos/strings.py:173
-msgid "Canon law"
-msgstr "Zuzenbide Kanonikoa"
-
-#: tzos/strings.py:174
-msgid "General theory and methods"
-msgstr "Teoria eta metodo Orokorrak"
-
-#: tzos/strings.py:175
-msgid "International law"
-msgstr "Nazioarteko Zuzenbidea"
-
-#: tzos/strings.py:176
-msgid "Legal organization"
-msgstr "Antolakuntza Juridikoa"
-
-#: tzos/strings.py:177
-msgid "National law and legislation"
-msgstr "Legegintza eta Lege Nazionalak"
-
-#: tzos/strings.py:178
-msgid "Other juridical specialities"
-msgstr "Bestelako espezialitate Juridikoak"
-
-#: tzos/strings.py:180
-msgid "Linguistics"
-msgstr "Hizkuntzalaritza"
-
-#: tzos/strings.py:181
-msgid "Applied linguistics"
-msgstr "Hizkuntzalaritza Aplikatua"
-
-#: tzos/strings.py:182
-msgid "Diachronic linguistics"
-msgstr "Hizkuntzalaritza Diakronikoa"
-
-#: tzos/strings.py:183
-msgid "Linguistic geography"
-msgstr "Geografia Linguistikoa"
-
-#: tzos/strings.py:184
-msgid "Linguistic theory"
-msgstr "Teoria Linguistikoa"
-
-#: tzos/strings.py:185
-msgid "Synchronic linguistics"
-msgstr "Hizkuntzalaritza Sinkronikoa"
-
-#: tzos/strings.py:186
-msgid "Other linguistic specialities"
-msgstr "Hizkuntzalaritzaren bestelako espezialitateak"
-
-#: tzos/strings.py:188
-msgid "Pedagogy"
-msgstr "Pedagogia"
-
-#: tzos/strings.py:189
-msgid "Educational theory and methods"
-msgstr "Hezkuntza Teoria eta Metodoak"
-
-#: tzos/strings.py:190
-msgid "Organization and planning of education"
-msgstr "Hezkuntzaren Antolakuntza eta Planifikazioa"
-
-#: tzos/strings.py:191
-msgid "Teacher training and employment"
-msgstr "Irakasleen Prestakuntza eta Enplegua"
-
-#: tzos/strings.py:192
-msgid "Other pedagogical specialities"
-msgstr "Pedagogiaren bestelako espezialitateak"
-
-#: tzos/strings.py:194
-msgid "Psychology"
-msgstr "Psikologia"
-
-#: tzos/strings.py:195
-msgid "Abnormal psychology"
-msgstr "Patologia"
-
-#: tzos/strings.py:196
-msgid "Adolescent and child psychology"
-msgstr "Haurren eta Nerabeen Psikologia"
-
-#: tzos/strings.py:197
-msgid "Counselling and guidance"
-msgstr "Aholkularitza eta Laguntza"
-
-#: tzos/strings.py:198
-msgid "Educational psichology"
-msgstr "Psikopedagogia"
-
-#: tzos/strings.py:199
-msgid "Evaluation and measurement in psychology"
-msgstr "Ebaluazioa eta Diagnostikoa Psikologian"
-
-#: tzos/strings.py:200
-msgid "Experimental psychology"
-msgstr "Psikologia Esperimentala"
-
-#: tzos/strings.py:201
-msgid "General psychology"
-msgstr "Psikologia Orokorra"
-
-#: tzos/strings.py:202
-msgid "Geriatric psychology"
-msgstr "Zahartzaroaren Psikologia"
-
-#: tzos/strings.py:203
-msgid "Occupational and personnel psychology"
-msgstr "Industria Psikologia"
-
-#: tzos/strings.py:204
-msgid "Parapsychology"
-msgstr "Parapsikologia"
-
-#: tzos/strings.py:205
-msgid "Personality"
-msgstr "Nortasuna"
-
-#: tzos/strings.py:206
-msgid "Psychological study of social issues"
-msgstr "Gizarte Gaien Azterketa Psikologikoa"
-
-#: tzos/strings.py:207
-msgid "Psychopharmacology"
-msgstr "Psikofarmakologia"
-
-#: tzos/strings.py:208
-msgid "Social psychology"
-msgstr "Gizarte Psikologia"
-
-#: tzos/strings.py:209
-msgid "Other psychological specialities"
-msgstr "Psikologiaren bestelako espezialitateak"
-
-#: tzos/strings.py:211
-msgid "Ethics"
-msgstr "Etika"
-
-#: tzos/strings.py:212
-msgid "Classical ethics"
-msgstr "Etika Klasikoa"
-
-#: tzos/strings.py:213
-msgid "Ethics of individuals"
-msgstr "Gizabanakoen Etika"
-
-#: tzos/strings.py:214
-msgid "Group ethics"
-msgstr "Talde Etika"
-
-#: tzos/strings.py:215
-msgid "Prospective ethics"
-msgstr "Etika Prospektiboa"
-
-#: tzos/strings.py:216
-msgid "Other specialities relating to ethics"
-msgstr "Etikaren bestelako espezialitateak"
-
-#: tzos/strings.py:218 tzos/strings.py:228
-msgid "Philosophy"
-msgstr "Filosofia"
-
-#: tzos/strings.py:219
-msgid "Philosophy of knowledge"
-msgstr "Ezagutzaren Filosofia"
-
-#: tzos/strings.py:220
-msgid "Philosophical anthropology"
-msgstr "Antropologia Filosofikoa"
-
-#: tzos/strings.py:221
-msgid "General philosophy"
-msgstr "Filosofia Orokorra"
-
-#: tzos/strings.py:222
-msgid "Philosophical systems"
-msgstr "Sistema Filosofikoak"
-
-#: tzos/strings.py:223
-msgid "Philosophy of science"
-msgstr "Zientziaren Filosofia"
-
-#: tzos/strings.py:224
-msgid "Philosophy of nature"
-msgstr "Naturaren Filosofia"
-
-#: tzos/strings.py:225
-msgid "Social philosophy"
-msgstr "Gizarte Filosofia"
-
-#: tzos/strings.py:226
-msgid "Philosophical doctrines"
-msgstr "Doktrina Filosofikoak"
-
-#: tzos/strings.py:227
-msgid "Other philosophical specialities"
-msgstr "Filosofiaren bestelako espezialitateak"
-
-#: tzos/strings.py:232
 msgid "Standard"
 msgstr "Estandarizatua"
 
-#: tzos/strings.py:233 tzos/strings.py:297
+#: tzos/strings.py:15 tzos/strings.py:79
 msgid "Preferred"
 msgstr "Hobetsia"
 
-#: tzos/strings.py:234 tzos/strings.py:298
+#: tzos/strings.py:16 tzos/strings.py:80
 msgid "Admitted"
 msgstr "Onartua"
 
-#: tzos/strings.py:235 tzos/strings.py:299
+#: tzos/strings.py:17 tzos/strings.py:81
 msgid "Deprecated"
 msgstr "Baztergarria"
 
-#: tzos/strings.py:236 tzos/strings.py:300
+#: tzos/strings.py:18 tzos/strings.py:82
 msgid "Superseded"
 msgstr "Ordeztua"
 
-#: tzos/strings.py:237
+#: tzos/strings.py:19
 msgid "Legal"
 msgstr "Legala"
 
-#: tzos/strings.py:238
+#: tzos/strings.py:20
 msgid "Regulated"
 msgstr "Arautua"
 
-#: tzos/strings.py:239
+#: tzos/strings.py:21
 msgid "Encoded"
 msgstr "Kodetua"
 
-#: tzos/strings.py:240
+#: tzos/strings.py:22
 msgid "Used"
 msgstr "Erabilia"
 
-#: tzos/strings.py:244
+#: tzos/strings.py:26
 msgid "Abbreviation"
 msgstr "Laburdura"
 
-#: tzos/strings.py:245
+#: tzos/strings.py:27
 msgid "Acronym"
 msgstr "Akronimoa"
 
-#: tzos/strings.py:246
+#: tzos/strings.py:28
 msgid "Clipped term"
 msgstr "Laburketa"
 
-#: tzos/strings.py:247
+#: tzos/strings.py:29
 msgid "Common name"
 msgstr "Izen arrunta"
 
-#: tzos/strings.py:248
+#: tzos/strings.py:30
 msgid "Entry term"
 msgstr "Sarrera terminoa"
 
-#: tzos/strings.py:249
+#: tzos/strings.py:31
 msgid "Equation"
 msgstr "Ekuazioa"
 
-#: tzos/strings.py:250
+#: tzos/strings.py:32
 msgid "Formula"
 msgstr "Formula"
 
-#: tzos/strings.py:251
+#: tzos/strings.py:33
 msgid "Full form"
 msgstr "Forma osoa"
 
-#: tzos/strings.py:252
+#: tzos/strings.py:34
 msgid "Initialism"
 msgstr "Sigla"
 
-#: tzos/strings.py:253
+#: tzos/strings.py:35
 msgid "Internationalism"
 msgstr "Nazioarteko forma"
 
-#: tzos/strings.py:254
+#: tzos/strings.py:36
 msgid "International scientific term"
 msgstr "Nazioarteko termino zientifikoa"
 
-#: tzos/strings.py:255
+#: tzos/strings.py:37
 msgid "Logical expression"
 msgstr "Adierazpide logikoa"
 
-#: tzos/strings.py:256
+#: tzos/strings.py:38
 msgid "Part number"
 msgstr "Pieza zenbakia"
 
-#: tzos/strings.py:257
+#: tzos/strings.py:39
 msgid "Phraseological unit"
 msgstr "Unitate fraseologikoa"
 
-#: tzos/strings.py:258
+#: tzos/strings.py:40
 msgid "Transcribed form"
 msgstr "Transkripzioa"
 
-#: tzos/strings.py:259
+#: tzos/strings.py:41
 msgid "Transliterated form"
 msgstr "Transliterazioa"
 
-#: tzos/strings.py:260
+#: tzos/strings.py:42
 msgid "Short form"
 msgstr "Forma laburra"
 
-#: tzos/strings.py:261
+#: tzos/strings.py:43
 msgid "Shortcut"
 msgstr "Lasterbidea"
 
-#: tzos/strings.py:262
+#: tzos/strings.py:44
 msgid "SKU (Stock Keeping Unit)"
 msgstr "Erreferentzia zenbakia (Stock Keeping Unit)"
 
-#: tzos/strings.py:263
+#: tzos/strings.py:45
 msgid "Standard text"
 msgstr "Testu arrunta"
 
-#: tzos/strings.py:264
+#: tzos/strings.py:46
 msgid "String"
 msgstr "Katea"
 
-#: tzos/strings.py:265
+#: tzos/strings.py:47
 msgid "Symbol"
 msgstr "Sinboloa"
 
-#: tzos/strings.py:266
+#: tzos/strings.py:48
 msgid "Synonym"
 msgstr "Sinonimoa"
 
-#: tzos/strings.py:267
+#: tzos/strings.py:49
 msgid "Synonymous phrase"
 msgstr "Sintagma sinonimoa"
 
-#: tzos/strings.py:268
+#: tzos/strings.py:50
 msgid "Variant"
 msgstr "Aldakia"
 
-#: tzos/strings.py:269 tzos/strings.py:278
+#: tzos/strings.py:51 tzos/strings.py:60
 msgid "Other"
 msgstr "Bestelakoa"
 
-#: tzos/strings.py:273
+#: tzos/strings.py:55
 msgid "Noun"
 msgstr "Izena"
 
-#: tzos/strings.py:274
+#: tzos/strings.py:56
 msgid "Verb"
 msgstr "Aditza"
 
-#: tzos/strings.py:275
+#: tzos/strings.py:57
 msgid "Adjective"
 msgstr "Adjektiboa"
 
-#: tzos/strings.py:276
+#: tzos/strings.py:58
 msgid "Adverb"
 msgstr "Adberbioa"
 
-#: tzos/strings.py:277
+#: tzos/strings.py:59
 msgid "Proper noun"
 msgstr "Izen berrezia"
 
-#: tzos/strings.py:282
+#: tzos/strings.py:64
 msgid "Notes"
 msgstr "Apunteak"
 
-#: tzos/strings.py:283
+#: tzos/strings.py:65
 msgid "End of degree projects"
 msgstr "Karrera bukaerako proiektuak"
 
-#: tzos/strings.py:284
+#: tzos/strings.py:66
 msgid "Research projects"
 msgstr "Ikerkuntza proiektuak"
 
-#: tzos/strings.py:285
+#: tzos/strings.py:67
 msgid "Theses"
 msgstr "Tesiak"
 
-#: tzos/strings.py:289
+#: tzos/strings.py:71
 msgid "Imported"
 msgstr "Inportatuta"
 
-#: tzos/strings.py:290
+#: tzos/strings.py:72
 msgid "Starter"
 msgstr "Hasierakoa"
 
-#: tzos/strings.py:291
+#: tzos/strings.py:73
 msgid "Working"
 msgstr "Lantzen"
 
-#: tzos/strings.py:292
+#: tzos/strings.py:74
 msgid "Consolidated"
 msgstr "Onartuta"
 
-#: tzos/strings.py:293
+#: tzos/strings.py:75
 msgid "Archived"
 msgstr "Artxibatuta"
 
-#: tzos/forms/account.py:21
-msgid "You can only use letters, numbers or dashes"
+#: tzos/forms/account.py:23
+#, fuzzy
+msgid "You can only use letters, numbers or dashes."
 msgstr "Letrak, zenbakiak edo marrak erabil ditzakezu soilik"
 
-#: tzos/forms/account.py:27
+#: tzos/forms/account.py:28
+msgid "This doesn't seem to be a full name."
+msgstr ""
+
+#: tzos/forms/account.py:33
 msgid "Username or email address"
 msgstr "Erabiltzaile-izena edo helbide elektronikoa"
 
-#: tzos/forms/account.py:29
+#: tzos/forms/account.py:35
 msgid "You must provide an email or username."
 msgstr "Helbide elektronikoa edo erabiltzaile-izena eman behar duzu."
 
-#: tzos/forms/account.py:31 tzos/forms/account.py:45 tzos/forms/account.py:80
+#: tzos/forms/account.py:37 tzos/forms/account.py:51 tzos/forms/account.py:98
 #: tzos/templates/account/settings.html:14
 msgid "Password"
 msgstr "Pasahitza"
 
-#: tzos/forms/account.py:33
+#: tzos/forms/account.py:39
 msgid "Remember me"
 msgstr "Gogoratu"
 
-#: tzos/forms/account.py:35
+#: tzos/forms/account.py:41
 msgid "Login"
 msgstr "Hasi saioa"
 
-#: tzos/forms/account.py:41 tzos/forms/admin.py:18
+#: tzos/forms/account.py:47 tzos/forms/admin.py:19
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#: tzos/forms/account.py:42
+#: tzos/forms/account.py:48
 msgid "Username is required."
 msgstr "Erabiltzaile-izena beharrezkoa da."
 
-#: tzos/forms/account.py:46 tzos/forms/account.py:81
+#: tzos/forms/account.py:52 tzos/forms/account.py:99
 msgid "Password is required."
 msgstr "Pasahitza beharrezkoa da."
 
-#: tzos/forms/account.py:48
+#: tzos/forms/account.py:54
 msgid "Repeat Password"
 msgstr "Errepikatu pasahitza"
 
-#: tzos/forms/account.py:50
+#: tzos/forms/account.py:56
 msgid "Passwords don't match"
 msgstr "Pasahitzak ez datoz bat"
 
-#: tzos/forms/account.py:52 tzos/templates/account/settings.html:13
+#: tzos/forms/account.py:58 tzos/templates/account/settings.html:13
 msgid "Email address"
 msgstr "Helbide elektronikoa"
 
-#: tzos/forms/account.py:53
+#: tzos/forms/account.py:59
 msgid "Email address is required."
 msgstr "Helbide elektronikoa beharrezkoa da."
 
-#: tzos/forms/account.py:54 tzos/forms/account.py:74 tzos/forms/account.py:100
+#: tzos/forms/account.py:60 tzos/forms/account.py:83 tzos/forms/account.py:92
+#: tzos/forms/account.py:118
 msgid "A valid email address is required."
 msgstr "Beharrezkoa da baliozko helbide elektronikoa."
 
-#: tzos/forms/account.py:56
+#: tzos/forms/account.py:62 tzos/forms/account.py:130
+msgid "Full name"
+msgstr ""
+
+#: tzos/forms/account.py:63 tzos/forms/account.py:131
+#, fuzzy
+msgid "Full name is required."
+msgstr "Iizena beharrezkoa da."
+
+#: tzos/forms/account.py:66
 msgid "Copy the words appearing below"
 msgstr "Kopiatu azpiko hitzak"
 
-#: tzos/forms/account.py:58
+#: tzos/forms/account.py:68
 msgid "Signup"
 msgstr "Eman izena"
 
-#: tzos/forms/account.py:64
+#: tzos/forms/account.py:74
 msgid "This username is taken."
 msgstr "Erabiltzaile-izena hartuta dago."
 
-#: tzos/forms/account.py:69 tzos/forms/account.py:108
+#: tzos/forms/account.py:79 tzos/forms/account.py:126
 msgid "This email is taken."
 msgstr "Helbide elektronikoa hartuta dago."
 
-#: tzos/forms/account.py:73 tzos/forms/account.py:98
+#: tzos/forms/account.py:87
+msgid "Email provider not allowed."
+msgstr ""
+
+#: tzos/forms/account.py:91 tzos/forms/account.py:116
 msgid "Your email address"
 msgstr "Helbide elektronikoa"
 
-#: tzos/forms/account.py:76
+#: tzos/forms/account.py:94
 msgid "Recover password"
 msgstr "Berreskuratu pasahitza"
 
-#: tzos/forms/account.py:83
+#: tzos/forms/account.py:101
 msgid "Repeat password"
 msgstr "Errepikatu pasahitza"
 
-#: tzos/forms/account.py:85
+#: tzos/forms/account.py:103
 msgid "Passwords don't match."
 msgstr "Pasahitzak ez datoz bat."
 
-#: tzos/forms/account.py:90
+#: tzos/forms/account.py:108
 msgid "Reset password"
 msgstr "Berrezarri pasahitza"
 
-#: tzos/forms/account.py:94
+#: tzos/forms/account.py:112
 msgid "Change password"
 msgstr "Aldatu pasahitza"
 
-#: tzos/forms/account.py:99
+#: tzos/forms/account.py:117
 msgid "Email address required."
 msgstr "Helbide elektronikoa beharrezkoa da."
 
-#: tzos/forms/account.py:102
+#: tzos/forms/account.py:120
 msgid "Edit email address"
 msgstr "Editatu helbide elektronikoa"
 
-#: tzos/forms/account.py:112
-msgid "Display name"
-msgstr "Bistaratzeko izena"
-
-#: tzos/forms/account.py:114 tzos/templates/user/profile.html:24
+#: tzos/forms/account.py:134 tzos/templates/user/profile.html:24
 msgid "Website"
 msgstr "Webgunea"
 
-#: tzos/forms/account.py:116
+#: tzos/forms/account.py:136
 msgid "The URL must be valid."
 msgstr "URLak baliozkoa izan behar du."
 
-#: tzos/forms/account.py:118 tzos/templates/user/profile.html:29
+#: tzos/forms/account.py:138 tzos/templates/user/profile.html:29
 msgid "Company/Organization"
 msgstr "Enpresa/Erakundea"
 
-#: tzos/forms/account.py:120 tzos/templates/user/profile.html:34
+#: tzos/forms/account.py:140 tzos/templates/user/profile.html:34
 msgid "Location"
 msgstr "Kokalekua"
 
-#: tzos/forms/account.py:122
+#: tzos/forms/account.py:142
 msgid "Update information"
 msgstr "Eguneratu informazioa"
 
-#: tzos/forms/admin.py:22 tzos/templates/admin/permissions.html:8
+#: tzos/forms/admin.py:23 tzos/templates/admin/permissions.html:8
 #: tzos/templates/user/profile.html:38
 msgid "Role"
 msgstr "Eginkizuna"
 
-#: tzos/forms/admin.py:24
+#: tzos/forms/admin.py:25
 msgid "Modify permissions"
 msgstr "Aldatu baimenak"
 
-#: tzos/forms/admin.py:29 tzos/templates/admin/languages.html:9
+#: tzos/forms/admin.py:30
+msgid "Original language name as it should be displayed on the interface."
+msgstr ""
+
+#: tzos/forms/admin.py:32 tzos/templates/admin/languages.html:9
 msgid "Language name"
 msgstr "Hizkuntzaren izena"
 
-#: tzos/forms/admin.py:30
+#: tzos/forms/admin.py:33
 msgid "Language name is required."
 msgstr "Hizkuntzaren izena beharrezkoa da."
 
-#: tzos/forms/admin.py:33
+#: tzos/forms/admin.py:35
 msgid "Language code"
 msgstr "Hizkuntzaren kodea"
 
-#: tzos/forms/admin.py:35
+#: tzos/forms/admin.py:37
 msgid "Language code must be exactly two characters length."
 msgstr "Hizkuntza-kodea bi karaktere luze izan behar da."
 
-#: tzos/forms/admin.py:36
+#: tzos/forms/admin.py:38
 msgid "Language code is required."
 msgstr "Hizkuntza-kodea beharrezkoa da."
 
-#: tzos/forms/admin.py:39
+#: tzos/forms/admin.py:41
 msgid "Add language"
 msgstr "Gehitu hizkuntza"
+
+#: tzos/forms/admin.py:46 tzos/forms/admin.py:62
+#: tzos/templates/user/profile.html:19
+msgid "Name"
+msgstr "Izena"
+
+#: tzos/forms/admin.py:47 tzos/forms/admin.py:63
+msgid "Name is required."
+msgstr "Iizena beharrezkoa da."
+
+#: tzos/forms/admin.py:49
+msgid "Parent"
+msgstr "Gurasoa"
+
+#: tzos/forms/admin.py:53 tzos/forms/admin.py:67
+msgid "Create"
+msgstr "Sortu"
+
+#: tzos/forms/admin.py:57 tzos/forms/admin.py:71
+msgid "Edit"
+msgstr "Editatu"
 
 #: tzos/forms/comments.py:19
 msgid "Term id is required."
@@ -1181,176 +431,184 @@ msgstr "Iruzkina beharrezkoa da."
 msgid "Save"
 msgstr "Gorde"
 
-#: tzos/forms/fields.py:33
-msgid "Not a valid choice"
-msgstr "Ez da baliozko aukera"
+#: tzos/forms/fields.py:27
+msgid "Parent…"
+msgstr "Gurasoa…"
 
-#: tzos/forms/search.py:19
-msgid "Keywords"
-msgstr "Gako-hitzak"
-
-#: tzos/forms/search.py:21 tzos/forms/terms.py:275 tzos/forms/terms.py:285
-#: tzos/forms/terms.py:294
-msgid "Language"
-msgstr "Hizkuntza"
-
-#: tzos/forms/search.py:27 tzos/forms/terms.py:270 tzos/forms/terms.py:281
-msgid "Term"
-msgstr "Terminoa"
-
-#: tzos/forms/search.py:28 tzos/forms/terms.py:212
-#: tzos/templates/macros/_util.html:74
-msgid "Definition"
-msgstr "Definizioa"
-
-#: tzos/forms/search.py:29 tzos/forms/terms.py:201
-#: tzos/templates/macros/_util.html:82
-msgid "Context"
-msgstr "Testuingurua"
-
-#: tzos/forms/search.py:30 tzos/forms/terms.py:223
-#: tzos/templates/macros/_util.html:86
-msgid "Example"
-msgstr "Adibidea"
-
-#: tzos/forms/search.py:31 tzos/forms/terms.py:230
-#: tzos/templates/macros/_util.html:78
-msgid "Explanation"
-msgstr "Azalpena"
-
-#: tzos/forms/search.py:32 tzos/forms/terms.py:246
-#: tzos/templates/macros/_util.html:131
-msgid "Hyponym"
-msgstr "Hiponimoa"
-
-#: tzos/forms/search.py:33 tzos/forms/terms.py:248
-#: tzos/templates/macros/_util.html:135
-msgid "Hypernym"
-msgstr "Hiperonimoa"
-
-#: tzos/forms/search.py:34 tzos/forms/terms.py:250
-#: tzos/templates/macros/_util.html:139
-msgid "Antonym"
-msgstr "Antonimoa"
-
-#: tzos/forms/search.py:35 tzos/forms/terms.py:255
-msgid "Related concept"
-msgstr "Erlazionatutako kontzeptua"
-
-#: tzos/forms/search.py:37
-msgid "Search field"
-msgstr "Bilaketa-eremua"
-
-#: tzos/forms/search.py:46
-msgid "Terms per page"
-msgstr "Terminoak orriko"
-
-#: tzos/forms/search.py:51 tzos/forms/search.py:54 tzos/forms/search.py:62
-#: tzos/forms/search.py:68 tzos/forms/search.py:71 tzos/views/frontend.py:27
-#: tzos/views/search.py:116 tzos/views/search.py:118 tzos/views/search.py:120
-#: tzos/views/search.py:123
+#: tzos/forms/fields.py:29
 msgid "All"
 msgstr "Denak"
 
-#: tzos/forms/search.py:52 tzos/forms/terms.py:174
+#: tzos/forms/fields.py:82
+msgid "Not a valid choice"
+msgstr "Ez da baliozko aukera"
+
+#: tzos/forms/fields.py:101
+#, python-format
+msgid "'%(value)s' is not a valid choice for this field"
+msgstr ""
+
+#: tzos/forms/search.py:18
+msgid "Keywords"
+msgstr "Gako-hitzak"
+
+#: tzos/forms/search.py:20 tzos/forms/terms.py:260 tzos/forms/terms.py:273
+#: tzos/forms/terms.py:289
+msgid "Language"
+msgstr "Hizkuntza"
+
+#: tzos/forms/search.py:26
+msgid "All conditions must be met (AND style search)."
+msgstr ""
+
+#: tzos/forms/search.py:27
+msgid "Any of the conditions must be met (OR style search)."
+msgstr ""
+
+#: tzos/forms/search.py:29
+#, fuzzy
+msgid "Search mode"
+msgstr "Ikerkuntza proiektuak"
+
+#: tzos/forms/search.py:35 tzos/forms/terms.py:255 tzos/forms/terms.py:269
+msgid "Term"
+msgstr "Terminoa"
+
+#: tzos/forms/search.py:36 tzos/forms/terms.py:199
+#: tzos/templates/macros/_util.html:77
+msgid "Definition"
+msgstr "Definizioa"
+
+#: tzos/forms/search.py:37 tzos/forms/terms.py:188
+#: tzos/templates/macros/_util.html:85
+msgid "Context"
+msgstr "Testuingurua"
+
+#: tzos/forms/search.py:38 tzos/forms/terms.py:210
+#: tzos/templates/macros/_util.html:89
+msgid "Example"
+msgstr "Adibidea"
+
+#: tzos/forms/search.py:39 tzos/forms/terms.py:217
+#: tzos/templates/macros/_util.html:81
+msgid "Explanation"
+msgstr "Azalpena"
+
+#: tzos/forms/search.py:40 tzos/forms/terms.py:232
+#: tzos/templates/macros/_util.html:139
+msgid "Hyponym"
+msgstr "Hiponimoa"
+
+#: tzos/forms/search.py:41 tzos/forms/terms.py:234
+#: tzos/templates/macros/_util.html:143
+msgid "Hypernym"
+msgstr "Hiperonimoa"
+
+#: tzos/forms/search.py:42 tzos/forms/terms.py:236
+#: tzos/templates/macros/_util.html:147
+msgid "Antonym"
+msgstr "Antonimoa"
+
+#: tzos/forms/search.py:43 tzos/forms/terms.py:241
+msgid "Related concept"
+msgstr "Erlazionatutako kontzeptua"
+
+#: tzos/forms/search.py:45
+msgid "Search field"
+msgstr "Bilaketa-eremua"
+
+#: tzos/forms/search.py:55
+msgid "Terms per page"
+msgstr "Terminoak orriko"
+
+#: tzos/forms/search.py:60 tzos/forms/terms.py:161
 msgid "Subject field"
 msgstr "Jakintza-arloa"
 
-#: tzos/forms/search.py:55 tzos/forms/terms.py:235
-#: tzos/templates/macros/_util.html:108
+#: tzos/forms/search.py:63 tzos/templates/macros/_util.html:111
 msgid "Appears in"
 msgstr "Hemen agertzen da"
 
-#: tzos/forms/search.py:57 tzos/forms/terms.py:168
-#: tzos/templates/macros/_util.html:101
+#: tzos/forms/search.py:66 tzos/forms/terms.py:154
+#: tzos/templates/macros/_util.html:104
 msgid "Origin"
 msgstr "Jatorria"
 
-#: tzos/forms/search.py:63 tzos/templates/macros/_util.html:127
+#: tzos/forms/search.py:72 tzos/forms/terms.py:227
+#: tzos/templates/macros/_util.html:135
 msgid "Normative level"
 msgstr "Arau-maila"
 
-#: tzos/forms/search.py:66
+#: tzos/forms/search.py:75 tzos/forms/terms.py:229
 msgid "Normative organization"
 msgstr "Erakunde arau-emailea"
 
-#: tzos/forms/search.py:69 tzos/forms/terms.py:260
+#: tzos/forms/search.py:78 tzos/forms/terms.py:245
 msgid "Part of Speech"
 msgstr "Kategoria gramatikala"
 
-#: tzos/forms/search.py:72 tzos/forms/terms.py:264
-#: tzos/templates/macros/_util.html:123
+#: tzos/forms/search.py:81 tzos/forms/terms.py:249
+#: tzos/templates/macros/_util.html:127
 msgid "Term type"
 msgstr "Termino mota"
 
-#: tzos/forms/search.py:74
+#: tzos/forms/search.py:84
 msgid "Search"
 msgstr "Bilatu"
 
-#: tzos/forms/terms.py:29
+#: tzos/forms/terms.py:28
 msgid "You can only use letters."
 msgstr "Letrak erabil ditzakezu soilik."
 
-#: tzos/forms/terms.py:49
+#: tzos/forms/terms.py:48
 #, python-format
 msgid "Illegal input, can't contain ‘%(value)s’."
 msgstr "Sarrera baliogabea, ezin du ‘%(value)s’ izan."
 
-#: tzos/forms/terms.py:57 tzos/forms/terms.py:95
-msgid "This term doesn't exist in the database."
+#: tzos/forms/terms.py:56
+#, fuzzy
+msgid "Term '{0}' doesn't exist in the database."
 msgstr "Termino hau ez dago datu-basean."
 
-#: tzos/forms/terms.py:71
+#: tzos/forms/terms.py:73
 msgid "You must choose a valid option."
 msgstr "Baliozko aukera aukeratu behar duzu."
 
-#: tzos/forms/terms.py:77
+#: tzos/forms/terms.py:79
 msgid "This term already exists in the database."
 msgstr "Termino hau datu-basean dago jada."
 
-#: tzos/forms/terms.py:88
+#: tzos/forms/terms.py:90
 msgid "You must specify a term."
 msgstr "Terminoa zehaztu behar duzu."
 
-#: tzos/forms/terms.py:109
+#: tzos/forms/terms.py:97
+msgid "This term doesn't exist in the database."
+msgstr "Termino hau ez dago datu-basean."
+
+#: tzos/forms/terms.py:111
 msgid "Administrative status is not set."
 msgstr "Egoera administratiboa ezarri gabe dago."
 
-#: tzos/forms/terms.py:123
-msgid "Name is required."
-msgstr "Iizena beharrezkoa da."
-
-#: tzos/forms/terms.py:125
-msgid "Parent"
-msgstr "Gurasoa"
-
-#: tzos/forms/terms.py:129
-msgid "Create"
-msgstr "Sortu"
-
-#: tzos/forms/terms.py:133
-msgid "Edit"
-msgstr "Editatu"
-
-#: tzos/forms/terms.py:169
+#: tzos/forms/terms.py:155
 msgid "Origin is required."
 msgstr "Jatorria beharrezkoa da."
 
-#: tzos/forms/terms.py:172
+#: tzos/forms/terms.py:158
 msgid "I want this term to be public."
 msgstr "Terminoa publiko izatea nahi dut."
 
-#: tzos/forms/terms.py:177
-msgid "Author"
-msgstr "Egilea"
+#: tzos/forms/terms.py:164
+msgid "Originating person"
+msgstr ""
 
-#: tzos/forms/terms.py:178
+#: tzos/forms/terms.py:165
 msgid "If you leave this field blank, that means you are the term author."
 msgstr ""
 "Eremu hau hutsik uzten baduzu, horrek esan nahi du zu zarela terminoaren "
 "egilea."
 
-#: tzos/forms/terms.py:198
+#: tzos/forms/terms.py:185
 msgid ""
 "A text which illustrates a concept or a term by containing the concept "
 "designation itself. It must be authentic."
@@ -1359,15 +617,15 @@ msgstr ""
 "testuan (testuinguruan) agertu behar du. Benetako iturri batetik "
 "hartutakoa izan behar du."
 
-#: tzos/forms/terms.py:205
+#: tzos/forms/terms.py:192
 msgid "A related term."
 msgstr "Erlazionatutako terminoa."
 
-#: tzos/forms/terms.py:206
+#: tzos/forms/terms.py:193
 msgid "Cross reference"
 msgstr "Erreferentzia gurutzatua"
 
-#: tzos/forms/terms.py:210
+#: tzos/forms/terms.py:197
 msgid ""
 "A descriptive statement which serves to differentiate from related "
 "concepts."
@@ -1375,15 +633,15 @@ msgstr ""
 "Kontzeptua deskribatu eta ulergarri egiten duen adierazpena; antzeko "
 "kontzeptuetatik bereizteko balio du."
 
-#: tzos/forms/terms.py:216
+#: tzos/forms/terms.py:203
 msgid "The source of the terminological entry."
 msgstr "Sarrera terminologikoaren iturria."
 
-#: tzos/forms/terms.py:217
+#: tzos/forms/terms.py:204
 msgid "Entry source"
 msgstr "Iturria"
 
-#: tzos/forms/terms.py:221
+#: tzos/forms/terms.py:208
 msgid ""
 "A text which illustrates a concept or a term. It can be an invented "
 "sentence."
@@ -1391,7 +649,7 @@ msgstr ""
 "Kontzeptu edo terminoa ilustratzeko testua. Asmatutako esaldia izan "
 "daiteke."
 
-#: tzos/forms/terms.py:227
+#: tzos/forms/terms.py:214
 msgid ""
 "A statement that describes and clarifies a concept and makes it "
 "understandable, but does not necessarily differentiate it from other "
@@ -1400,15 +658,11 @@ msgstr ""
 "Kontzeptua deskribatu eta ulergarri egiten duen adierazpena, baina ez du "
 "zertan beste kontzeptuez bereizi behar."
 
-#: tzos/forms/terms.py:242
-msgid "Normative authorization"
-msgstr "Arau-maila"
+#: tzos/forms/terms.py:221
+msgid "Product subset"
+msgstr ""
 
-#: tzos/forms/terms.py:244
-msgid "Organization"
-msgstr "Erakundea"
-
-#: tzos/forms/terms.py:253
+#: tzos/forms/terms.py:239
 msgid ""
 "A concept that has an associative relation to another concept, such as "
 "teacher and school."
@@ -1416,23 +670,28 @@ msgstr ""
 "Beste termino batekin elkartze-erlazioa duen terminoa, adibidez irakaslea"
 " eta eskola."
 
-#: tzos/forms/terms.py:271
+#: tzos/forms/terms.py:256
 msgid "Term is required."
 msgstr "Terminoa beharrezkoa da."
 
-#: tzos/forms/terms.py:278
+#. l10n: Follows a dropdown box with language names
+#: tzos/forms/terms.py:264
+msgid "Add equivalent in"
+msgstr ""
+
+#: tzos/forms/terms.py:266
 msgid "This term is a synonym or a translation for another term."
 msgstr "Terminoa beste termino baten sinonimoa edo itzulpena da."
 
-#: tzos/forms/terms.py:289
+#: tzos/forms/terms.py:277
 msgid "Add"
 msgstr "Gehitu"
 
-#: tzos/forms/terms.py:299
+#: tzos/forms/terms.py:294
 msgid "Save changes"
 msgstr "Gorde aldaketak"
 
-#: tzos/forms/terms.py:305
+#: tzos/forms/terms.py:300
 msgid ""
 "If you consolidate this term, you must set its administrative status "
 "('Linguistic information' tab)."
@@ -1440,11 +699,11 @@ msgstr ""
 "Termino hau onartzen baduzu, bere egoera administratiboa ere ezarri behar"
 " duzu ('Informazio linguistikoa' fitxa)."
 
-#: tzos/forms/terms.py:307
+#: tzos/forms/terms.py:302
 msgid "Working status"
 msgstr "Lantze-egoera"
 
-#: tzos/forms/terms.py:313
+#: tzos/forms/terms.py:307
 msgid ""
 "This field has no effect if the working status of this term is other than"
 " 'Consolidated'."
@@ -1452,38 +711,38 @@ msgstr ""
 "Eremu honek ez du eraginik terminoaren lantze-egoera 'Onartua' ez beste "
 "bada."
 
-#: tzos/forms/terms.py:315
+#: tzos/forms/terms.py:309
 msgid "Administrative status within the TZOS environment"
 msgstr "TZOS ingurunean duen egoera administratiboa"
 
-#: tzos/forms/terms.py:322
+#: tzos/forms/terms.py:316
 msgid "File"
 msgstr "Fitxategia"
 
-#: tzos/forms/terms.py:324
+#: tzos/forms/terms.py:318
 msgid "Term column"
 msgstr "Terminoaren zutabea"
 
-#: tzos/forms/terms.py:333
+#: tzos/forms/terms.py:327
 msgid "Upload"
 msgstr "Igo"
 
-#: tzos/models/terms.py:76
+#: tzos/models/terms.py:154
 #, python-format
 msgid "Imported term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa inportatuta."
 
-#: tzos/models/terms.py:79
+#: tzos/models/terms.py:157
 #, python-format
 msgid "Added term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa gehituta."
 
-#: tzos/models/terms.py:82
+#: tzos/models/terms.py:160
 #, python-format
 msgid "Edited term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa editatuta."
 
-#: tzos/models/terms.py:90
+#: tzos/models/terms.py:168
 msgid "No activity details available."
 msgstr "Ez dago jardueraren xehetasunik eskuragarri."
 
@@ -1516,31 +775,62 @@ msgid "Online System for Terminology Service"
 msgstr "Terminologia Zerbitzurako Online Sistema"
 
 #: tzos/templates/index.html:7
-msgid "Welcome"
-msgstr "Ongi etorri"
+msgid "Welcome to TZOS"
+msgstr ""
 
-#: tzos/templates/index.html:8
-msgid "TZOS is an online community for building and sharing terminology."
-msgstr "Terminologia sortu eta partekatzeko online komunitatea da TZOS."
+#: tzos/templates/index.html:9
+msgid ""
+"TZOS (Online System for Terminology Service) is a web application which "
+"serves as a tool to gather, make visible and to share the terminology "
+"employed by the teachers at the <a href=\"http://ehu.es/\">University of "
+"the Basque Country</a> (EHU). The contribution of the teachers will "
+"gradually enrich this database, both with terms as well as with the "
+"necessary information to delimit the use of each term. Apart from "
+"enriching the database, the education community of EHU may consult the "
+"database and may contribute with their opinions about the terms by using "
+"the interactive interface in TZOS. The ultimate goal is to contribute to "
+"fix the terminology used at the university by describing the real "
+"specialized oral and written academic production."
+msgstr ""
 
-#: tzos/templates/index.html:13 tzos/templates/search/results.html:6
+#: tzos/templates/index.html:10
+msgid ""
+"The database is mainly nourished by the glossaries created by the "
+"teachers that participate in the program <a "
+"href=\"http://www.ehu.es/ehusfera/tse/\">Terminologia Sareak Ehunduz</a> "
+"(Weaving Terminology Nets). Importantly, these glossaries are based on "
+"the real production of the teachers at EHU. However, any registered "
+"teacher will be allowed to propose and discuss terms and variants of "
+"terms in TZOS."
+msgstr ""
+
+#: tzos/templates/index.html:11
+msgid ""
+"This database has no normative value, except for the fact that it attests"
+" the real use of professionals. Nevertheless, the platform may be very "
+"useful for the groups and institutions involved in the normalization of "
+"terminology, since it allows to look up real usage of terminology and to "
+"consider the data when taking decisions about the terms."
+msgstr ""
+
+#: tzos/templates/index.html:17 tzos/templates/search/results.html:6
 #: tzos/templates/search/results.html:8
 msgid "Advanced search"
 msgstr "Bilaketa aurreratua"
 
-#: tzos/templates/index.html:17 tzos/templates/user/profile.html:46
+#: tzos/templates/index.html:21 tzos/templates/user/profile.html:46
 msgid "Latest activity"
 msgstr "Azken jarduera"
 
-#: tzos/templates/index.html:21
+#: tzos/templates/index.html:25
 msgid "No activity yet."
 msgstr "Jarduerarik ez oraindik."
 
-#: tzos/templates/index.html:25 tzos/templates/user/profile.html:54
+#: tzos/templates/index.html:29 tzos/templates/user/profile.html:54
 msgid "Latest comments"
 msgstr "Azken iruzkinak"
 
-#: tzos/templates/index.html:29 tzos/templates/terms/detail.html:27
+#: tzos/templates/index.html:33 tzos/templates/terms/detail.html:27
 msgid "No comments yet."
 msgstr "Iruzkinik ez oraindik."
 
@@ -1592,7 +882,7 @@ msgstr ""
 "berrezartzea eskatuz</a>."
 
 #: tzos/templates/account/recover_password.html:4
-#: tzos/templates/account/recover_password.html:6 tzos/views/account.py:111
+#: tzos/templates/account/recover_password.html:6 tzos/views/account.py:110
 msgid "Recover your password"
 msgstr "Berreskuratu pasahitza"
 
@@ -1696,10 +986,10 @@ msgid "Add a new language"
 msgstr "Gehitu hizkuntza berria"
 
 #: tzos/templates/admin/languages.html:24
-msgid "To add a new language, simply write its full name and language code."
+msgid ""
+"To add a new language or edit existing ones, write its ISO-693-1 language"
+" code and its full name."
 msgstr ""
-"Hizkuntza berria gehitzeko, besterik gabe idatzi bere izen osoa eta "
-"hizkuntzaren kodea."
 
 #: tzos/templates/admin/origins.html:2
 msgid "Current origins"
@@ -1762,8 +1052,41 @@ msgid "Term origins"
 msgstr "Terminoen jatorriak"
 
 #: tzos/templates/admin/settings.html:16
+#, fuzzy
+msgid "Term sources"
+msgstr "Iturria"
+
+#: tzos/templates/admin/settings.html:17 tzos/templates/admin/sfields.html:2
 msgid "Knowledge fields"
 msgstr "Jakintza arloak"
+
+#: tzos/templates/admin/sfields.html:3
+#, fuzzy
+msgid ""
+"These are the current knowledge fields available on the system. To edit a"
+" knowledge field, just click on it."
+msgstr ""
+"Ondokoak dira sisteman eskuragarri dauden uneko terminoen jatorriak. "
+"Jatorri bat editatzeko, egin klik gainean."
+
+#: tzos/templates/admin/sources.html:2
+#, fuzzy
+msgid "Current sources"
+msgstr "Iturria"
+
+#: tzos/templates/admin/sources.html:3
+#, fuzzy
+msgid ""
+"These are the current term sources available on the system. To edit an "
+"origin, click on it."
+msgstr ""
+"Ondokoak dira sisteman eskuragarri dauden uneko terminoen jatorriak. "
+"Jatorri bat editatzeko, egin klik gainean."
+
+#: tzos/templates/admin/sources.html:11
+#, fuzzy
+msgid "Add a new source"
+msgstr "Gehitu jatorri berria"
 
 #: tzos/templates/emails/recover_password.html:1
 #, python-format
@@ -1815,7 +1138,7 @@ msgid "« Back to the home page"
 msgstr "« Atzera hasiera-orrira"
 
 #: tzos/templates/glossary/list_letter.html:17
-#: tzos/templates/search/results.html:41
+#: tzos/templates/search/results.html:42
 msgid "No terms found."
 msgstr "Ez da terminorik aurkitu."
 
@@ -1833,40 +1156,45 @@ msgstr "yyyy/M/d HH:mm"
 msgid "Permalink"
 msgstr "Esteka iraunkorra"
 
-#: tzos/templates/macros/_util.html:53
+#: tzos/templates/macros/_util.html:56
 msgid "Synonyms"
 msgstr "Sinonimoak"
 
-#: tzos/templates/macros/_util.html:53
+#: tzos/templates/macros/_util.html:56
 msgid "syn."
 msgstr "sin."
 
-#: tzos/templates/macros/_util.html:95 tzos/templates/search/results.html:20
+#: tzos/templates/macros/_util.html:98 tzos/templates/search/results.html:21
 msgid "Classification"
 msgstr "Sailkapena"
 
-#: tzos/templates/macros/_util.html:98
+#: tzos/templates/macros/_util.html:101
 msgid "Subject fields"
 msgstr "Jakintza-arloak"
 
-#: tzos/templates/macros/_util.html:104
+#: tzos/templates/macros/_util.html:107
 msgid "Source"
 msgstr "Iturria"
 
-#: tzos/templates/macros/_util.html:120 tzos/templates/search/results.html:24
-#: tzos/templates/terms/add.html:47 tzos/templates/terms/edit.html:22
+#: tzos/templates/macros/_util.html:124 tzos/templates/search/results.html:25
+#: tzos/templates/terms/add.html:58 tzos/templates/terms/edit.html:23
 msgid "Linguistic information"
 msgstr "Informazio linguistikoa"
 
-#: tzos/templates/macros/_util.html:143
+#: tzos/templates/macros/_util.html:131
+#, fuzzy
+msgid "Part of speech"
+msgstr "Kategoria gramatikala"
+
+#: tzos/templates/macros/_util.html:151
 msgid "Related"
 msgstr "Erlazionatua"
 
-#: tzos/templates/macros/_util.html:147
+#: tzos/templates/macros/_util.html:155
 msgid "See also"
 msgstr "Ikus halaber"
 
-#: tzos/templates/macros/_util.html:156
+#: tzos/templates/macros/_util.html:164
 #, python-format
 msgid ""
 "The author of this term is <span class=\"origPerson\">%(author)s</span>, "
@@ -1877,16 +1205,16 @@ msgstr ""
 "<span class=\"adminSts\">%(admin_sts)s</span> dago TZOS ingurunearen "
 "barruan."
 
-#: tzos/templates/macros/_util.html:158
+#: tzos/templates/macros/_util.html:166
 #, python-format
 msgid "The author of this term is <span class=\"origPerson\">%(author)s</span>."
 msgstr "Termino honen egilea <span class=\"origPerson\">%(author)s</span> da."
 
-#: tzos/templates/macros/_util.html:168
+#: tzos/templates/macros/_util.html:176
 msgid "Add synonym/translation"
 msgstr "Gehitu sinonimoa/itzulpena"
 
-#: tzos/templates/macros/_util.html:170 tzos/templates/terms/edit.html:5
+#: tzos/templates/macros/_util.html:177 tzos/templates/terms/edit.html:5
 msgid "Edit term"
 msgstr "Editatu terminoa"
 
@@ -1909,7 +1237,7 @@ msgstr "Aurki ezazu bila zabiltzana."
 msgid "Search options"
 msgstr "Bilaketa-aukerak"
 
-#: tzos/templates/search/results.html:17 tzos/templates/terms/edit.html:20
+#: tzos/templates/search/results.html:17 tzos/templates/terms/edit.html:21
 msgid "General"
 msgstr "Orokorra"
 
@@ -1929,31 +1257,31 @@ msgstr "Eskuz"
 msgid "From file"
 msgstr "Fitxategitik"
 
-#: tzos/templates/terms/add.html:23 tzos/templates/terms/add.html:69
+#: tzos/templates/terms/add.html:34 tzos/templates/terms/add.html:80
 msgid "Select…"
 msgstr "Hautatu…"
 
-#: tzos/templates/terms/add.html:34
+#: tzos/templates/terms/add.html:45
 msgid "Advanced fields"
 msgstr "Eremu aurreratuak"
 
-#: tzos/templates/terms/add.html:36 tzos/templates/terms/edit.html:21
+#: tzos/templates/terms/add.html:47 tzos/templates/terms/edit.html:22
 msgid "Optional fields"
 msgstr "Aukerazko eremuak"
 
-#: tzos/templates/terms/add.html:77
+#: tzos/templates/terms/add.html:88
 msgid "You must enable JavaScript in order to set file columns."
 msgstr "JavaScript gaitu behar duzu fitxategiaren zutabeak ezarri ahal izateko."
 
-#: tzos/templates/terms/add.html:82
+#: tzos/templates/terms/add.html:93
 msgid "Column contents"
 msgstr "Zutabearen edukiak"
 
-#: tzos/templates/terms/add.html:86
+#: tzos/templates/terms/add.html:97
 msgid "Add column"
 msgstr "Gehitu zutabea"
 
-#: tzos/templates/terms/add.html:89
+#: tzos/templates/terms/add.html:100
 msgid ""
 "Files must be CSV (comma-separated value) files, either with .csv or .txt"
 " extension. CSV files can be generated in spreadsheets such as Excel or "
@@ -1963,11 +1291,11 @@ msgstr ""
 ".csv edo .txt luzapenarekin. CSV fitxategiak kalkulu-orrietan sor "
 "daitezke, adibidez Excel edo LibreOffice Calc-en."
 
-#: tzos/templates/terms/add.html:90
+#: tzos/templates/terms/add.html:101
 msgid "You must select which fields constitute the file columns."
 msgstr "Fitxategiaren zutabeak zein eremuk osatzen dituzten hautatu behar duzu."
 
-#: tzos/templates/terms/add.html:91
+#: tzos/templates/terms/add.html:102
 msgid ""
 "Please note that all the terms contained within the uploaded file will be"
 " added with the settings specified above. You may want to split file "
@@ -2014,10 +1342,6 @@ msgstr "Aldatu avatarra gravatar.com helbidean"
 msgid "Edit profile"
 msgstr "Editatu profila"
 
-#: tzos/templates/user/profile.html:19
-msgid "Name"
-msgstr "Izena"
-
 #: tzos/templates/user/profile.html:41
 msgid "Date joined"
 msgstr "Izen-emate data"
@@ -2043,107 +1367,130 @@ msgstr "Ongi etorri, %(name)s."
 msgid "Wrong username or password."
 msgstr "Erabiltzaile-izen edo pasahitz okerra."
 
-#: tzos/views/account.py:86
-msgid "You are now logged out."
-msgstr "Saioa amaitu duzu."
-
-#: tzos/views/account.py:102
+#: tzos/views/account.py:101
 msgid "Please check your email for instructions on how to access your account."
 msgstr "Egiaztatu posta elektronikoa kontua atzitzeko jarraibideak eskuratzeko."
 
-#: tzos/views/account.py:118
+#: tzos/views/account.py:117
 msgid "Sorry, no user found for that email address."
 msgstr "Ez da erabiltzailerik aurkitu helbide elektroniko horrekin."
 
-#: tzos/views/account.py:145
+#: tzos/views/account.py:144
 msgid "Your password has been changed, please log in again."
 msgstr "Pasahitza aldatu da, hasi saioa berriro mesedez."
 
-#: tzos/views/account.py:176
+#: tzos/views/account.py:175
 msgid "Your account has been updated."
 msgstr "Kontua eguneratu da."
 
-#: tzos/views/admin.py:41
-msgid "Parent…"
-msgstr "Gurasoa…"
-
-#: tzos/views/admin.py:77
+#: tzos/views/admin.py:83
 #, python-format
 msgid "Permissions for ‘%(user)s’ have been updated."
 msgstr "‘%(user)s’ erabiltzailearen baimenak eguneratu egin dira."
 
-#: tzos/views/admin.py:80
+#: tzos/views/admin.py:86
 msgid "Error while updating permissions."
 msgstr "Errorea baimenak eguneratzean."
 
-#: tzos/views/admin.py:99
+#: tzos/views/admin.py:116
+#, fuzzy, python-format
+msgid "Language ‘%(lang)s’ has been added."
+msgstr "‘%(origin)s’ termino-jatorria gehitu egin da."
+
+#: tzos/views/admin.py:119
+msgid "Error while adding language. Check the inserted values are correct."
+msgstr ""
+
+#: tzos/views/admin.py:139
 #, python-format
 msgid "Term origin ‘%(origin)s’ has been added."
 msgstr "‘%(origin)s’ termino-jatorria gehitu egin da."
 
-#: tzos/views/admin.py:102
+#: tzos/views/admin.py:142
 msgid "Error while adding term origin."
 msgstr "Errorea terminoaren jatorria gehitzean."
 
-#: tzos/views/admin.py:124
+#: tzos/views/admin.py:164
 #, python-format
 msgid "Term origin ‘%(origin)s’ has been edited."
 msgstr "‘%(origin)s’ termino-jatorria editatu egin da."
 
-#: tzos/views/frontend.py:62
+#: tzos/views/admin.py:185
+#, fuzzy, python-format
+msgid "Term source ‘%(source)s’ has been added."
+msgstr "‘%(origin)s’ termino-jatorria gehitu egin da."
+
+#: tzos/views/admin.py:188
+#, fuzzy
+msgid "Error while adding term source."
+msgstr "Errorea terminoaren jatorria gehitzean."
+
+#: tzos/views/admin.py:205
+#, fuzzy, python-format
+msgid "Term source ‘%(source)s’ has been edited."
+msgstr "‘%(origin)s’ termino-jatorria editatu egin da."
+
+#: tzos/views/frontend.py:70
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr "Hemendik aurrera hiztegiaren hizkuntza ‘%(dictname)s’ da."
 
-#: tzos/views/terms.py:81
+#: tzos/views/terms.py:70
+msgid "Separate terms using commas."
+msgstr ""
+
+#: tzos/views/terms.py:74
+#, python-format
+msgid "Equivalents — %(lang)s"
+msgstr ""
+
+#: tzos/views/terms.py:102
 #, python-format
 msgid "Synonym/translation in %(lang)s"
 msgstr "Sinonimoa/itzulpena %(lang)s hizkuntzan"
 
-#: tzos/views/terms.py:100
+#: tzos/views/terms.py:120
 #, python-format
 msgid "Term ‘%(term)s’ already exists."
 msgstr "‘%(term)s’ terminoa badago jada."
 
-#: tzos/views/terms.py:105
+#: tzos/views/terms.py:125
 #, python-format
 msgid "Term ‘%(term)s’ added successfully."
 msgstr "‘%(term)s’ terminoa ondo gehitu da."
 
-#: tzos/views/terms.py:109
+#: tzos/views/terms.py:129
 #, python-format
 msgid "Error while adding term ‘%(term)s’."
 msgstr "Errorea ‘%(term)s’ terminoa gehitzean."
 
-#: tzos/views/terms.py:145
+#: tzos/views/terms.py:179
 #, python-format
 msgid "Term added successfully. <a href=\"%(url)s\">Go to the term</a>."
 msgstr "Terminoa ondo gehitu da. <a href=\"%(url)s\">Joan terminora</a>."
 
-#: tzos/views/terms.py:150
-msgid "Error while trying to add the term."
+#: tzos/views/terms.py:184
+#, fuzzy
+msgid "Error while trying to add some terms."
 msgstr "Errorea terminoa gehitzen saiatzean."
 
-#: tzos/views/terms.py:211
+#: tzos/views/terms.py:249
 msgid "Not a valid file."
 msgstr "Ez da baliozko fitxategia."
 
-#: tzos/views/terms.py:299
+#: tzos/views/terms.py:332
 msgid "Failed to edit some fields."
 msgstr "Huts zenbait eremu editatzean."
 
-#: tzos/views/terms.py:318
+#: tzos/views/terms.py:350
 #, python-format
 msgid "Term ‘%(term)s’ has been edited."
 msgstr "‘%(term)s’ terminoa editatu egin da."
 
-#: tzos/views/terms.py:324
+#: tzos/views/terms.py:356
 msgid "Failed to edit term. Please review the data you entered is correct."
 msgstr "Huts terminoa editatzean. Berrikusi sartutako datuak zuzenak direla."
 
-#: tzos/views/terms.py:343
+#: tzos/views/terms.py:375
 msgid "Thanks for your comment."
 msgstr "Eskerrik asko iruzkinagatik."
-
-#~ msgid "Latest additions"
-#~ msgstr "Azken gehikuntzak"

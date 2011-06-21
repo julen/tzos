@@ -61,6 +61,48 @@ class TermSubject(db.Model):
 
     translations = db.relationship('Translation', backref='termsubject')
 
+    @classmethod
+    def root_code(self, code):
+        """Returns the code of the parent element that is located on the
+        root of TermSubject represented by `code`."""
+
+        term_subject = self.query.filter(TermSubject.code==code).first()
+
+        if not term_subject:
+            return None
+
+        while term_subject.parent_id is not None:
+            term_subject = term_subject.parent
+
+        return term_subject.code
+
+    @classmethod
+    def root_codes(self, code):
+        """Returns a list of codes of the parent and sibling elements that
+        are located near the TermSubject represented by `code`."""
+
+        term_subject = self.query.filter(TermSubject.code==code).first()
+
+        if not term_subject:
+            return None
+
+        codes = [unicode(term_subject.code)]
+
+        while term_subject.parent_id is not None:
+
+            siblings = self.query \
+                    .filter((TermSubject.parent_id==term_subject.parent_id) &
+                            (TermSubject.code!=term_subject.code)) \
+                    .all()
+
+            for sibling in siblings:
+                codes.append(unicode(sibling.code))
+
+            term_subject = term_subject.parent
+
+        # We return a set because we don't want duplicated entries
+        return set(codes)
+
 
     def children_translations(self, locale):
         return self.children \

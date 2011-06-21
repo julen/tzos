@@ -181,7 +181,7 @@ msgstr "Adberbioa"
 
 #: tzos/strings.py:59
 msgid "Proper noun"
-msgstr "Izen berrezia"
+msgstr "Izen berezia"
 
 #: tzos/strings.py:64
 msgid "Notes"

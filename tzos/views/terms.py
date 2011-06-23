@@ -17,8 +17,9 @@ from flaskext.babel import gettext as _, lazy_gettext as _l
 from flaskext.wtf import TextField
 
 from tzos.extensions import db, dbxml
-from tzos.forms import AddTermForm, CommentForm, EditTermForm, \
-        ModEditTermForm, UploadForm
+from tzos.forms import AddTermForm, AddTermFormCor, CommentForm, \
+        EditTermForm, EditTermFormCor, EditTermFormMod, UploadForm, \
+        UploadFormCor
 from tzos.models import Comment, Term
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
         get_responsible_orgs, get_sfields_dropdown, require_valid_dict
@@ -57,14 +58,14 @@ def detail(id):
                            comment_form=comment_form,
                            term_comments=term_comments)
 
-def generate_term_form(form_cls, public_term=False, **form_args):
+def _gen_term_form(form_cls, **form_args):
 
-    if form_cls.__name__ == 'AddTermForm':
+    if form_cls.__name__ in ('AddTermForm', 'AddTermFormCor'):
 
         dict_langs = get_dict_langs()
 
         # Hack for dynamically generating form fields
-        class F(AddTermForm):
+        class F(form_cls):
             pass
 
         eqterm_desc = _(u"Separate terms using commas.")
@@ -82,14 +83,7 @@ def generate_term_form(form_cls, public_term=False, **form_args):
         form.language.choices = dict_langs
         form.eqlang.choices = dict_langs
 
-    if form_cls.__name__ == 'ModEditTermForm':
-
-        form = form_cls(**form_args)
-
-        if public_term and not g.user.is_admin:
-            form.working_status.choices = form.working_status.choices[2:]
-
-    if form_cls.__name__ == 'UploadForm':
+    elif form_cls.__name__ in ('UploadForm', 'UploadFormCor'):
 
         form = form_cls(**form_args)
 
@@ -102,6 +96,10 @@ def generate_term_form(form_cls, public_term=False, **form_args):
             _(u"Synonym/translation in %(lang)s", lang=lang)) \
             for code, lang in dict_langs]
         form.other_fields.choices = other_choices
+
+    else:
+
+        form = form_cls(**form_args)
 
     form.concept_origin.choices = get_origins_dropdown()
     form.subject_field.choices = get_sfields_dropdown(g.ui_lang)
@@ -149,9 +147,16 @@ def add():
         del form_args['term']
         del form_args['lang']
 
-    add_form = generate_term_form(AddTermForm, formdata=form_args,
+    if g.user.is_corrector:
+        add_form_cls = AddTermFormCor
+        upload_form_cls = UploadFormCor
+    else:
+        add_form_cls = AddTermForm
+        upload_form_cls = UploadForm
+
+    add_form = _gen_term_form(add_form_cls, formdata=form_args,
                                   prefix='add')
-    upload_form = generate_term_form(UploadForm, formdata=form_args,
+    upload_form = _gen_term_form(upload_form_cls, formdata=form_args,
                                      prefix='upload')
 
     if add_form.submit.data and add_form.validate_on_submit():
@@ -262,12 +267,15 @@ def edit(id):
     if not g.user.is_moderator:
         term.working_status = term.is_public()
 
+    # Be aware these checks have to be done from highest to lowest permissions
     if g.user.is_moderator:
-        form_cls = ModEditTermForm
+        form_cls = EditTermFormMod
+    elif g.user.is_corrector:
+        form_cls = EditTermFormCor
     else:
         form_cls = EditTermForm
 
-    form = generate_term_form(form_cls, term.is_public(), obj=term)
+    form = _gen_term_form(form_cls, obj=term)
 
     if form.validate_on_submit():
         success = []

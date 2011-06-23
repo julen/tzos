@@ -154,10 +154,6 @@ class CoreTermForm(Form):
     concept_origin = SelectFieldPlus(_(u"Origin"),
             validators=[required(message=_(u"Origin is required."))])
 
-    # Affects elementWorkingStatus
-    working_status = BooleanWorkingField(_(u"I want this term to be public."),
-            default="checked")
-
     subject_field = SelectMultipleFieldDyn(_(u"Subject field"),
             validators=[check_required_dropdown])
 
@@ -284,6 +280,13 @@ class AddTermForm(BaseTermForm):
         return sorted(fields)
 
 
+class AddTermFormCor(AddTermForm):
+    """AddTermForm for users with `is_corrector` privileges."""
+
+    working_status = BooleanWorkingField(_(u"I want this term to be public."),
+            default="checked")
+
+
 class EditTermForm(BaseTermForm):
 
     language = HiddenField(_(u"Language"))
@@ -294,7 +297,14 @@ class EditTermForm(BaseTermForm):
     submit = SubmitField(_(u"Save changes"))
 
 
-class ModEditTermForm(EditTermForm):
+class EditTermFormCor(EditTermForm):
+    """EditTermForm for users with `is_corrector` privileges."""
+
+    working_status = BooleanWorkingField(_(u"I want this term to be public."))
+
+
+class EditTermFormMod(EditTermForm):
+    """EditTermForm for users with `is_moderator` privileges."""
 
     ws_choices = WORKING_STATUS
     ws_desc = _(u"If you consolidate this term, you must set "
@@ -325,3 +335,9 @@ class UploadForm(CoreTermForm):
             validators=[AnyOf('importation')])
 
     submit = SubmitField(_(u"Upload"))
+
+class UploadFormCor(UploadForm):
+    """UploadForm for users with `is_corrector` privileges."""
+
+    working_status = BooleanWorkingField(_(u"I want these terms to be public."),
+            default="checked")

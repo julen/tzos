@@ -52,9 +52,7 @@
     <div id="linguistic" class="tabContent">
         <div class="column">
             <ul class="fields">
-                {% if g.user.is_moderator and term.is_public() %}
                 {{ render_field(form.administrative_status, class="input") }}
-                {% endif %}
                 {{ render_field(form.normative_authorization, class="input") }}
                 {{ render_field(form.normative_authorization_org, class="input") }}
                 {{ render_field(form.subordinate_concept_generic, class="input") }}

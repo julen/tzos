@@ -105,7 +105,8 @@ def results():
 
         for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig
         where term:is_public($tig) and {0}{1}
-        order by lower-case($tig/term/string()) ascending, $tig/term/string() descending
+        order by lower-case($tig/term/string()) ascending,
+                 $tig/term/string() descending
         return term:values($tig)
         """.format(predicate.encode('utf-8'),
                    filter.encode('utf-8'))

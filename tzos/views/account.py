@@ -32,23 +32,47 @@ def register():
     if form.validate_on_submit():
         user = User()
         form.populate_obj(user)
+        user.activation_key = str(uuid.uuid4())
 
         db.session.add(user)
         db.session.commit()
 
-        identity_changed.send(current_app._get_current_object(),
-                              identity=Identity(user.id))
+        body = render_template("emails/register.html",
+                               user=user)
 
-        flash(_(u"Welcome, %(name)s.", name=user.username), "success")
+        message = Message(subject=_(u"TZOS: Activate your account"),
+                          body=body,
+                          recipients=[user.email])
+        mail.send(message)
 
-        next_url = form.next.data
+        flash(_(u"Please check your email for instructions on "
+                "how to activate your account."), "success")
 
-        if not next_url or next_url == request.path:
-            next_url = url_for('user.profile', username=user.username)
-
-        return redirect(next_url)
+        return redirect(url_for("frontend.index"))
 
     return render_template('account/register.html', form=form)
+
+
+@account.route("/activate/")
+def activate():
+    user = None
+
+    if 'activation_key' in request.values:
+        user = User.query.filter_by(
+            activation_key=request.values['activation_key']).first()
+
+    if user is None or (user and user.expired_activation):
+        flash(_(u"Invalid activation key, key expired, or user "
+                "already activated."), "error")
+        return redirect(url_for("frontend.index"))
+
+    user.activation_key = None
+
+    db.session.commit()
+
+    flash(_(u"Your account has been activated, you can now log in."), "success")
+
+    return redirect(url_for("account.login"))
 
 
 @account.route('/login/', methods=('GET', 'POST'))

@@ -10,11 +10,11 @@
 """
 import hashlib
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from werkzeug import cached_property, check_password_hash, generate_password_hash
 
-from flask import url_for
+from flask import current_app, url_for
 
 from flaskext.babel import gettext as _, lazy_gettext as _l
 from flaskext.sqlalchemy import BaseQuery
@@ -42,7 +42,8 @@ class UserQuery(BaseQuery):
                                   User.email==login)).first()
 
         if user:
-            authenticated = user.check_password(password)
+            authenticated = user.check_password(password) \
+                    and user.is_activated
         else:
             authenticated = False
 
@@ -116,6 +117,18 @@ class User(db.Model):
             needs.append(RoleNeed('admin'))
 
         return needs
+
+    @property
+    def is_activated(self):
+        return self.activation_key == None
+
+    @property
+    def expired_activation(self):
+        activation_days = current_app.config.get('TZOS_ACTIVATION_DAYS', 5)
+        expiration_date = timedelta(days=activation_days)
+
+        return self.is_activated or \
+               (self.date_joined + expiration_date <= datetime.now())
 
     @property
     def is_corrector(self):

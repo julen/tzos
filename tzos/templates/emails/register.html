@@ -1,0 +1,8 @@
+{% trans username=user.username, activate_url=url_for('account.activate', activation_key=user.activation_key, _external=True) %}
+Hi {{ username }},
+
+In order to complete the registration and activate your account, please
+click the link below:
+
+{{ activate_url }}
+{% endtrans %}

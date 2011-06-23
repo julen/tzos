@@ -9,6 +9,7 @@
 {% endmacro %}
 
 {% macro render_field(field, tag='li', tag_class=None, labeled=True, tagged=True) %}
+{%- if field %}
 {% if field.type == 'SubmitField' %}
 <p class="fAction">
     {{ field(class="button") }}
@@ -35,6 +36,7 @@
     </{{ tag }}>
     {% endif %}
 {% endif %}
+{%- endif %}
 {% endmacro %}
 
 {% macro render_form(form, action='.', form_class="f1") %}

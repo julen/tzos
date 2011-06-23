@@ -33,6 +33,13 @@ def create_initial_users():
     supervisor.role = User.MODERATOR
     supervisor.display_name = u'Default supervisor'
 
+    corrector = User()
+    corrector.username = u'corrector'
+    corrector.password = u'corrector'
+    corrector.email = u'corrector@tzos.net'
+    corrector.role = User.CORRECTOR
+    corrector.display_name = u'Default corrector'
+
     member = User()
     member.username = u'member'
     member.password = u'member'
@@ -42,6 +49,7 @@ def create_initial_users():
 
     db.session.add(admin)
     db.session.add(supervisor)
+    db.session.add(corrector)
     db.session.add(member)
     db.session.commit()
 

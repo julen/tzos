@@ -1,41 +1,41 @@
 {% macro render_errors(field) %}
-{% if field.errors %}
+{%- if field.errors %}
 <ul class="errors">
     {% for error in field.errors %}
     <li>{{ error }}</li>
     {% endfor %}
 </ul>
-{% endif %}
+{%- endif %}
 {% endmacro %}
 
 {% macro render_field(field, tag='li', tag_class=None, labeled=True, tagged=True) %}
 {%- if field %}
-{% if field.type == 'SubmitField' %}
+{%- if field.type == 'SubmitField' %}
 <p class="fAction">
     {{ field(class="button") }}
 </p>
-{% else %}
+{%- else %}
     {%- if tagged %}
     <{{ tag }}{% if tag_class %} class="{{ tag_class }}"{% endif %}>
-    {% endif %}
-    {% if field.type == 'BooleanField' or field.type == 'BooleanWorkingField' %}
+    {%- endif %}
+    {%- if field.type == 'BooleanField' or field.type == 'BooleanWorkingField' %}
         {{ field(class="in")|safe }}
         {{ field.label(class="in") }}
-    {% else %}
-        {% if labeled %}
+    {%- else %}
+        {%- if labeled %}
         {{ field.label }}
-        {% endif %}
+        {%- endif %}
         {{ render_errors(field) }}
-        {% if field.description %}
+        {%- if field.description %}
         {{ field(title=field.description, **kwargs)|safe }}
-        {% else %}
+        {%- else %}
         {{ field(**kwargs)|safe }}
-        {% endif %}
+        {%- endif %}
     {% endif %}
     {%- if tagged %}
     </{{ tag }}>
     {% endif %}
-{% endif %}
+{%- endif %}
 {%- endif %}
 {% endmacro %}
 
@@ -43,10 +43,10 @@
 <form method="POST" action="{{ action }}" class="{{ form_class }}">
     {{ form.hidden_tag() }}
     <ul>
-        {% for field in form if not field.type == 'SubmitField' and
+        {%- for field in form if not field.type == 'SubmitField' and
                                 not field.type == 'HiddenField' %}
         {{ render_field(field, class="input", **kwargs) }}
-        {% endfor %}
+        {%- endfor %}
     </ul>
     {{ render_field(form.submit) }}
 </form>

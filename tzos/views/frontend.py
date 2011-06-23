@@ -16,13 +16,12 @@ from babel import Locale
 
 from tzos.extensions import cache, dbxml
 from tzos.forms import SearchForm
-from tzos.helpers import anon_cached, get_dict_langs
+from tzos.helpers import get_dict_langs
 from tzos.models import Comment, TermChange
 
 frontend = Module(__name__)
 
 @frontend.route('/')
-@anon_cached()
 def index():
 
     form = SearchForm()

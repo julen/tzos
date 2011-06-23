@@ -55,12 +55,14 @@ class User(db.Model):
 
     # User roles
     MEMBER = 100
+    CORRECTOR = 150
     MODERATOR = 200
     ADMIN = 300
 
     # Mapping between roles and natural names
     role_map = {
             MEMBER: _l('Member'),
+            CORRECTOR: _l('Corrector'),
             MODERATOR: _l('Moderator'),
             ADMIN: _l('Administrator'),
             }
@@ -114,6 +116,10 @@ class User(db.Model):
             needs.append(RoleNeed('admin'))
 
         return needs
+
+    @property
+    def is_corrector(self):
+        return self.role >= self.CORRECTOR
 
     @property
     def is_moderator(self):

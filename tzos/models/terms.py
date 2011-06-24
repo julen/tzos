@@ -304,7 +304,7 @@ class Term(object):
             self._subject_field = value
         else:
             for part in value.split(u";"):
-                if part:
+                if part and part not in self._subject_field:
                     self._subject_field.append(part)
 
     subject_field = property(_get_subject_field, _set_subject_field)

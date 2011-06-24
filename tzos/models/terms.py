@@ -287,14 +287,21 @@ class Term(object):
         sf_list = []
 
         for field in self.subject_field:
+
             sfield = TermSubject.query \
                     .join('translations') \
                     .filter((TermSubject.code==field) &
-                            (Translation.locale==g.ui_lang)) \
-                                    .order_by('text').first()
-            sf_list.append(sfield.translations.text)
+                            (Translation.locale==g.ui_lang)).first()
 
-        return set(sf_list)
+            tmp = [sfield.translations.text]
+
+            while sfield.parent_id:
+                sfield = sfield.parent
+                tmp.insert(0, sfield.translations.text)
+
+            sf_list.append(Markup(u' » '.join(tmp)))
+
+        return sf_list
 
     def _get_subject_field(self):
         return self._subject_field

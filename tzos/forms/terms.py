@@ -168,6 +168,10 @@ class BaseTermForm(CoreTermForm):
         kwargs['csrf_enabled'] = False
         super(BaseTermForm, self).__init__(*args, **kwargs)
 
+    term = TextField(_(u"Term"),
+            validators=[required(message=_(u"Term is required.")),
+                        is_valid_input])
+
     #
     # Transaction-related stuff
     #
@@ -247,10 +251,6 @@ class BaseTermForm(CoreTermForm):
 
 
 class AddTermForm(BaseTermForm):
-
-    term = TextField(_(u"Term"),
-            validators=[required(message=_(u"Term is required.")),
-                        is_valid_input])
 
     language = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])

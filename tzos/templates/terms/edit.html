@@ -26,6 +26,7 @@
     <div id="general" class="tabContent">
         <div class="column">
             <ul class="fields">
+                {{ render_field(form.term, class="input") }}
                 {{ render_field(form.subject_field, class="input") }}
                 {{ render_field(form.concept_origin, class="input") }}
                 {{ render_field(form.originating_person, class="input", rel="tipsy-ns") }}

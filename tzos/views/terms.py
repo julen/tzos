@@ -101,6 +101,10 @@ def _gen_term_form(form_cls, **form_args):
 
         form = form_cls(**form_args)
 
+        # Avoid explicit editing of Basque terms
+        if form.language.data == u'eu':
+            del form.term
+
     form.concept_origin.choices = get_origins_dropdown()
     form.subject_field.choices = get_sfields_dropdown(g.ui_lang)
 

@@ -584,6 +584,9 @@ class Term(object):
         """Updates current term's DB data with the object's data."""
 
         fields_map = {
+            # FIXME: should check for collisions if term is edited
+            'term':
+            u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/term',
             'concept_origin':
              u'//tig[@id="{0}"]/admin[@type="conceptOrigin"]',
             'subject_field':

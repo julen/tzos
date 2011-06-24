@@ -62,11 +62,11 @@ class TermSubject(db.Model):
     translations = db.relationship('Translation', backref='termsubject')
 
     @classmethod
-    def root_code(self, code):
+    def root_code(cls, code):
         """Returns the code of the parent element that is located on the
         root of TermSubject represented by `code`."""
 
-        term_subject = self.query.filter(TermSubject.code==code).first()
+        term_subject = cls.query.filter(TermSubject.code==code).first()
 
         if not term_subject:
             return None
@@ -77,11 +77,11 @@ class TermSubject(db.Model):
         return term_subject.code
 
     @classmethod
-    def root_codes(self, code):
+    def root_codes(cls, code):
         """Returns a list of codes of the parent and sibling elements that
         are located near the TermSubject represented by `code`."""
 
-        term_subject = self.query.filter(TermSubject.code==code).first()
+        term_subject = cls.query.filter(TermSubject.code==code).first()
 
         if not term_subject:
             return None

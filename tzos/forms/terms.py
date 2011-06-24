@@ -250,8 +250,7 @@ class AddTermForm(BaseTermForm):
 
     term = TextField(_(u"Term"),
             validators=[required(message=_(u"Term is required.")),
-                        is_valid_input,
-                        check_collision])
+                        is_valid_input])
 
     language = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])

@@ -255,6 +255,9 @@ class AddTermForm(BaseTermForm):
     language = SelectFieldPlus(_(u"Language"),
             validators=[check_required_dropdown])
 
+    working_status = HiddenField(default=u"starterElement",
+            validators=[AnyOf((u"starterElement",))])
+
     # l10n: Follows a dropdown box with language names
     eqlang = SelectFieldPlus(_(u"Add equivalent in"), placeholder='')
 
@@ -321,6 +324,9 @@ class EditTermFormMod(EditTermForm):
 
 
 class UploadForm(CoreTermForm):
+
+    working_status = HiddenField(default=u"starterElement",
+            validators=[AnyOf((u"starterElement",))])
 
     file = FileField(_(u"File"))
 

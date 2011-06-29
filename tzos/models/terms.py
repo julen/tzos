@@ -522,37 +522,30 @@ class Term(object):
         """Inserts the current term and the equivalent terms stored
         in the object to the DB."""
 
-        results = {'success': [], 'failure': []}
+        results = []
+        msg_exists = _(u"Term ‘{0}’ already exists.")
+        msg_success = _(u"Term ‘{0}’ added successfully.")
+        msg_error = _(u"Error while adding term ‘{0}’.")
 
-        def _insert_single(term, language):
-            t = Term(term=term, language=language)
-            t.subject_field = self.subject_field
-            t.syntrans = True
-            t.syntrans_term = self.term
-            t.syntrans_language = self.language
-            t.concept_origin = self.concept_origin
-            t.originating_person = self.originating_person
-            t.transac_type = self.transac_type
-            t.working_status = self.working_status
-
-            if t.insert():
-                results['success'].append(term)
+        def _insert_term(t):
+            if t.exists():
+                results.append((msg_exists.format(t.term), 'warning'))
             else:
-                results['failure'].append(term)
+                if t.insert():
+                    results.append((msg_success.format(t.term), 'success'))
+                else:
+                    results.append((msg_error.format(t.term), 'error'))
 
-        if self.insert():
-            results['success'].append(self.term)
-        else:
-            results['failure'].append(self.term)
+        _insert_term(self)
 
         for syn in self.raw_synonyms:
-            _insert_single(syn, self.language)
+            _insert_term(syn)
 
         for lang, items in self.raw_translations.iteritems():
             for term in items:
-                _insert_single(term, lang)
+                _insert_term(term)
 
-        return (len(results['failure']) == 0, results)
+        return results
 
 
     def insert(self):

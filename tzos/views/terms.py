@@ -8,6 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from operator import itemgetter
 from time import strftime
 
 from flask import Module, abort, flash, g, render_template, redirect, \
@@ -181,7 +182,15 @@ def add():
                     else:
                         term.append_raw_translation(lang, terms)
 
-        (success, results) = term.insert_all()
+        results = term.insert_all()
+
+        # Look if there have been any errors
+        try:
+            i = map(itemgetter(1), results).index('error')
+            success = False
+        except ValueError:
+            success = True
+
         if success:
             msg = _(u'Term added successfully. '
                     '<a href="%(url)s">Go to the term</a>.',

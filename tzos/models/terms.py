@@ -301,7 +301,7 @@ class Term(object):
 
             sf_list.append(Markup(u' » '.join(tmp)))
 
-        return sf_list
+        return sorted(sf_list)
 
     def _get_subject_field(self):
         return self._subject_field

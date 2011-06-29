@@ -336,9 +336,11 @@ class Term(object):
 
         if isinstance(value, list):
             for term in value:
-                self._raw_synonyms.append(term.strip())
+                syn = self.minimal_clone(term.strip(), self.language)
+                self._raw_synonyms.append(syn)
         else:
-            self._raw_synonyms.append(value.strip())
+            syn = self.minimal_clone(value.strip(), self.language)
+            self._raw_synonyms.append(syn)
 
     def _get_translations(self):
         return self._translations
@@ -360,9 +362,11 @@ class Term(object):
 
         if isinstance(value, list):
             for term in value:
-                self._raw_translations.setdefault(lang, []).append(term.strip())
+                trans = self.minimal_clone(term.strip(), lang)
+                self._raw_translations.setdefault(lang, []).append(trans)
         else:
-            self._raw_translations.setdefault(lang, []).append(value.strip())
+            trans = self.minimal_clone(value.strip(), lang)
+            self._raw_translations.setdefault(lang, []).append(trans)
 
     def _url(self, _external=False):
         return url_for('terms.detail',

@@ -14,7 +14,7 @@
 <p class="fAction">
     {{ field(class="button") }}
 </p>
-{%- else %}
+{%- elif field.type != 'HiddenField' %}
     {%- if tagged %}
     <{{ tag }}{% if tag_class %} class="{{ tag_class }}"{% endif %}>
     {%- endif %}

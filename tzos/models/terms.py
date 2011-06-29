@@ -382,6 +382,23 @@ class Term(object):
 
         return self.id is not None
 
+    def minimal_clone(self, term, language):
+        """Returns a new Term object with the minimal set of
+        required fields cloned."""
+
+        t = Term(term=term, language=language)
+
+        t.subject_field = self.subject_field
+        t.syntrans = True
+        t.syntrans_term = self.term
+        t.syntrans_language = self.language
+        t.concept_origin = self.concept_origin
+        t.originating_person = self.originating_person
+        t.transac_type = self.transac_type
+        t.working_status = self.working_status
+
+        return t
+
     def has_langset(self, langcode):
         """Returns True if the current term has a langSet for langcode."""
         qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \

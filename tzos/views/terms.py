@@ -226,13 +226,13 @@ def add():
                     current_term = None
                     current_language = None
 
+                term = Term()
+                upload_form.populate_obj(term)
+
+                if term.working_status == u'starterElement':
+                    term.working_status = u'importedElement'
+
                 for field in fields:
-
-                    term = Term()
-                    upload_form.populate_obj(term)
-
-                    if term.working_status == u'starterElement':
-                        term.working_status = u'importedElement'
 
                     if not row[field]:
                         continue
@@ -249,18 +249,17 @@ def add():
                         term.term = value
                         term.language = field[5:7]
 
-                        results += _do_the_insert(term)
-
                     elif field.startswith('trans-'):
 
-                        # Fill in fields
-                        term.term = value
-                        term.language = field[6:8]
-                        term.syntrans = True
-                        term.syntrans_term = current_term
-                        term.syntrans_language = current_language
+                        lang = field[6:8]
 
-                        results += _do_the_insert(term)
+                        if term.language == lang:
+                            term.append_raw_synonym(value)
+                        else:
+                            term.append_raw_translation(lang, value)
+
+                res = term.insert_all()
+                results.extend(res)
 
             return render_template('terms/upload_results.html', results=results)
         else:

@@ -99,7 +99,7 @@
         <dl>
             {%- if term.subject_field %}
             <dt>{{ _('Subject fields') }}</dt>
-            <dd>{% for sfield in term.subject_field_display %}{{ sfield }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+            <dd>{% for sfield in term.subject_field_display %}{{ sfield }}{% if not loop.last %}<br />{% endif %}{% endfor %}</dd>
             {%- endif %}
             <dt>{{ _('Origin') }}</dt>
             <dd>{{ term.concept_origin_display }}</dd>

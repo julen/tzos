@@ -16,6 +16,8 @@ from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import BooleanField, SelectField, \
         SelectMultipleField, TextField
 
+from tzos.models import TermSubject
+
 
 class SelectFieldPlus(SelectField):
     """A SelectField which can be sorted and set default placeholder values.
@@ -100,6 +102,18 @@ class SelectMultipleFieldDyn(SelectMultipleField):
                 for d in self.data:
                     if d not in values:
                         raise ValueError(self.gettext(u"'%(value)s' is not a valid choice for this field") % dict(value=d))
+
+
+class SubjectField(SelectMultipleFieldDyn):
+    """A SelectMultipleField that sets root subject fields even if the
+    user hasn't set any."""
+
+    def process_formdata(self, valuelist):
+        root_codes = list(set([unicode(TermSubject.root_code(c)) \
+                for c in valuelist]))
+        root_codes.extend(valuelist)
+
+        self.data = list(set(root_codes))
 
 
 class BooleanWorkingField(BooleanField):

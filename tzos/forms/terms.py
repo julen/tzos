@@ -15,7 +15,7 @@ from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
 
 from tzos.extensions import dbxml
 from tzos.forms.fields import BooleanWorkingField, OriginatingPerson, \
-        SelectMultipleFieldDyn, SelectFieldPlus
+        SelectMultipleFieldDyn, SelectFieldPlus, SubjectField
 from tzos.strings import *
 
 
@@ -154,7 +154,7 @@ class CoreTermForm(Form):
     concept_origin = SelectFieldPlus(_(u"Origin"),
             validators=[required(message=_(u"Origin is required."))])
 
-    subject_field = SelectMultipleFieldDyn(_(u"Subject field"),
+    subject_field = SubjectField(_(u"Subject field"),
             validators=[check_required_dropdown])
 
     originating_person = OriginatingPerson(_(u"Originating person"),

@@ -1,4 +1,4 @@
-Flask
+Flask==0.6.1
 Flask-Assets
 Flask-Babel
 Flask-Cache

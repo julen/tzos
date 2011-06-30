@@ -178,11 +178,13 @@ class Term(object):
     def parse(cls, value):
         """Parses a string into a Term object."""
 
+        if not value:
+            return Term()
+
         parts = value.split(u"|||")
 
-        term = Term(parts[0], parts[2])
+        term = Term(parts[0], parts[2], parts[1])
 
-        term.language = parts[1]
         term.concept_origin = parts[3]
         term.subject_field = parts[4]
         term.originating_person = parts[5]

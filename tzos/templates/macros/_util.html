@@ -41,8 +41,8 @@
 <a href="{{ url_for('terms.detail', id=term.id) }}">{{ term.term }}</a>
 {% endmacro %}
 
-{% macro render_term(term, show_details=False, show_actions=False) %}
-<div class="term">
+{% macro render_term(term, show_details=False, show_actions=False, hr=False) %}
+<div class="term{% if hr %} hr{% endif %}">
     <h2 class="term">{{ term_link(term) }}</h2>
     {%- if term.part_of_speech %}
     <p class="head weak">{{ _t(term.part_of_speech) }}</p>

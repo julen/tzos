@@ -487,7 +487,13 @@ ul.in li {
     color: #fff;
 }
 
-.flashSuccess {
+.flashWarning {
+    background-color: #f4ad32;
+    color: #000;
+}
+
+.flashSuccess,
+.flashWarning {
     font-size: 1.5em;
     font-weight: bold;
 }

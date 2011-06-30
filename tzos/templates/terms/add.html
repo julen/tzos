@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 
-{% from "macros/_forms.html" import render_field %}
-
 {% block title %}{{ super() }}{{ _('Add terms') }}{% endblock %}
 
 {% block intro_title %}{{ _('Add terms') }}{% endblock %}
@@ -15,97 +13,11 @@
     </ul>
 
     <div id="add_manually" class="tabContent">
-        <form method="POST" action="{{ url_for('terms.add') }}" class="f1 addTerm">
-            {{ add_form.hidden_tag() }}
-            <ul class="fields termFields">
-                {{ render_field(add_form.term, class="input in") }}
-                {{ render_field(add_form.language, class="input in") }}
-            </ul>
-            <ul class="fields eqFields">
-                {{ render_field(add_form.eqlang, class="input addEq", tag_class="singleLine") }}
-                {%- for field in add_form.eqterm_fields %}
-                <li class="eqField clBoth"{% if not add_form.errors or field.data == "" %} style="display:none;"{% endif %}>
-                    {{ render_field(field, class="input in", rel="tipsy-ns", tagged=False) }}
-                    <a class="rmEq b"><strong>X</strong></a>
-                </li>
-                {%- endfor %}
-            </ul>
-            <ul class="fields">
-                {% set placeholder = _("Select…") %}
-                {{ render_field(add_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) }}
-                {{ render_field(add_form.concept_origin, class="input", tag_class="singleLine") }}
-                {{ render_field(add_form.originating_person, rel="tipsy-ns", tag_class="singleLine", class="input") }}
-                {{ render_field(add_form.working_status, class="input", tag_class="singleLine") }}
-            </ul>
-            <ul class="fields clLeft">
-                {{ render_field(add_form.syntrans, class="input", tag_class="showSyntrans singleLine") }}
-                {{ render_field(add_form.syntrans_term, class="input", tag_class="hideme") }}
-                {{ render_field(add_form.syntrans_lang, class="input", tag_class="hideme") }}
-            </ul>
-            <p class="clLeft showme" style="display:none;"><i class="{% if add_form.errors %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">{{ _("Advanced fields") }}</a></p>
-            <div class="extra hideme{% if add_form.errors %} doNotHide{% endif %}">
-                <h2 class="h4 m4 clBoth">{{ _("Optional fields") }}</h2>
-                <ul class="fields">
-                    {{ render_field(add_form.definition, class="input", rel="tipsy-ns") }}
-                    {{ render_field(add_form.context, class="input", rel="tipsy-ns") }}
-                    {{ render_field(add_form.example, class="input", rel="tipsy-ns") }}
-                    {{ render_field(add_form.explanation, class="input", rel="tipsy-ns") }}
-                    {{ render_field(add_form.entry_source, class="input", rel="tipsy-ns") }}
-                    {{ render_field(add_form.cross_reference, class="input", rel="tipsy-ns") }}
-
-                    {{ render_field(add_form.product_subset, class="input") }}
-                </ul>
-                <h2 class="h4 m4 clBoth">{{ _("Linguistic information") }}</h2>
-                <ul class="fields">
-                    {{ render_field(add_form.normative_authorization, class="input") }}
-                    {{ render_field(add_form.normative_authorization_org, class="input") }}
-                    {{ render_field(add_form.subordinate_concept_generic, class="input") }}
-                    {{ render_field(add_form.superordinate_concept_generic, class="input") }}
-                    {{ render_field(add_form.antonym_concept, class="input") }}
-                    {{ render_field(add_form.related_concept, class="input", rel="tipsy-ns") }}
-                    {{ render_field(add_form.part_of_speech, class="input") }}
-                    {{ render_field(add_form.term_type, class="input") }}
-                </ul>
-            </div>
-            <p class="fAction hr">
-                {{ add_form.submit(class="button") }}
-            </p>
-        </form>
+        {% include "terms/manual.html" %}
     </div>
 
     <div id="add_from_file" class="tabContent">
-        <form method="POST" action="{{ url_for('terms.add') }}" class="f1 uploadTerm" enctype="multipart/form-data">
-            {{ upload_form.hidden_tag() }}
-            <ul class="fields">
-                {% set placeholder = _("Select…") %}
-                {{ render_field(upload_form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) }}
-                {{ render_field(upload_form.concept_origin, class="input", tag_class="singleLine") }}
-                {{ render_field(upload_form.originating_person, rel="tipsy-ns", class="input", tag_class="singleLine") }}
-                {{ render_field(upload_form.working_status, class="input", tag_class="singleLine") }}
-            </ul>
-            <div class="columns">
-                <div class="main">
-                    <noscript>{{ _("You must enable JavaScript in order to set file columns.") }}</noscript>
-                    <ul>
-                    {{ render_field(upload_form.file, class="input", tag_class="singleLine") }}
-                    {{ render_field(upload_form.term_field, class="input") }}
-                    </ul>
-                    <label>{{ _("Column contents") }}</label>
-                    <ul class="otherFields">
-                        <li style="display:none;">{{ upload_form.other_fields(class="input", tag_class="singleLine") }}<a class="rmCol b"><strong>X</strong></a></li>
-                    </ul>
-                    <p><a class="addCol">{{ _("Add column") }}</a></p>
-                </div>
-                <div class="sidebar">
-                    <p class="p5 weak">{{ _("Files must be CSV (comma-separated value) files, either with .csv or .txt extension. CSV files can be generated in spreadsheets such as Excel or LibreOffice Calc.") }}</p>
-                    <p class="p5 weak">{{ _("You must select which fields constitute the file columns.") }}</p>
-                    <p class="p5 weak">{{ _("Please note that all the terms contained within the uploaded file will be added with the settings specified above. You may want to split file contents before uploading anything.") }}</p>
-                </div>
-            </div>
-            <p class="fAction hr">
-                {{ upload_form.submit(class="button") }}
-            </p>
-        </form>
+        {% include "terms/upload.html" %}
     </div>
 
 </div>

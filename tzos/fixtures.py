@@ -59,7 +59,7 @@ ORIGINS = {
     "Zientzia eta Teknologia Fakultatea": {
         "Kimika":
             ["Kimika Fisikoaren Oinarriak", "Kimika Analitikoa", "Kromatografia eta antzeko teknikak", "Kimika Organikoaren Oinarriak", "Materialen Zientziak"],
-        "Ingenieritza Kimikoa":
+        "Ingeniaritza Kimikoa":
             ["Industri Kimika", "Ingeniaritza Kimikoa"],
         "Geologia":
             ["Hidrogeologia"],

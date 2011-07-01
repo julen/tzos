@@ -8,14 +8,15 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, g, redirect, render_template, \
+from flask import Module, flash, g, make_response, redirect, render_template, \
         request, url_for
 
 from flaskext.babel import gettext as _
 
 from tzos.extensions import cache, db, dbxml
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
-        EditTermOriginForm, EditTermSourceForm, ModifyUserPermissionForm
+        EditTermOriginForm, EditTermSourceForm, ExportForm, \
+        ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
 from tzos.models import TermOrigin, TermSource, TermSubject, Translation, User
 from tzos.permissions import admin as admin_permission
@@ -61,11 +62,12 @@ def settings():
     langs_form = AddLanguagesForm()
     origins_form = _gen_origins_form(AddTermOriginForm)
     sources_form = AddTermSourceForm()
+    export_form = ExportForm()
 
     ctx = {'users': users, 'origins': origins, 'sfields': sfields,
             'sources': sources, 'users_form': users_form,
             'langs_form': langs_form, 'origins_form': origins_form,
-            'sources_form': sources_form}
+            'sources_form': sources_form, 'export_form': export_form}
     return render_template("admin/settings.html", **ctx)
 
 @admin.route('/users/', methods=('POST',))
@@ -209,3 +211,27 @@ def edit_source(id):
 
     return render_template("admin/edit_source.html", form=form,
                                                      source=source)
+
+@admin.route('/export/', methods=('POST',))
+@admin_permission.require(401)
+def export():
+
+    form = ExportForm()
+
+    if form and form.validate_on_submit():
+
+        result = dbxml.session.query('//martif').as_str().first()
+
+        rv = make_response(result)
+        rv.content_type = 'application/octet-stream'
+        rv.mimetype = 'application/xml'
+        rv.headers['Content-Disposition'] = 'attachment; filename=tzos.xml'
+
+        return rv
+
+    else:
+
+        flash(_(u"Error validating form. Check the inserted "
+                "values are correct."), "error")
+
+    return redirect(url_for("admin.settings"))

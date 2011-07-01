@@ -62,10 +62,17 @@ class BaseTermSourceForm(Form):
     name = TextField(_(u"Name"),
             validators=[required(message=_(u"Name is required."))])
 
+
 class AddTermSourceForm(BaseTermSourceForm):
 
     submit = SubmitField(_(u"Create"))
 
+
 class EditTermSourceForm(BaseTermSourceForm):
 
     submit = SubmitField(_(u"Edit"))
+
+
+class ExportForm(Form):
+
+    submit = SubmitField(_(u"Export"))

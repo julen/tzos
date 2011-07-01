@@ -1,0 +1,10 @@
+<div class="columns">
+    <h2 class="h4">{{ _('Export database') }}</h2>
+    <form method="POST" action="{{ url_for('admin.export') }}" class="f1">
+        {{ export_form.hidden_tag() }}
+        <dl>
+            <dt>{{ _("This will export the whole database.") }}</dt>
+            <dd>{{ export_form.submit(class="button") }}</dd>
+        </dl>
+    </form>
+</div>

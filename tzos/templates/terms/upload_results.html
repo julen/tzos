@@ -7,9 +7,11 @@
 {% block content %}
 <h2>{{ _('Upload results') }}</h2>
 
-<ul class="uploadResults">
-{% for text, status in results %}
-    <li class="{{ status }}">{{ text }}</li>
-{% endfor %}
-</ul>
+<div id="results" class="tabContent">
+    <ul class="uploadResults">
+    {% for text, status in results %}
+        <li class="{{ status }}">{{ text }}</li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}

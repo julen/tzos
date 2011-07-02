@@ -16,5 +16,6 @@ from .admin import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
         ModifyUserPermissionForm
 from .comments import CommentForm
 from .search import SearchForm
-from .terms import AddTermForm, AddTermFormCor, EditTermForm, \
-        EditTermFormCor, EditTermFormMod, UploadForm, UploadFormCor
+from .terms import AddTermForm, AddTermFormCor, CollisionForm, \
+        CollisionFormCor, EditTermForm, EditTermFormCor, EditTermFormMod, \
+        UploadForm, UploadFormCor

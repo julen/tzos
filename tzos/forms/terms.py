@@ -271,7 +271,6 @@ class AddTermForm(BaseTermForm):
     syntrans_lang = SelectFieldPlus(_(u"Language"),
             validators=[Optional(), check_required_dropdown])
 
-
     submit = SubmitField(_(u"Add"))
 
 
@@ -288,6 +287,15 @@ class AddTermFormCor(AddTermForm):
     working_status = BooleanWorkingField(_(u"I want this term to be public."),
             default="checked")
 
+
+class CollisionForm(AddTermForm):
+
+    discard = SubmitField(_(u"No, discard my addition"))
+    force = SubmitField(_(u"Yes, insert my term anyways"))
+
+class CollisionFormCor(CollisionForm, AddTermFormCor):
+
+    pass
 
 class EditTermForm(BaseTermForm):
 

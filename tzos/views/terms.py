@@ -19,8 +19,8 @@ from flaskext.wtf import TextField
 
 from tzos.extensions import db, dbxml
 from tzos.forms import AddTermForm, AddTermFormCor, CommentForm, \
-        EditTermForm, EditTermFormCor, EditTermFormMod, UploadForm, \
-        UploadFormCor
+        CollisionForm, CollisionFormCor, EditTermForm, EditTermFormCor, \
+        EditTermFormMod, UploadForm, UploadFormCor
 from tzos.models import Comment, Term
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
         get_responsible_orgs, get_sfields_dropdown, require_valid_dict
@@ -61,7 +61,8 @@ def detail(id):
 
 def _gen_term_form(form_cls, **form_args):
 
-    if form_cls.__name__ in ('AddTermForm', 'AddTermFormCor'):
+    if form_cls.__name__ in ('AddTermForm', 'AddTermFormCor', \
+            'CollisionForm', 'CollisionFormCor'):
 
         dict_langs = get_dict_langs()
 
@@ -148,6 +149,9 @@ def add():
         form_args['add-syntrans_term'] = request.args['term']
         form_args['add-syntrans_lang'] = request.args['lang']
         form_args['add-syntrans'] = True
+        form_args['collision-syntrans_term'] = request.args['term']
+        form_args['collision-syntrans_lang'] = request.args['lang']
+        form_args['collision-syntrans'] = True
 
         del form_args['term']
         del form_args['lang']
@@ -155,19 +159,40 @@ def add():
     if g.user.is_corrector:
         add_form_cls = AddTermFormCor
         upload_form_cls = UploadFormCor
+        collision_form_cls = CollisionFormCor
     else:
         add_form_cls = AddTermForm
         upload_form_cls = UploadForm
+        collision_form_cls = CollisionForm
 
     add_form = _gen_term_form(add_form_cls, formdata=form_args,
                                   prefix='add')
+    collision_form = _gen_term_form(collision_form_cls, formdata=form_args,
+                                  prefix='collision', csrf_enabled=False)
     upload_form = _gen_term_form(upload_form_cls, formdata=form_args,
                                      prefix='upload')
 
-    if add_form.submit.data and add_form.validate_on_submit():
+    if (add_form.submit.data and add_form.validate_on_submit()) or \
+        ((collision_form.discard.data or collision_form.force.data) and \
+        collision_form.validate_on_submit()):
+
+        # Get desired extra action (only used in collision pages)
+        force = False
+        discard = False
+        if collision_form.discard.data:
+            discard = True
+        elif collision_form.force.data:
+            force = True
+
+        if discard:
+            flash(_(u"Term addition discarded."), 'success')
+            return redirect(url_for('frontend.index'))
 
         term = Term()
-        add_form.populate_obj(term)
+        if collision_form.force.data:
+            collision_form.populate_obj(term)
+        else:
+            add_form.populate_obj(term)
 
         for f in add_form._fields:
             if f.startswith(u'eqterm-'):
@@ -208,6 +233,7 @@ def add():
 
             return render_template('terms/collision.html',
                     add_form=add_form,
+                    collision_form=collision_form,
                     terms=objects)
         else:
             flash(_(u'Error while trying to add some terms.'), 'error')

@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from "macros/_forms.html" import render_add_form %}
 
 {% block title %}{{ super() }}{{ _('Add terms') }}{% endblock %}
 
@@ -13,7 +14,7 @@
     </ul>
 
     <div id="add_manually" class="tabContent">
-        {% include "terms/manual.html" %}
+        {{ render_add_form(add_form) }}
     </div>
 
     <div id="add_from_file" class="tabContent">

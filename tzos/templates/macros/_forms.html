@@ -51,3 +51,66 @@
     {{ render_field(form.submit) }}
 </form>
 {% endmacro %}
+
+{% macro render_add_form(form, only_body=False) %}
+{% if not only_body %}
+<form method="POST" action="{{ url_for('terms.add') }}" class="f1 addTerm">
+{% endif %}
+    {{ form.hidden_tag() }}
+    <ul class="fields termFields">
+        {{ render_field(form.term, class="input in") }}
+        {{ render_field(form.language, class="input in") }}
+    </ul>
+    <ul class="fields eqFields">
+        {{ render_field(form.eqlang, class="input addEq", tag_class="singleLine") }}
+        {%- for field in form.eqterm_fields %}
+        <li class="eqField clBoth"{% if not form.errors or field.data == "" %} style="display:none;"{% endif %}>
+            {{ render_field(field, class="input in", rel="tipsy-ns", tagged=False) }}
+            <a class="rmEq b"><strong>X</strong></a>
+        </li>
+        {%- endfor %}
+    </ul>
+    <ul class="fields">
+        {% set placeholder = _("Select…") %}
+        {{ render_field(form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) }}
+        {{ render_field(form.concept_origin, class="input", tag_class="singleLine") }}
+        {{ render_field(form.originating_person, rel="tipsy-ns", tag_class="singleLine", class="input") }}
+        {{ render_field(form.working_status, class="input", tag_class="singleLine") }}
+    </ul>
+    <ul class="fields clLeft">
+        {{ render_field(form.syntrans, class="input", tag_class="showSyntrans singleLine") }}
+        {{ render_field(form.syntrans_term, class="input", tag_class="hideme") }}
+        {{ render_field(form.syntrans_lang, class="input", tag_class="hideme") }}
+    </ul>
+    <p class="clLeft showme" style="display:none;"><i class="{% if form.errors %}iBDarr{% else %}iBRarr{% endif %}">[arrow]</i><a href="#" class="showHide">{{ _("Advanced fields") }}</a></p>
+    <div class="extra hideme{% if form.errors %} doNotHide{% endif %}">
+        <h2 class="h4 m4 clBoth">{{ _("Optional fields") }}</h2>
+        <ul class="fields">
+            {{ render_field(form.definition, class="input", rel="tipsy-ns") }}
+            {{ render_field(form.context, class="input", rel="tipsy-ns") }}
+            {{ render_field(form.example, class="input", rel="tipsy-ns") }}
+            {{ render_field(form.explanation, class="input", rel="tipsy-ns") }}
+            {{ render_field(form.entry_source, class="input", rel="tipsy-ns") }}
+            {{ render_field(form.cross_reference, class="input", rel="tipsy-ns") }}
+
+            {{ render_field(form.product_subset, class="input") }}
+        </ul>
+        <h2 class="h4 m4 clBoth">{{ _("Linguistic information") }}</h2>
+        <ul class="fields">
+            {{ render_field(form.normative_authorization, class="input") }}
+            {{ render_field(form.normative_authorization_org, class="input") }}
+            {{ render_field(form.subordinate_concept_generic, class="input") }}
+            {{ render_field(form.superordinate_concept_generic, class="input") }}
+            {{ render_field(form.antonym_concept, class="input") }}
+            {{ render_field(form.related_concept, class="input", rel="tipsy-ns") }}
+            {{ render_field(form.part_of_speech, class="input") }}
+            {{ render_field(form.term_type, class="input") }}
+        </ul>
+    </div>
+    <p class="fAction hr">
+        {{ form.submit(class="button") }}
+    </p>
+{% if not only_body %}
+</form>
+{% endif %}
+{% endmacro %}

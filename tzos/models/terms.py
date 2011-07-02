@@ -553,34 +553,70 @@ class Term(object):
                                           document='tzos.xml').as_str().first()
             setattr(self, key, result)
 
-    def insert_all(self):
+    def insert_all(self, emulate=False, force=False):
         """Inserts the current term and the equivalent terms stored
         in the object to the DB."""
 
+        class Namespace(): pass
+
+        ns = Namespace()
+        ns.collision = False
+        ns.error = False
+
+        objects = []
         results = []
-        msg_exists = _(u"Term ‘{0}’ already exists.")
+
+        msg_collision = _(u"Collision detected! "
+                u"Term ‘{0}’ already exists.")
+        msg_collision_em = _(u"Collision detected! "
+                u"Term ‘{0}’ wouldn't be added.")
         msg_success = _(u"Term ‘{0}’ added successfully.")
+        msg_success_em = _(u"Term ‘{0}’ would be added.")
         msg_error = _(u"Error while adding term ‘{0}’.")
 
         def _insert_term(t):
-            if t.exists():
-                results.append((msg_exists.format(t.term), 'warning'))
-            else:
-                if t.insert():
-                    results.append((msg_success.format(t.term), 'success'))
-                else:
-                    results.append((msg_error.format(t.term), 'error'))
 
-        _insert_term(self)
+            collision, obj = t.check_collision()
+
+            if collision and not force:
+                if emulate:
+                    results.append((msg_collision_em.format(t.term), 'warning'))
+                else:
+                    results.append((msg_collision.format(t.term), 'warning'))
+                ns.collision = True
+            else:
+                if emulate:
+                    results.append((msg_success_em.format(t.term), 'success'))
+                else:
+                    if t.insert():
+                        results.append((msg_success.format(t.term), 'success'))
+                    else:
+                        results.append((msg_error.format(t.term), 'error'))
+                        ns.error = True
+
+            return obj
+
+        def _insert_single(t):
+            obj = _insert_term(t)
+            objects.extend(obj)
+
+        _insert_single(self)
 
         for syn in self.raw_synonyms:
-            _insert_term(syn)
+            _insert_single(syn)
 
         for lang, items in self.raw_translations.iteritems():
             for term in items:
-                _insert_term(term)
+                _insert_single(term)
 
-        return results
+        if ns.collision:
+            st = u"collision"
+        elif ns.error:
+            st = u"error"
+        else:
+            st = u"success"
+
+        return st, results, objects
 
 
     def insert(self):

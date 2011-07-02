@@ -182,22 +182,33 @@ def add():
                     else:
                         term.append_raw_translation(lang, terms)
 
-        results = term.insert_all()
+        st, results, objects = term.insert_all(force=force)
 
-        # Look if there have been any errors
-        try:
-            i = map(itemgetter(1), results).index('error')
-            success = False
-        except ValueError:
-            success = True
-
-        if success:
+        if st == u"success":
             msg = _(u'Term added successfully. '
                     '<a href="%(url)s">Go to the term</a>.',
                     url=url_for('terms.detail', id=term.id))
             flash(msg, 'success')
 
             return redirect(url_for("terms.add"))
+        elif st == u"collision":
+            msg = _(u'Collision detected!')
+            flash(msg, 'warning')
+
+            # Quick hack for avoiding weird data within originating_person
+            add_form._do_postprocess = True
+            add_form.process()
+
+            # Fill in collision form
+            for field in add_form._fields:
+                if field != 'csrf':
+                    val = getattr(add_form, field).data
+                    f = getattr(collision_form, field, None)
+                    setattr(f, 'data', val)
+
+            return render_template('terms/collision.html',
+                    add_form=add_form,
+                    terms=objects)
         else:
             flash(_(u'Error while trying to add some terms.'), 'error')
 
@@ -258,10 +269,13 @@ def add():
                         else:
                             term.append_raw_translation(lang, value)
 
-                res = term.insert_all()
+                st, res, objects = term.insert_all(emulate=emulate)
                 results.extend(res)
 
-            return render_template('terms/upload_results.html', results=results)
+            return render_template('terms/upload_results.html',
+                    results=results,
+                    upload_form=upload_form,
+                    emulate=emulate)
         else:
             flash(_(u'Not a valid file.'), 'error')
 

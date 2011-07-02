@@ -405,6 +405,39 @@ class Term(object):
 
         return t
 
+    def check_collision(self):
+        """Returns True if there's a collision with an existing term
+        in the DB. Returns False otherwise.
+
+        If a collision happens, the terms which are present in the DB
+        will be returned as a list too.
+
+        There's a collision if there's a match in
+        - the term itself,
+        - the language, and
+        - one of the parent subject fields (a subject field on the root)
+        """
+
+        qs = """
+        import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+        for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig
+        where term:term($tig) = "{1}" and
+            (let $fields := tokenize(term:subject_field($tig), ";")
+            return some $f in $fields satisfies $f = $sfields)
+        return term:values($tig)
+        """.format(self.language.encode('utf-8'),
+                   self.term.encode('utf-8'))
+
+        root_codes = list(set([unicode(TermSubject.root_code(c)) \
+                for c in self.subject_field]))
+        ctx = {'sfields': root_codes}
+
+        results = dbxml.session.raw_query(qs, ctx).as_callback(Term.parse).all()
+        print results, len(results)
+
+        return None not in results, results
+
     def has_langset(self, langcode):
         """Returns True if the current term has a langSet for langcode."""
         qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \

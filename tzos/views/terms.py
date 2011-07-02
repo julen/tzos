@@ -249,6 +249,7 @@ def add():
 
             reader = csv.DictReader(file, fieldnames=fields, skipinitialspace=True)
 
+            emulate = upload_form.emulate.data == u"y" and True or False
             results = []
 
             for row in reader:

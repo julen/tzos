@@ -344,6 +344,8 @@ class UploadForm(CoreTermForm):
 
     columns = HiddenField()
 
+    emulate = HiddenField(default=u"y")
+
     transac_type = HiddenField(default='importation',
             validators=[AnyOf('importation')])
 

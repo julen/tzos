@@ -179,7 +179,7 @@ class Term(object):
         """Parses a string into a Term object."""
 
         if not value:
-            return Term()
+            return None
 
         parts = value.split(u"|||")
 

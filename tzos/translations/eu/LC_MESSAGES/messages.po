@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-07-03 15:11+0200\n"
+"PO-Revision-Date: 2011-07-03 15:27+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0-rc1\n"
 "Generated-By: Babel 0.9.5\n"
 
 #: tzos/application.py:91
@@ -419,7 +421,7 @@ msgstr "Editatu"
 
 #: tzos/forms/admin.py:78
 msgid "Export"
-msgstr ""
+msgstr "Esportatu"
 
 #: tzos/forms/comments.py:19
 msgid "Term id is required."
@@ -568,7 +570,7 @@ msgstr "Sarrera baliogabea, ezin du ‘%(value)s’ izan."
 
 #: tzos/forms/terms.py:56
 msgid "Term '{0}' doesn't exist in the database."
-msgstr "'{0}' terminoa hau ez dago datu-basean."
+msgstr "'{0}' terminoa ez dago datu-basean."
 
 #: tzos/forms/terms.py:73
 msgid "You must choose a valid option."
@@ -689,11 +691,11 @@ msgstr "Terminoa publiko izatea nahi dut."
 
 #: tzos/forms/terms.py:293
 msgid "No, discard my addition"
-msgstr ""
+msgstr "Ez, baztertu terminoa gehitzea"
 
 #: tzos/forms/terms.py:294
 msgid "Yes, insert my term anyways"
-msgstr ""
+msgstr "Bai, txertatu terminoa halere"
 
 #: tzos/forms/terms.py:307
 msgid "Save changes"
@@ -736,9 +738,8 @@ msgid "Upload"
 msgstr "Igo"
 
 #: tzos/forms/terms.py:357
-#, fuzzy
 msgid "I want these terms to be public."
-msgstr "Terminoa publiko izatea nahi dut."
+msgstr "Terminoak publiko izatea nahi dut."
 
 #: tzos/models/terms.py:154
 #, python-format
@@ -761,25 +762,25 @@ msgstr "Ez dago jardueraren xehetasunik eskuragarri."
 
 #: tzos/models/terms.py:568
 msgid "Collision detected! Term ‘{0}’ already exists."
-msgstr ""
+msgstr "Talka atzeman da! ‘{0}’ terminoa badago jada."
 
 #: tzos/models/terms.py:570
 msgid "Collision detected! Term ‘{0}’ wouldn't be added."
-msgstr ""
+msgstr "Talka atzeman da! ‘{0}’ terminoa ez litzateke gehituko."
 
 #: tzos/models/terms.py:572
-#, fuzzy, python-format
+#, python-format
 msgid "Term ‘{0}’ added successfully."
-msgstr "‘%(term)s’ terminoa ondo gehitu da."
+msgstr "‘{0}’ terminoa ondo gehitu da."
 
 #: tzos/models/terms.py:573
 msgid "Term ‘{0}’ would be added."
-msgstr ""
+msgstr "‘{0}’ terminoa gehituko litzateke."
 
 #: tzos/models/terms.py:574
-#, fuzzy, python-format
+#, python-format
 msgid "Error while adding term ‘{0}’."
-msgstr "Errorea ‘%(term)s’ terminoa gehitzean."
+msgstr "Errorea ‘{0}’ terminoa gehitzean."
 
 #: tzos/models/users.py:65
 msgid "Member"
@@ -787,7 +788,7 @@ msgstr "Kidea"
 
 #: tzos/models/users.py:66
 msgid "Corrector"
-msgstr ""
+msgstr "Zuzentzailea"
 
 #: tzos/models/users.py:67
 msgid "Moderator"
@@ -882,6 +883,10 @@ msgid ""
 "US/firefox/\">Mozilla Firefox</a> or <a "
 "href=\"http://www.chromium.org/\">Google Chromium</a>."
 msgstr ""
+"Erabiltzaile-esperientzia hobeagorako, web nabigatzaile modernoren bat "
+"erabiltzea gomendatzen dizugu, adibidez <a "
+"href=\"https://www.mozilla.com/eu/firefox/\">Mozilla Firefox</a> edo <a "
+"href=\"http://www.chromium.org/\">Google Chromium</a>."
 
 #: tzos/templates/index.html:20 tzos/templates/search/results.html:6
 #: tzos/templates/search/results.html:8
@@ -1065,11 +1070,11 @@ msgstr ""
 
 #: tzos/templates/admin/misc.html:2
 msgid "Export database"
-msgstr ""
+msgstr "Esportatu datu-basea"
 
 #: tzos/templates/admin/misc.html:6
 msgid "This will export the whole database."
-msgstr ""
+msgstr "Datu-base osoa esportatuko du eragiketa honek."
 
 #: tzos/templates/admin/origins.html:2
 msgid "Current origins"
@@ -1141,7 +1146,7 @@ msgstr "Jakintza arloak"
 
 #: tzos/templates/admin/settings.html:18
 msgid "Misc"
-msgstr ""
+msgstr "Hainbat"
 
 #: tzos/templates/admin/sfields.html:3
 msgid ""
@@ -1191,6 +1196,13 @@ msgid ""
 "\n"
 "%(activate_url)s\n"
 msgstr ""
+"\n"
+"Kaixo %(username)s,\n"
+"\n"
+"Izen-ematea burutu eta zure kontua aktibatzeko, egin klik\n"
+"azpiko loturan:\n"
+"\n"
+"%(activate_url)s\n"
 
 #: tzos/templates/errors/403.html:3
 msgid "Hey!"
@@ -1254,7 +1266,7 @@ msgstr "Informazio linguistikoa"
 #: tzos/templates/user/profile.html:5
 #, python-format
 msgid "%(user)s's profile"
-msgstr "%(user)s(r)en profila"
+msgstr "%(user)s erabiltzailearen profila"
 
 #: tzos/templates/macros/_util.html:25 tzos/templates/macros/_util.html:34
 msgid "d/M/yyyy HH:mm"
@@ -1361,20 +1373,19 @@ msgstr "Fitxategitik"
 
 #: tzos/templates/terms/collision.html:6 tzos/views/terms.py:220
 msgid "Collision detected!"
-msgstr ""
+msgstr "Talka atzeman da!"
 
 #: tzos/templates/terms/collision.html:13
 msgid "Collision"
-msgstr ""
+msgstr "Talka"
 
 #: tzos/templates/terms/collision.html:14
 msgid "Edit data"
-msgstr ""
+msgstr "Editatu datuak"
 
 #: tzos/templates/terms/collision.html:18
-#, fuzzy
 msgid "Action required"
-msgstr "Iizena beharrezkoa da."
+msgstr "Ekintza behar da"
 
 #: tzos/templates/terms/collision.html:19
 msgid ""
@@ -1382,21 +1393,24 @@ msgid ""
 "present in the database. Please check the information below and act "
 "accordingly."
 msgstr ""
+"Sartu dituzun terminoetako batzuk dagoeneko datu-basean daudela atzeman "
+"dugu. Egiaztatu azpiko informazioa eta hartu ekintza horren arabera."
 
 #: tzos/templates/terms/collision.html:22
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Jarraitu nahi duzu?"
 
 #: tzos/templates/terms/collision.html:31
 msgid ""
 "You can also edit the information you have entered by clicking 'Edit "
 "data' on the left hand side."
 msgstr ""
+"Sartutako informazioa ere edita dezakezu ezkerraldeko 'Editatu datuak' "
+"aukeran klik eginez."
 
 #: tzos/templates/terms/collision.html:34
-#, fuzzy
 msgid "Collision information"
-msgstr "Informazio linguistikoa"
+msgstr "Talkaren informazioa"
 
 #: tzos/templates/terms/detail.html:14
 msgid "Add a comment"
@@ -1489,21 +1503,22 @@ msgstr "Erabiltzaile honek ez du iruzkinik egin oraindik."
 
 #: tzos/views/account.py:43
 msgid "TZOS: Activate your account"
-msgstr ""
+msgstr "TZOS: Aktibatu zure kontua"
 
 #: tzos/views/account.py:48
-#, fuzzy
 msgid "Please check your email for instructions on how to activate your account."
-msgstr "Egiaztatu posta elektronikoa kontua atzitzeko jarraibideak eskuratzeko."
+msgstr ""
+"Egiaztatu posta elektronikoa kontua aktibatzeko jarraibideak eskuratzeko."
 
 #: tzos/views/account.py:65
 msgid "Invalid activation key, key expired, or user already activated."
 msgstr ""
+"Aktibazio-gako baliogabea, gako iraungia edo erabiltzailea aktibatuta dago "
+"jada."
 
 #: tzos/views/account.py:73
-#, fuzzy
 msgid "Your account has been activated, you can now log in."
-msgstr "Kontua eguneratu da."
+msgstr "Zure kontua aktibatu egin da, saioa has dezakezu orain."
 
 #: tzos/views/account.py:103
 msgid "Wrong username or password."
@@ -1574,10 +1589,9 @@ msgid "Term source ‘%(source)s’ has been edited."
 msgstr "‘%(source)s’ termino-iturria editatu egin da."
 
 #: tzos/views/admin.py:234
-#, fuzzy
 msgid "Error validating form. Check the inserted values are correct."
 msgstr ""
-"Errorea hizkuntza gehitzean. Egiaztatu txertatutako balioak zuzenak "
+"Errorea inprimakia balidatzean. Egiaztatu txertatutako balioak zuzenak "
 "direla."
 
 #: tzos/views/frontend.py:69
@@ -1616,7 +1630,7 @@ msgstr "Errorea ‘%(term)s’ terminoa gehitzean."
 
 #: tzos/views/terms.py:188
 msgid "Term addition discarded."
-msgstr ""
+msgstr "Terminoa gehitzea baztertu da."
 
 #: tzos/views/terms.py:215
 #, python-format
@@ -1650,4 +1664,3 @@ msgstr "Eskerrik asko iruzkinagatik."
 
 #~ msgid "Welcome, %(name)s."
 #~ msgstr "Ongi etorri, %(name)s."
-

@@ -406,11 +406,9 @@ class Term(object):
         return t
 
     def check_collision(self):
-        """Returns True if there's a collision with an existing term
-        in the DB. Returns False otherwise.
-
-        If a collision happens, the terms which are present in the DB
-        will be returned as a list too.
+        """If a collision happens, a list with the terms which are
+        present in the DB will be returned. An empty list will be
+        returned otherwise.
 
         There's a collision if there's a match in
         - the term itself,
@@ -435,7 +433,7 @@ class Term(object):
 
         results = dbxml.session.raw_query(qs, ctx).as_callback(Term.parse).all()
 
-        return None not in results, results
+        return results
 
     def has_langset(self, langcode):
         """Returns True if the current term has a langSet for langcode."""
@@ -575,9 +573,9 @@ class Term(object):
 
         def _insert_term(t):
 
-            collision, obj = t.check_collision()
+            objs = t.check_collision()
 
-            if collision and not force:
+            if objs and not force:
                 if emulate:
                     results.append((msg_collision_em.format(t.term), 'warning'))
                 else:
@@ -593,7 +591,7 @@ class Term(object):
                         results.append((msg_error.format(t.term), 'error'))
                         ns.error = True
 
-            return obj
+            return objs
 
         def _insert_single(t):
             obj = _insert_term(t)

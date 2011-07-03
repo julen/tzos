@@ -434,7 +434,6 @@ class Term(object):
         ctx = {'sfields': root_codes}
 
         results = dbxml.session.raw_query(qs, ctx).as_callback(Term.parse).all()
-        print results, len(results)
 
         return None not in results, results
 

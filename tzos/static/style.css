@@ -57,6 +57,8 @@ q { font-style: italic; }
 .iWDarr { background-position:0 -40px; }
 .iBDarr { background-position:-16px -24px; }
 .iBRarr { background-position:-16px -40px; }
+.iEdit  { background-position:-32px -24px; }
+.iAdd   { background-position:-32px -40px; }
 .iSrch  { background-position:-84px -40px; }
 
 /* Buttons */

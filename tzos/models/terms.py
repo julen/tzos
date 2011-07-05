@@ -420,7 +420,8 @@ class Term(object):
         import module namespace term = "http://tzos.net/term" at "term.xqm";
 
         for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig
-        where term:term($tig) = "{1}" and
+        where term:is_public($tig) and
+            term:term($tig) = "{1}" and
             (let $fields := tokenize(term:subject_field($tig), ";")
             return some $f in $fields satisfies $f = $sfields)
         return term:values($tig)

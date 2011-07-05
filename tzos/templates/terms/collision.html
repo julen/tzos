@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% from "macros/_forms.html" import render_field, render_add_form %}
-{% from "macros/_util.html" import render_term %}
+{% from "macros/_util.html" import render_term with context %}
 
 {% block title %}{{ super() }}{{ _('Collision detected!') }}{% endblock %}
 
@@ -23,7 +23,7 @@
         "information by clicking 'Edit term'. Alternatively, you can "
         "choose to discard or force the insert of your addition.") }}</p>
         {% for term in terms %}
-        {{ render_term(term, show_details=True, hr=True) }}
+        {{ render_term(term, show_details=True, show_actions=True, hr=True) }}
         {% endfor %}
         <h2 class="hr">{{ _("Action required") }}</h2>
         <p>{{ _("Before taking any further action, please check "

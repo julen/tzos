@@ -15,26 +15,30 @@
     </ul>
 
     <div id="collision" class="tabContent">
-        <h2>{{ _("Action required") }}</h2>
-        <p>{{ _("We have detected that some of the terms you have "
-        "entered are already present in the database. Please check "
-        "the information below and act accordingly.") }}</p>
-        <p>{{ _("Do you want to continue?") }}</p>
+        <h2>{{ _("Collision information") }}</h2>
+        <p>{{ _("The following terms have been found in the database "
+        "and they collide with the data you have just entered.") }}</p>
+        <p>{{ _("If one of these terms has the same meaning as the "
+        "term you wanted to insert, you may want to add any extra "
+        "information by clicking 'Edit term'. Alternatively, you can "
+        "choose to discard or force the insert of your addition.") }}</p>
+        {% for term in terms %}
+        {{ render_term(term, show_details=True, hr=True) }}
+        {% endfor %}
+        <h2 class="hr">{{ _("Action required") }}</h2>
+        <p>{{ _("Before taking any further action, please check "
+        "the information above and act accordingly.") }}</p>
+        <p class="strong">{{ _("Do you want to continue?") }}</p>
 
         <form method="POST" action="{{ url_for('terms.add') }}" class="f1 addTerm">
         <div style="display:none;">{{ render_add_form(collision_form, only_body=True) }}</div>
         <ul>
-            <li>{{ render_field(collision_form.discard) }}</li>
-            <li>{{ render_field(collision_form.force) }}</li>
+            <li class="in"><p class="fAction in">{{ collision_form.discard(class="button") }}</p></li>
+            <li class="in"><p class="fAction in">{{ collision_form.force(class="button") }}</p></li>
         </ul>
         </form>
         <p>{{ _("You can also edit the information you have entered "
         "by clicking 'Edit data' on the left hand side.") }}</p>
-
-        <h2>{{ _("Collision information") }}</h2>
-        {% for term in terms %}
-        {{ render_term(term, show_details=True, hr=True) }}
-        {% endfor %}
     </div>
 
     <div id="edit" class="tabContent">

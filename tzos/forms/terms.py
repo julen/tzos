@@ -290,8 +290,8 @@ class AddTermFormCor(AddTermForm):
 
 class CollisionForm(AddTermForm):
 
-    discard = SubmitField(_(u"No, discard my addition"))
-    force = SubmitField(_(u"Yes, insert my term anyways"))
+    discard = SubmitField(_(u"No, discard my term"))
+    force = SubmitField(_(u"Yes, insert my term"))
 
 class CollisionFormCor(CollisionForm, AddTermFormCor):
 

@@ -1223,6 +1223,13 @@ footer, header, hgroup, menu, nav, section {
 }
 
 
+/* Recaptcha */
+
+#recaptcha_widget_div {
+    clear: both;
+}
+
+
 /* bsmSelect */
 
 .bsmSelect {

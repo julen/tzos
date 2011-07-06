@@ -10,7 +10,7 @@
 {% block content %}
 {% if page.items %}
     {%- for term in page.items %}
-        {{ render_term(term, show_actions=True) }}
+    {{ render_term(term) }}
     {%- endfor %}
 {{ render_pagination(page, 'glossary.list_letter') }}
 {% else %}

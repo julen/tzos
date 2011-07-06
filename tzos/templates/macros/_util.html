@@ -171,13 +171,15 @@
 
     {%- endif %}
 
-    {%- if show_actions %}
-    <ul class="termActions in small">
-        {% if g.user %}
-        <li><a href="{{ url_for('terms.add', lang=term.language, term=term.term) }}">{{ _('Add synonym/translation') }}</a></li>
-        <li><a href="{{ url_for('terms.edit', id=term.id) }}">{{ _('Edit term') }}</a></li>
-        {% endif %}
-    </ul>
+    {%- if show_actions and g.user %}
+    <div class="termActions small">
+        <div class="termAction">
+            <i class="iAdd">[add]</i><a href="{{ url_for('terms.add', lang=term.language, term=term.term) }}">{{ _('Add synonym/translation') }}</a>
+        </div>
+        <div class="termAction">
+            <i class="iEdit">[edit]</i><a href="{{ url_for('terms.edit', id=term.id) }}">{{ _('Edit term') }}</a>
+        </div>
+    </div>
     {%- endif %}
 </div>
 {% endmacro %}

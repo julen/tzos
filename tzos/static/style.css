@@ -744,6 +744,7 @@ header .gravatar img {
 div.term {
     margin: 1em 0 1em 0.5em;
     line-height: 1.5;
+    overflow: hidden;
     position: relative;
 }
 
@@ -805,15 +806,39 @@ span.adminSts {
     font-weight: bold;
 }
 
-ul.termActions {
+div.termActions {
+    -webkit-transition-property: right;
+    -webkit-transition-duration: .2s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-property: right;
+    -moz-transition-duration: .2s;
+    -moz-transition-timing-function: ease-in-out;
+    -o-transition-property: right;
+    -o-transition-duration: .2s;
+    -o-transition-timing-function: ease-in-out;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: block;
+    line-height: 2;
     position: absolute;
-    top: 0;
-    right: 5%;
-    visibility: hidden;
+    top: 20px;
+    right: -175px;
+    width: 200px;
 }
 
-div.term:hover .termActions {
-    visibility: visible;
+div.termActions i {
+    margin-left: 5px;
+}
+
+div.termActions a {
+    margin: 2px 0 0 5px;
+}
+
+div.termActions:hover {
+    right: -5px;
 }
 
 

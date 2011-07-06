@@ -8,16 +8,17 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, redirect, render_template, request, url_for
+from flask import Module, flash, g, redirect, render_template, request, url_for
 
 from flaskext.babel import gettext as _
+from flaskext.mail import Message
 
 from babel import Locale
 
-from tzos.extensions import cache, dbxml
-from tzos.forms import SearchForm
+from tzos.extensions import cache, dbxml, mail
+from tzos.forms import ContactForm, SearchForm
 from tzos.helpers import get_dict_langs
-from tzos.models import Comment, TermChange
+from tzos.models import Comment, TermChange, User
 
 frontend = Module(__name__)
 
@@ -72,6 +73,32 @@ def dict():
 
     return render_template('dict.html')
 
-@frontend.route('/contact/')
+@frontend.route('/contact/', methods=('GET', 'POST',))
 def contact():
-    pass
+
+    if g.user:
+        form = ContactForm(obj=g.user)
+    else:
+        form = ContactForm()
+
+    if form and form.validate_on_submit():
+
+        admins = User.query.filter(User.role == User.ADMIN)
+        admin_emails = [admin.email for admin in admins]
+
+        body = render_template("emails/contact.html",
+                               name=form.display_name.data,
+                               email=form.email.data,
+                               text=form.text.data)
+
+        message = Message(subject=_(u"TZOS: Contact from website"),
+                          body=body,
+                          recipients=admin_emails)
+        mail.send(message)
+
+        flash(_(u"Thanks for your message. We will try to reply you "
+                "back as fast as possible."), "success")
+
+        return redirect(url_for("frontend.index"))
+
+    return render_template('contact.html', contact_form=form)

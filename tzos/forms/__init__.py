@@ -15,6 +15,7 @@ from .admin import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
         EditTermOriginForm, EditTermSourceForm, ExportForm, \
         ModifyUserPermissionForm
 from .comments import CommentForm
+from .frontend import ContactForm
 from .search import SearchForm
 from .terms import AddTermForm, AddTermFormCor, CollisionForm, \
         CollisionFormCor, EditTermForm, EditTermFormCor, EditTermFormMod, \

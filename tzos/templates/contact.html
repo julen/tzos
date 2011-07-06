@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% from "macros/_forms.html" import render_form %}
+
+{% block title %}{{ super() }}{{ _('Contact') }}{% endblock %}
+
+{% block intro_title %}{{ _('Contact') }}{% endblock %}
+{% block intro_text %}{{ _("Fill in this form to ask your inquiries and requests to the TZOS administrators.") }}{% endblock %}
+
+{% block content %}
+<div class="centerWrap">
+{{ render_form(contact_form) }}
+</div>
+{% endblock %}

@@ -20,8 +20,10 @@
         "and they collide with the data you have just entered.") }}</p>
         <p>{{ _("If one of these terms has the same meaning as the "
         "term you wanted to insert, you may want to add any extra "
-        "information by clicking 'Edit term'. Alternatively, you can "
-        "choose to discard or force the insert of your addition.") }}</p>
+        "information by clicking 'Edit term' on the right-hand side "
+        "of each term.") }}</p>
+        <p>{{ _("Alternatively, you can choose to discard or force "
+        "the insertion of your addition.") }}</p>
         {% for term in terms %}
         {{ render_term(term, show_details=True, show_actions=True, hr=True) }}
         {% endfor %}

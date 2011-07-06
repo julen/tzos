@@ -71,3 +71,7 @@ def dict():
         return redirect(url_for('frontend.index'))
 
     return render_template('dict.html')
+
+@frontend.route('/contact/')
+def contact():
+    pass

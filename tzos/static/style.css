@@ -411,11 +411,13 @@ footer {
     clear: both;
 }
 
-section#locales .iGlobe {
+section#locales .iGlobe,
+section#about .iInfo {
     margin-right: 5px;
     position: relative;
     top: -1px;
 }
+
 
 /* General classes */
 

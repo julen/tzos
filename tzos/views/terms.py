@@ -95,7 +95,7 @@ def _gen_term_form(form_cls, **form_args):
         form.term_field.choices = term_choices
 
         other_choices = [(u'trans-' + code,
-            _(u"Synonym/translation in %(lang)s", lang=lang)) \
+            _(u"Equivalent in %(lang)s", lang=lang)) \
             for code, lang in dict_langs]
         form.other_fields.choices = other_choices
 

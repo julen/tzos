@@ -116,27 +116,6 @@ def _gen_term_form(form_cls, **form_args):
     return form
 
 
-def _do_the_insert(term):
-
-    results = []
-
-    if term.exists():
-        msg = _(u"Term ‘%(term)s’ already exists.",
-                term=term.term)
-        results.append((msg, 'warning'))
-    else:
-        if term.insert():
-            msg = _(u"Term ‘%(term)s’ added successfully.",
-                    term=term.term)
-            results.append((msg, 'success'))
-        else:
-            msg = _(u"Error while adding term ‘%(term)s’.",
-                    term=term.term)
-            results.append((msg, 'error'))
-
-    return results
-
-
 @terms.route('/add/', methods=('GET', 'POST'))
 @auth.require(401)
 def add():

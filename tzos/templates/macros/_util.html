@@ -186,7 +186,7 @@
         </div>
         {%- endif %}
         <div class="termAction">
-            <i class="iEdit">[edit]</i><a href="{{ url_for('terms.edit', id=term.id) }}">{{ _('Edit term') }}</a>
+            <i class="iEdit">[edit]</i><a href="{% if review %}{{ url_for('terms.edit', id=term.id, mode='review') }}{% else %}{{ url_for('terms.edit', id=term.id) }}{% endif %}">{{ _('Edit term') }}</a>
         </div>
     </div>
     {%- endif %}

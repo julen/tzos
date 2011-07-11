@@ -127,8 +127,10 @@ def _gen_term_form(form_cls, **form_args):
 
         form = form_cls(**form_args)
 
-        # Avoid explicit editing of Basque terms
-        if form.language.data == u'eu':
+        # Avoid explicit editing of Basque terms in certain situations
+        if (not g.user.is_corrector and form.language.data == u'eu') or \
+            (g.user.is_corrector and form.language.data == u'eu' \
+            and request.args.get('mode', u'') != u'review'):
             del form.term
 
     form.concept_origin.choices = get_origins_dropdown()

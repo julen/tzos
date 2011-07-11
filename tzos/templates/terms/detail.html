@@ -11,6 +11,7 @@
 {% block content %}
 {{ render_term(term, show_details=True, show_actions=True) }}
 
+{%- if not term.is_unreviewed %}
 <h2 class="h4 hr">{{ _('Add a comment') }}</h2>
 {% if g.user %}
 {% set form_action = url_for('terms.add_comment', term_id=term.id) %}
@@ -30,6 +31,7 @@
 <div class="comments">
     {{ render_comments(term_comments) }}
 </div>
+{% endif %}
 {% endif %}
 
 {% endblock %}

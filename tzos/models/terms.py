@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from dateutil.parser import parse
+from functools import wraps
 from time import strftime
 
 from flask import g, Markup, render_template, url_for
@@ -171,6 +172,22 @@ class TermChange(object):
     def date(self):
         return parse(self._date)
 
+
+def working_status(f):
+    """A decorator to retrieve the Term's working status in case it's
+    not defined yet."""
+
+    @wraps(f)
+    def decorator(obj, *args, **kwargs):
+        if not hasattr(obj, 'working_status'):
+            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(obj.id)
+            obj.working_status = dbxml.session.query(qs).as_str().first()
+        if not obj.working_status:
+            return False
+
+        return f(obj, *args, **kwargs)
+
+    return decorator
 
 class Term(object):
 
@@ -445,43 +462,31 @@ class Term(object):
 
         return result is not None
 
+    @property
+    @working_status
     def is_public(self):
         """Returns True if the current term has an elementWorkingStatus
         with a value of `workingElement` or higher."""
-
-        if not hasattr(self, 'working_status'):
-            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
-            self.working_status = dbxml.session.query(qs).as_str().first()
-        if not self.working_status:
-            return False
 
         return self.working_status != u"starterElement" and \
                self.working_status != u"importedElement" and \
                self.working_status != u"archiveElement"
 
+    @property
+    @working_status
     def is_consolidated(self):
         """Returns True if the current term has an elementWorkingStatus
         with a value of `consolidatedElement` or higher."""
-
-        if not hasattr(self, 'working_status'):
-            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
-            self.working_status = dbxml.session.query(qs).as_str().first()
-        if not self.working_status:
-            return False
 
         return self.working_status != u"starterElement" and \
                self.working_status != u"importedElement" and \
                self.working_status != u"workingElement"
 
+    @property
+    @working_status
     def is_unreviewed(self):
         """Returns True if the current term has an elementWorkingStatus
         with a value of `starterElement` or `importedElement`."""
-
-        if not hasattr(self, 'working_status'):
-            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
-            self.working_status = dbxml.session.query(qs).as_str().first()
-        if not self.working_status:
-            return False
 
         return self.working_status == u"starterElement" or \
                self.working_status == u"importedElement"

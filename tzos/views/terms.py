@@ -60,7 +60,7 @@ def detail(id):
     qs = """
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-    let $tig := collection($collection)//tig[@id="{0}"]
+    let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id="{0}"]
     let $unreviewed :=
         if (term:owner($tig) = "{1}") then
             true()

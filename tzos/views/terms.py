@@ -387,8 +387,8 @@ def edit(id):
 
             xml = render_template('xml/transaction.xml', **ctx)
 
-            locations = (u'//tig[@id="{0}"]',
-                         u'//tig[@id="{0}"]/../..')
+            locations = (u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]',
+                         u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../..')
 
             for location in locations:
                 location = location.format(id)

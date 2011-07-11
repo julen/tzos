@@ -300,9 +300,11 @@ def edit(id):
     term = Term(id)
     term.populate()
 
+    # FIXME: this changes with corrector roles -- should check if comes
+    # from the review page to act accordingly
     # BooleanFields
     if not g.user.is_moderator:
-        term.working_status = term.is_public()
+        term.working_status = term.is_public
 
     # Be aware these checks have to be done from highest to lowest permissions
     if g.user.is_moderator:

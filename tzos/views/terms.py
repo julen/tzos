@@ -340,12 +340,6 @@ def edit(id):
 
     term = dbxml.session.raw_query(qs).as_callback(Term.parse).first_or_404()
 
-    # FIXME: this changes with corrector roles -- should check if comes
-    # from the review page to act accordingly
-    # BooleanFields
-    if not g.user.is_moderator:
-        term.working_status = term.is_public
-
     # Be aware these checks have to be done from highest to lowest permissions
     if g.user.is_moderator:
         form_cls = EditTermFormMod
@@ -355,6 +349,18 @@ def edit(id):
         form_cls = EditTermForm
 
     form = _gen_term_form(form_cls, obj=term)
+
+    #
+    # Adapt working_status for reviewing cases
+    #
+    review = request.args.get('mode', u'') == u'review'
+
+    if g.user.is_moderator and review:
+        form.working_status.data = u"workingElement"
+    elif g.user.is_corrector and review:
+        form.working_status.data = True
+    elif not g.user.is_moderator:
+        form.working_status.data = term.is_public
 
     if form.validate_on_submit():
         success = []

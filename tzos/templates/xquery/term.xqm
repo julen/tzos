@@ -14,6 +14,12 @@ let $workingStatus := term:working_status($tig)
 return $workingStatus != "starterElement" and $workingStatus != "importedElement" and $workingStatus != "archiveElement"
 };
 
+declare function term:unreviewed($tig as element(tig))
+as xs:boolean {
+let $workingStatus := term:working_status($tig)
+return $workingStatus = "starterElement" or $workingStatus = "importedElement"
+};
+
 declare function term:term($tig as element(tig)) {
     $tig/term/string()
 };

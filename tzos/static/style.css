@@ -851,6 +851,18 @@ div.termActions:hover {
     right: -5px;
 }
 
+div.term .private {
+    background-color: #fff;
+    color: #d54e21;
+    font-weight: bold;
+    margin: 1em;
+    padding: 1em;
+}
+
+div.term .private i {
+    margin-right: 5px;
+}
+
 
 /* Adding terms */
 

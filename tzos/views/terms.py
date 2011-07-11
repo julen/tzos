@@ -318,8 +318,27 @@ def add():
 @auth.require(401)
 def edit(id):
 
-    term = Term(id)
-    term.populate()
+    if g.user.is_corrector:
+        user_restriction = "true()"
+    else:
+        user_restriction = "term:is_public($tig)"
+
+    qs = """
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+    let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id="{0}"]
+    let $unreviewed :=
+        if (term:owner($tig) = "{1}") then
+            true()
+        else
+            false()
+    where term:owner($tig) = "{1}" or {2}
+    return term:values($tig, $unreviewed)
+    """.format(unicode(id).encode('utf-8'),
+               getattr(g.user, 'username', u'').encode('utf-8'),
+               user_restriction)
+
+    term = dbxml.session.raw_query(qs).as_callback(Term.parse).first_or_404()
 
     # FIXME: this changes with corrector roles -- should check if comes
     # from the review page to act accordingly

@@ -72,8 +72,7 @@ def detail(id):
                getattr(g.user, 'username', u'').encode('utf-8'))
 
 
-    value = dbxml.session.raw_query(qs).as_str().first_or_404()
-    term = Term.parse(value)
+    term = dbxml.session.raw_query(qs).as_callback(Term.parse).first_or_404()
 
     comment_form = CommentForm(term_id=id)
 

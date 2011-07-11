@@ -516,59 +516,6 @@ class Term(object):
 
         return u""
 
-    def populate(self):
-        """Populates current term's fields by querying fields by id."""
-
-        fields = [
-            ('term', u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/term/string()'),
-            ('language', u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../data(@xml:lang)'),
-            ('concept_origin',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="conceptOrigin"]/string()'),
-            ('subject_field',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="subjectField"]/string()'),
-            ('working_status',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'),
-            ('originating_person',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'),
-            ('definition',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../descrip[@type="definition"]/string()'),
-            ('context',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/descrip[@type="context"]/string()'),
-            ('example',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/descrip[@type="example"]/string()'),
-            ('explanation',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/descrip[@type="explanation"]/string()'),
-            ('entry_source',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="entrySource"]/string()'),
-            ('cross_reference',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/ref[@type="crossReference"]/string()'),
-            ('product_subset',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="productSubset"]/string()'),
-
-            ('normative_authorization',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="normativeAuthorization"]/string()'),
-            ('normative_authorization_org',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="normativeAuthorization"]/data(@target)'),
-            ('subordinate_concept_generic',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="subordinateConceptGeneric"]/string()'),
-            ('superordinate_concept_generic',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="superordinateConceptGeneric"]/string()'),
-            ('antonym_concept',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="antonymConcept"]/string()'),
-            ('related_concept',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../../descrip[@type="relatedConcept"]/string()'),
-            ('part_of_speech',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="partOfSpeech"]/string()'),
-            ('term_type',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="termType"]/string()'),
-            ('administrative_status',
-             u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/termNote[@type="administrativeStatus"]/string()'),
-        ]
-
-        for key, qs in fields:
-            result = dbxml.session.query(qs.format(self.id),
-                                          document='tzos.xml').as_str().first()
-            setattr(self, key, result)
 
     def insert_all(self, emulate=False, force=False):
         """Inserts the current term and the equivalent terms stored

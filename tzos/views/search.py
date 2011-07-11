@@ -107,7 +107,7 @@ def results():
         where term:is_public($tig) and {0}{1}
         order by lower-case($tig/term/string()) ascending,
                  $tig/term/string() descending
-        return term:values($tig)
+        return term:values($tig, false())
         """.format(predicate.encode('utf-8'),
                    filter.encode('utf-8'))
 

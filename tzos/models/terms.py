@@ -425,7 +425,7 @@ class Term(object):
             term:term($tig) = "{1}" and
             (let $fields := tokenize(term:subject_field($tig), ";")
             return some $f in $fields satisfies $f = $sfields)
-        return term:values($tig)
+        return term:values($tig, false())
         """.format(self.language.encode('utf-8'),
                    self.term.encode('utf-8'))
 

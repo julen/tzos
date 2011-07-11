@@ -25,17 +25,17 @@ declare function term:term($tig as element(tig)) {
 };
 
 
-declare function term:synonyms($tig as element(tig)) {
+declare function term:synonyms($tig as element(tig), $unreviewed as xs:boolean?) {
     let $synonyms :=
         for $syn in $tig/..//tig[term/string() != term:term($tig)]
         let $synID := $syn/data(@id)
-        where term:is_public($syn)
+        where (if ($unreviewed) then true() else term:is_public($syn))
         return string-join(($synID, term:term($syn)), ";")
     return string-join($synonyms, ";;;")
 };
 
 
-declare function term:translations($tig as element(tig))
+declare function term:translations($tig as element(tig), $unreviewed as xs:boolean?)
 {
     let $translations :=
         for $trans in $tig/../..//tig
@@ -43,7 +43,8 @@ declare function term:translations($tig as element(tig))
         let $termLang := data($tig/../@xml:lang)
         let $transLang := data($trans/../@xml:lang)
         let $workingStatus := term:working_status($trans)
-        where $trans/..[@xml:lang!=$termLang] and term:is_public($trans)
+        where $trans/..[@xml:lang!=$termLang] and
+            (if ($unreviewed) then true() else term:is_public($trans))
         return string-join(($transLang, $transID, term:term($trans)), ";")
     return string-join($translations, ";;;")
 };
@@ -169,7 +170,7 @@ string-join(
 };
 
 
-declare function term:values($tig as element(tig)) {
+declare function term:values($tig as element(tig), $unreviewed as xs:boolean?) {
 string-join(
     ($tig/data(@id), (: term ID :)
      $tig/../data(@xml:lang), (: language of the term :)
@@ -193,8 +194,8 @@ string-join(
      term:pos($tig),
      term:type($tig),
      term:admn_sts($tig),
-     term:synonyms($tig),
-     term:translations($tig),
+     term:synonyms($tig, $unreviewed),
+     term:translations($tig, $unreviewed),
      term:working_status($tig),
      term:owner($tig)
      ), "|||")

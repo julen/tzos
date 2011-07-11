@@ -41,8 +41,13 @@ def detail(id):
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
     let $tig := collection($collection)//tig[@id="{0}"]
+    let $unreviewed :=
+        if (term:owner($tig) = "{1}") then
+            true()
+        else
+            false()
     where term:owner($tig) = "{1}" or term:is_public($tig)
-    return term:values($tig)
+    return term:values($tig, $unreviewed)
     """.format(unicode(id).encode('utf-8'),
                getattr(g.user, 'username', u'').encode('utf-8'))
 

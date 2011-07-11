@@ -32,7 +32,7 @@ def list_letter(dict, letter):
           term:is_public($tig)
     order by lower-case($tig/term/string()) ascending,
              $tig/term/string() descending
-    return term:values($tig)
+    return term:values($tig, false())
     """.format(dict.encode('utf-8'),
                letter.encode('utf-8'))
 

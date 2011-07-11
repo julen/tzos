@@ -473,6 +473,19 @@ class Term(object):
                self.working_status != u"importedElement" and \
                self.working_status != u"workingElement"
 
+    def is_unreviewed(self):
+        """Returns True if the current term has an elementWorkingStatus
+        with a value of `starterElement` or `importedElement`."""
+
+        if not hasattr(self, 'working_status'):
+            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"]/string()'.format(self.id)
+            self.working_status = dbxml.session.query(qs).as_str().first()
+        if not self.working_status:
+            return False
+
+        return self.working_status == u"starterElement" or \
+               self.working_status == u"importedElement"
+
     def is_mine(self):
         """Returns True if the term's `origintatingPerson` is the same
         as the user who committed the term."""

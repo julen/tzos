@@ -449,3 +449,29 @@ def review_ui():
     terms = dbxml.session.raw_query(qs).as_callback(Term.parse).all()
 
     return render_template('terms/review.html', terms=terms)
+
+
+@terms.route('/<int:id>/review/<any(accept, reject):action>/')
+@corrector.require(401)
+def review(id, action):
+
+    action_map = {
+            'accept': 'workingElement',
+            'reject': 'archiveElement',
+            }
+
+    qs = 'replace value of node collection($collection)/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="elementWorkingStatus"] with "{1}"'
+    qs = qs.format(id, action_map[action])
+
+    if dbxml.session.insert_raw(qs):
+
+        if action == 'accept':
+            _register_transaction(id)
+            flash(_(u"Term accepted."), "success")
+        else:
+            _register_transaction(id, type='withdrawal')
+            flash(_(u"Term rejected."), "success")
+    else:
+        flash(_(u"Failed to perform action."), "error")
+
+    return redirect(url_for("terms.review_ui"))

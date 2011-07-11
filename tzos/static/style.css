@@ -60,6 +60,7 @@ q { font-style: italic; }
 .iEdit  { background-position:-32px -24px; }
 .iAdd   { background-position:-32px -40px; }
 .iInfo  { background-position:-48px -24px; }
+.iWarn  { background-position:-48px -40px; }
 .iOk    { background-position:-64px -24px; }
 .iCancel{ background-position:-64px -40px; }
 .iSrch  { background-position:-84px -40px; }

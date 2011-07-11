@@ -753,6 +753,10 @@ div.term {
     position: relative;
 }
 
+div.term.review {
+    min-height: 90px;
+}
+
 div.term li {
     margin-right: 0.8em;
     /*line-height: 1.2;*/

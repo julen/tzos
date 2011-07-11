@@ -195,7 +195,7 @@ string-join(
      term:admn_sts($tig),
      term:synonyms($tig),
      term:translations($tig),
-     term:working_status($tig)
+     term:working_status($tig),
      term:owner($tig)
      ), "|||")
 };

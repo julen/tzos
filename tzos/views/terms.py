@@ -34,6 +34,26 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+
+def _register_transaction(id, type='modification'):
+    """Writes transaction information for the tig with id `id`."""
+
+    ctx = {
+        'transac_type': type,
+        'date': strftime('%Y-%m-%d %H:%M:%S%z'),
+        'username': g.user.username
+    }
+
+    xml = render_template('xml/transaction.xml', **ctx)
+
+    locations = (u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]',
+                 u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../..')
+
+    for location in locations:
+        location = location.format(id)
+        dbxml.session.insert_as_last(xml, location)
+
+
 @terms.route('/<int:id>/')
 def detail(id):
 
@@ -378,21 +398,7 @@ def edit(id):
         if failure:
             flash(_(u"Failed to edit some fields."), "error")
         else:
-            # XXX: adapt 'modification'? add note?
-            ctx = {
-                'transac_type': 'modification',
-                'date': strftime('%Y-%m-%d %H:%M:%S%z'),
-                'username': g.user.username
-            }
-
-            xml = render_template('xml/transaction.xml', **ctx)
-
-            locations = (u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]',
-                         u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/../..')
-
-            for location in locations:
-                location = location.format(id)
-                dbxml.session.insert_as_last(xml, location)
+            _register_transaction(id)
 
             flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
                     "success")

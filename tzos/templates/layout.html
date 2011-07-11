@@ -24,6 +24,9 @@
                     {% if g.user %}
                     <li><div class="gravatar"><a href="{{ url_for('user.profile', username=g.user.username) }}"><img class="i20" src="{{ g.user.gravatar_url() }}" /></a><a href="{{ url_for('user.profile', username=g.user.username) }}">{{ g.user.username }}</a></div></li>
                     <li><a href="{{ url_for('terms.add') }}">{{ _('Add terms') }}</a></li>
+                    {% if g.user.is_corrector %}
+                    <li><a href="{{ url_for('terms.review_ui') }}" class="admin">{{ _('Review terms') }}</a></li>
+                    {% endif %}
                     {% if g.user.is_admin %}
                     <li><a href="{{ url_for('admin.settings') }}" class="admin">{{ _('Admin') }}</a></li>
                     {% endif %}

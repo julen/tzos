@@ -24,7 +24,7 @@ from tzos.forms import AddTermForm, AddTermFormCor, CommentForm, \
 from tzos.models import Comment, Term
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
         get_responsible_orgs, get_sfields_dropdown, require_valid_dict
-from tzos.permissions import auth
+from tzos.permissions import auth, corrector
 
 terms = Module(__name__)
 
@@ -424,3 +424,22 @@ def add_comment(term_id):
         return redirect(comment.url)
 
     return redirect(url_for("terms.detail", id=term_id))
+
+
+@terms.route('/review/')
+@corrector.require(401)
+def review_ui():
+
+    qs = """
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+    for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig
+    where term:is_unreviewed($tig)
+    order by lower-case($tig/term/string()) ascending,
+             $tig/term/string() descending
+    return term:values($tig, true())
+    """
+
+    terms = dbxml.session.raw_query(qs).as_callback(Term.parse).all()
+
+    return render_template('terms/review.html', terms=terms)

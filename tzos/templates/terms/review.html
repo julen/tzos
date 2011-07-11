@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% from "macros/_util.html" import render_term with context %}
+
+{% block title %}{{ super() }}{{ _("Pending corrections") }}{% endblock %}
+
+{% block intro_title %}{{ _("Review") }}{% endblock %}
+{% block intro_text %}{{ ngettext("%(num)d term needs review before it is made public.", "%(num)d terms need review before they are made public.", terms|count) }}{% endblock %}
+
+{% block content %}
+{%- for term in terms %}
+{{ render_term(term, review=True) }}
+{% else %}
+<h2>{{ _('Nothing to correct.') }}</h2>
+{%- endfor %}
+{% endblock %}

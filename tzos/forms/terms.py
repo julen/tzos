@@ -75,17 +75,6 @@ def check_required_dropdown(form, field):
     if not field.data or field.data in ('none',):
         raise ValidationError(message)
 
-def check_collision(form, field):
-    message = _(u"This term already exists in the database.")
-
-    # FIXME: Also check in subject field?
-    qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
-            format(form.language.data, form.term.data)
-    result = dbxml.session.query(qs).as_str().first()
-
-    if result:
-        raise ValidationError(message)
-
 def check_syntrans(form, field):
     message = _(u"You must specify a term.")
 

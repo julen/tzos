@@ -110,6 +110,9 @@ class User(db.Model):
         needs = [RoleNeed('authenticated'),
                  UserNeed(self.id)]
 
+        if self.is_corrector:
+            needs.append(RoleNeed('corrector'))
+
         if self.is_moderator:
             needs.append(RoleNeed('moderator'))
 

@@ -184,7 +184,6 @@ string-join(
      term:entry_source($tig),
      term:xref($tig),
      term:product_subset($tig),
-     (: working status??? :)
      term:norm_auth($tig),
      term:norm_auth_org($tig),
      term:subordinate_cg($tig),
@@ -196,6 +195,7 @@ string-join(
      term:admn_sts($tig),
      term:synonyms($tig),
      term:translations($tig),
+     term:working_status($tig)
      term:owner($tig)
      ), "|||")
 };

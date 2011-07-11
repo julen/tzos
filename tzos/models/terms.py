@@ -206,9 +206,10 @@ class Term(object):
         term.administrative_status = parts[21]
         term.synonyms = parts[22]
         term.translations = parts[23]
+        term.working_status = parts[24]
         try:
             # When the last string is empty, we need to treat it specially
-            term.owner = parts[24]
+            term.owner = parts[25]
         except IndexError:
             term.owner = None
 

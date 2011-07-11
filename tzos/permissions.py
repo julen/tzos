@@ -12,4 +12,5 @@ from flaskext.principal import RoleNeed, Permission
 
 admin = Permission(RoleNeed('admin'))
 moderator = Permission(RoleNeed('moderator'))
+corrector = Permission(RoleNeed('corrector'))
 auth = Permission(RoleNeed('authenticated'))

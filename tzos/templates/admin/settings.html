@@ -10,40 +10,40 @@
 {% block content %}
 <div class="hTabs">
     <ul class="inlineTabs sideTabs">
-        <li><a href="#edit_permissions">{{ _("User permissions") }}</a></li>
-        <li><a href="#edit_languages">{{ _("Languages") }}</a></li>
-        <li><a href="#edit_origins">{{ _("Term origins") }}</a></li>
-        <li><a href="#edit_sources">{{ _("Term sources") }}</a></li>
-        <li><a href="#edit_sfields">{{ _("Knowledge fields") }}</a></li>
-        <li><a href="#edit_misc">{{ _("Misc") }}</a></li>
-        <li><a href="#edit_bkp">{{ _("Backups") }}</a></li>
+        <li><a href="#admin_permissions">{{ _("User permissions") }}</a></li>
+        <li><a href="#admin_languages">{{ _("Languages") }}</a></li>
+        <li><a href="#admin_origins">{{ _("Term origins") }}</a></li>
+        <li><a href="#admin_sources">{{ _("Term sources") }}</a></li>
+        <li><a href="#admin_sfields">{{ _("Knowledge fields") }}</a></li>
+        <li><a href="#admin_misc">{{ _("Misc") }}</a></li>
+        <li><a href="#admin_bkp">{{ _("Backups") }}</a></li>
     </ul>
 
-    <div id="edit_permissions" class="tabContent">
+    <div id="admin_permissions" class="tabContent">
         {% include "admin/permissions.html" %}
     </div>
 
-    <div id="edit_languages" class="tabContent">
+    <div id="admin_languages" class="tabContent">
         {% include "admin/languages.html" %}
     </div>
 
-    <div id="edit_origins" class="tabContent">
+    <div id="admin_origins" class="tabContent">
         {% include "admin/origins.html" %}
     </div>
 
-    <div id="edit_sources" class="tabContent">
+    <div id="admin_sources" class="tabContent">
         {% include "admin/sources.html" %}
     </div>
 
-    <div id="edit_sfields" class="tabContent">
+    <div id="admin_sfields" class="tabContent">
         {% include "admin/sfields.html" %}
     </div>
 
-    <div id="edit_misc" class="tabContent">
+    <div id="admin_misc" class="tabContent">
         {% include "admin/misc.html" %}
     </div>
 
-    <div id="edit_bkp" class="tabContent">
+    <div id="admin_bkp" class="tabContent">
         {% include "admin/backups.html" %}
     </div>
 </div>

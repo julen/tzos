@@ -1,0 +1,18 @@
+{% from "macros/_forms.html" import render_form %}
+<div class="backups">
+    <h2 class="h4">{{ _('Current backups') }}</h2>
+    <ul class="backups">
+    {%- for bkp in bkps %}
+        <li><a href="{{ url_for('admin.download_backup', filename=bkp) }}">{{ bkp }}</a></li>
+    {%- else %}
+        <li>{{ _("No backups yet.") }}</li>
+    {%- endfor %}
+    </ul>
+</div>
+<div class="hr fields">
+    <h2 class="h4">{{ _('Make a new backup') }}</h2>
+    <p>{{ _("This will create a backup of the current databases "
+    "(DBXML and SQL). Take into account that depending on the "
+    "size of your database the operation can take a while.") }}</p>
+    {{ render_form(backup_form, action=url_for('admin.backup')) }}
+</div>

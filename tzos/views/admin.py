@@ -8,14 +8,16 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, flash, g, make_response, redirect, render_template, \
-        request, url_for
+import os
+
+from flask import Module, current_app, flash, g, make_response, redirect, \
+        render_template, request, send_from_directory, url_for
 
 from flaskext.babel import gettext as _
 
 from tzos.extensions import cache, db, dbxml
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
-        EditTermOriginForm, EditTermSourceForm, ExportForm, \
+        BackupForm, EditTermOriginForm, EditTermSourceForm, ExportForm, \
         ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
 from tzos.models import TermOrigin, TermSource, TermSubject, Translation, User
@@ -58,16 +60,25 @@ def settings():
             .order_by('text').all()
     sources = TermSource.query.order_by('name').all()
 
+    try:
+        bkp_home = current_app.config['TZOS_BKP_HOME']
+        bkp_ext = u'.tar.bz2'
+        bkps = [f for f in os.listdir(bkp_home) if f.lower().endswith(bkp_ext)]
+    except OSError:
+        bkps = []
+
     users_form = _gen_users_form()
     langs_form = AddLanguagesForm()
     origins_form = _gen_origins_form(AddTermOriginForm)
     sources_form = AddTermSourceForm()
     export_form = ExportForm()
+    backup_form = BackupForm()
 
     ctx = {'users': users, 'origins': origins, 'sfields': sfields,
-            'sources': sources, 'users_form': users_form,
-            'langs_form': langs_form, 'origins_form': origins_form,
-            'sources_form': sources_form, 'export_form': export_form}
+            'sources': sources, 'bkps': bkps,
+            'users_form': users_form, 'langs_form': langs_form,
+            'origins_form': origins_form, 'sources_form': sources_form,
+            'export_form': export_form, 'backup_form': backup_form }
     return render_template("admin/settings.html", **ctx)
 
 @admin.route('/users/', methods=('POST',))
@@ -235,3 +246,53 @@ def export():
                 "error")
 
     return redirect(url_for("admin.settings"))
+
+
+@admin.route('/backup/', methods=('POST',))
+@admin_permission.require(401)
+def backup():
+
+    form = BackupForm()
+
+    if form and form.validate_on_submit():
+        import subprocess
+        from time import strftime
+
+        bkp_home = current_app.config['TZOS_BKP_HOME']
+        db_home = current_app.config['TZOS_DB_HOME']
+        name = 'tzos_backup_{0}'.format(strftime('%Y-%m-%d'))
+
+        # TODO: mysqldump
+        cmd = """
+        mkdir -p {0}/{2}/dbxml {0}/{2}/sql;
+        cp -a {1}/dbxml/* {0}/{2}/dbxml/;
+        cd {0}; tar cfj {2}.tar.bz2 {2}/;
+        rm -rf {2}; cd -;
+        """.format(bkp_home, db_home, name)
+
+        try:
+            p = subprocess.Popen(cmd, cwd=db_home, shell=True)
+            p.wait()
+
+            flash(_(u"Backup done successfully."), "success")
+        except OSError:
+            flash(_(u"OS error while trying to make the backup."),
+                    "error")
+        except ValueError:
+            flash(_(u"Invalid arguments passed to the backup command."),
+                    "error")
+
+
+    else:
+
+        flash(_(u"Error validating form. You may want to reload the page."),
+                "error")
+
+    return redirect(url_for("admin.settings"))
+
+
+@admin.route('/backup/<path:filename>')
+@admin_permission.require(401)
+def download_backup(filename):
+    return send_from_directory(current_app.config['TZOS_BKP_HOME'],
+                               filename, as_attachment=True)

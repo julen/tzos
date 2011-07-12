@@ -1133,6 +1133,15 @@ ul.adminLangs input#name {
     width: 420px;
 }
 
+ul.backups {
+    margin-bottom: 1.5em;
+    padding: 0.5em 20px;
+}
+
+ul.backups li {
+    list-style-type: square;
+}
+
 
 /* HTML5 compatibility */
 

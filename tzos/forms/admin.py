@@ -76,3 +76,8 @@ class EditTermSourceForm(BaseTermSourceForm):
 class ExportForm(Form):
 
     submit = SubmitField(_(u"Export"))
+
+
+class BackupForm(Form):
+
+    submit = SubmitField(_(u"Make backup"))

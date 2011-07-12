@@ -16,6 +16,7 @@
         <li><a href="#edit_sources">{{ _("Term sources") }}</a></li>
         <li><a href="#edit_sfields">{{ _("Knowledge fields") }}</a></li>
         <li><a href="#edit_misc">{{ _("Misc") }}</a></li>
+        <li><a href="#edit_bkp">{{ _("Backups") }}</a></li>
     </ul>
 
     <div id="edit_permissions" class="tabContent">
@@ -40,6 +41,10 @@
 
     <div id="edit_misc" class="tabContent">
         {% include "admin/misc.html" %}
+    </div>
+
+    <div id="edit_bkp" class="tabContent">
+        {% include "admin/backups.html" %}
     </div>
 </div>
 {% endblock %}

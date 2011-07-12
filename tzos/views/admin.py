@@ -231,7 +231,7 @@ def export():
 
     else:
 
-        flash(_(u"Error validating form. Check the inserted "
-                "values are correct."), "error")
+        flash(_(u"Error validating form. You may want to reload the page."),
+                "error")
 
     return redirect(url_for("admin.settings"))

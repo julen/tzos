@@ -220,7 +220,7 @@ def export():
 
     if form and form.validate_on_submit():
 
-        result = dbxml.session.query('//martif').as_str().first()
+        result = dbxml.session.query('/martif').as_str().first()
 
         rv = make_response(result)
         rv.content_type = 'application/octet-stream'

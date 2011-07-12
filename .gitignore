@@ -16,6 +16,7 @@ configs/__init__.py
 configs/fabric.py
 configs/production.py
 
+backups/
 bootstrap/
 
 tzos/production.py

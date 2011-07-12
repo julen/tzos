@@ -225,7 +225,7 @@ def export():
         rv = make_response(result)
         rv.content_type = 'application/octet-stream'
         rv.mimetype = 'application/xml'
-        rv.headers['Content-Disposition'] = 'attachment; filename=tzos.xml'
+        rv.headers['Content-Disposition'] = 'attachment; filename=tzos.tbx'
 
         return rv
 

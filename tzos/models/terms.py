@@ -438,7 +438,7 @@ class Term(object):
 
         return True
 
-    def lock(self, timeout=5):
+    def lock(self, timeout=15):
         """Locks the current term for edition.
 
         The lock will be held for the current user for `timeout`

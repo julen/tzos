@@ -340,6 +340,11 @@ def edit(id):
 
     term = dbxml.session.raw_query(qs).as_callback(Term.parse).first_or_404()
 
+    try:
+        term.lock()
+    except Term.TermLocked:
+        return render_template('terms/locked.html')
+
     # Be aware these checks have to be done from highest to lowest permissions
     if g.user.is_moderator:
         form_cls = EditTermFormMod
@@ -426,10 +431,12 @@ def edit(id):
         else:
             _register_transaction(id)
 
+            term.unlock()
+
             flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
                     "success")
 
-            return redirect(url_for("terms.edit", id=id))
+            return redirect(url_for("terms.detail", id=id))
 
     elif request.method == 'POST' and not form.validate():
         flash(_(u"Failed to edit term. Please review the data you "

@@ -8,6 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+from datetime import datetime, timedelta
 from dateutil.parser import parse
 from functools import wraps
 from time import strftime
@@ -189,7 +190,11 @@ def working_status(f):
 
     return decorator
 
+
 class Term(object):
+
+    class TermLocked(Exception):
+        pass
 
     @classmethod
     def parse(cls, value):
@@ -224,11 +229,12 @@ class Term(object):
         term.synonyms = parts[22]
         term.translations = parts[23]
         term.working_status = parts[24]
+        term.owner = parts[25]
         try:
             # When the last string is empty, we need to treat it specially
-            term.owner = parts[25]
+            term.edit_lock = parts[26]
         except IndexError:
-            term.owner = None
+            term.edit_lock = None
 
         return term
 
@@ -247,6 +253,7 @@ class Term(object):
         self._raw_synonyms = []
         self._translations = {}
         self._raw_translations = {}
+        self._lock = None
 
     @property
     def id(self):
@@ -387,6 +394,87 @@ class Term(object):
         else:
             trans = self.minimal_clone(value.strip(), lang)
             self._raw_translations.setdefault(lang, []).append(trans)
+
+    def _get_lock(self):
+        return self._lock
+
+    def _set_lock(self, lock_str):
+        if lock_str:
+            uid, expires = lock_str.split(u"-", 1)
+            self._lock = {'uid': int(uid), 'expires': expires}
+        else:
+            self._lock = None
+
+    edit_lock = property(_get_lock, _set_lock)
+
+    @property
+    def lock_time(self):
+        return self.edit_lock.setdefault('expires', None)
+
+    @property
+    def locked_by(self):
+        return self.edit_lock.setdefault('uid', None)
+
+    @property
+    def locked(self):
+
+        # No lock exists
+        if self.edit_lock is None:
+            return False
+
+        uid = self.locked_by
+        expires = parse(self.lock_time)
+        now = datetime.now()
+
+        # Not expired but current user holds the lock
+        if uid == g.user.id and \
+           expires >= now:
+            return False
+
+        # Lock expired
+        if expires < now:
+            self.unlock()
+            return False
+
+        return True
+
+    def lock(self, timeout=5):
+        """Locks the current term for edition.
+
+        The lock will be held for the current user for `timeout`
+        minutes. After that time the lock will be reset unless the user
+        reloads the editing page.
+
+        If the term about to be edited is already locked, `Term.TermLocked`
+        exception is raised.
+        """
+
+        if self.locked:
+            raise self.TermLocked()
+
+        expires = datetime.now() + timedelta(minutes=timeout)
+        lock_str = "%d-%s" % (g.user.id, expires.isoformat())
+        self.lock = lock_str
+
+        qs = '''
+        let $tig := collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="%s"]/tig[@id="%s"]
+        let $lock := attribute lock { "%s" }
+        return if (exists($tig/@lock)) then
+            replace node $tig/@lock with $lock
+            else
+            insert node $lock into $tig
+        ''' % (self.language, self.id, lock_str)
+        dbxml.session.insert_raw(qs.encode('utf-8'))
+
+    def unlock(self):
+        """Removes the current term's edition locks from the DB, letting
+        the way free for new edits.
+        """
+
+        self.edit_lock = None
+
+        qs = 'delete node collection($collection)/martif/text/body/termEntry/langSet/tig[@id="{0}"]/@lock'.format(self.id)
+        dbxml.session.insert_raw(qs.encode('utf-8'))
 
     def _url(self, _external=False):
         return url_for('terms.detail',

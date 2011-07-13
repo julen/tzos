@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ super() }}{{ _("Term locked!") }}{% endblock %}
+
+{% block intro %}{% endblock %}
+
+{% block content %}
+<h2>{{ _("Term locked!") }}</h2>
+<p>{{ _("The term you are trying to edit is locked because someone else is editing it right now. Please try again later.") }}</p>
+{% endblock %}

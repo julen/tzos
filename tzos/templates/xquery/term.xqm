@@ -8,6 +8,11 @@ declare function term:owner($tig as element(tig))
     $tig/transacGrp[./transac[@type="transactionType"]/string()="origination" or ./transac[@type="transactionType"]/string()="input" or ./transac[@type="transactionType"]/string()="importation"]/transacNote[@type="responsibility"]/string()
 };
 
+declare function term:lock($tig as element(tig))
+{
+    $tig/@lock
+};
+
 declare function term:is_public($tig as element(tig))
 as xs:boolean {
 let $workingStatus := term:working_status($tig)
@@ -197,6 +202,7 @@ string-join(
      term:synonyms($tig, $unreviewed),
      term:translations($tig, $unreviewed),
      term:working_status($tig),
-     term:owner($tig)
+     term:owner($tig),
+     term:lock($tig)
      ), "|||")
 };

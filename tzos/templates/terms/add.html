@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "macros/_forms.html" import render_add_form %}
+{% from "macros/_forms.html" import render_add_form, render_upload_form %}
 
 {% block title %}{{ super() }}{{ _('Add terms') }}{% endblock %}
 
@@ -18,7 +18,7 @@
     </div>
 
     <div id="add_from_file" class="tabContent">
-        {% include "terms/upload.html" %}
+        {{ render_upload_form(upload_form) }}
     </div>
 
 </div>

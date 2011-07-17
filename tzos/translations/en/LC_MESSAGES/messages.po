@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-07-17 21:07+0200\n"
+"PO-Revision-Date: 2011-07-17 21:12+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -223,8 +223,8 @@ msgstr ""
 msgid "Add terms"
 msgstr ""
 
-#: tzos/ui_strings.py:6
-msgid "Review terms"
+#: tzos/ui_strings.py:6 tzos/templates/terms/review.html:7
+msgid "Review"
 msgstr ""
 
 #: tzos/ui_strings.py:7
@@ -1509,10 +1509,6 @@ msgstr ""
 msgid "Pending corrections"
 msgstr ""
 
-#: tzos/templates/terms/review.html:7
-msgid "Review"
-msgstr ""
-
 #: tzos/templates/terms/review.html:8
 #, python-format
 msgid "%(num)d term needs review before it is made public."
@@ -1773,4 +1769,7 @@ msgstr ""
 #: tzos/views/terms.py:541
 msgid "Failed to perform action."
 msgstr ""
+
+#~ msgid "Review terms"
+#~ msgstr ""
 

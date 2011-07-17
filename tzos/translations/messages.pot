@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-07-17 21:05+0200\n"
+"POT-Creation-Date: 2011-07-17 21:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,8 +222,8 @@ msgstr ""
 msgid "Add terms"
 msgstr ""
 
-#: tzos/ui_strings.py:6
-msgid "Review terms"
+#: tzos/ui_strings.py:6 tzos/templates/terms/review.html:7
+msgid "Review"
 msgstr ""
 
 #: tzos/ui_strings.py:7
@@ -1505,10 +1505,6 @@ msgstr ""
 
 #: tzos/templates/terms/review.html:5
 msgid "Pending corrections"
-msgstr ""
-
-#: tzos/templates/terms/review.html:7
-msgid "Review"
 msgstr ""
 
 #: tzos/templates/terms/review.html:8

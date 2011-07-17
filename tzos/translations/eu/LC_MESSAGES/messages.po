@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-07-17 21:07+0200\n"
+"PO-Revision-Date: 2011-07-17 21:12+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -222,18 +222,17 @@ msgstr "Artxibatua"
 msgid "Add terms"
 msgstr "Gehitu terminoak"
 
-#: tzos/ui_strings.py:6
-#, fuzzy
-msgid "Review terms"
-msgstr "Baztertu terminoa"
+#: tzos/ui_strings.py:6 tzos/templates/terms/review.html:7
+msgid "Review"
+msgstr "Berrikusi"
 
 #: tzos/ui_strings.py:7
 msgid "Admin"
-msgstr ""
+msgstr "Kudeatu"
 
 #: tzos/ui_strings.py:8
 msgid "Log out"
-msgstr ""
+msgstr "Amaitu saioa"
 
 #: tzos/ui_strings.py:9 tzos/templates/account/login.html:4
 #: tzos/templates/account/login.html:6
@@ -246,9 +245,8 @@ msgid "Register"
 msgstr "Eman izena"
 
 #: tzos/ui_strings.py:11
-#, fuzzy
 msgid "Search terms"
-msgstr "Ikerkuntza proiektuak"
+msgstr "Bilatu terminoak"
 
 #: tzos/ui_strings.py:12 tzos/templates/dict.html:3
 msgid "Select dictionary language"
@@ -259,14 +257,12 @@ msgid "Error"
 msgstr "Errorea"
 
 #: tzos/ui_strings.py:14
-#, fuzzy
 msgid "Interface language"
-msgstr "Uneko hizkuntzak"
+msgstr "Interfazearen hizkuntza"
 
 #: tzos/ui_strings.py:15
-#, fuzzy
 msgid "Contact information"
-msgstr "Eguneratu informazioa"
+msgstr "Harremanetarako informazioa"
 
 #: tzos/forms/account.py:23
 msgid "You can only use letters, numbers or dashes."
@@ -1623,10 +1619,6 @@ msgstr ""
 msgid "Pending corrections"
 msgstr "Zuzentzekoak"
 
-#: tzos/templates/terms/review.html:7
-msgid "Review"
-msgstr "Berrikusi"
-
 #: tzos/templates/terms/review.html:8
 #, python-format
 msgid "%(num)d term needs review before it is made public."
@@ -1893,4 +1885,7 @@ msgstr "Terminoa baztertuta."
 #: tzos/views/terms.py:541
 msgid "Failed to perform action."
 msgstr "Huts ekintza burutzean."
+
+#~ msgid "Review terms"
+#~ msgstr "Berrikusi"
 

@@ -269,12 +269,11 @@ class Term(object):
 
         return result
 
-    @cached_property
-    def concept_id(self):
+    def _get_concept_id(self, txn=None, commit=True):
 
         # FIXME: check subjectField too
         qs = u'/martif/text/body/termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
-        return dbxml.session.query(qs, document='tzos.xml').as_str().first()
+        return dbxml.session.query(qs, document='tzos.xml', txn=txn, commit=commit).as_str().first()
 
     @cached_property
     def concept_origin_display(self):
@@ -511,7 +510,7 @@ class Term(object):
 
         return t
 
-    def check_collision(self):
+    def check_collision(self, txn=None, commit=True):
         """If a collision happens, a list with the terms which are
         present in the DB will be returned. An empty list will be
         returned otherwise.
@@ -538,15 +537,17 @@ class Term(object):
                 for c in self.subject_field]))
         ctx = {'sfields': root_codes}
 
-        results = dbxml.session.raw_query(qs, ctx).as_callback(Term.parse).all()
+        results = dbxml.session.raw_query(qs, ctx, txn=txn, commit=commit). \
+                as_callback(Term.parse).all()
 
         return results
 
-    def has_langset(self, langcode):
+    def has_langset(self, langcode, txn=None, commit=True):
         """Returns True if the current term has a langSet for langcode."""
         qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \
-            format(self.concept_id, langcode)
-        result = dbxml.session.query(qs, document='tzos.xml').as_str().first()
+            format(self._get_concept_id(txn, commit), langcode)
+        result = dbxml.session.query(qs, document='tzos.xml', txn=txn, commit=commit). \
+                as_str().first()
 
         return result is not None
 
@@ -626,40 +627,37 @@ class Term(object):
         msg_success_em = _(u"Term ‘{0}’ would be added.")
         msg_error = _(u"Error while adding term ‘{0}’.")
 
-        def _insert_term(t):
+        def _insert_term(t, txn):
 
-            objs = t.check_collision()
+            objs = t.check_collision(txn=txn, commit=False)
 
             if objs and not force:
-                if emulate:
-                    results.append((msg_collision_em.format(t.term), 'warning'))
-                else:
-                    results.append((msg_collision.format(t.term), 'warning'))
+                results.append((t, 'warning'))
                 ns.collision = True
             else:
-                if emulate:
-                    results.append((msg_success_em.format(t.term), 'success'))
+                if t.insert(emulate, txn=txn, commit=False):
+                    results.append((t, 'success'))
                 else:
-                    if t.insert():
-                        results.append((msg_success.format(t.term), 'success'))
-                    else:
-                        results.append((msg_error.format(t.term), 'error'))
-                        ns.error = True
+                    results.append((t, 'error'))
+                    ns.error = True
 
             return objs
 
-        def _insert_single(t):
-            obj = _insert_term(t)
+        def _insert_single(t, txn):
+            obj = _insert_term(t, txn)
             objects.extend(obj)
 
-        _insert_single(self)
+        # Enclose inserting all terms within a single transaction
+        txn = dbxml.session.manager.createTransaction()
+
+        _insert_single(self, txn)
 
         for syn in self.raw_synonyms:
-            _insert_single(syn)
+            _insert_single(syn, txn)
 
         for lang, items in self.raw_translations.iteritems():
             for term in items:
-                _insert_single(term)
+                _insert_single(term, txn)
 
         if ns.collision:
             st = u"collision"
@@ -668,10 +666,20 @@ class Term(object):
         else:
             st = u"success"
 
+        # Finally try to commit the transaction
+        try:
+            if emulate or ns.collision or ns.error:
+                txn.abort()
+            else:
+                txn.commit()
+        except Exception:
+            st = u"error"
+            txn.abort()
+
         return st, results, objects
 
 
-    def insert(self):
+    def insert(self, emulate=False, txn=None, commit=True):
         """Inserts the current term to the DB."""
 
         ctx = {
@@ -692,15 +700,14 @@ class Term(object):
             syntrans_term = Term(term=self.syntrans_term)
             syntrans_term.language = self.syntrans_language
 
-            if syntrans_term.has_langset(self.language):
-
+            if syntrans_term.has_langset(self.language, txn=txn, commit=commit):
                 template_name = 'xml/new_term.xml'
-                where = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'.format(syntrans_term.concept_id, self.language)
+                where = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'.format(syntrans_term._get_concept_id(txn, commit), self.language)
 
             else:
 
                 template_name = 'xml/new_langset.xml'
-                where = u'/martif/text/body/termEntry[@id="{0}"]'.format(syntrans_term.concept_id)
+                where = u'/martif/text/body/termEntry[@id="{0}"]'.format(syntrans_term._get_concept_id(txn, commit))
 
 
         else:
@@ -711,7 +718,9 @@ class Term(object):
 
         xml = render_template(template_name, **ctx)
 
-        if dbxml.session.insert_as_first(xml, where, document='tzos.xml'):
+        if dbxml.session.insert_as_first(xml, where,
+                                         document='tzos.xml',
+                                         txn=txn, commit=commit):
             self._id = ctx['term_id']
             return True
 

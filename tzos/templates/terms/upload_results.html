@@ -1,17 +1,73 @@
 {% extends "layout.html" %}
 
+{% from "macros/_forms.html" import render_field, render_upload_form %}
+
 {% block title %}{{ super() }}{{ _('Upload results') }}{% endblock %}
 
-{% block intro %}{% endblock %}
+{% block intro_title %}{% if emulate %}{{ _('Upload results') }}{% else %}{{ _('Upload complete') }}{% endif %}{% endblock %}
+{% block intro_text %}{% if emulate %}{{ _('Please review the following report before confirming your action.') }}{% else %}{{ _('Thanks for your contributions!') }}{% endif %}{% endblock %}
 
 {% block content %}
-<h2>{{ _('Upload results') }}</h2>
-
+<form method="POST" action="{{ url_for('terms.add') }}" class="f1 uploadTerm" enctype="multipart/form-data">
+<div style="display:none;">{{ render_upload_form(upload_form, only_body=True) }}</div>
 <div id="results" class="tabContent">
-    <ul class="uploadResults">
-    {% for text, status in results %}
-        <li class="{{ status }}">{{ text }}</li>
-    {% endfor %}
+    {%- if results.success %}
+    <h3 class="h4">{{ _('Successfull additions') }}</h3>
+    {%- if emulate %}
+    <p>{{ _('These terms would be added.') }}</p>
+    {%- else %}
+    <p>{{ _('These terms have been added.') }}</p>
+    {%- endif %}
+    <ol class="decimals">
+        {% for concept in results.success %}
+        <li><ul class="uploadResults">
+            {% for term, status in concept %}
+            <li class="{{ status }}">{{ term.term }} ({{ term.language }})</li>
+            {% endfor %}
+        </ul></li>
+        {% endfor %}
+    </ol>
+    {% endif %}
+
+    {%- if results.collision %}
+    <h3 class="h4">{{ _('Collisions') }}</h3>
+    {%- if emulate %}
+    <p>{{ _("These terms wouldn't be added.") }}</p>
+    {%- else %}
+    <p>{{ _("These terms couldn't be added.") }}</p>
+    {%- endif %}
+    <ol class="decimals">
+        {%- for concept in results.collision %}
+        <li><ul class="uploadResults">
+            {%- for term, status in concept %}
+            <li class="{{ status }}">{{ term.term }} ({{ term.language }})</li>
+            {%- endfor %}
+        </ul></li>
+        {%- endfor %}
+    </ol>
+    {%- endif %}
+
+    {%- if results.error %}
+    <h3 class="h4">{{ _('Errors') }}</h3>
+    <p>{{ _('There were errors with these terms.') }}</p>
+    <ol class="decimals">
+        {%- for concept in results.error %}
+        <li><ul class="uploadResults">
+            {%- for term, status in concept %}
+            <li class="{{ status }}">{{ term.term }} ({{ term.language }})</li>
+            {%- endfor %}
+        </ul></li>
+        {%- endfor %}
+    </ol>
+    {%- endif %}
+    {%- if emulate %}
+    <ul>
+        <li class="in"><p class="fAction in">{{ upload_form.cancel(class="button") }}</p></li>
+        {%- if results.success %}
+        <li class="in"><p class="fAction in">{{ upload_form.confirm(class="button") }}</p></li>
+        {%- endif %}
     </ul>
+    {%- endif %}
 </div>
+</form>
 {% endblock %}

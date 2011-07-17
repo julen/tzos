@@ -325,6 +325,8 @@ class UploadForm(CoreTermForm):
     working_status = HiddenField(default=u"starterElement",
             validators=[AnyOf((u"starterElement",))])
 
+    fpath = HiddenField()
+
     file = FileField(_(u"File"))
 
     term_field = SelectField(_(u"Term column"))
@@ -333,12 +335,13 @@ class UploadForm(CoreTermForm):
 
     columns = HiddenField()
 
-    emulate = HiddenField(default=u"y")
-
     transac_type = HiddenField(default='importation',
             validators=[AnyOf('importation')])
 
     submit = SubmitField(_(u"Upload"))
+
+    confirm = SubmitField(_(u"Confirm"))
+    cancel = SubmitField(_(u"Cancel"))
 
 class UploadFormCor(UploadForm):
     """UploadForm for users with `is_corrector` privileges."""

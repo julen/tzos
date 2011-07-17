@@ -175,7 +175,7 @@ def add():
     collision_form = _gen_term_form(collision_form_cls, formdata=form_args,
                                   prefix='collision', csrf_enabled=False)
     upload_form = _gen_term_form(upload_form_cls, formdata=form_args,
-                                     prefix='upload')
+                                     prefix='upload', csrf_enabled=False)
 
     if (add_form.submit.data and add_form.validate_on_submit()) or \
         ((collision_form.discard.data or collision_form.force.data) and \
@@ -243,19 +243,45 @@ def add():
         else:
             flash(_(u'Error while trying to add some terms.'), 'error')
 
-    elif upload_form.submit.data and upload_form.validate_on_submit():
-        file = request.files['upload-file']
+    elif (upload_form.submit.data or upload_form.confirm.data or \
+          upload_form.cancel.data) and upload_form.validate_on_submit():
+
+        if upload_form.cancel.data:
+            flash(_(u"Import action cancelled."), 'success')
+            return redirect(url_for('frontend.index'))
+
+        emulate = True
+        if upload_form.confirm.data:
+            emulate = False
+
+        # Save for later reuse
+        disk_fn = None
+        if emulate:
+            import os
+            import random
+            import string
+            import tempfile
+
+            f = request.files['upload-file']
+            fn = ''.join(random.choice(string.lowercase) for x in range(6))
+            disk_fn = os.path.join(tempfile.gettempdir(), fn)
+            f.save(disk_fn)
+            upload_form.fpath.data = disk_fn
+
+        try:
+            file = open(upload_form.fpath.data)
+        except IOError:
+            file = None
 
         fields = upload_form.columns.data.split(u";")
         fields.insert(0, upload_form.term_field.data)
 
-        if file and allowed_file(file.filename):
+        if file:
             import csv
 
             reader = csv.DictReader(file, fieldnames=fields, skipinitialspace=True)
 
-            emulate = upload_form.emulate.data == u"y" and True or False
-            results = []
+            results = {}
 
             for row in reader:
 
@@ -302,7 +328,14 @@ def add():
                             term.append_raw_translation(lang, value)
 
                 st, res, objects = term.insert_all(emulate=emulate)
-                results.extend(res)
+                results.setdefault(st, []).append(res)
+
+            # Quick hack for avoiding weird data within originating_person
+            upload_form._do_postprocess = True
+            upload_form.process()
+
+            # We need to set this again due to the postprocessing
+            upload_form.fpath.data = disk_fn
 
             return render_template('terms/upload_results.html',
                     results=results,

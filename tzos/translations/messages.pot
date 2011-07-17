@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-07-17 18:53+0200\n"
+"POT-Creation-Date: 2011-07-17 21:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,6 +215,53 @@ msgstr ""
 
 #: tzos/strings.py:75
 msgid "Archived"
+msgstr ""
+
+#: tzos/ui_strings.py:5 tzos/templates/terms/add.html:4
+#: tzos/templates/terms/add.html:6
+msgid "Add terms"
+msgstr ""
+
+#: tzos/ui_strings.py:6
+msgid "Review terms"
+msgstr ""
+
+#: tzos/ui_strings.py:7
+msgid "Admin"
+msgstr ""
+
+#: tzos/ui_strings.py:8
+msgid "Log out"
+msgstr ""
+
+#: tzos/ui_strings.py:9 tzos/templates/account/login.html:4
+#: tzos/templates/account/login.html:6
+msgid "Log in"
+msgstr ""
+
+#: tzos/ui_strings.py:10 tzos/templates/account/register.html:4
+#: tzos/templates/account/register.html:6
+msgid "Register"
+msgstr ""
+
+#: tzos/ui_strings.py:11
+msgid "Search terms"
+msgstr ""
+
+#: tzos/ui_strings.py:12 tzos/templates/dict.html:3
+msgid "Select dictionary language"
+msgstr ""
+
+#: tzos/ui_strings.py:13 tzos/templates/errors/layout.html:6
+msgid "Error"
+msgstr ""
+
+#: tzos/ui_strings.py:14
+msgid "Interface language"
+msgstr ""
+
+#: tzos/ui_strings.py:15
+msgid "Contact information"
 msgstr ""
 
 #: tzos/forms/account.py:23
@@ -808,10 +855,6 @@ msgid ""
 "administrators."
 msgstr ""
 
-#: tzos/templates/dict.html:3
-msgid "Select dictionary language"
-msgstr ""
-
 #: tzos/templates/dict.html:5
 msgid "Dictionary language"
 msgstr ""
@@ -901,10 +944,6 @@ msgstr ""
 msgid "Please fill in the form below to change your password."
 msgstr ""
 
-#: tzos/templates/account/login.html:4 tzos/templates/account/login.html:6
-msgid "Log in"
-msgstr ""
-
 #: tzos/templates/account/login.html:7
 msgid ""
 "If you already have an account, you can log in by providing your username"
@@ -940,11 +979,6 @@ msgstr ""
 
 #: tzos/templates/account/recover_password.html:7
 msgid "Please fill in the form below to request a password recovery."
-msgstr ""
-
-#: tzos/templates/account/register.html:4
-#: tzos/templates/account/register.html:6
-msgid "Register"
 msgstr ""
 
 #: tzos/templates/account/register.html:7
@@ -1212,10 +1246,6 @@ msgid ""
 " as soon as possible. Thanks for your patience."
 msgstr ""
 
-#: tzos/templates/errors/layout.html:6
-msgid "Error"
-msgstr ""
-
 #: tzos/templates/errors/layout.html:11
 msgid "« Back to the home page"
 msgstr ""
@@ -1372,10 +1402,6 @@ msgstr ""
 
 #: tzos/templates/search/results.html:17 tzos/templates/terms/edit.html:21
 msgid "General"
-msgstr ""
-
-#: tzos/templates/terms/add.html:4 tzos/templates/terms/add.html:6
-msgid "Add terms"
 msgstr ""
 
 #: tzos/templates/terms/add.html:7

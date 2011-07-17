@@ -8,15 +8,13 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-07-17 20:23+0200\n"
+"PO-Revision-Date: 2011-07-17 21:07+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
 "Generated-By: Babel 0.9.5\n"
 
 #: tzos/application.py:91
@@ -218,6 +216,57 @@ msgstr "Onartua"
 #: tzos/strings.py:75
 msgid "Archived"
 msgstr "Artxibatua"
+
+#: tzos/ui_strings.py:5 tzos/templates/terms/add.html:4
+#: tzos/templates/terms/add.html:6
+msgid "Add terms"
+msgstr "Gehitu terminoak"
+
+#: tzos/ui_strings.py:6
+#, fuzzy
+msgid "Review terms"
+msgstr "Baztertu terminoa"
+
+#: tzos/ui_strings.py:7
+msgid "Admin"
+msgstr ""
+
+#: tzos/ui_strings.py:8
+msgid "Log out"
+msgstr ""
+
+#: tzos/ui_strings.py:9 tzos/templates/account/login.html:4
+#: tzos/templates/account/login.html:6
+msgid "Log in"
+msgstr "Hasi saioa"
+
+#: tzos/ui_strings.py:10 tzos/templates/account/register.html:4
+#: tzos/templates/account/register.html:6
+msgid "Register"
+msgstr "Eman izena"
+
+#: tzos/ui_strings.py:11
+#, fuzzy
+msgid "Search terms"
+msgstr "Ikerkuntza proiektuak"
+
+#: tzos/ui_strings.py:12 tzos/templates/dict.html:3
+msgid "Select dictionary language"
+msgstr "Hautatu hiztegiaren hizkuntza"
+
+#: tzos/ui_strings.py:13 tzos/templates/errors/layout.html:6
+msgid "Error"
+msgstr "Errorea"
+
+#: tzos/ui_strings.py:14
+#, fuzzy
+msgid "Interface language"
+msgstr "Uneko hizkuntzak"
+
+#: tzos/ui_strings.py:15
+#, fuzzy
+msgid "Contact information"
+msgstr "Eguneratu informazioa"
 
 #: tzos/forms/account.py:23
 msgid "You can only use letters, numbers or dashes."
@@ -826,12 +875,8 @@ msgid ""
 "Fill in this form to ask your inquiries and requests to the TZOS "
 "administrators."
 msgstr ""
-"Bete ezazu inprimaki hau zure galdera eta kezkak TZOSeko administratzaileei "
-"helarazteko."
-
-#: tzos/templates/dict.html:3
-msgid "Select dictionary language"
-msgstr "Hautatu hiztegiaren hizkuntza"
+"Bete ezazu inprimaki hau zure galdera eta kezkak TZOSeko "
+"administratzaileei helarazteko."
 
 #: tzos/templates/dict.html:5
 msgid "Dictionary language"
@@ -949,10 +994,6 @@ msgstr "Aldatu pasahitza"
 msgid "Please fill in the form below to change your password."
 msgstr "Bete ezazu azpiko inprimakia pasahitza aldatzeko."
 
-#: tzos/templates/account/login.html:4 tzos/templates/account/login.html:6
-msgid "Log in"
-msgstr "Hasi saioa"
-
 #: tzos/templates/account/login.html:7
 msgid ""
 "If you already have an account, you can log in by providing your username"
@@ -995,11 +1036,6 @@ msgstr "Berreskuratu pasahitza"
 #: tzos/templates/account/recover_password.html:7
 msgid "Please fill in the form below to request a password recovery."
 msgstr "Bete ezazu azpiko inprimakia pasahitz-berreskurapena eskatzeko."
-
-#: tzos/templates/account/register.html:4
-#: tzos/templates/account/register.html:6
-msgid "Register"
-msgstr "Eman izena"
 
 #: tzos/templates/account/register.html:7
 msgid "Please fill in the required information to register an account."
@@ -1087,9 +1123,9 @@ msgid ""
 "into account that depending on the size of your database the operation "
 "can take a while."
 msgstr ""
-"Uneko datu-baseen babeskopia sortuko du honek (DBXML eta SQL). Kontuan izan "
-"datu-basearen tamainaren arabera eragiketa honek denbora dezente har "
-"lezakeela."
+"Uneko datu-baseen babeskopia sortuko du honek (DBXML eta SQL). Kontuan "
+"izan datu-basearen tamainaren arabera eragiketa honek denbora dezente har"
+" lezakeela."
 
 #: tzos/templates/admin/edit_origin.html:2
 msgid "Edit origin"
@@ -1138,8 +1174,8 @@ msgid ""
 "These are the current term origins available on the system. To edit an "
 "origin, just click on it."
 msgstr ""
-"Ondokoak dira sisteman eskuragarri dauden uneko terminoen jatorriak. Jatorri "
-"bat editatzeko, egin klik gainean."
+"Ondokoak dira sisteman eskuragarri dauden uneko terminoen jatorriak. "
+"Jatorri bat editatzeko, egin klik gainean."
 
 #: tzos/templates/admin/origins.html:14
 msgid "Add a new origin"
@@ -1210,8 +1246,8 @@ msgid ""
 "These are the current knowledge fields available on the system. To edit a"
 " knowledge field, just click on it."
 msgstr ""
-"Ondokoak dira sisteman eskuragarri dauden uneko jakintza-arloak. Arlo bat "
-"editatzeko, egin klik gainean."
+"Ondokoak dira sisteman eskuragarri dauden uneko jakintza-arloak. Arlo bat"
+" editatzeko, egin klik gainean."
 
 #: tzos/templates/admin/sources.html:2
 msgid "Current sources"
@@ -1222,8 +1258,8 @@ msgid ""
 "These are the current term sources available on the system. To edit an "
 "origin, click on it."
 msgstr ""
-"Ondokoak dira sisteman eskuragarri dauden uneko terminoen iturriak. Iturri "
-"bat editatzeko, egin klik gainean."
+"Ondokoak dira sisteman eskuragarri dauden uneko terminoen iturriak. "
+"Iturri bat editatzeko, egin klik gainean."
 
 #: tzos/templates/admin/sources.html:11
 msgid "Add a new source"
@@ -1301,10 +1337,6 @@ msgid ""
 msgstr ""
 "Badirudi zerbait oker dabilela zerbitzarian. Ahal bezain pronto "
 "konpontzen saiatuko gara. Eskerrik asko pazientziagatik."
-
-#: tzos/templates/errors/layout.html:6
-msgid "Error"
-msgstr "Errorea"
 
 #: tzos/templates/errors/layout.html:11
 msgid "« Back to the home page"
@@ -1448,8 +1480,7 @@ msgstr "Editatu terminoa"
 
 #: tzos/templates/macros/_util.html:195
 msgid "This term is unreviewed and is not being publicly displayed."
-msgstr ""
-"Termino hau gainbegiratu gabe dago eta ez da modu publikoan bistaratzen."
+msgstr "Termino hau gainbegiratu gabe dago eta ez da modu publikoan bistaratzen."
 
 #: tzos/templates/search/results.html:6
 msgid "Search results"
@@ -1473,10 +1504,6 @@ msgstr "Bilaketa-aukerak"
 #: tzos/templates/search/results.html:17 tzos/templates/terms/edit.html:21
 msgid "General"
 msgstr "Orokorra"
-
-#: tzos/templates/terms/add.html:4 tzos/templates/terms/add.html:6
-msgid "Add terms"
-msgstr "Gehitu terminoak"
 
 #: tzos/templates/terms/add.html:7
 msgid "Add terms manually or by uploading files in any of the supported formats."
@@ -1521,8 +1548,8 @@ msgid ""
 " on the right-hand side of each term."
 msgstr ""
 "Termino hauetakoren batek txertatu nahi zenituen terminoen esanahi bera "
-"badu, informazio gehigarria gehitu nahiko duzu agian, termino bakoitzaren "
-"eskuinaldean dagoen 'Editatu terminoa' sakatuta."
+"badu, informazio gehigarria gehitu nahiko duzu agian, termino bakoitzaren"
+" eskuinaldean dagoen 'Editatu terminoa' sakatuta."
 
 #: tzos/templates/terms/collision.html:25
 msgid ""
@@ -1637,7 +1664,6 @@ msgid "These terms would be added."
 msgstr "Termino hauek gehituko lirateke."
 
 #: tzos/templates/terms/upload_results.html:19
-#, python-format
 msgid "These terms have been added."
 msgstr "Termino hauek gehitu egin dira."
 
@@ -1868,34 +1894,3 @@ msgstr "Terminoa baztertuta."
 msgid "Failed to perform action."
 msgstr "Huts ekintza burutzean."
 
-#~ msgid "This term already exists in the database."
-#~ msgstr "Termino hau datu-basean dago jada."
-
-#~ msgid ""
-#~ "We have detected that some of the"
-#~ " terms you have entered are already"
-#~ " present in the database. Please "
-#~ "check the information below and act "
-#~ "accordingly."
-#~ msgstr ""
-#~ "Sartu dituzun terminoetako batzuk dagoeneko"
-#~ " datu-basean daudela atzeman dugu. "
-#~ "Egiaztatu azpiko informazioa eta hartu "
-#~ "ekintza horren arabera."
-
-#~ msgid "Error validating form. Check the inserted values are correct."
-#~ msgstr ""
-#~ "Errorea inprimakia balidatzean. Egiaztatu "
-#~ "txertatutako balioak zuzenak direla."
-
-#~ msgid "Synonym/translation in %(lang)s"
-#~ msgstr "Sinonimoa/itzulpena %(lang)s hizkuntzan"
-
-#~ msgid "Term ‘%(term)s’ already exists."
-#~ msgstr "‘%(term)s’ terminoa badago jada."
-
-#~ msgid "Term ‘%(term)s’ added successfully."
-#~ msgstr "‘%(term)s’ terminoa ondo gehitu da."
-
-#~ msgid "Error while adding term ‘%(term)s’."
-#~ msgstr "Errorea ‘%(term)s’ terminoa gehitzean."

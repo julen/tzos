@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-07-17 18:53+0200\n"
+"PO-Revision-Date: 2011-07-17 21:07+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -216,6 +216,53 @@ msgstr ""
 
 #: tzos/strings.py:75
 msgid "Archived"
+msgstr ""
+
+#: tzos/ui_strings.py:5 tzos/templates/terms/add.html:4
+#: tzos/templates/terms/add.html:6
+msgid "Add terms"
+msgstr ""
+
+#: tzos/ui_strings.py:6
+msgid "Review terms"
+msgstr ""
+
+#: tzos/ui_strings.py:7
+msgid "Admin"
+msgstr ""
+
+#: tzos/ui_strings.py:8
+msgid "Log out"
+msgstr ""
+
+#: tzos/ui_strings.py:9 tzos/templates/account/login.html:4
+#: tzos/templates/account/login.html:6
+msgid "Log in"
+msgstr ""
+
+#: tzos/ui_strings.py:10 tzos/templates/account/register.html:4
+#: tzos/templates/account/register.html:6
+msgid "Register"
+msgstr ""
+
+#: tzos/ui_strings.py:11
+msgid "Search terms"
+msgstr ""
+
+#: tzos/ui_strings.py:12 tzos/templates/dict.html:3
+msgid "Select dictionary language"
+msgstr ""
+
+#: tzos/ui_strings.py:13 tzos/templates/errors/layout.html:6
+msgid "Error"
+msgstr ""
+
+#: tzos/ui_strings.py:14
+msgid "Interface language"
+msgstr ""
+
+#: tzos/ui_strings.py:15
+msgid "Contact information"
 msgstr ""
 
 #: tzos/forms/account.py:23
@@ -809,10 +856,6 @@ msgid ""
 "administrators."
 msgstr ""
 
-#: tzos/templates/dict.html:3
-msgid "Select dictionary language"
-msgstr ""
-
 #: tzos/templates/dict.html:5
 msgid "Dictionary language"
 msgstr ""
@@ -902,10 +945,6 @@ msgstr ""
 msgid "Please fill in the form below to change your password."
 msgstr ""
 
-#: tzos/templates/account/login.html:4 tzos/templates/account/login.html:6
-msgid "Log in"
-msgstr ""
-
 #: tzos/templates/account/login.html:7
 msgid ""
 "If you already have an account, you can log in by providing your username"
@@ -941,11 +980,6 @@ msgstr ""
 
 #: tzos/templates/account/recover_password.html:7
 msgid "Please fill in the form below to request a password recovery."
-msgstr ""
-
-#: tzos/templates/account/register.html:4
-#: tzos/templates/account/register.html:6
-msgid "Register"
 msgstr ""
 
 #: tzos/templates/account/register.html:7
@@ -1213,10 +1247,6 @@ msgid ""
 " as soon as possible. Thanks for your patience."
 msgstr ""
 
-#: tzos/templates/errors/layout.html:6
-msgid "Error"
-msgstr ""
-
 #: tzos/templates/errors/layout.html:11
 msgid "« Back to the home page"
 msgstr ""
@@ -1374,10 +1404,6 @@ msgstr ""
 
 #: tzos/templates/search/results.html:17 tzos/templates/terms/edit.html:21
 msgid "General"
-msgstr ""
-
-#: tzos/templates/terms/add.html:4 tzos/templates/terms/add.html:6
-msgid "Add terms"
 msgstr ""
 
 #: tzos/templates/terms/add.html:7
@@ -1747,36 +1773,4 @@ msgstr ""
 #: tzos/views/terms.py:541
 msgid "Failed to perform action."
 msgstr ""
-
-#~ msgid "This term already exists in the database."
-#~ msgstr ""
-
-#~ msgid "No, discard my addition"
-#~ msgstr ""
-
-#~ msgid "Yes, insert my term anyways"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "We have detected that some of the"
-#~ " terms you have entered are already"
-#~ " present in the database. Please "
-#~ "check the information below and act "
-#~ "accordingly."
-#~ msgstr ""
-
-#~ msgid "Error validating form. Check the inserted values are correct."
-#~ msgstr ""
-
-#~ msgid "Synonym/translation in %(lang)s"
-#~ msgstr ""
-
-#~ msgid "Term ‘%(term)s’ already exists."
-#~ msgstr ""
-
-#~ msgid "Term ‘%(term)s’ added successfully."
-#~ msgstr ""
-
-#~ msgid "Error while adding term ‘%(term)s’."
-#~ msgstr ""
 

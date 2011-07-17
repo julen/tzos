@@ -8,15 +8,13 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-07-03 15:27+0200\n"
+"PO-Revision-Date: 2011-07-17 18:53+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0-rc1\n"
 "Generated-By: Babel 0.9.5\n"
 
 #: tzos/application.py:91
@@ -268,28 +266,29 @@ msgstr "Errepikatu pasahitza"
 msgid "Passwords don't match"
 msgstr "Pasahitzak ez datoz bat"
 
-#: tzos/forms/account.py:58 tzos/templates/account/settings.html:13
+#: tzos/forms/account.py:58 tzos/forms/frontend.py:20
+#: tzos/templates/account/settings.html:13
 msgid "Email address"
 msgstr "Helbide elektronikoa"
 
-#: tzos/forms/account.py:59
+#: tzos/forms/account.py:59 tzos/forms/frontend.py:21
 msgid "Email address is required."
 msgstr "Helbide elektronikoa beharrezkoa da."
 
 #: tzos/forms/account.py:60 tzos/forms/account.py:83 tzos/forms/account.py:92
-#: tzos/forms/account.py:118
+#: tzos/forms/account.py:118 tzos/forms/frontend.py:22
 msgid "A valid email address is required."
 msgstr "Beharrezkoa da baliozko helbide elektronikoa."
 
-#: tzos/forms/account.py:62 tzos/forms/account.py:130
+#: tzos/forms/account.py:62 tzos/forms/account.py:130 tzos/forms/frontend.py:17
 msgid "Full name"
 msgstr "Izen osoa"
 
-#: tzos/forms/account.py:63 tzos/forms/account.py:131
+#: tzos/forms/account.py:63 tzos/forms/account.py:131 tzos/forms/frontend.py:18
 msgid "Full name is required."
 msgstr "Izen osoa beharrezkoa da."
 
-#: tzos/forms/account.py:66
+#: tzos/forms/account.py:66 tzos/forms/frontend.py:27
 msgid "Copy the words appearing below"
 msgstr "Kopiatu azpiko hitzak"
 
@@ -423,6 +422,10 @@ msgstr "Editatu"
 msgid "Export"
 msgstr "Esportatu"
 
+#: tzos/forms/admin.py:83
+msgid "Make backup"
+msgstr ""
+
 #: tzos/forms/comments.py:19
 msgid "Term id is required."
 msgstr "Terminoaren IDa beharrezkoa da."
@@ -452,12 +455,26 @@ msgstr "Ez da baliozko aukera"
 msgid "'%(value)s' is not a valid choice for this field"
 msgstr "'%(value)s' ez da baliozko aukera eremu honetarako"
 
+#: tzos/forms/frontend.py:24
+msgid "Write here"
+msgstr ""
+
+#: tzos/forms/frontend.py:25
+#, fuzzy
+msgid "Text is required."
+msgstr "Terminoa beharrezkoa da."
+
+#: tzos/forms/frontend.py:29
+#, fuzzy
+msgid "Send"
+msgstr "Erabilia"
+
 #: tzos/forms/search.py:18
 msgid "Keywords"
 msgstr "Gako-hitzak"
 
-#: tzos/forms/search.py:20 tzos/forms/terms.py:255 tzos/forms/terms.py:271
-#: tzos/forms/terms.py:302
+#: tzos/forms/search.py:20 tzos/forms/terms.py:244 tzos/forms/terms.py:260
+#: tzos/forms/terms.py:291
 msgid "Language"
 msgstr "Hizkuntza"
 
@@ -473,46 +490,46 @@ msgstr "Edozein baldintza betetzea nahikoa da (OR moduko bilaketa)."
 msgid "Search mode"
 msgstr "Bilatzeko modua"
 
-#: tzos/forms/search.py:35 tzos/forms/terms.py:171 tzos/forms/terms.py:267
+#: tzos/forms/search.py:35 tzos/forms/terms.py:160 tzos/forms/terms.py:256
 msgid "Term"
 msgstr "Terminoa"
 
-#: tzos/forms/search.py:36 tzos/forms/terms.py:199
+#: tzos/forms/search.py:36 tzos/forms/terms.py:188
 #: tzos/templates/macros/_util.html:78
 msgid "Definition"
 msgstr "Definizioa"
 
-#: tzos/forms/search.py:37 tzos/forms/terms.py:188
+#: tzos/forms/search.py:37 tzos/forms/terms.py:177
 #: tzos/templates/macros/_util.html:86
 msgid "Context"
 msgstr "Testuingurua"
 
-#: tzos/forms/search.py:38 tzos/forms/terms.py:210
+#: tzos/forms/search.py:38 tzos/forms/terms.py:199
 #: tzos/templates/macros/_util.html:90
 msgid "Example"
 msgstr "Adibidea"
 
-#: tzos/forms/search.py:39 tzos/forms/terms.py:217
+#: tzos/forms/search.py:39 tzos/forms/terms.py:206
 #: tzos/templates/macros/_util.html:82
 msgid "Explanation"
 msgstr "Azalpena"
 
-#: tzos/forms/search.py:40 tzos/forms/terms.py:232
+#: tzos/forms/search.py:40 tzos/forms/terms.py:221
 #: tzos/templates/macros/_util.html:140
 msgid "Hyponym"
 msgstr "Hiponimoa"
 
-#: tzos/forms/search.py:41 tzos/forms/terms.py:234
+#: tzos/forms/search.py:41 tzos/forms/terms.py:223
 #: tzos/templates/macros/_util.html:144
 msgid "Hypernym"
 msgstr "Hiperonimoa"
 
-#: tzos/forms/search.py:42 tzos/forms/terms.py:236
+#: tzos/forms/search.py:42 tzos/forms/terms.py:225
 #: tzos/templates/macros/_util.html:148
 msgid "Antonym"
 msgstr "Antonimoa"
 
-#: tzos/forms/search.py:43 tzos/forms/terms.py:241
+#: tzos/forms/search.py:43 tzos/forms/terms.py:230
 msgid "Related concept"
 msgstr "Erlazionatutako kontzeptua"
 
@@ -524,7 +541,7 @@ msgstr "Bilaketa-eremua"
 msgid "Terms per page"
 msgstr "Terminoak orriko"
 
-#: tzos/forms/search.py:60 tzos/forms/terms.py:157
+#: tzos/forms/search.py:60 tzos/forms/terms.py:146
 msgid "Subject field"
 msgstr "Jakintza-arloa"
 
@@ -532,25 +549,25 @@ msgstr "Jakintza-arloa"
 msgid "Appears in"
 msgstr "Hemen agertzen da"
 
-#: tzos/forms/search.py:66 tzos/forms/terms.py:154
+#: tzos/forms/search.py:66 tzos/forms/terms.py:143
 #: tzos/templates/macros/_util.html:105
 msgid "Origin"
 msgstr "Jatorria"
 
-#: tzos/forms/search.py:72 tzos/forms/terms.py:227
+#: tzos/forms/search.py:72 tzos/forms/terms.py:216
 #: tzos/templates/macros/_util.html:136
 msgid "Normative level"
 msgstr "Arau-maila"
 
-#: tzos/forms/search.py:75 tzos/forms/terms.py:229
+#: tzos/forms/search.py:75 tzos/forms/terms.py:218
 msgid "Normative organization"
 msgstr "Erakunde arau-emailea"
 
-#: tzos/forms/search.py:78 tzos/forms/terms.py:245
+#: tzos/forms/search.py:78 tzos/forms/terms.py:234
 msgid "Part of Speech"
 msgstr "Kategoria gramatikala"
 
-#: tzos/forms/search.py:81 tzos/forms/terms.py:249
+#: tzos/forms/search.py:81 tzos/forms/terms.py:238
 #: tzos/templates/macros/_util.html:128
 msgid "Term type"
 msgstr "Termino mota"
@@ -577,40 +594,36 @@ msgid "You must choose a valid option."
 msgstr "Baliozko aukera aukeratu behar duzu."
 
 #: tzos/forms/terms.py:79
-msgid "This term already exists in the database."
-msgstr "Termino hau datu-basean dago jada."
-
-#: tzos/forms/terms.py:90
 msgid "You must specify a term."
 msgstr "Terminoa zehaztu behar duzu."
 
-#: tzos/forms/terms.py:97
+#: tzos/forms/terms.py:86
 msgid "This term doesn't exist in the database."
 msgstr "Termino hau ez dago datu-basean."
 
-#: tzos/forms/terms.py:111
+#: tzos/forms/terms.py:100
 msgid "Administrative status is not set."
 msgstr "Egoera administratiboa ezarri gabe dago."
 
-#: tzos/forms/terms.py:155
+#: tzos/forms/terms.py:144
 msgid "Origin is required."
 msgstr "Jatorria beharrezkoa da."
 
-#: tzos/forms/terms.py:160
+#: tzos/forms/terms.py:149
 msgid "Originating person"
 msgstr "Terminoa erabili duen pertsona"
 
-#: tzos/forms/terms.py:161
+#: tzos/forms/terms.py:150
 msgid "If you leave this field blank, that means you are the term author."
 msgstr ""
 "Eremu hau hutsik uzten baduzu, horrek esan nahi du zu zarela terminoaren "
 "egilea."
 
-#: tzos/forms/terms.py:172
+#: tzos/forms/terms.py:161
 msgid "Term is required."
 msgstr "Terminoa beharrezkoa da."
 
-#: tzos/forms/terms.py:185
+#: tzos/forms/terms.py:174
 msgid ""
 "A text which illustrates a concept or a term by containing the concept "
 "designation itself. It must be authentic."
@@ -619,15 +632,15 @@ msgstr ""
 "testuan (testuinguruan) agertu behar du. Benetako iturri batetik "
 "hartutakoa izan behar du."
 
-#: tzos/forms/terms.py:192
+#: tzos/forms/terms.py:181
 msgid "A related term."
 msgstr "Erlazionatutako terminoa."
 
-#: tzos/forms/terms.py:193
+#: tzos/forms/terms.py:182
 msgid "Cross reference"
 msgstr "Erreferentzia gurutzatua"
 
-#: tzos/forms/terms.py:197
+#: tzos/forms/terms.py:186
 msgid ""
 "A descriptive statement which serves to differentiate from related "
 "concepts."
@@ -635,15 +648,15 @@ msgstr ""
 "Kontzeptua deskribatu eta ulergarri egiten duen adierazpena; antzeko "
 "kontzeptuetatik bereizteko balio du."
 
-#: tzos/forms/terms.py:203
+#: tzos/forms/terms.py:192
 msgid "The source of the terminological entry."
 msgstr "Sarrera terminologikoaren iturria."
 
-#: tzos/forms/terms.py:204
+#: tzos/forms/terms.py:193
 msgid "Entry source"
 msgstr "Iturria"
 
-#: tzos/forms/terms.py:208
+#: tzos/forms/terms.py:197
 msgid ""
 "A text which illustrates a concept or a term. It can be an invented "
 "sentence."
@@ -651,7 +664,7 @@ msgstr ""
 "Kontzeptu edo terminoa ilustratzeko testua. Asmatutako esaldia izan "
 "daiteke."
 
-#: tzos/forms/terms.py:214
+#: tzos/forms/terms.py:203
 msgid ""
 "A statement that describes and clarifies a concept and makes it "
 "understandable, but does not necessarily differentiate it from other "
@@ -660,11 +673,11 @@ msgstr ""
 "Kontzeptua deskribatu eta ulergarri egiten duen adierazpena, baina ez du "
 "zertan beste kontzeptuez bereizi behar."
 
-#: tzos/forms/terms.py:221
+#: tzos/forms/terms.py:210
 msgid "Product subset"
 msgstr "Hemen agertzen da"
 
-#: tzos/forms/terms.py:239
+#: tzos/forms/terms.py:228
 msgid ""
 "A concept that has an associative relation to another concept, such as "
 "teacher and school."
@@ -673,35 +686,37 @@ msgstr ""
 " eta eskola."
 
 #. l10n: Follows a dropdown box with language names
-#: tzos/forms/terms.py:262
+#: tzos/forms/terms.py:251
 msgid "Add equivalent in"
 msgstr "Gehitu ordaina hizkuntza honetan"
 
-#: tzos/forms/terms.py:264
+#: tzos/forms/terms.py:253
 msgid "This term is a synonym or a translation for another term."
 msgstr "Terminoa beste termino baten sinonimoa edo itzulpena da."
 
-#: tzos/forms/terms.py:274
+#: tzos/forms/terms.py:263
 msgid "Add"
 msgstr "Gehitu"
 
-#: tzos/forms/terms.py:287 tzos/forms/terms.py:313
+#: tzos/forms/terms.py:276 tzos/forms/terms.py:302
 msgid "I want this term to be public."
 msgstr "Terminoa publiko izatea nahi dut."
 
-#: tzos/forms/terms.py:293
-msgid "No, discard my addition"
+#: tzos/forms/terms.py:282
+#, fuzzy
+msgid "No, discard my term"
 msgstr "Ez, baztertu terminoa gehitzea"
 
-#: tzos/forms/terms.py:294
-msgid "Yes, insert my term anyways"
+#: tzos/forms/terms.py:283
+#, fuzzy
+msgid "Yes, insert my term"
 msgstr "Bai, txertatu terminoa halere"
 
-#: tzos/forms/terms.py:307
+#: tzos/forms/terms.py:296
 msgid "Save changes"
 msgstr "Gorde aldaketak"
 
-#: tzos/forms/terms.py:320
+#: tzos/forms/terms.py:309
 msgid ""
 "If you consolidate this term, you must set its administrative status "
 "('Linguistic information' tab)."
@@ -709,11 +724,11 @@ msgstr ""
 "Termino hau onartzen baduzu, bere egoera administratiboa ere ezarri behar"
 " duzu ('Informazio linguistikoa' fitxa)."
 
-#: tzos/forms/terms.py:322
+#: tzos/forms/terms.py:311
 msgid "Working status"
 msgstr "Lantze-egoera"
 
-#: tzos/forms/terms.py:327
+#: tzos/forms/terms.py:316
 msgid ""
 "This field has no effect if the working status of this term is other than"
 " 'Consolidated'."
@@ -721,64 +736,70 @@ msgstr ""
 "Eremu honek ez du eraginik terminoaren lantze-egoera 'Onartua' ez beste "
 "bada."
 
-#: tzos/forms/terms.py:329
+#: tzos/forms/terms.py:318
 msgid "Administrative status within the TZOS environment"
 msgstr "TZOS ingurunean duen egoera administratiboa"
 
-#: tzos/forms/terms.py:339
+#: tzos/forms/terms.py:330
 msgid "File"
 msgstr "Fitxategia"
 
-#: tzos/forms/terms.py:341
+#: tzos/forms/terms.py:332
 msgid "Term column"
 msgstr "Terminoaren zutabea"
 
-#: tzos/forms/terms.py:352
+#: tzos/forms/terms.py:341
 msgid "Upload"
 msgstr "Igo"
 
-#: tzos/forms/terms.py:357
+#: tzos/forms/terms.py:343
+msgid "Confirm"
+msgstr ""
+
+#: tzos/forms/terms.py:344
+msgid "Cancel"
+msgstr ""
+
+#: tzos/forms/terms.py:349
 msgid "I want these terms to be public."
 msgstr "Terminoak publiko izatea nahi dut."
 
-#: tzos/models/terms.py:154
+#: tzos/models/terms.py:156
 #, python-format
 msgid "Imported term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa inportatuta."
 
-#: tzos/models/terms.py:157
+#: tzos/models/terms.py:159
 #, python-format
 msgid "Added term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa gehituta."
 
-#: tzos/models/terms.py:160
+#: tzos/models/terms.py:162
 #, python-format
 msgid "Edited term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr "<a href=\"%(term_url)s\">%(term)s</a> terminoa editatuta."
 
-#: tzos/models/terms.py:168
+#: tzos/models/terms.py:170
 msgid "No activity details available."
 msgstr "Ez dago jardueraren xehetasunik eskuragarri."
 
-#: tzos/models/terms.py:568
+#: tzos/models/terms.py:622
 msgid "Collision detected! Term ‘{0}’ already exists."
 msgstr "Talka atzeman da! ‘{0}’ terminoa badago jada."
 
-#: tzos/models/terms.py:570
+#: tzos/models/terms.py:624
 msgid "Collision detected! Term ‘{0}’ wouldn't be added."
 msgstr "Talka atzeman da! ‘{0}’ terminoa ez litzateke gehituko."
 
-#: tzos/models/terms.py:572
-#, python-format
+#: tzos/models/terms.py:626
 msgid "Term ‘{0}’ added successfully."
 msgstr "‘{0}’ terminoa ondo gehitu da."
 
-#: tzos/models/terms.py:573
+#: tzos/models/terms.py:627
 msgid "Term ‘{0}’ would be added."
 msgstr "‘{0}’ terminoa gehituko litzateke."
 
-#: tzos/models/terms.py:574
-#, python-format
+#: tzos/models/terms.py:628
 msgid "Error while adding term ‘{0}’."
 msgstr "Errorea ‘{0}’ terminoa gehitzean."
 
@@ -797,6 +818,16 @@ msgstr "Moderatzailea"
 #: tzos/models/users.py:68
 msgid "Administrator"
 msgstr "Administratzailea"
+
+#: tzos/templates/contact.html:5 tzos/templates/contact.html:7
+msgid "Contact"
+msgstr ""
+
+#: tzos/templates/contact.html:8
+msgid ""
+"Fill in this form to ask your inquiries and requests to the TZOS "
+"administrators."
+msgstr ""
 
 #: tzos/templates/dict.html:3
 msgid "Select dictionary language"
@@ -905,7 +936,7 @@ msgstr "Jarduerarik ez oraindik."
 msgid "Latest comments"
 msgstr "Azken iruzkinak"
 
-#: tzos/templates/index.html:36 tzos/templates/terms/detail.html:27
+#: tzos/templates/index.html:36 tzos/templates/terms/detail.html:28
 msgid "No comments yet."
 msgstr "Iruzkinik ez oraindik."
 
@@ -1038,6 +1069,26 @@ msgstr ""
 msgid "Type your new password and confirm it."
 msgstr "Idatzi pasahitz berria eta berretsi ezazu."
 
+#: tzos/templates/admin/backups.html:3
+#, fuzzy
+msgid "Current backups"
+msgstr "Uneko hizkuntzak"
+
+#: tzos/templates/admin/backups.html:8
+msgid "No backups yet."
+msgstr ""
+
+#: tzos/templates/admin/backups.html:13
+msgid "Make a new backup"
+msgstr ""
+
+#: tzos/templates/admin/backups.html:14
+msgid ""
+"This will create a backup of the current databases (DBXML and SQL). Take "
+"into account that depending on the size of your database the operation "
+"can take a while."
+msgstr ""
+
 #: tzos/templates/admin/edit_origin.html:2
 msgid "Edit origin"
 msgstr "Editatu jatorria"
@@ -1148,6 +1199,10 @@ msgstr "Jakintza arloak"
 msgid "Misc"
 msgstr "Hainbat"
 
+#: tzos/templates/admin/settings.html:19
+msgid "Backups"
+msgstr ""
+
 #: tzos/templates/admin/sfields.html:3
 msgid ""
 "These are the current knowledge fields available on the system. To edit a"
@@ -1171,6 +1226,15 @@ msgstr ""
 #: tzos/templates/admin/sources.html:11
 msgid "Add a new source"
 msgstr "Gehitu iturri berria"
+
+#: tzos/templates/emails/contact.html:1
+#, python-format
+msgid ""
+"\n"
+"%(name)s (%(email)s) wanted to say the following:\n"
+"\n"
+"%(text)s\n"
+msgstr ""
 
 #: tzos/templates/emails/recover_password.html:1
 #, python-format
@@ -1245,7 +1309,7 @@ msgstr "« Atzera hasiera-orrira"
 msgid "No terms found."
 msgstr "Ez da terminorik aurkitu."
 
-#: tzos/templates/macros/_forms.html:74 tzos/templates/terms/upload.html:5
+#: tzos/templates/macros/_forms.html:74 tzos/templates/macros/_forms.html:124
 msgid "Select…"
 msgstr "Hautatu…"
 
@@ -1261,6 +1325,42 @@ msgstr "Aukerazko eremuak"
 #: tzos/templates/search/results.html:25 tzos/templates/terms/edit.html:23
 msgid "Linguistic information"
 msgstr "Informazio linguistikoa"
+
+#: tzos/templates/macros/_forms.html:132
+msgid "You must enable JavaScript in order to set file columns."
+msgstr "JavaScript gaitu behar duzu fitxategiaren zutabeak ezarri ahal izateko."
+
+#: tzos/templates/macros/_forms.html:137
+msgid "Column contents"
+msgstr "Zutabearen edukiak"
+
+#: tzos/templates/macros/_forms.html:141
+msgid "Add column"
+msgstr "Gehitu zutabea"
+
+#: tzos/templates/macros/_forms.html:144
+msgid ""
+"Files must be CSV (comma-separated value) files, either with .csv or .txt"
+" extension. CSV files can be generated in spreadsheets such as Excel or "
+"LibreOffice Calc."
+msgstr ""
+"Fitxategiek CSV (komaz bereizitako balioak) motakoak izan behar dute, "
+".csv edo .txt luzapenarekin. CSV fitxategiak kalkulu-orrietan sor "
+"daitezke, adibidez Excel edo LibreOffice Calc-en."
+
+#: tzos/templates/macros/_forms.html:145
+msgid "You must select which fields constitute the file columns."
+msgstr "Fitxategiaren zutabeak zein eremuk osatzen dituzten hautatu behar duzu."
+
+#: tzos/templates/macros/_forms.html:146
+msgid ""
+"Please note that all the terms contained within the uploaded file will be"
+" added with the settings specified above. You may want to split file "
+"contents before uploading anything."
+msgstr ""
+"Kontuan izan igotako fitxategiko termino guztiak goian zehaztutako "
+"ezarpenekin gehituko direla. Ezer igo aurretik, edukiak zatitu nahi "
+"dituzu agian."
 
 #: tzos/templates/macros/_util.html:25 tzos/templates/macros/_util.html:34
 #: tzos/templates/user/profile.html:5
@@ -1324,13 +1424,27 @@ msgstr ""
 msgid "The author of this term is <span class=\"origPerson\">%(author)s</span>."
 msgstr "Termino honen egilea <span class=\"origPerson\">%(author)s</span> da."
 
-#: tzos/templates/macros/_util.html:177
+#: tzos/templates/macros/_util.html:178
+#, fuzzy
+msgid "Accept term"
+msgstr "Editatu terminoa"
+
+#: tzos/templates/macros/_util.html:181
+#, fuzzy
+msgid "Reject term"
+msgstr "Erlazionatutako terminoa."
+
+#: tzos/templates/macros/_util.html:185
 msgid "Add synonym/translation"
 msgstr "Gehitu sinonimoa/itzulpena"
 
-#: tzos/templates/macros/_util.html:178 tzos/templates/terms/edit.html:5
+#: tzos/templates/macros/_util.html:189 tzos/templates/terms/edit.html:5
 msgid "Edit term"
 msgstr "Editatu terminoa"
+
+#: tzos/templates/macros/_util.html:195
+msgid "This term is unreviewed and is not being publicly displayed."
+msgstr ""
 
 #: tzos/templates/search/results.html:6
 msgid "Search results"
@@ -1371,7 +1485,7 @@ msgstr "Eskuz"
 msgid "From file"
 msgstr "Fitxategitik"
 
-#: tzos/templates/terms/collision.html:6 tzos/views/terms.py:220
+#: tzos/templates/terms/collision.html:6 tzos/views/terms.py:225
 msgid "Collision detected!"
 msgstr "Talka atzeman da!"
 
@@ -1384,23 +1498,43 @@ msgid "Edit data"
 msgstr "Editatu datuak"
 
 #: tzos/templates/terms/collision.html:18
-msgid "Action required"
-msgstr "Ekintza behar da"
+msgid "Collision information"
+msgstr "Talkaren informazioa"
 
 #: tzos/templates/terms/collision.html:19
 msgid ""
-"We have detected that some of the terms you have entered are already "
-"present in the database. Please check the information below and act "
-"accordingly."
+"The following terms have been found in the database and they collide with"
+" the data you have just entered."
 msgstr ""
-"Sartu dituzun terminoetako batzuk dagoeneko datu-basean daudela atzeman "
-"dugu. Egiaztatu azpiko informazioa eta hartu ekintza horren arabera."
 
-#: tzos/templates/terms/collision.html:22
+#: tzos/templates/terms/collision.html:21
+msgid ""
+"If one of these terms has the same meaning as the term you wanted to "
+"insert, you may want to add any extra information by clicking 'Edit term'"
+" on the right-hand side of each term."
+msgstr ""
+
+#: tzos/templates/terms/collision.html:25
+msgid ""
+"Alternatively, you can choose to discard or force the insertion of your "
+"addition."
+msgstr ""
+
+#: tzos/templates/terms/collision.html:30
+msgid "Action required"
+msgstr "Ekintza behar da"
+
+#: tzos/templates/terms/collision.html:31
+msgid ""
+"Before taking any further action, please check the information above and "
+"act accordingly."
+msgstr ""
+
+#: tzos/templates/terms/collision.html:33
 msgid "Do you want to continue?"
 msgstr "Jarraitu nahi duzu?"
 
-#: tzos/templates/terms/collision.html:31
+#: tzos/templates/terms/collision.html:42
 msgid ""
 "You can also edit the information you have entered by clicking 'Edit "
 "data' on the left hand side."
@@ -1408,27 +1542,23 @@ msgstr ""
 "Sartutako informazioa ere edita dezakezu ezkerraldeko 'Editatu datuak' "
 "aukeran klik eginez."
 
-#: tzos/templates/terms/collision.html:34
-msgid "Collision information"
-msgstr "Talkaren informazioa"
-
-#: tzos/templates/terms/detail.html:14
+#: tzos/templates/terms/detail.html:15
 msgid "Add a comment"
 msgstr "Gehitu iruzkina"
 
-#: tzos/templates/terms/detail.html:20
+#: tzos/templates/terms/detail.html:21
 #, python-format
 msgid "You must <a href=\"%(next_url)s\">log in</a> in order to comment on terms."
 msgstr ""
 "<a href=\"%(next_url)s\">Saioa hasi</a> behar duzu terminoetan iruzkinak "
 "uzteko."
 
-#: tzos/templates/terms/detail.html:23
+#: tzos/templates/terms/detail.html:24
 #, python-format
 msgid "Comments (%(count)d)"
 msgstr "Iruzkinak (%(count)d)"
 
-#: tzos/templates/terms/detail.html:25
+#: tzos/templates/terms/detail.html:26
 msgid "Read what people have said about this term."
 msgstr "Irakurri jendeak termino honi buruz esan duena."
 
@@ -1436,46 +1566,90 @@ msgstr "Irakurri jendeak termino honi buruz esan duena."
 msgid "Go to term »"
 msgstr "Joan terminora »"
 
-#: tzos/templates/terms/upload.html:13
-msgid "You must enable JavaScript in order to set file columns."
-msgstr "JavaScript gaitu behar duzu fitxategiaren zutabeak ezarri ahal izateko."
-
-#: tzos/templates/terms/upload.html:18
-msgid "Column contents"
-msgstr "Zutabearen edukiak"
-
-#: tzos/templates/terms/upload.html:22
-msgid "Add column"
-msgstr "Gehitu zutabea"
-
-#: tzos/templates/terms/upload.html:25
-msgid ""
-"Files must be CSV (comma-separated value) files, either with .csv or .txt"
-" extension. CSV files can be generated in spreadsheets such as Excel or "
-"LibreOffice Calc."
+#: tzos/templates/terms/locked.html:3 tzos/templates/terms/locked.html:8
+msgid "Term locked!"
 msgstr ""
-"Fitxategiek CSV (komaz bereizitako balioak) motakoak izan behar dute, "
-".csv edo .txt luzapenarekin. CSV fitxategiak kalkulu-orrietan sor "
-"daitezke, adibidez Excel edo LibreOffice Calc-en."
 
-#: tzos/templates/terms/upload.html:26
-msgid "You must select which fields constitute the file columns."
-msgstr "Fitxategiaren zutabeak zein eremuk osatzen dituzten hautatu behar duzu."
-
-#: tzos/templates/terms/upload.html:27
+#: tzos/templates/terms/locked.html:9
 msgid ""
-"Please note that all the terms contained within the uploaded file will be"
-" added with the settings specified above. You may want to split file "
-"contents before uploading anything."
+"The term you are trying to edit is locked because someone else is editing"
+" it right now. Please try again later."
 msgstr ""
-"Kontuan izan igotako fitxategiko termino guztiak goian zehaztutako "
-"ezarpenekin gehituko direla. Ezer igo aurretik, edukiak zatitu nahi "
-"dituzu agian."
 
-#: tzos/templates/terms/upload_results.html:3
-#: tzos/templates/terms/upload_results.html:8
+#: tzos/templates/terms/review.html:5
+msgid "Pending corrections"
+msgstr ""
+
+#: tzos/templates/terms/review.html:7
+msgid "Review"
+msgstr ""
+
+#: tzos/templates/terms/review.html:8
+#, python-format
+msgid "%(num)d term needs review before it is made public."
+msgid_plural "%(num)d terms need review before they are made public."
+msgstr[0] ""
+msgstr[1] ""
+
+#: tzos/templates/terms/review.html:14
+msgid "Nothing to correct."
+msgstr ""
+
+#: tzos/templates/terms/upload_results.html:5
+#: tzos/templates/terms/upload_results.html:7
 msgid "Upload results"
 msgstr "Igoeraren emaitzak"
+
+#: tzos/templates/terms/upload_results.html:7
+msgid "Upload complete"
+msgstr ""
+
+#: tzos/templates/terms/upload_results.html:8
+msgid "Please review the following report before confirming your action."
+msgstr ""
+
+#: tzos/templates/terms/upload_results.html:8
+#, fuzzy
+msgid "Thanks for your contributions!"
+msgstr "Eskerrik asko iruzkinagatik."
+
+#: tzos/templates/terms/upload_results.html:15
+msgid "Successfull additions"
+msgstr ""
+
+#: tzos/templates/terms/upload_results.html:17
+#, fuzzy
+msgid "These terms would be added."
+msgstr "‘{0}’ terminoa gehituko litzateke."
+
+#: tzos/templates/terms/upload_results.html:19
+#, fuzzy, python-format
+msgid "These terms have been added."
+msgstr "‘%(term)s’ terminoa editatu egin da."
+
+#: tzos/templates/terms/upload_results.html:33
+#, fuzzy
+msgid "Collisions"
+msgstr "Talka"
+
+#: tzos/templates/terms/upload_results.html:35
+#, fuzzy
+msgid "These terms wouldn't be added."
+msgstr "‘{0}’ terminoa gehituko litzateke."
+
+#: tzos/templates/terms/upload_results.html:37
+#, fuzzy
+msgid "These terms couldn't be added."
+msgstr "‘{0}’ terminoa gehituko litzateke."
+
+#: tzos/templates/terms/upload_results.html:51
+#, fuzzy
+msgid "Errors"
+msgstr "Errorea"
+
+#: tzos/templates/terms/upload_results.html:52
+msgid "There were errors with these terms."
+msgstr ""
 
 #: tzos/templates/user/profile.html:12
 msgid "Change your avatar at gravatar.com"
@@ -1507,14 +1681,13 @@ msgstr "TZOS: Aktibatu zure kontua"
 
 #: tzos/views/account.py:48
 msgid "Please check your email for instructions on how to activate your account."
-msgstr ""
-"Egiaztatu posta elektronikoa kontua aktibatzeko jarraibideak eskuratzeko."
+msgstr "Egiaztatu posta elektronikoa kontua aktibatzeko jarraibideak eskuratzeko."
 
 #: tzos/views/account.py:65
 msgid "Invalid activation key, key expired, or user already activated."
 msgstr ""
-"Aktibazio-gako baliogabea, gako iraungia edo erabiltzailea aktibatuta dago "
-"jada."
+"Aktibazio-gako baliogabea, gako iraungia edo erabiltzailea aktibatuta "
+"dago jada."
 
 #: tzos/views/account.py:73
 msgid "Your account has been activated, you can now log in."
@@ -1540,127 +1713,179 @@ msgstr "Pasahitza aldatu da, hasi saioa berriro mesedez."
 msgid "Your account has been updated."
 msgstr "Kontua eguneratu da."
 
-#: tzos/views/admin.py:85
+#: tzos/views/admin.py:96
 #, python-format
 msgid "Permissions for ‘%(user)s’ have been updated."
 msgstr "‘%(user)s’ erabiltzailearen baimenak eguneratu egin dira."
 
-#: tzos/views/admin.py:88
+#: tzos/views/admin.py:99
 msgid "Error while updating permissions."
 msgstr "Errorea baimenak eguneratzean."
 
-#: tzos/views/admin.py:118
+#: tzos/views/admin.py:129
 #, python-format
 msgid "Language ‘%(lang)s’ has been added."
 msgstr "‘%(lang)s’ hizkuntza gehitu egin da."
 
-#: tzos/views/admin.py:121
+#: tzos/views/admin.py:132
 msgid "Error while adding language. Check the inserted values are correct."
 msgstr ""
 "Errorea hizkuntza gehitzean. Egiaztatu txertatutako balioak zuzenak "
 "direla."
 
-#: tzos/views/admin.py:141
+#: tzos/views/admin.py:152
 #, python-format
 msgid "Term origin ‘%(origin)s’ has been added."
 msgstr "‘%(origin)s’ termino-jatorria gehitu egin da."
 
-#: tzos/views/admin.py:144
+#: tzos/views/admin.py:155
 msgid "Error while adding term origin."
 msgstr "Errorea terminoaren jatorria gehitzean."
 
-#: tzos/views/admin.py:166
+#: tzos/views/admin.py:177
 #, python-format
 msgid "Term origin ‘%(origin)s’ has been edited."
 msgstr "‘%(origin)s’ termino-jatorria editatu egin da."
 
-#: tzos/views/admin.py:187
+#: tzos/views/admin.py:198
 #, python-format
 msgid "Term source ‘%(source)s’ has been added."
 msgstr "‘%(source)s’ termino-iturria gehitu egin da."
 
-#: tzos/views/admin.py:190
+#: tzos/views/admin.py:201
 msgid "Error while adding term source."
 msgstr "Errorea terminoaren iturria gehitzean."
 
-#: tzos/views/admin.py:207
+#: tzos/views/admin.py:218
 #, python-format
 msgid "Term source ‘%(source)s’ has been edited."
 msgstr "‘%(source)s’ termino-iturria editatu egin da."
 
-#: tzos/views/admin.py:234
-msgid "Error validating form. Check the inserted values are correct."
+#: tzos/views/admin.py:245 tzos/views/admin.py:288
+msgid "Error validating form. You may want to reload the page."
 msgstr ""
-"Errorea inprimakia balidatzean. Egiaztatu txertatutako balioak zuzenak "
-"direla."
 
-#: tzos/views/frontend.py:69
+#: tzos/views/admin.py:277
+msgid "Backup done successfully."
+msgstr ""
+
+#: tzos/views/admin.py:279
+#, fuzzy
+msgid "OS error while trying to make the backup."
+msgstr "Errorea terminoa batzuk gehitzen saiatzean."
+
+#: tzos/views/admin.py:282
+msgid "Invalid arguments passed to the backup command."
+msgstr ""
+
+#: tzos/views/frontend.py:70
 #, python-format
 msgid "From now on your dictionary language is ‘%(dictname)s’."
 msgstr "Hemendik aurrera hiztegiaren hizkuntza ‘%(dictname)s’ da."
 
-#: tzos/views/terms.py:73
+#: tzos/views/frontend.py:94
+msgid "TZOS: Contact from website"
+msgstr ""
+
+#: tzos/views/frontend.py:99
+msgid ""
+"Thanks for your message. We will try to reply you back as fast as "
+"possible."
+msgstr ""
+
+#: tzos/views/terms.py:97
 msgid "Separate terms using commas."
 msgstr "Terminoak komaz banandu."
 
-#: tzos/views/terms.py:77
+#: tzos/views/terms.py:101
 #, python-format
 msgid "Equivalents — %(lang)s"
 msgstr "Ordainak — %(lang)s"
 
-#: tzos/views/terms.py:98
-#, python-format
-msgid "Synonym/translation in %(lang)s"
-msgstr "Sinonimoa/itzulpena %(lang)s hizkuntzan"
+#: tzos/views/terms.py:122
+#, fuzzy, python-format
+msgid "Equivalent in %(lang)s"
+msgstr "Ordainak — %(lang)s"
 
-#: tzos/views/terms.py:124
-#, python-format
-msgid "Term ‘%(term)s’ already exists."
-msgstr "‘%(term)s’ terminoa badago jada."
-
-#: tzos/views/terms.py:129
-#, python-format
-msgid "Term ‘%(term)s’ added successfully."
-msgstr "‘%(term)s’ terminoa ondo gehitu da."
-
-#: tzos/views/terms.py:133
-#, python-format
-msgid "Error while adding term ‘%(term)s’."
-msgstr "Errorea ‘%(term)s’ terminoa gehitzean."
-
-#: tzos/views/terms.py:188
+#: tzos/views/terms.py:193
 msgid "Term addition discarded."
 msgstr "Terminoa gehitzea baztertu da."
 
-#: tzos/views/terms.py:215
+#: tzos/views/terms.py:220
 #, python-format
 msgid "Term added successfully. <a href=\"%(url)s\">Go to the term</a>."
 msgstr "Terminoa ondo gehitu da. <a href=\"%(url)s\">Joan terminora</a>."
 
-#: tzos/views/terms.py:239
+#: tzos/views/terms.py:244
 msgid "Error while trying to add some terms."
 msgstr "Errorea terminoa batzuk gehitzen saiatzean."
 
-#: tzos/views/terms.py:307
+#: tzos/views/terms.py:250
+msgid "Import action cancelled."
+msgstr ""
+
+#: tzos/views/terms.py:345
 msgid "Not a valid file."
 msgstr "Ez da baliozko fitxategia."
 
-#: tzos/views/terms.py:393
+#: tzos/views/terms.py:463
 msgid "Failed to edit some fields."
 msgstr "Huts zenbait eremu editatzean."
 
-#: tzos/views/terms.py:411
+#: tzos/views/terms.py:469
 #, python-format
 msgid "Term ‘%(term)s’ has been edited."
 msgstr "‘%(term)s’ terminoa editatu egin da."
 
-#: tzos/views/terms.py:417
+#: tzos/views/terms.py:475
 msgid "Failed to edit term. Please review the data you entered is correct."
 msgstr "Huts terminoa editatzean. Berrikusi sartutako datuak zuzenak direla."
 
-#: tzos/views/terms.py:436
+#: tzos/views/terms.py:494
 msgid "Thanks for your comment."
 msgstr "Eskerrik asko iruzkinagatik."
 
-#~ msgid "Welcome, %(name)s."
-#~ msgstr "Ongi etorri, %(name)s."
+#: tzos/views/terms.py:536
+msgid "Term accepted."
+msgstr ""
+
+#: tzos/views/terms.py:539
+msgid "Term rejected."
+msgstr ""
+
+#: tzos/views/terms.py:541
+msgid "Failed to perform action."
+msgstr ""
+
+#~ msgid "This term already exists in the database."
+#~ msgstr "Termino hau datu-basean dago jada."
+
+#~ msgid ""
+#~ "We have detected that some of the"
+#~ " terms you have entered are already"
+#~ " present in the database. Please "
+#~ "check the information below and act "
+#~ "accordingly."
+#~ msgstr ""
+#~ "Sartu dituzun terminoetako batzuk dagoeneko"
+#~ " datu-basean daudela atzeman dugu. "
+#~ "Egiaztatu azpiko informazioa eta hartu "
+#~ "ekintza horren arabera."
+
+#~ msgid "Error validating form. Check the inserted values are correct."
+#~ msgstr ""
+#~ "Errorea inprimakia balidatzean. Egiaztatu "
+#~ "txertatutako balioak zuzenak direla."
+
+#~ msgid "Synonym/translation in %(lang)s"
+#~ msgstr "Sinonimoa/itzulpena %(lang)s hizkuntzan"
+
+#~ msgid "Term ‘%(term)s’ already exists."
+#~ msgstr "‘%(term)s’ terminoa badago jada."
+
+#~ msgid "Term ‘%(term)s’ added successfully."
+#~ msgstr "‘%(term)s’ terminoa ondo gehitu da."
+
+#~ msgid "Error while adding term ‘%(term)s’."
+#~ msgstr "Errorea ‘%(term)s’ terminoa gehitzean."
+

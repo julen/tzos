@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-07-17 19:18+0200\n"
+"PO-Revision-Date: 2011-07-17 20:23+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -1651,7 +1651,7 @@ msgstr "Termino hauek ez lirateke gehituko."
 
 #: tzos/templates/terms/upload_results.html:37
 msgid "These terms couldn't be added."
-msgstr "Termino hauek ezingo lirateke gehitu."
+msgstr "Termino hauek ezin dira gehitu."
 
 #: tzos/templates/terms/upload_results.html:51
 msgid "Errors"

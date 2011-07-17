@@ -22,5 +22,7 @@ bootstrap/
 tzos/production.py
 tzos/tzos.wsgi
 
+tzos/ui_strings.py
+
 env/
 logs/

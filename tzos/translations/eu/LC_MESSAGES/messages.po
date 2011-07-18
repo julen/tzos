@@ -749,11 +749,11 @@ msgstr "Terminoa publiko izatea nahi dut."
 
 #: tzos/forms/terms.py:282
 msgid "No, discard my term"
-msgstr "Ez, baztertu nire terminoa"
+msgstr "Ez, baztertu terminoa"
 
 #: tzos/forms/terms.py:283
 msgid "Yes, insert my term"
-msgstr "Bai, txertatu nire terminoa"
+msgstr "Bai, txertatu terminoa"
 
 #: tzos/forms/terms.py:296
 msgid "Save changes"

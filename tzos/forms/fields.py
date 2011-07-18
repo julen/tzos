@@ -26,7 +26,7 @@ class SelectFieldPlus(SelectField):
     stuff when using validators in dynamic select fields."""
 
     PLACEHOLDERS = {
-        -1: _(u'Parent…'),
+        -1: _(u'Top-level element'),
         '': u'----',
         'all': _(u'All'),
     }

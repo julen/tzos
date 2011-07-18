@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2011-01-26 15:25+0100\n"
-"PO-Revision-Date: 2011-07-17 21:12+0200\n"
+"PO-Revision-Date: 2011-07-18 14:36+0200\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -486,8 +486,8 @@ msgid "Save"
 msgstr "Gorde"
 
 #: tzos/forms/fields.py:29
-msgid "Parent…"
-msgstr "Gurasoa…"
+msgid "Top-level element"
+msgstr "Elementu gorena"
 
 #: tzos/forms/fields.py:31
 msgid "All"
@@ -1885,7 +1885,3 @@ msgstr "Terminoa baztertuta."
 #: tzos/views/terms.py:541
 msgid "Failed to perform action."
 msgstr "Huts ekintza burutzean."
-
-#~ msgid "Review terms"
-#~ msgstr "Berrikusi"
-

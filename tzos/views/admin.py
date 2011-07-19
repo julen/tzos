@@ -260,15 +260,17 @@ def backup():
 
         bkp_home = current_app.config['TZOS_BKP_HOME']
         db_home = current_app.config['TZOS_DB_HOME']
-        name = 'tzos_backup_{0}'.format(strftime('%Y%m%d_%H%M'))
+        mysql_uname = current_app.config['TZOS_MYSQL_USERNAME']
+        mysql_pass = current_app.config['TZOS_MYSQL_PASSWORD']
+        fname = 'tzos_backup_{0}'.format(strftime('%Y%m%d_%H%M'))
 
-        # TODO: mysqldump
         cmd = """
         mkdir -p {0}/{2}/dbxml {0}/{2}/sql;
         db_hotbackup -h {1}/dbxml/ -b {0}/{2}/dbxml/;
+        mysqldump --opt -u {3} -p {4} > {0}/{2}/sql/tzos.sql;
         cd {0}; tar cfj {2}.tar.bz2 {2}/;
         rm -rf {2}; cd -;
-        """.format(bkp_home, db_home, name)
+        """.format(bkp_home, db_home, fname, mysql_uname, mysql_pass)
 
         try:
             p = subprocess.Popen(cmd, cwd=db_home, shell=True)

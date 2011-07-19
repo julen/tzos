@@ -5,7 +5,7 @@ SECRET_KEY = 'f00barbaZ'
 
 # TZOS stuff
 TZOS_DEFAULT_DICT_LANG = 'eu'
-TZOS_REGISTER_WHITELIST = ('@ehu.es', '@ikasle.ehu.es',)
+TZOS_REGISTER_WHITELIST = ('@(\w+\.)*ehu.es$',)
 TZOS_ACTIVATION_DAYS = 5
 TZOS_DB_HOME = '/home/julen/dev/tzos/tzos/dbs/'
 TZOS_BKP_HOME = '/home/julen/dev/tzos/backups/'

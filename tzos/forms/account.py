@@ -83,8 +83,17 @@ class SignupForm(Form):
             raise ValidationError, gettext(u"A valid email address is required.")
 
         whitelist = current_app.config['TZOS_REGISTER_WHITELIST']
-        if whitelist and field.data[at:] not in whitelist:
-            raise ValidationError, gettext(u"Email provider not allowed.")
+        if whitelist:
+            import re
+            found = False
+
+            for pattern in whitelist:
+                if re.match(pattern, field.data[at:]):
+                    found = True
+                    break
+
+            if not found:
+                raise ValidationError, gettext(u"Email provider not allowed.")
 
 
 class RecoverPasswordForm(Form):

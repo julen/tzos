@@ -451,7 +451,7 @@ msgstr "Izena"
 
 #: tzos/forms/admin.py:47 tzos/forms/admin.py:63
 msgid "Name is required."
-msgstr "Iizena beharrezkoa da."
+msgstr "Izena beharrezkoa da."
 
 #: tzos/forms/admin.py:49
 msgid "Parent"

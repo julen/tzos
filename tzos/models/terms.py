@@ -622,14 +622,6 @@ class Term(object):
         objects = []
         results = []
 
-        msg_collision = _(u"Collision detected! "
-                u"Term ‘{0}’ already exists.")
-        msg_collision_em = _(u"Collision detected! "
-                u"Term ‘{0}’ wouldn't be added.")
-        msg_success = _(u"Term ‘{0}’ added successfully.")
-        msg_success_em = _(u"Term ‘{0}’ would be added.")
-        msg_error = _(u"Error while adding term ‘{0}’.")
-
         def _insert_term(t, txn):
 
             objs = t.check_collision(txn=txn, commit=False)

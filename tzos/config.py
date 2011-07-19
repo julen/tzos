@@ -10,6 +10,11 @@ TZOS_ACTIVATION_DAYS = 5
 TZOS_DB_HOME = '/home/julen/dev/tzos/tzos/dbs/'
 TZOS_BKP_HOME = '/home/julen/dev/tzos/backups/'
 
+TZOS_MYSQL_HOST = ''
+TZOS_MYSQL_DBNAME = ''
+TZOS_MYSQL_USERNAME = ''
+TZOS_MYSQL_PASSWORD = ''
+
 # Caching
 CACHE_TYPE = "simple"
 CACHE_DEFAULT_TIMEOUT = 300

@@ -128,9 +128,7 @@ def _gen_term_form(form_cls, **form_args):
         form = form_cls(**form_args)
 
         # Avoid explicit editing of Basque terms in certain situations
-        if (not g.user.is_corrector and form.language.data == u'eu') or \
-            (g.user.is_corrector and form.language.data == u'eu' \
-            and request.args.get('mode', u'') != u'review'):
+        if (not g.user.is_corrector and form.language.data == u'eu'):
             del form.term
 
     form.concept_origin.choices = get_origins_dropdown()
@@ -397,7 +395,7 @@ def edit(id):
         form.working_status.data = u"workingElement"
     elif g.user.is_corrector and review:
         form.working_status.data = True
-    elif not g.user.is_moderator:
+    elif not g.user.is_moderator and g.user.is_corrector:
         form.working_status.data = term.is_public
 
     if form.validate_on_submit():

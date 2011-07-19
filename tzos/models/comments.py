@@ -19,6 +19,7 @@ from tzos.models.users import User
 
 class Comment(db.Model):
     __tablename__ = 'comments'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
 
     id = db.Column(db.Integer, primary_key=True)
 

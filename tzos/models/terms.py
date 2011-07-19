@@ -26,6 +26,7 @@ from tzos.models.users import User
 
 class TermOrigin(db.Model):
     __tablename__ = 'origins'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -39,6 +40,7 @@ class TermOrigin(db.Model):
 
 class TermSource(db.Model):
     __tablename__ = 'sources'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -47,6 +49,7 @@ class TermSource(db.Model):
 
 class TermSubject(db.Model):
     __tablename__ = 'subjectfields'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
 
     code = db.Column('id', db.Integer, autoincrement=False, primary_key=True)
 

@@ -12,7 +12,8 @@ from tzos.extensions import db
 
 class Translation(db.Model):
     __tablename__ = 'translations'
-    __table_args__ = (db.UniqueConstraint('id', 'locale'), {})
+    __table_args__ = (db.UniqueConstraint('id', 'locale'),
+                      {'mysql_engine': 'InnoDB'})
 
     auto_id = db.Column(db.Integer, primary_key=True)
 

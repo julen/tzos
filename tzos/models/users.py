@@ -52,6 +52,7 @@ class UserQuery(BaseQuery):
 
 class User(db.Model):
     __tablename__ = 'users'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
     query_class = UserQuery
 
     # User roles

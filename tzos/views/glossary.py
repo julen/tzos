@@ -30,8 +30,7 @@ def list_letter(dict, letter):
     for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig
     where $tig[starts-with(lower-case(term/string()), "{1}")] and
           term:is_public($tig)
-    order by lower-case($tig/term/string()) ascending,
-             $tig/term/string() descending
+    order by term:sortkey($tig) ascending
     return term:values($tig, false())
     """.format(dict.encode('utf-8'),
                letter.encode('utf-8'))

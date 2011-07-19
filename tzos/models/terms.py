@@ -233,9 +233,10 @@ class Term(object):
         term.translations = parts[23]
         term.working_status = parts[24]
         term.owner = parts[25]
+        term.sortkey = parts[26]
         try:
             # When the last string is empty, we need to treat it specially
-            term.edit_lock = parts[26]
+            term.edit_lock = parts[27]
         except IndexError:
             term.edit_lock = None
 
@@ -491,6 +492,10 @@ class Term(object):
     def permalink(self):
         return self._url(True)
 
+    def normalize(self):
+        """Normalizes the give text for using in sortKey elements."""
+        return self.term.lower()
+
     def exists(self):
         """Returns True if the current term exists in the DB."""
 
@@ -676,6 +681,9 @@ class Term(object):
 
     def insert(self, emulate=False, txn=None, commit=True):
         """Inserts the current term to the DB."""
+
+        if not hasattr(self, 'sortkey'):
+            self.sortkey = self.normalize()
 
         ctx = {
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),

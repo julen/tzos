@@ -210,6 +210,9 @@ class BaseTermForm(CoreTermForm):
     product_subset = SelectFieldPlus(_(u'Product subset'),
             choices=PRODUCT_SUBSET, placeholder='', sort=True)
 
+    sortkey_desc = _(u'A key which will be used for sorting purposes.')
+    sortkey = TextField(_(u'Sort key'), description=sortkey_desc)
+
     #
     # Linguistic fields
     #

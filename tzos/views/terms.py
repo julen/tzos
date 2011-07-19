@@ -507,8 +507,7 @@ def review_ui():
 
     for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig
     where term:is_unreviewed($tig)
-    order by lower-case($tig/term/string()) ascending,
-             $tig/term/string() descending
+    order by term:sortkey($tig) ascending
     return term:values($tig, true())
     """
 

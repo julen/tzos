@@ -8,6 +8,11 @@ declare function term:owner($tig as element(tig))
     $tig/transacGrp[./transac[@type="transactionType"]/string()="origination" or ./transac[@type="transactionType"]/string()="input" or ./transac[@type="transactionType"]/string()="importation"]/transacNote[@type="responsibility"]/string()
 };
 
+declare function term:sortkey($tig as element(tig))
+{
+    $tig/admin[@type="sortKey"]/string()
+};
+
 declare function term:lock($tig as element(tig))
 {
     $tig/@lock
@@ -203,6 +208,7 @@ string-join(
      term:translations($tig, $unreviewed),
      term:working_status($tig),
      term:owner($tig),
+     term:sortkey($tig),
      term:lock($tig)
      ), "|||")
 };

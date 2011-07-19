@@ -265,7 +265,7 @@ def backup():
         # TODO: mysqldump
         cmd = """
         mkdir -p {0}/{2}/dbxml {0}/{2}/sql;
-        cp -a {1}/dbxml/* {0}/{2}/dbxml/;
+        db_hotbackup -h {1}/dbxml/ -b {0}/{2}/dbxml/;
         cd {0}; tar cfj {2}.tar.bz2 {2}/;
         rm -rf {2}; cd -;
         """.format(bkp_home, db_home, name)

@@ -260,7 +260,7 @@ def backup():
 
         bkp_home = current_app.config['TZOS_BKP_HOME']
         db_home = current_app.config['TZOS_DB_HOME']
-        name = 'tzos_backup_{0}'.format(strftime('%Y-%m-%d'))
+        name = 'tzos_backup_{0}'.format(strftime('%Y%m%d_%H%M'))
 
         # TODO: mysqldump
         cmd = """

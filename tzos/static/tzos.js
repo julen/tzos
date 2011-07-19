@@ -131,6 +131,9 @@ $(document).ready(function () {
      * Adding equivalents on-the-fly
      */
 
+    // Show eqField elements that have values when reloading the page
+    $("li.eqField input[value!='']").parent().show();
+
     // Disable selected option if the eqterm-* field is visible
     $('li.eqField:visible input').each(function () {
         var val = $(this).attr('id');

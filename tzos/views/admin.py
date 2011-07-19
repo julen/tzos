@@ -64,6 +64,7 @@ def settings():
         bkp_home = current_app.config['TZOS_BKP_HOME']
         bkp_ext = u'.tar.bz2'
         bkps = [f for f in os.listdir(bkp_home) if f.lower().endswith(bkp_ext)]
+        bkps = sorted(bkps, reverse=True)
     except OSError:
         bkps = []
 

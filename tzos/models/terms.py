@@ -696,8 +696,7 @@ class Term(object):
     def insert(self, emulate=False, txn=None, commit=True):
         """Inserts the current term to the DB."""
 
-        if not hasattr(self, 'sortkey'):
-            self.sortkey = self.normalize()
+        self.sortkey = self.normalize()
 
         ctx = {
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),

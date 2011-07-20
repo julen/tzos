@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from dateutil.parser import parse
 from functools import wraps
 from time import strftime
+import unicodedata
 
 from flask import g, Markup, render_template, url_for
 
@@ -494,7 +495,20 @@ class Term(object):
 
     def normalize(self):
         """Normalizes the give text for using in sortKey elements."""
-        return self.term.lower()
+
+        # Remove accents
+        nkfd_form = unicodedata.normalize('NFKD', self.term)
+        term = u"".join([c for c in nkfd_form if not unicodedata.combining(c)])
+
+        # Lowercase term
+        term = term.lower()
+
+        # Remove conflictive characters
+        rm_chars = (u"'", u'"', u'`', u'-', u'«', u'»', u'/')
+        for char in rm_chars:
+            term = term.replace(char, u'')
+
+        return term
 
     def exists(self):
         """Returns True if the current term exists in the DB."""

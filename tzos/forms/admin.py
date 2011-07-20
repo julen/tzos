@@ -46,7 +46,7 @@ class BaseTermOriginForm(Form):
     name = TextField(_(u"Name"),
             validators=[required(message=_(u"Name is required."))])
 
-    parent_id = SelectFieldPlus(_(u"Parent"), coerce=int, placeholder=-1)
+    parent_id = SelectFieldPlus(coerce=int, placeholder=-1)
 
 class AddTermOriginForm(BaseTermOriginForm):
 

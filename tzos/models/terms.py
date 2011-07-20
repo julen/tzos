@@ -553,7 +553,7 @@ class Term(object):
             return some $f in $fields satisfies $f = $sfields)
         return term:values($tig, false())
         """.format(self.language.encode('utf-8'),
-                   self.term.encode('utf-8'))
+                   self.term.replace(u'"', u'""').encode('utf-8'))
 
         root_codes = list(set([unicode(TermSubject.root_code(c)) \
                 for c in self.subject_field]))

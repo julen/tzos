@@ -100,6 +100,28 @@ ORIGINS = {
             ["Enpresaren Soziologia"],
     },
 
+    "Donostiako Ingeniaritza Eskola": {
+        "Ingeniaritza zibila": [],
+        "Eraikuntza Ingeniaritza": [],
+        "Ingeniaritza Elektrikoa": [],
+        "Industria Elektronikoaren eta Automatikaren Ingeniaritza": [],
+        "Industria Kimikaren Ingeniaritza": [],
+        "Ingeniaritza Mekanikoa": [],
+    },
+
+    "Donostiako Ingeniaritza Eskola": {
+        "Industria Elektronikaren eta Automatikaren Ingeniaritza": [],
+        "Industria Ingeniari Teknikoa, Elektrizitate espezialitatea": [],
+        "Industria Ingeniari Teknikoa, Industria Elektronika espezialitatea": [],
+        "Industria Ingeniari Teknikoa, Mekanika espezialitatea": [],
+        "Ingeniaritza Elektrikoa": [],
+        "Kudeaketaren eta Informazio Sistemen Informatikaren Ingeniaritza": [],
+    },
+
+    "Filosofia eta Zientzien Fakultatea": {
+        "Filosofiako Gradua": [],
+    },
+
 }
 
 

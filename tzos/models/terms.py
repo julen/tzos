@@ -698,6 +698,13 @@ class Term(object):
 
         self.sortkey = self.normalize()
 
+        # Adapt elementWorkingStatus based on the language so non-eu terms
+        # are always made public when inserting them for the first time
+        if self.language != u'eu' and \
+           (self.working_status == u'starterElement' or \
+           self.working_status == u'importedElement'):
+               self.working_status = u'workingElement'
+
         ctx = {
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,

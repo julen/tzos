@@ -54,9 +54,9 @@ def create_initial_users():
     db.session.commit()
 
 
-ORIGINS = {
+ORIGINS = [
 
-    "Zientzia eta Teknologia Fakultatea": {
+    {"Zientzia eta Teknologia Fakultatea": {
         "Kimika":
             ["Kimika Fisikoaren Oinarriak", "Kimika Analitikoa", "Kromatografia eta antzeko teknikak", "Kimika Organikoaren Oinarriak", "Materialen Zientziak"],
         "Ingeniaritza Kimikoa":
@@ -69,18 +69,18 @@ ORIGINS = {
             ["Topologia", "Kalkulu diferentziala eta integrala-I", "Talde Teoria", "Azterketa funtzionala"],
         "Fisika":
             ["Elektromagnetismoa-II", "Metodo Matematikoak", "Optika"],
-    },
+    }},
 
-    "Farmazia Fakultatea": {
+    {"Farmazia Fakultatea": {
         "Farmazia":
             ["Biokimika", "Fisiopatologia", "Giza Anatomia", "Legeria eta Deontologia", "Fisika", "Fisiologia", "Farmazi Teknologia", "Osasun Publikoa", "Mikrobiologia", "Farmazi Kimika", "Kimika Analitikoa", "Farmakologia I"],
         "Dietetika":
             ["Garapenaren eta Kirolaren Biokimika eta Fisiologia", "Elikadura-Deontologia eta Legeria", "Elikadura-Kalitatea", "Talde Sukaldaritza", "Giza Elikadura", "Osasun Publikoa", "Sistema Immunea eta Elikadura", "Elikagaien Mikrobiologia eta Higienea"],
         "Ingurumen Zientziak":
             ["Ingurumen Kaltearen Balioespena", "Ingurugiro Ingeniaritzaren Oinarriak", "Landare Biologia", "Osasun Publikoa"],
-    },
+    }},
 
-    "Medikuntza eta Odontologia Fakultatea": {
+    {"Medikuntza eta Odontologia Fakultatea": {
         "Medikuntza":
             ["Giza Anatomia I, Giza Anatomia II", "Psikologia", "Neurologia", "Mikrobiologia Medikoa I", "Erradiologia eta Medikuntza Fisiko Orokorrak", "Farmakologia Klinikoa", "Biofisika Medikua/Fisiologia Orokorra", "Histologia Orokorra/Histologia Berezia", "Zelulen Biologia"],
         "Odontologia":
@@ -89,40 +89,40 @@ ORIGINS = {
             ["Immunologia"],
         "Farmazia":
             ["Farmazia Klinikoa eta Farmakoterapia"],
-    },
+    }},
 
-    "Donostiako Enpresa Eskola": {
+    {"Donostiako Enpresa Eskola": {
         "Enpresen Administrazio eta Zuzendaritzako Gradua":
             ["Ekonomiarako Sarrera I: Mikroekonomiaren Oinarriak", "Kontabilitaterako sarrera"],
         "Enpresen Zuzendaritza eta Administrazioko Lizentziatura":
             ["Merkataritza Zuzendaritza: Erabakiak"],
         "Enpresa Zientzien Diplomatura":
             ["Enpresaren Soziologia"],
-    },
+    }},
 
-    "Donostiako Ingeniaritza Eskola": {
+    {"Donostiako Ingeniaritza Eskola": {
         "Ingeniaritza zibila": [],
         "Eraikuntza Ingeniaritza": [],
         "Ingeniaritza Elektrikoa": [],
         "Industria Elektronikoaren eta Automatikaren Ingeniaritza": [],
         "Industria Kimikaren Ingeniaritza": [],
         "Ingeniaritza Mekanikoa": [],
-    },
+    }},
 
-    "Donostiako Ingeniaritza Eskola": {
+    {"Donostiako Ingeniaritza Eskola": {
         "Industria Elektronikaren eta Automatikaren Ingeniaritza": [],
         "Industria Ingeniari Teknikoa, Elektrizitate espezialitatea": [],
         "Industria Ingeniari Teknikoa, Industria Elektronika espezialitatea": [],
         "Industria Ingeniari Teknikoa, Mekanika espezialitatea": [],
         "Ingeniaritza Elektrikoa": [],
         "Kudeaketaren eta Informazio Sistemen Informatikaren Ingeniaritza": [],
-    },
+    }},
 
-    "Filosofia eta Zientzien Fakultatea": {
+    {"Filosofia eta Zientzien Fakultatea": {
         "Filosofiako Gradua": [],
-    },
+    }},
 
-}
+]
 
 
 def _import_origins(origin, value=None, parent_id=None):
@@ -150,8 +150,9 @@ def _import_origins(origin, value=None, parent_id=None):
 def import_origins():
     """Imports initial term origins."""
 
-    for k, v in ORIGINS.iteritems():
-        _import_origins(k, v)
+    for origin_list in ORIGINS:
+        for k, v in origin_list.iteritems():
+            _import_origins(k, v)
 
 
 SUBJECT_FIELDS = [

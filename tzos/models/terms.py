@@ -8,11 +8,13 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
+import re
+import unicodedata
+
 from datetime import datetime, timedelta
 from dateutil.parser import parse
 from functools import wraps
 from time import strftime
-import unicodedata
 
 from flask import g, Markup, render_template, url_for
 
@@ -503,10 +505,8 @@ class Term(object):
         # Lowercase term
         term = term.lower()
 
-        # Remove conflictive characters
-        rm_chars = (u"'", u'"', u'`', u'-', u'«', u'»', u'/')
-        for char in rm_chars:
-            term = term.replace(char, u'')
+        # Remove non-alphanumeric characters
+        term = re.sub('[\W_]+', '', term)
 
         return term
 

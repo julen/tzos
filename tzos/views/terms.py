@@ -11,8 +11,8 @@
 from operator import itemgetter
 from time import strftime
 
-from flask import Module, abort, flash, g, render_template, redirect, \
-    request, url_for
+from flask import Module, abort, current_app, flash, g, render_template, \
+        redirect, request, url_for
 
 from flaskext.babel import gettext as _, lazy_gettext as _l
 from flaskext.wtf import TextField
@@ -281,7 +281,11 @@ def add():
 
             results = {}
 
-            for row in reader:
+            for (count, row) in enumerate(reader):
+
+                # Break on the max num. of allowed term uploads
+                if count == current_app.config.get('TZOS_MAX_UPLOADS', 100):
+                    break
 
                 # Store current term for using as a reference for
                 # synonyms and translations

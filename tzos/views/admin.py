@@ -20,7 +20,8 @@ from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
         BackupForm, EditTermOriginForm, EditTermSourceForm, ExportForm, \
         ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
-from tzos.models import TermOrigin, TermSource, TermSubject, Translation, User
+from tzos.models import Term, TermOrigin, TermSource, TermSubject, TermUpload, \
+        Translation, User
 from tzos.permissions import admin as admin_permission
 
 admin = Module(__name__)
@@ -59,6 +60,7 @@ def settings():
                     (Translation.locale==g.ui_lang)) \
             .order_by('text').all()
     sources = TermSource.query.order_by('name').all()
+    uploads = TermUpload.query.all()
 
     try:
         bkp_home = current_app.config['TZOS_BKP_HOME']
@@ -76,7 +78,7 @@ def settings():
     backup_form = BackupForm()
 
     ctx = {'users': users, 'origins': origins, 'sfields': sfields,
-            'sources': sources, 'bkps': bkps,
+            'sources': sources, 'uploads': uploads, 'bkps': bkps,
             'users_form': users_form, 'langs_form': langs_form,
             'origins_form': origins_form, 'sources_form': sources_form,
             'export_form': export_form, 'backup_form': backup_form }
@@ -300,3 +302,29 @@ def backup():
 def download_backup(filename):
     return send_from_directory(current_app.config['TZOS_BKP_HOME'],
                                filename, as_attachment=True)
+
+
+@admin.route('/upload/<int:id>')
+@admin_permission.require(401)
+def view_upload(id):
+    upload = TermUpload.query.get_or_404(id==id)
+
+    qs = """
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+    for $id in $term_ids
+    return
+        let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
+        return term:values($tig, true())
+    """
+    ctx = {'term_ids': list(upload.terms)}
+
+    terms = dbxml.session.raw_query(qs, context=ctx).as_callback(Term.parse).all()
+
+    return render_template('admin/view_upload.html', terms=terms)
+
+
+@admin.route('/upload/<int:id>/delete/')
+@admin_permission.require(401)
+def delete_upload(id):
+    pass

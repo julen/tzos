@@ -1,0 +1,31 @@
+<div class="uploads">
+    <h2 class="h4">{{ _('Performed uploads') }}</h2>
+    <p>{{ _('These are the uploads that have been performed since '
+            'the beginning.') }}</p>
+    <p>{{ _('If you want to invalidate a specific upload operation '
+            'and delete all the terms that were imported by that '
+            'time, you can do so by clicking the delete button on '
+            'the left-hand side. Please note that this operation '
+            'is risky and can affect to any edits done after the '
+            'terms were uploaded, causing data to be lost. Use '
+            'with caution.') }}</p>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ _('User') }}</th><th>{{ _('Date') }}</th><th>{{ _('Number of terms') }}</th><th>{{ _('Deleted?') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for upload in uploads %}
+                <tr>
+                    <td><div class="gravatar in"><img src="{{ upload.author.gravatar_url(24) }}" /></div><span class="strong">{{ upload.author.username }}</span>{% if upload.author.display_name %} <span class="small weak">({{ upload.author.display_name }})</span>{% endif %}<span class="block small weak">{{ upload.author.email }}</span></td>
+                    <td>{{ upload.date|datetimeformat(_('d/M/yyyy HH:mm')) }}</td>
+                    <td>{{ upload.count }} — <a href="{{ url_for('admin.view_upload', id=upload.id) }}">{{ _('View all') }}</a></td>
+                    <td>{% if upload.deleted %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

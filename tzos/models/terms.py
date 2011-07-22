@@ -37,7 +37,7 @@ class TermUpload(db.Model):
                           db.ForeignKey(User.id, ondelete='CASCADE'),
                           nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
-    deleted = db.Column(db.Boolean)
+    deleted = db.Column(db.Boolean, default=False)
     terms = db.Column(DenormalizedText)
 
     author = db.relation(User, innerjoin=True, lazy="joined")

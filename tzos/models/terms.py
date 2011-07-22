@@ -33,9 +33,14 @@ class TermUpload(db.Model):
     __table_args__ = {'mysql_engine': 'InnoDB'}
 
     id = db.Column(db.Integer, primary_key=True)
+    author_id = db.Column(db.Integer,
+                          db.ForeignKey(User.id, ondelete='CASCADE'),
+                          nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     deleted = db.Column(db.Boolean)
     terms = db.Column(DenormalizedText)
+
+    author = db.relation(User, innerjoin=True, lazy="joined")
 
     def __init__(self, *args, **kwargs):
         super(TermUpload, self).__init__(*args, **kwargs)

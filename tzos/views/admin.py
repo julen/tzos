@@ -306,6 +306,7 @@ def download_backup(filename):
 
 @admin.route('/upload/<int:id>')
 @admin_permission.require(401)
+@cache.cached()
 def view_upload(id):
 
     upload = TermUpload.query.get_or_404(id==id)

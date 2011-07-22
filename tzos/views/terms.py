@@ -282,7 +282,7 @@ def add():
             results = {}
 
             if not emulate:
-                term_upload = TermUpload()
+                term_upload = TermUpload(author=g.user)
 
             for (count, row) in enumerate(reader):
 

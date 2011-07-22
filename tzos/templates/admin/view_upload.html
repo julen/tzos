@@ -1,12 +1,11 @@
+{% extends "layout.html" %}
+
 {% from "macros/_util.html" import render_term with context %}
-<div class="centerWrap">
-{%- for term in terms %}
-{{ render_term(term, hr=True) }}
-{%- endfor %}
-<div class="hr">
-    <h2>{{ _('Delete uploaded terms') }}</h2>
-    <p>{{ _('Please note that this operation is risky and can affect '
-    'to any edits done after the terms were uploaded, so this could '
-    'cause data losses. Use with caution.') }}</p>
-</div>
-</div>
+
+{% block title %}{{ super() }}{{ _('Uploaded terms') }}{% endblock %}
+
+{% block intro %}{% endblock %}
+
+{% block content %}
+{% include "admin/view_upload_content.html" %}
+{% endblock %}

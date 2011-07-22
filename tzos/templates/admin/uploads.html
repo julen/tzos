@@ -19,7 +19,7 @@
                 <tr>
                     <td><div class="gravatar in"><img src="{{ upload.author.gravatar_url(24) }}" /></div><span class="strong">{{ upload.author.username }}</span>{% if upload.author.display_name %} <span class="small weak">({{ upload.author.display_name }})</span>{% endif %}<span class="block small weak">{{ upload.author.email }}</span></td>
                     <td>{{ upload.date|datetimeformat(_('d/M/yyyy HH:mm')) }}</td>
-                    <td>{{ upload.count }} — <a href="{{ url_for('admin.view_upload', id=upload.id) }}">{{ _('View all') }}</a></td>
+                    <td>{{ upload.count }} — <a href="{{ url_for('admin.view_upload', id=upload.id) }}" class="viewUpload">{{ _('View all') }}</a></td>
                     <td>{% if upload.deleted %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
                 </tr>
                 {% endfor %}

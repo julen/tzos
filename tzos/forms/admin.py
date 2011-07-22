@@ -81,3 +81,8 @@ class ExportForm(Form):
 class BackupForm(Form):
 
     submit = SubmitField(_(u"Make backup"))
+
+
+class DeleteUploadForm(Form):
+
+    submit = SubmitField(_(u"Delete uploaded terms"))

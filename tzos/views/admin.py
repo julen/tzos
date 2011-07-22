@@ -17,8 +17,8 @@ from flaskext.babel import gettext as _
 
 from tzos.extensions import cache, db, dbxml
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
-        BackupForm, EditTermOriginForm, EditTermSourceForm, ExportForm, \
-        ModifyUserPermissionForm
+        BackupForm, DeleteUploadForm, EditTermOriginForm, EditTermSourceForm, \
+        ExportForm, ModifyUserPermissionForm
 from tzos.helpers import get_origins_dropdown
 from tzos.models import Term, TermOrigin, TermSource, TermSubject, TermUpload, \
         Translation, User
@@ -307,7 +307,10 @@ def download_backup(filename):
 @admin.route('/upload/<int:id>')
 @admin_permission.require(401)
 def view_upload(id):
+
     upload = TermUpload.query.get_or_404(id==id)
+
+    delete_form = DeleteUploadForm()
 
     qs = """
     import module namespace term = "http://tzos.net/term" at "term.xqm";
@@ -321,7 +324,14 @@ def view_upload(id):
 
     terms = dbxml.session.raw_query(qs, context=ctx).as_callback(Term.parse).all()
 
-    return render_template('admin/view_upload.html', terms=terms)
+    if request.is_xhr:
+        template_filename = 'admin/view_upload_content.html'
+    else:
+        template_filename = 'admin/view_upload.html'
+
+    return render_template(template_filename, terms=terms,
+                                              delete_form=delete_form,
+                                              upload_id=id)
 
 
 @admin.route('/upload/<int:id>/delete/')

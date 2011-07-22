@@ -255,6 +255,10 @@ textarea {
     width: 65%;
 }
 
+.centerWrap.w90 {
+    width: 90%;
+}
+
 .centerWrap .input {
     width: 100%;
 }

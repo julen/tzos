@@ -11,5 +11,5 @@
 from tzos.models.comments import Comment
 from tzos.models.users import User
 from tzos.models.terms import Term, TermChange, TermOrigin, TermSource, \
-        TermSubject
+        TermSubject, TermUpload
 from tzos.models.translations import Translation

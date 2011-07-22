@@ -24,7 +24,41 @@ from werkzeug import cached_property
 
 from tzos.extensions import db, dbxml
 from tzos.models.translations import Translation
+from tzos.models.types import DenormalizedText
 from tzos.models.users import User
+
+
+class TermUpload(db.Model):
+    __tablename__ = 'uploads'
+    __table_args__ = {'mysql_engine': 'InnoDB'}
+
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted = db.Column(db.Boolean)
+    terms = db.Column(DenormalizedText)
+
+    def __init__(self, *args, **kwargs):
+        super(TermUpload, self).__init__(*args, **kwargs)
+        self.terms = self.terms or set()
+
+    def add(self, term):
+        """Adds a term's id to the set of uploaded terms."""
+        self.terms.add(term.id)
+
+    def delete_terms(self):
+        """Deletes all the terms included in self.terms"""
+
+        ctx = {'term_ids': list(self.terms)}
+        qs = '''
+        for $id in $term_ids
+        return
+            for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig[@id="$id"]
+            return
+                delete node $tig
+        '''
+
+        if dbxml.session.insert_raw(qs.encode('utf-8'), context=ctx):
+            self.deleted = True
 
 
 class TermOrigin(db.Model):

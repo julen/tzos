@@ -21,7 +21,7 @@ from tzos.extensions import db, dbxml
 from tzos.forms import AddTermForm, AddTermFormCor, CommentForm, \
         CollisionForm, CollisionFormCor, EditTermForm, EditTermFormCor, \
         EditTermFormMod, UploadForm, UploadFormCor
-from tzos.models import Comment, Term
+from tzos.models import Comment, Term, TermUpload
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
         get_responsible_orgs, get_sfields_dropdown, require_valid_dict
 from tzos.permissions import auth, corrector
@@ -281,6 +281,9 @@ def add():
 
             results = {}
 
+            if not emulate:
+                term_upload = TermUpload()
+
             for (count, row) in enumerate(reader):
 
                 # Break on the max num. of allowed term uploads
@@ -331,6 +334,17 @@ def add():
 
                 st, res, objects = term.insert_all(emulate=emulate)
                 results.setdefault(st, []).append(res)
+
+                # Add resulting terms to the upload tracking structure
+                if not emulate:
+                    for (term, status) in res:
+                        if status == u'success':
+                            term_upload.add(term)
+
+            # Once all is processed, save the upload tracking structure
+            if not emulate:
+                db.session.add(term_upload)
+                db.session.commit()
 
             # Quick hack for avoiding weird data within originating_person
             upload_form._do_postprocess = True

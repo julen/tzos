@@ -46,6 +46,11 @@ class TermUpload(db.Model):
         super(TermUpload, self).__init__(*args, **kwargs)
         self.terms = self.terms or set()
 
+    @cached_property
+    def count(self):
+        """Returns the number of uploaded terms."""
+        return len(self.terms)
+
     def add(self, term):
         """Adds a term's id to the set of uploaded terms."""
         self.terms.add(term.id)

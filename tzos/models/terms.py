@@ -42,6 +42,8 @@ class TermUpload(db.Model):
 
     author = db.relation(User, innerjoin=True, lazy="joined")
 
+    __mapper_args__ = {'order_by' : date.desc()}
+
     def __init__(self, *args, **kwargs):
         super(TermUpload, self).__init__(*args, **kwargs)
         self.terms = self.terms or set()

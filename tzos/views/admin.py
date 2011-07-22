@@ -317,9 +317,8 @@ def view_upload(id):
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
     for $id in $term_ids
-    return
-        let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
-        return term:values($tig, true())
+    let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
+    return term:values($tig, true())
     """
     ctx = {'term_ids': list(upload.terms)}
 

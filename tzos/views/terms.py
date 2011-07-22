@@ -509,7 +509,7 @@ def review_ui():
 
     for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig
     where term:is_unreviewed($tig)
-    order by term:sortkey($tig) ascending
+    order by term:sortkey($tig) ascending, term:term($tig) ascending
     return term:values($tig, true())
     """
 

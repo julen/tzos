@@ -185,11 +185,19 @@ def configure_assets(app):
                 'tzos.js', 'tabs.js',
                 filters='jsmin', output='tzos-packed.js')
 
+    js_admin = Bundle('jquery.fancybox.js', 'admin.js',
+                      filters='jsmin', output='tzos-admin-packed.js')
+
     css = Bundle('style.css', 'jquery-ui.css',
                 filters='cssmin', output='tzos-packed.css')
 
+    css_admin = Bundle('jquery.fancybox.css',
+                       filters='cssmin', output='tzos-packed.css')
+
     assets.register('js_all', js)
+    assets.register('js_admin', js_admin)
     assets.register('css_all', css)
+    assets.register('css_admin', css_admin)
 
 
 def configure_databases(app):

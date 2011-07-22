@@ -5,6 +5,11 @@
         {%- assets "css_all" %}
         <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
         {%- endassets %}
+        {%- if g.user and g.user.is_admin %}
+        {%- assets "css_admin" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        {%- endassets %}
+        {%- endif %}
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -102,5 +107,10 @@
         {%- assets "js_all" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
+        {%- if g.user and g.user.is_admin %}
+        {%- assets "js_admin" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+        {%- endif %}
     </body>
 </html>

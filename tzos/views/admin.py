@@ -313,16 +313,7 @@ def view_upload(id):
 
     delete_form = DeleteUploadForm()
 
-    qs = """
-    import module namespace term = "http://tzos.net/term" at "term.xqm";
-
-    for $id in $term_ids
-    let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
-    return term:values($tig, true())
-    """
-    ctx = {'term_ids': list(upload.terms)}
-
-    terms = dbxml.session.raw_query(qs, context=ctx).as_callback(Term.parse).all()
+    terms = upload.get_terms()
 
     if request.is_xhr:
         template_filename = 'admin/view_upload_content.html'

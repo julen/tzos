@@ -82,14 +82,16 @@ class TermUpload(db.Model):
         ctx = {'term_ids': list(self.terms)}
         qs = '''
         for $id in $term_ids
+        let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
         return
-            for $tig in collection($collection)/martif/text/body/termEntry/langSet/tig[@id="$id"]
-            return
-                delete node $tig
+            delete node $tig
         '''
 
         if dbxml.session.insert_raw(qs.encode('utf-8'), context=ctx):
             self.deleted = True
+            return True
+
+        return False
 
 
 class TermOrigin(db.Model):

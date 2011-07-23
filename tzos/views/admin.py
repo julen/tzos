@@ -325,7 +325,17 @@ def view_upload(id):
                                               upload_id=id)
 
 
-@admin.route('/upload/<int:id>/delete/')
+@admin.route('/upload/<int:id>/delete/', methods=('POST',))
 @admin_permission.require(401)
 def delete_upload(id):
-    pass
+
+    upload = TermUpload.query.get_or_404(id==id)
+
+    if upload.delete_terms():
+        flash(u"Terms deleted successfully.", "success")
+    else:
+        flash(u"Failed to delete terms.", "error")
+
+    db.session.commit()
+
+    return redirect(url_for("admin.settings"))

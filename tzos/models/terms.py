@@ -60,16 +60,19 @@ class TermUpload(db.Model):
     def get_terms(self):
         """Gets all the terms referenced by the IDs in self.terms"""
 
-        qs = """
-        import module namespace term = "http://tzos.net/term" at "term.xqm";
+        if self.deleted:
+            terms = []
+        else:
+            qs = """
+            import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-        for $id in $term_ids
-        let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
-        return term:values($tig, true())
-        """
-        ctx = {'term_ids': list(self.terms)}
+            for $id in $term_ids
+            let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
+            return term:values($tig, true())
+            """
+            ctx = {'term_ids': list(self.terms)}
 
-        terms = dbxml.session.raw_query(qs, context=ctx).as_callback(Term.parse).all()
+            terms = dbxml.session.raw_query(qs, context=ctx).as_callback(Term.parse).all()
 
         return terms
 

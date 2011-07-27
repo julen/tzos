@@ -58,24 +58,26 @@ ORIGINS = [
 
     {"Zientzia eta Teknologia Fakultatea": {
         "Kimika":
-            ["Kimika Fisikoaren Oinarriak", "Kimika Analitikoa", "Kromatografia eta antzeko teknikak", "Kimika Organikoaren Oinarriak", "Materialen Zientziak"],
+            ["Kimika Fisikoaren Oinarriak", "Kimika Analitikoa", "Kromatografia eta Antzeko Teknikak", "Kimika Organikoaren Oinarriak", "Materialen Zientziak"],
         "Ingeniaritza Kimikoa":
             ["Industri Kimika", "Ingeniaritza Kimikoa"],
         "Geologia":
             ["Hidrogeologia"],
         "Biologia":
-            ["Bioestatistika", "Zoologia", "Zoogeografia", "Zitologia eta Histologia", "Entomologia", "Metodo eta teknikak biologia zelularrean"],
+            ["Bioestatistika", "Zoologia", "Zoogeografia", "Zitologia eta Histologia", "Entomologia", "Metodo eta Teknikak Biologia Zelularrean", "Biokimika"],
+        "Biokimika":
+            ["Immunologia", "Biokimika-I", "Oinarrizko Metodologia Biokimikoa"],
         "Matematika":
-            ["Topologia", "Kalkulu diferentziala eta integrala-I", "Talde Teoria", "Azterketa funtzionala"],
+            ["Topologia", "Kalkulu Diferentziala eta Integrala-I", "Talde Teoria", "Azterketa Funtzionala"],
         "Fisika":
             ["Elektromagnetismoa-II", "Metodo Matematikoak", "Optika"],
     }},
 
     {"Farmazia Fakultatea": {
         "Farmazia":
-            ["Biokimika", "Fisiopatologia", "Giza Anatomia", "Legeria eta Deontologia", "Fisika", "Fisiologia", "Farmazi Teknologia", "Osasun Publikoa", "Mikrobiologia", "Farmazi Kimika", "Kimika Analitikoa", "Farmakologia I"],
+            ["Biokimika", "Fisiopatologia", "Giza Anatomia", "Legeria eta Deontologia", "Fisika", "Fisiologia", "Farmazi Teknologia", "Osasun Publikoa", "Mikrobiologia", "Farmazi Kimika", "Kimika Analitikoa", "Farmakologia I", "Farmazia Klinikoa eta Farmakoterapia"],
         "Dietetika":
-            ["Garapenaren eta Kirolaren Biokimika eta Fisiologia", "Elikadura-Deontologia eta Legeria", "Elikadura-Kalitatea", "Talde Sukaldaritza", "Giza Elikadura", "Osasun Publikoa", "Sistema Immunea eta Elikadura", "Elikagaien Mikrobiologia eta Higienea"],
+            ["Garapenaren eta Kirolaren Biokimika eta Fisiologia", "Elikadura Deontologia eta Legeria", "Elikadura Kalitatea", "Talde Sukaldaritza", "Giza Elikadura", "Osasun Publikoa", "Sistema Immunea eta Elikadura", "Elikagaien Mikrobiologia eta Higienea"],
         "Ingurumen Zientziak":
             ["Ingurumen Kaltearen Balioespena", "Ingurugiro Ingeniaritzaren Oinarriak", "Landare Biologia", "Osasun Publikoa"],
     }},
@@ -85,10 +87,6 @@ ORIGINS = [
             ["Giza Anatomia I, Giza Anatomia II", "Psikologia", "Neurologia", "Mikrobiologia Medikoa I", "Erradiologia eta Medikuntza Fisiko Orokorrak", "Farmakologia Klinikoa", "Biofisika Medikua/Fisiologia Orokorra", "Histologia Orokorra/Histologia Berezia", "Zelulen Biologia"],
         "Odontologia":
             ["Giza Anatomia I, Giza Anatomia II", "Fisiologia eta Nutrizioa", "Epidemiologia"],
-        "Biokimika":
-            ["Immunologia"],
-        "Farmazia":
-            ["Farmazia Klinikoa eta Farmakoterapia"],
     }},
 
     {"Donostiako Enpresa Eskola": {
@@ -329,7 +327,7 @@ SUBJECT_FIELDS = [
             (2512, {u'en': u'Space Sciences',
                     u'eu': u'Espazioaren Zientziak'}),
             (2599, {u'en': u'Other Earth, Space or Environmental specialities',
-                    u'eu': u'Lurraren eta Espazioaren edo INgurunearen bestelako espezialitateak'}),
+                    u'eu': u'Lurraren eta Espazioaren edo Ingurunearen bestelako espezialitateak'}),
             ]),
 
         (32, {u'en': u'Medical Sciences',
@@ -353,7 +351,7 @@ SUBJECT_FIELDS = [
             (3209, {u'en': u'Pharmacology',
                     u'eu': u'Farmakologia'}),
             (3210, {u'en': u'Preventive medicine',
-                    u'eu': u'Prebentzio medikuntza'}),
+                    u'eu': u'Prebentzio Medikuntza'}),
             (3211, {u'en': u'Psychiatry',
                     u'eu': u'Psikiatria'}),
             (3212, {u'en': u'Public health',
@@ -403,7 +401,7 @@ SUBJECT_FIELDS = [
             (3317, {u'en': u'Motor vehicle technology',
                     u'eu': u'Ibilgailu Motordunen Teknologia'}),
             (3318, {u'en': u'Mining technology',
-                    u'eu': u'Mehatze Teknologia'}),
+                    u'eu': u'Meatze Teknologia'}),
             (3319, {u'en': u'Naval techonology',
                     u'eu': u'Ontzigintzaren Teknologia'}),
             (3320, {u'en': u'Nuclear technology',

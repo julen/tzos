@@ -73,7 +73,7 @@
     <ul class="fields">
         {% set placeholder = _("Select…") %}
         {{ render_field(form.subject_field, class="input", tag_class="singleLine m3", title=placeholder) }}
-        {{ render_field(form.concept_origin, class="input", tag_class="singleLine") }}
+        {{ render_field(form.concept_origin, class="input", tag_class="singleLine m3", title=placeholder) }}
         {{ render_field(form.originating_person, rel="tipsy-ns", tag_class="singleLine", class="input") }}
         {{ render_field(form.working_status, class="input", tag_class="singleLine") }}
     </ul>

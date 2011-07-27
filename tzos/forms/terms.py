@@ -140,7 +140,7 @@ class CoreTermForm(Form):
         return rv
 
 
-    concept_origin = SelectFieldPlus(_(u"Origin"),
+    concept_origin = SelectMultipleFieldDyn(_(u"Origin"),
             validators=[required(message=_(u"Origin is required."))])
 
     subject_field = SubjectField(_(u"Subject field"),

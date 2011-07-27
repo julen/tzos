@@ -103,7 +103,7 @@
             <dd>{% for sfield in term.subject_field_display %}{{ sfield }}{% if not loop.last %}<br />{% endif %}{% endfor %}</dd>
             {%- endif %}
             <dt>{{ _('Origin') }}</dt>
-            <dd>{{ term.concept_origin_display }}</dd>
+            <dd>{% for concept_origin in term.concept_origin_display %}{{ concept_origin }}{% if not loop.last %}<br />{% endif %}{% endfor %}</dd>
             {%- if term.entry_source %}
             <dt>{{ _('Source') }}</dt>
             <dd>{{ term.entry_source }}</dd>

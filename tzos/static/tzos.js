@@ -120,7 +120,10 @@ $(document).ready(function () {
      */
     $("select#add-subject_field, \
        .editTerm select#subject_field, \
-       select#upload-subject_field").bsmSelect({
+       select#upload-subject_field, \
+       select#add-concept_origin, \
+       .editTerm select#concept_origin, \
+       select#upload-concept_origin").bsmSelect({
         removeLabel: '<strong>X</strong>',
         selectClass: 'input bsmSelect',
         containerClass: 'bsmContainer',

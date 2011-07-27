@@ -63,9 +63,9 @@ def _get_search_filters(or_search=False):
 
     filters = (
         ('lang', u'$tig/..[@xml:lang="{0}"]'),
-        ('subject_field', u'(let $fields := tokenize(term:subject_field($tig), ";") return some $f in $fields satisfies $f = "{0}")'),
+        ('subject_field', u'(let $fields := tokenize(term:subject_field($tig), ";;;") return some $f in $fields satisfies $f = "{0}")'),
         ('product_subset', u'term:product_subset($tig) = "{0}"'),
-        ('concept_origin', u'term:concept_origin($tig) = "{0}"'),
+        ('concept_origin', u'(let $origins := tokenize(term:concept_origin($tig), ";;;") return some $o in $origins satisfies $o = "{0}")'),
         ('na', u'term:norm_auth($tig) = "{0}"'),
         ('na_org', u'$tig/termNote[@type="normativeAuthorization"][@target="{0}"]'),
         ('pos', u'term:pos($tig) = "{0}"'),

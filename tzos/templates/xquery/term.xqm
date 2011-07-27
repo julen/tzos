@@ -91,7 +91,7 @@ declare function term:norm_auth_org($tig as element(tig)) {
 
 
 declare function term:concept_origin($tig as element(tig)) {
-    $tig/admin[@type="conceptOrigin"]/string()
+    string-join($tig/admin[@type="conceptOrigin"]/string(), ";;;")
 };
 
 
@@ -116,7 +116,7 @@ declare function term:entry_source($tig as element(tig)) {
 
 
 declare function term:subject_field($tig as element(tig)) {
-    $tig/../../descrip[@type="subjectField"]/string()
+    string-join($tig/../../descrip[@type="subjectField"]/string(), ";;;")
 };
 
 

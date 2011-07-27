@@ -6,7 +6,11 @@
     <termNote type="termType">{% if term_type %}{{ term_type }}{% endif %}</termNote>
     <termNote type="partOfSpeech">{% if part_of_speech %}{{ part_of_speech }}{% endif %}</termNote>
     <admin type="originatingPerson">{{ originating_person }}</admin>
-    <admin type="conceptOrigin">{% if concept_origin %}{{ concept_origin }}{% endif %}</admin>
+    {% for co in concept_origin %}
+    <admin type="conceptOrigin">{{ co }}</admin>
+    {% else %}
+    <admin type="conceptOrigin" />
+    {% endfor %}
     <admin type="elementWorkingStatus">{% if working_status %}{{ working_status }}{% endif %}</admin>
     <admin type="entrySource">{% if entry_source %}{{ entry_source }}{% endif %}</admin>
     <admin type="productSubset">{% if product_subset %}{{ product_subset }}{% endif %}</admin>

@@ -322,6 +322,7 @@ class Term(object):
         if language:
             self.language = language
 
+        self._concept_origin = []
         self._subject_field = []
         self._synonyms = []
         self._raw_synonyms = []
@@ -352,14 +353,32 @@ class Term(object):
     @cached_property
     def concept_origin_display(self):
 
-        origin = TermOrigin.query.get(self.concept_origin)
-        origin_list = [origin.name]
+        co_list = []
 
-        while origin.parent_id:
-            origin = TermOrigin.query.get(origin.parent_id)
-            origin_list.insert(0, origin.name)
+        for co in self.concept_origin:
+            origin = TermOrigin.query.get(co)
+            origin_list = [origin.name]
 
-        return Markup(u' » '.join(origin_list))
+            while origin.parent_id:
+                origin = TermOrigin.query.get(origin.parent_id)
+                origin_list.insert(0, origin.name)
+
+            co_list.append(Markup(u' » '.join(origin_list)))
+
+        return sorted(co_list)
+
+    def _get_concept_origin(self):
+        return self._concept_origin
+
+    def _set_concept_origin(self, value):
+        if isinstance(value, list):
+            self._concept_origin = value
+        else:
+            for part in value.split(u";;;"):
+                if part and part not in self._concept_origin:
+                    self._concept_origin.append(part)
+
+    concept_origin = property(_get_concept_origin, _set_concept_origin)
 
     @cached_property
     def originating_person_display(self):
@@ -410,7 +429,7 @@ class Term(object):
         if isinstance(value, list):
             self._subject_field = value
         else:
-            for part in value.split(u";"):
+            for part in value.split(u";;;"):
                 if part and part not in self._subject_field:
                     self._subject_field.append(part)
 
@@ -616,7 +635,7 @@ class Term(object):
         for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig
         where term:is_public($tig) and
             term:term($tig) = "{1}" and
-            (let $fields := tokenize(term:subject_field($tig), ";")
+            (let $fields := tokenize(term:subject_field($tig), ";;;")
             return some $f in $fields satisfies $f = $sfields)
         return term:values($tig, false())
         """.format(self.language.encode('utf-8'),
@@ -776,7 +795,8 @@ class Term(object):
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,
             'term_id': dbxml.session.generate_id('term'),
-            'subject_field': self.subject_field
+            'subject_field': self.subject_field,
+            'concept_origin': self.concept_origin
             }
         ctx.update(self.__dict__)
 

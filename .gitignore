@@ -16,6 +16,9 @@ configs/__init__.py
 configs/fabric.py
 configs/production.py
 
+docs/_build/
+!docs/_static/*.png
+
 backups/
 bootstrap/
 

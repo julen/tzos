@@ -688,32 +688,6 @@ class Term(object):
         return self.working_status == u"starterElement" or \
                self.working_status == u"importedElement"
 
-    def is_mine(self):
-        """Returns True if the term's `origintatingPerson` is the same
-        as the user who committed the term."""
-
-        if not hasattr(self, 'originating_person'):
-            qs = u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/admin[@type="originatingPerson"]/string()'.format(self.id)
-            self.originating_person = dbxml.session.query(qs).as_str().first()
-        if self.originating_person is None:
-            return False
-
-        return self.originating_person == self.owner()
-
-    # FIXME: optimize this with a property
-    def owner(self):
-        """Returns the term owner, ie the username who first inserted
-        this term."""
-
-        qs = u'//tig[@id="{0}" and (transacGrp/transac[@type="transactionType"]/string()="origination" or transacGrp/transac[@type="transactionType"]/string()="importation" or transacGrp/transac[@type="transactionType"]/string()="input")]/transacGrp/transacNote[@type="responsibility"]/string()'.format(self.id)
-        result = dbxml.session.query(qs).as_str().first()
-
-        if result is not None:
-            return result
-
-        return u""
-
-
     def insert_all(self, emulate=False, force=False):
         """Inserts the current term and the equivalent terms stored
         in the object to the DB."""

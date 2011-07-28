@@ -181,7 +181,10 @@ def configure_context_processors(app):
 def configure_assets(app):
     assets = Environment(app)
 
-    js = Bundle('jquery.bsmselect.js', 'jquery.tipsy.js', 'jquery-ui.min.js',
+    js_jquery = Bundle('jquery.min.js', 'jquery-ui.min.js',
+                       output='jquery.js')
+
+    js = Bundle('jquery.bsmselect.js', 'jquery.tagit.js', 'jquery.tipsy.js',
                 'tzos.js', 'tabs.js',
                 filters='jsmin', output='tzos-packed.js')
 
@@ -194,6 +197,7 @@ def configure_assets(app):
     css_admin = Bundle('jquery.fancybox.css',
                        filters='cssmin', output='tzos-packed.css')
 
+    assets.register('js_jquery', js_jquery)
     assets.register('js_all', js)
     assets.register('js_admin', js_admin)
     assets.register('css_all', css)

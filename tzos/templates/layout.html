@@ -18,7 +18,9 @@
             $OP_AUTOCOMPLETE_URL = "{{ url_for('xhr.originating_person') }}";
             $TERM_AUTOCOMPLETE_URL = "{{ url_for('xhr.term') }}";
         </script>
-        <script src="{{ url_for('.static', filename='jquery.min.js') }}"></script>
+        {%- assets "js_jquery" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {%- endassets %}
         <title>{% block title %}TZOS — {% endblock %}</title>
     </head>
     <body>

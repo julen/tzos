@@ -324,6 +324,7 @@ class Term(object):
 
         self._concept_origin = []
         self._subject_field = []
+        self._originating_person = []
         self._synonyms = []
         self._raw_synonyms = []
         self._translations = {}
@@ -380,25 +381,19 @@ class Term(object):
 
     concept_origin = property(_get_concept_origin, _set_concept_origin)
 
-    @cached_property
-    def originating_person_display(self):
+    def _get_originating_person(self):
+        return self._originating_person
 
-        display_name = self.originating_person
+    def _set_originating_person(self, value):
+        if isinstance(value, list):
+            self._originating_person = value
+        else:
+            for part in value.split(u";;;"):
+                if part and part not in self._originating_person:
+                    self._originating_person.append(part)
 
-        if display_name.startswith(u"_"):
-            username = display_name[1:]
-            user = User.query.filter_by(username=username).first()
-
-            if user:
-                if user.display_name:
-                    dn = user.display_name
-                else:
-                    dn = user.username
-
-                html = Markup(u'<a href="{0}">{1}</a>'.format(user.url, dn))
-                display_name = html
-
-        return display_name
+    originating_person = property(_get_originating_person,
+                                  _set_originating_person)
 
     @cached_property
     def subject_field_display(self):
@@ -770,7 +765,8 @@ class Term(object):
             'username': g.user.username,
             'term_id': dbxml.session.generate_id('term'),
             'subject_field': self.subject_field,
-            'concept_origin': self.concept_origin
+            'concept_origin': self.concept_origin,
+            'originating_person': self.originating_person
             }
         ctx.update(self.__dict__)
 

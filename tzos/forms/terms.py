@@ -110,36 +110,6 @@ def check_as_is_set(form, field):
 
 class CoreTermForm(Form):
 
-    def __init__(self, *args, **kwargs):
-        self._do_postprocess = False
-
-        if 'formdata' in kwargs and kwargs['formdata']:
-            self._do_postprocess = True
-
-        super(CoreTermForm, self).__init__(*args, **kwargs)
-
-    def process(self, *args, **kwargs):
-        super(CoreTermForm, self).process(*args, **kwargs)
-
-        if self._do_postprocess:
-            self.originating_person. \
-                postprocess_formdata(self.originating_person.raw_data)
-
-    def validate(self, *args):
-        """Calls all field validators and if there are any errors calls
-        a postrocessing function for the originating_person field.
-
-        Returns the same boolean value as `validate` would do."""
-
-        rv = super(CoreTermForm, self).validate(*args)
-
-        if self.errors:
-            valuelist = self.originating_person.raw_data
-            self.originating_person.postprocess_formdata(valuelist)
-
-        return rv
-
-
     concept_origin = SelectMultipleFieldDyn(_(u"Origin"),
             validators=[required(message=_(u"Origin is required."))])
 

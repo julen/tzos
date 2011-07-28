@@ -133,26 +133,16 @@ class OriginatingPerson(TextField):
     """A TextField for defining originatingPerson fields."""
 
     def process_data(self, value):
-        if value and value.startswith(u"_"):
-            self.data = u''
+        if value:
+            self.data = u";;;".join(value)
         else:
             self.data = value
 
     def process_formdata(self, valuelist):
-        if valuelist and valuelist[0] != u"":
-            self.data = valuelist[0]
-        else:
-            # As underscores are forbidden for usernames, we use this
-            # character to differentiate from non-system names.
-            self.data = u"_" + g.user.username
-
-    def postprocess_formdata(self, valuelist):
-        """This is called if validation fails and there are errors so
-        formdata can be postprocessed."""
-
-        # No username given so let's overwrite what `process_formdata`
-        # could have processed.
         if valuelist and valuelist[0] == u"":
-            self.data = valuelist[0]
-        elif self.data and self.data.startswith(u"_"):
-            self.data = u""
+            self.data = g.user.display_name or g.user.username
+        else:
+            try:
+                self.data = valuelist[0]
+            except IndexError:
+                self.data = u""

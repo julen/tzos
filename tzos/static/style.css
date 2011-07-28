@@ -66,6 +66,7 @@ q { font-style: italic; }
 .iSrch  { background-position:-84px -40px; }
 
 /* Buttons */
+.tagit-choice, /* this shouldn't be here but that's life */
 .b, button, input[type=submit] {
   display:inline-block; cursor:pointer;
   color:inherit; text-decoration:none;
@@ -78,7 +79,7 @@ q { font-style: italic; }
   vertical-align:middle; white-space:nowrap;
 }
 .b:hover, button:hover, input[type=submit]:hover { color:#000; border-color:#666; }
-.b:active, button:active, input[type=submit]:active { background:#ddd; border-color:#333; }
+.tagit-choice:active, /* this shouldn't be here but that's life */
 
 /* Tables */
 /* ... */
@@ -159,6 +160,7 @@ the elements afterwards.
 
 /* Browser hacks */
 @-moz-document url-prefix() {
+  .tagit-choice, /* this shouldn't be here but that's life */
   .b, button, input[type=submit] { padding:.22em .6em; }
 }
 
@@ -815,7 +817,6 @@ div.group p.meta {
     font-size: .8em;
 }
 
-span.origPerson,
 span.adminSts {
     font-weight: bold;
 }
@@ -1258,6 +1259,71 @@ footer, header, hgroup, menu, nav, section {
 
 #recaptcha_widget_div {
     clear: both;
+}
+
+
+/* tagit */
+
+ul.tagit {
+    margin: 0.25em 0 0.75em;
+	padding: .2em;
+	overflow: auto;
+    margin-left: inherit; /* usually we don't want the regular ul margins. */
+    margin-right: inherit;
+    width: 90%;
+}
+
+ul.tagit li {
+	display: block;
+	float: left;
+}
+
+ul.tagit li.tagit-choice {
+    font-size: .8em;
+    margin-right: .1em;
+    position: relative;
+    line-height: inherit;
+    top: 4px;
+}
+
+ul.tagit li.tagit-new {
+	padding: .25em 4px .25em 0;
+}
+
+ul.tagit li.tagit-choice a.tagit-label {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+ul.tagit li.tagit-choice span.tagit-label {
+    padding-right: 5px;
+}
+
+ul.tagit li.tagit-choice .close {
+	cursor: pointer;
+}
+
+ul.tagit li.tagit-choice .close .text-icon {
+    color: #07c;
+    font-weight: bold;
+}
+
+ul.tagit li.tagit-choice input {
+	display: block;
+	float: left;
+}
+
+ul.tagit input[type="text"] {
+    -moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:         border-box;
+
+    border: none;
+	margin: 0;
+	padding: 0;
+	width: inherit;
+	background-color: inherit;
+    outline: none;
 }
 
 

@@ -104,6 +104,8 @@
             {%- endif %}
             <dt>{{ _('Origin') }}</dt>
             <dd>{% for concept_origin in term.concept_origin_display %}{{ concept_origin }}{% if not loop.last %}<br />{% endif %}{% endfor %}</dd>
+            <dt>{{ _('Used by') }}</dt>
+            <dd>{% for op in term.originating_person %}{{ op }}{% if not loop.last %}<br />{% endif %}{% endfor %}</dd>
             {%- if term.entry_source %}
             <dt>{{ _('Source') }}</dt>
             <dd>{{ term.entry_source }}</dd>

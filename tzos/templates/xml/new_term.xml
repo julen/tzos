@@ -5,7 +5,11 @@
     <termNote type="normativeAuthorization" {% if normative_authorization_org %}target="{{ normative_authorization_org }}"{% endif %}>{% if normative_authorization and normative_authorization_org %}{{ normative_authorization }}{% endif %}</termNote>
     <termNote type="termType">{% if term_type %}{{ term_type }}{% endif %}</termNote>
     <termNote type="partOfSpeech">{% if part_of_speech %}{{ part_of_speech }}{% endif %}</termNote>
-    <admin type="originatingPerson">{{ originating_person }}</admin>
+    {% for op in originating_person %}
+    <admin type="originatingPerson">{{ op }}</admin>
+    {% else %}
+    <admin type="originatingPerson" />
+    {% endfor %}
     {% for co in concept_origin %}
     <admin type="conceptOrigin">{{ co }}</admin>
     {% else %}

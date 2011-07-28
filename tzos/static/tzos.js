@@ -62,9 +62,7 @@ $(document).ready(function () {
     $('input[id$="entry_source"]').autocomplete({
         source: $ES_AUTOCOMPLETE_URL
     });
-    $('input[id$="originating_person"]').autocomplete({
-        source: $OP_AUTOCOMPLETE_URL
-    });
+
     $('input[id$="syntrans_term"]').autocomplete({
         source: function (req, res) {
             $.getJSON($TERM_AUTOCOMPLETE_URL, {
@@ -74,6 +72,7 @@ $(document).ready(function () {
             }, res);
         }
     });
+
     $('input[id$="cross_reference"]').autocomplete({
         source: function (req, res) {
             $.getJSON($TERM_AUTOCOMPLETE_URL, {
@@ -83,6 +82,7 @@ $(document).ready(function () {
             }, res);
         }
     });
+
     $('input[id$="concept_generic"], input[id$="_concept"]')
         .bind("keydown", function (e) {
             if (e.keyCode === $.ui.keyCode.TAB &&
@@ -128,6 +128,19 @@ $(document).ready(function () {
         selectClass: 'input bsmSelect',
         containerClass: 'bsmContainer',
         listItemClass: 'b small bsmListItem',
+    });
+
+    /*
+     * Tags list for multiple text inputs
+     */
+    $('input[id$="originating_person"]').tagit({
+        tagSource: function (req, res) {
+            $.getJSON($OP_AUTOCOMPLETE_URL, {
+                term: $extractLast(req.term),
+            }, res);
+        },
+        allowSpaces: true,
+        singleFieldDelimiter: ';;;'
     });
 
     /*

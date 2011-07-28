@@ -96,7 +96,7 @@ declare function term:concept_origin($tig as element(tig)) {
 
 
 declare function term:orig_person($tig as element(tig)) {
-    $tig/admin[@type="originatingPerson"]/string()
+    string-join($tig/admin[@type="originatingPerson"]/string(), ";;;")
 };
 
 

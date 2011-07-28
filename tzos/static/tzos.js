@@ -124,7 +124,7 @@ $(document).ready(function () {
        select#add-concept_origin, \
        .editTerm select#concept_origin, \
        select#upload-concept_origin").bsmSelect({
-        removeLabel: '<strong>X</strong>',
+        removeLabel: '<strong>×</strong>',
         selectClass: 'input bsmSelect',
         containerClass: 'bsmContainer',
         listItemClass: 'b small bsmListItem',

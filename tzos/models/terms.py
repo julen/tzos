@@ -322,16 +322,58 @@ class Term(object):
         if language:
             self.language = language
 
-        self._concept_origin = []
-        self._subject_field = []
-        self._originating_person = []
-        self._entry_source = []
-        self._product_subset = []
         self._synonyms = []
         self._raw_synonyms = []
         self._translations = {}
         self._raw_translations = {}
         self._lock = None
+
+        self._concept_origin = []
+        self._subject_field = []
+        self._originating_person = []
+        self._entry_source = []
+        self._product_subset = []
+
+    def mattrgetter(attr):
+        """Generic attribute getter for using with attributes
+        that accept multiple values."""
+
+        def mget(self):
+            return getattr(self, attr)
+
+        return mget
+
+    def mattrsetter(attr):
+        """Generic attribute setter for using with attributes
+        that accept multiple values."""
+
+        def mset(self, value):
+            if isinstance(value, list):
+                setattr(self, attr, value)
+            else:
+                for part in value.split(u";;;"):
+                    attr_values = getattr(self, attr)
+                    if part and part not in attr_values:
+                        attr_values.append(part)
+                        setattr(self, attr, attr_values)
+
+        return mset
+
+    #
+    # Properties that allow elements with multivalue input
+    #
+
+    concept_origin = property(mattrgetter('_concept_origin'),
+                              mattrsetter('_concept_origin'))
+    subject_field = property(mattrgetter('_subject_field'),
+                             mattrsetter('_subject_field'))
+    originating_person = property(mattrgetter('_originating_person'),
+                                  mattrsetter('_originating_person'))
+    entry_source = property(mattrgetter('_entry_source'),
+                            mattrsetter('_entry_source'))
+    product_subset = property(mattrgetter('_product_subset'),
+                              mattrsetter('_product_subset'))
+
 
     @property
     def id(self):
@@ -353,6 +395,7 @@ class Term(object):
         qs = u'/martif/text/body/termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
         return dbxml.session.query(qs, document='tzos.xml', txn=txn, commit=commit).as_str().first()
 
+
     @cached_property
     def concept_origin_display(self):
 
@@ -369,33 +412,6 @@ class Term(object):
             co_list.append(Markup(u' » '.join(origin_list)))
 
         return sorted(co_list)
-
-    def _get_concept_origin(self):
-        return self._concept_origin
-
-    def _set_concept_origin(self, value):
-        if isinstance(value, list):
-            self._concept_origin = value
-        else:
-            for part in value.split(u";;;"):
-                if part and part not in self._concept_origin:
-                    self._concept_origin.append(part)
-
-    concept_origin = property(_get_concept_origin, _set_concept_origin)
-
-    def _get_originating_person(self):
-        return self._originating_person
-
-    def _set_originating_person(self, value):
-        if isinstance(value, list):
-            self._originating_person = value
-        else:
-            for part in value.split(u";;;"):
-                if part and part not in self._originating_person:
-                    self._originating_person.append(part)
-
-    originating_person = property(_get_originating_person,
-                                  _set_originating_person)
 
     @cached_property
     def subject_field_display(self):
@@ -418,45 +434,6 @@ class Term(object):
             sf_list.append(Markup(u' » '.join(tmp)))
 
         return sorted(sf_list)
-
-    def _get_subject_field(self):
-        return self._subject_field
-
-    def _set_subject_field(self, value):
-        if isinstance(value, list):
-            self._subject_field = value
-        else:
-            for part in value.split(u";;;"):
-                if part and part not in self._subject_field:
-                    self._subject_field.append(part)
-
-    subject_field = property(_get_subject_field, _set_subject_field)
-
-    def _get_entry_source(self):
-        return self._entry_source
-
-    def _set_entry_source(self, value):
-        if isinstance(value, list):
-            self._entry_source = value
-        else:
-            for part in value.split(u";;;"):
-                if part and part not in self._entry_source:
-                    self._entry_source.append(part)
-
-    entry_source = property(_get_entry_source, _set_entry_source)
-
-    def _get_product_subset(self):
-        return self._product_subset
-
-    def _set_product_subset(self, value):
-        if isinstance(value, list):
-            self._product_subset = value
-        else:
-            for part in value.split(u";;;"):
-                if part and part not in self._product_subset:
-                    self._product_subset.append(part)
-
-    product_subset = property(_get_product_subset, _set_product_subset)
 
     def _get_synonyms(self):
         return self._synonyms

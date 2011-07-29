@@ -165,7 +165,7 @@ class TermSubject(db.Model):
 
         while term_subject.parent_id is not None:
 
-            siblings = self.query \
+            siblings = cls.query \
                     .filter((TermSubject.parent_id==term_subject.parent_id) &
                             (TermSubject.code!=term_subject.code)) \
                     .all()

@@ -326,8 +326,12 @@ class Term(object):
         self._raw_synonyms = []
         self._translations = {}
         self._raw_translations = {}
+
         self._lock = None
 
+        #
+        # Elements that allow multivalue input
+        #
         self._concept_origin = []
         self._subject_field = []
         self._originating_person = []

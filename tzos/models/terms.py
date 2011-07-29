@@ -326,6 +326,7 @@ class Term(object):
         self._subject_field = []
         self._originating_person = []
         self._entry_source = []
+        self._product_subset = []
         self._synonyms = []
         self._raw_synonyms = []
         self._translations = {}
@@ -444,6 +445,18 @@ class Term(object):
 
     entry_source = property(_get_entry_source, _set_entry_source)
 
+    def _get_product_subset(self):
+        return self._product_subset
+
+    def _set_product_subset(self, value):
+        if isinstance(value, list):
+            self._product_subset = value
+        else:
+            for part in value.split(u";;;"):
+                if part and part not in self._product_subset:
+                    self._product_subset.append(part)
+
+    product_subset = property(_get_product_subset, _set_product_subset)
 
     def _get_synonyms(self):
         return self._synonyms
@@ -782,7 +795,8 @@ class Term(object):
             'subject_field': self.subject_field,
             'concept_origin': self.concept_origin,
             'originating_person': self.originating_person,
-            'entry_source': self.entry_source
+            'entry_source': self.entry_source,
+            'product_subset': self.product_subset
             }
         ctx.update(self.__dict__)
 

@@ -176,8 +176,8 @@ class BaseTermForm(CoreTermForm):
             description=explan_desc,
             validators=[is_valid_input])
 
-    product_subset = SelectFieldPlus(_(u'Product subset'),
-            choices=PRODUCT_SUBSET, placeholder='', sort=True)
+    product_subset = SelectMultipleFieldDyn(_(u'Product subset'),
+            choices=PRODUCT_SUBSET)
 
     #
     # Linguistic fields

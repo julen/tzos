@@ -101,7 +101,7 @@ declare function term:orig_person($tig as element(tig)) {
 
 
 declare function term:product_subset($tig as element(tig)) {
-    $tig/admin[@type="productSubset"]/string()
+    string-join($tig/admin[@type="productSubset"]/string(), ";;;")
 };
 
 

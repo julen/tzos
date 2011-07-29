@@ -8,8 +8,8 @@
     {{ render_multiple('admin', 'originatingPerson', originating_person) }}
     {{ render_multiple('admin', 'conceptOrigin', concept_origin) }}
     {{ render_multiple('admin', 'entrySource', entry_source) }}
+    {{ render_multiple('admin', 'productSubset', product_subset) }}
     <admin type="elementWorkingStatus">{% if working_status %}{{ working_status }}{% endif %}</admin>
-    <admin type="productSubset">{% if product_subset %}{{ product_subset }}{% endif %}</admin>
     <admin type="sortKey">{{ sortkey }}</admin>
     <descrip type="example">{% if example %}{{ example }}{% endif %}</descrip>
     <descrip type="explanation">{% if explanation %}{{ explanation }}{% endif %}</descrip>

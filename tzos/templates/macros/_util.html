@@ -42,8 +42,8 @@
 {% endmacro %}
 
 
-{% macro render_with_br(items) %}
-{%- for item in items %}{{ item }}{%- if not loop.last %}<br />{%- endif %}
+{% macro render_with_br(items, callback=None) %}
+{%- for item in items %}{% if callback %}{{ callback(item) }}{% else %}{{ item }}{% endif %}{%- if not loop.last %}<br />{%- endif %}
 {%- endfor %}
 {% endmacro %}
 

@@ -115,7 +115,7 @@
             <dd>{{ render_with_br(term.originating_person) }}</dd>
             {%- if term.entry_source %}
             <dt>{{ _('Source') }}</dt>
-            <dd>{{ term.entry_source }}</dd>
+            <dd>{{ render_with_br(term.entry_source) }}</dd>
             {%- endif %}
             {%- if term.product_subset %}
             <dt>{{ _('Appears in') }}</dt>

@@ -7,8 +7,8 @@
     <termNote type="partOfSpeech">{% if part_of_speech %}{{ part_of_speech }}{% endif %}</termNote>
     {{ render_multiple('admin', 'originatingPerson', originating_person) }}
     {{ render_multiple('admin', 'conceptOrigin', concept_origin) }}
+    {{ render_multiple('admin', 'entrySource', entry_source) }}
     <admin type="elementWorkingStatus">{% if working_status %}{{ working_status }}{% endif %}</admin>
-    <admin type="entrySource">{% if entry_source %}{{ entry_source }}{% endif %}</admin>
     <admin type="productSubset">{% if product_subset %}{{ product_subset }}{% endif %}</admin>
     <admin type="sortKey">{{ sortkey }}</admin>
     <descrip type="example">{% if example %}{{ example }}{% endif %}</descrip>

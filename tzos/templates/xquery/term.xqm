@@ -111,7 +111,7 @@ declare function term:working_status($tig as element(tig)) {
 
 
 declare function term:entry_source($tig as element(tig)) {
-    $tig/admin[@type="entrySource"]/string()
+    string-join($tig/admin[@type="entrySource"]/string(), ";;;")
 };
 
 

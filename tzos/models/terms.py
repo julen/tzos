@@ -325,6 +325,7 @@ class Term(object):
         self._concept_origin = []
         self._subject_field = []
         self._originating_person = []
+        self._entry_source = []
         self._synonyms = []
         self._raw_synonyms = []
         self._translations = {}
@@ -429,6 +430,20 @@ class Term(object):
                     self._subject_field.append(part)
 
     subject_field = property(_get_subject_field, _set_subject_field)
+
+    def _get_entry_source(self):
+        return self._entry_source
+
+    def _set_entry_source(self, value):
+        if isinstance(value, list):
+            self._entry_source = value
+        else:
+            for part in value.split(u";;;"):
+                if part and part not in self._entry_source:
+                    self._entry_source.append(part)
+
+    entry_source = property(_get_entry_source, _set_entry_source)
+
 
     def _get_synonyms(self):
         return self._synonyms
@@ -766,7 +781,8 @@ class Term(object):
             'term_id': dbxml.session.generate_id('term'),
             'subject_field': self.subject_field,
             'concept_origin': self.concept_origin,
-            'originating_person': self.originating_person
+            'originating_person': self.originating_person,
+            'entry_source': self.entry_source
             }
         ctx.update(self.__dict__)
 

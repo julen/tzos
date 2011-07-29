@@ -59,10 +59,6 @@ $(document).ready(function () {
         return $split(term).pop();
     }
 
-    $('input[id$="entry_source"]').autocomplete({
-        source: $ES_AUTOCOMPLETE_URL
-    });
-
     $('input[id$="syntrans_term"]').autocomplete({
         source: function (req, res) {
             $.getJSON($TERM_AUTOCOMPLETE_URL, {
@@ -142,6 +138,13 @@ $(document).ready(function () {
         allowSpaces: true,
         singleFieldDelimiter: ';;;'
     });
+
+    $('input[id$="entry_source"]').tagit({
+        tagSource: $ES_AUTOCOMPLETE_URL,
+        allowSpaces: true,
+        singleFieldDelimiter: ';;;'
+    });
+
 
     /*
      * Adding equivalents on-the-fly

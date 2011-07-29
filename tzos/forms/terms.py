@@ -160,9 +160,8 @@ class BaseTermForm(CoreTermForm):
             validators=[is_valid_input])
 
     es_desc = _(u"The source of the terminological entry.")
-    entry_source = TextField(_(u'Entry source'),
-            description=es_desc,
-            validators=[is_valid_input])
+    entry_source = MultipleTextField(_(u'Entry source'),
+            description=es_desc)
 
     example_desc = _(u"A text which illustrates a concept or a term. "
                      "It can be an invented sentence.")

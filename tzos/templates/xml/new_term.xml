@@ -1,20 +1,12 @@
-{% from "macros/_xml.html" import render_transaction %}
+{% from "macros/_xml.html" import render_multiple, render_transaction %}
 <tig id="{{ term_id }}">
     <term>{{ term }}</term>
     <termNote type="administrativeStatus">{% if administrative_status %}{{ administrative_status }}{% endif %}</termNote>
     <termNote type="normativeAuthorization" {% if normative_authorization_org %}target="{{ normative_authorization_org }}"{% endif %}>{% if normative_authorization and normative_authorization_org %}{{ normative_authorization }}{% endif %}</termNote>
     <termNote type="termType">{% if term_type %}{{ term_type }}{% endif %}</termNote>
     <termNote type="partOfSpeech">{% if part_of_speech %}{{ part_of_speech }}{% endif %}</termNote>
-    {% for op in originating_person %}
-    <admin type="originatingPerson">{{ op }}</admin>
-    {% else %}
-    <admin type="originatingPerson" />
-    {% endfor %}
-    {% for co in concept_origin %}
-    <admin type="conceptOrigin">{{ co }}</admin>
-    {% else %}
-    <admin type="conceptOrigin" />
-    {% endfor %}
+    {{ render_multiple('admin', 'originatingPerson', originating_person) }}
+    {{ render_multiple('admin', 'conceptOrigin', concept_origin) }}
     <admin type="elementWorkingStatus">{% if working_status %}{{ working_status }}{% endif %}</admin>
     <admin type="entrySource">{% if entry_source %}{{ entry_source }}{% endif %}</admin>
     <admin type="productSubset">{% if product_subset %}{{ product_subset }}{% endif %}</admin>

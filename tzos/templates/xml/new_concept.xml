@@ -1,10 +1,6 @@
-{% from "macros/_xml.html" import render_transaction %}
+{% from "macros/_xml.html" import render_multiple, render_transaction %}
 <termEntry id="{{ concept_id }}">
-    {% for sf in subject_field %}
-    <descrip type="subjectField">{{ sf }}</descrip>
-    {% else %}
-    <descrip type="subjectField" />
-    {% endfor %}
+    {{ render_multiple('descrip', 'subjectField', subject_field) }}
     <descrip type="subordinateConceptGeneric">{% if subordinate_concept_generic %}{{ subordinate_concept_generic }}{% endif %}</descrip>
     <descrip type="superordinateConceptGeneric">{% if superordinate_concept_generic %}{{ subordinate_concept_generic }}{% endif %}</descrip>
     <descrip type="antonymConcept">{% if antonym_concept %}{{ antonym_concept }}{% endif %}</descrip>

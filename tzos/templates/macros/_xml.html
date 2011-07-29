@@ -6,3 +6,11 @@
     <note>{% if note %}{{ note }}{% endif %}</note>
 </transacGrp>
 {% endmacro %}
+
+{% macro render_multiple(tag, type, items) %}
+{%- for item in items %}
+<{{ tag }} type="{{ type }}">{{ item }}</{{ tag }}>
+{%- else %}
+<{{ tag }} type="{{ type }}" />
+{%- endfor %}
+{% endmacro %}

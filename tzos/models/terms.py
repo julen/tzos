@@ -375,6 +375,10 @@ class Term(object):
                               mattrsetter('_product_subset'))
 
 
+    #
+    # Core methods
+    #
+
     @property
     def id(self):
         if hasattr(self, '_id'):
@@ -395,6 +399,23 @@ class Term(object):
         qs = u'/martif/text/body/termEntry[langSet[@xml:lang="{0}"] and langSet/tig/term/string()="{1}"]/data(@id)'.format(self.language, self.term)
         return dbxml.session.query(qs, document='tzos.xml', txn=txn, commit=commit).as_str().first()
 
+
+    #
+    # Term URLs
+    #
+
+    @cached_property
+    def url(self):
+        return self._url()
+
+    @cached_property
+    def permalink(self):
+        return self._url(True)
+
+
+    #
+    # Properties for displaying purposes
+    #
 
     @cached_property
     def concept_origin_display(self):
@@ -434,6 +455,11 @@ class Term(object):
             sf_list.append(Markup(u' » '.join(tmp)))
 
         return sorted(sf_list)
+
+
+    #
+    # Synonyms and translations
+    #
 
     def _get_synonyms(self):
         return self._synonyms
@@ -486,6 +512,11 @@ class Term(object):
         else:
             trans = self.minimal_clone(value.strip(), lang)
             self._raw_translations.setdefault(lang, []).append(trans)
+
+
+    #
+    # Term locking stuff
+    #
 
     def _get_lock(self):
         return self._lock
@@ -573,13 +604,9 @@ class Term(object):
                        id=self.id,
                        _external=_external)
 
-    @cached_property
-    def url(self):
-        return self._url()
-
-    @cached_property
-    def permalink(self):
-        return self._url(True)
+    #
+    # Misc methods
+    #
 
     def normalize(self):
         """Normalizes the give text for using in sortKey elements."""
@@ -618,6 +645,53 @@ class Term(object):
 
         return t
 
+    def has_langset(self, langcode, txn=None, commit=True):
+        """Returns True if the current term has a langSet for langcode."""
+        qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \
+            format(self._get_concept_id(txn, commit), langcode)
+        result = dbxml.session.query(qs, document='tzos.xml', txn=txn, commit=commit). \
+                as_str().first()
+
+        return result is not None
+
+    #
+    # Term visibility (elementWorkingStatus)
+    #
+
+    @property
+    @working_status
+    def is_public(self):
+        """Returns True if the current term has an elementWorkingStatus
+        with a value of `workingElement` or higher."""
+
+        return self.working_status != u"starterElement" and \
+               self.working_status != u"importedElement" and \
+               self.working_status != u"archiveElement"
+
+    @property
+    @working_status
+    def is_consolidated(self):
+        """Returns True if the current term has an elementWorkingStatus
+        with a value of `consolidatedElement` or higher."""
+
+        return self.working_status != u"starterElement" and \
+               self.working_status != u"importedElement" and \
+               self.working_status != u"workingElement"
+
+    @property
+    @working_status
+    def is_unreviewed(self):
+        """Returns True if the current term has an elementWorkingStatus
+        with a value of `starterElement` or `importedElement`."""
+
+        return self.working_status == u"starterElement" or \
+               self.working_status == u"importedElement"
+
+
+    #
+    # CRUD methods and related functions
+    #
+
     def check_collision(self, txn=None, commit=True):
         """If a collision happens, a list with the terms which are
         present in the DB will be returned. An empty list will be
@@ -649,44 +723,6 @@ class Term(object):
                 as_callback(Term.parse).all()
 
         return results
-
-    def has_langset(self, langcode, txn=None, commit=True):
-        """Returns True if the current term has a langSet for langcode."""
-        qs = u'/martif/text/body/termEntry[@id="{0}"]/langSet[@xml:lang="{1}"]'. \
-            format(self._get_concept_id(txn, commit), langcode)
-        result = dbxml.session.query(qs, document='tzos.xml', txn=txn, commit=commit). \
-                as_str().first()
-
-        return result is not None
-
-    @property
-    @working_status
-    def is_public(self):
-        """Returns True if the current term has an elementWorkingStatus
-        with a value of `workingElement` or higher."""
-
-        return self.working_status != u"starterElement" and \
-               self.working_status != u"importedElement" and \
-               self.working_status != u"archiveElement"
-
-    @property
-    @working_status
-    def is_consolidated(self):
-        """Returns True if the current term has an elementWorkingStatus
-        with a value of `consolidatedElement` or higher."""
-
-        return self.working_status != u"starterElement" and \
-               self.working_status != u"importedElement" and \
-               self.working_status != u"workingElement"
-
-    @property
-    @working_status
-    def is_unreviewed(self):
-        """Returns True if the current term has an elementWorkingStatus
-        with a value of `starterElement` or `importedElement`."""
-
-        return self.working_status == u"starterElement" or \
-               self.working_status == u"importedElement"
 
     def insert_all(self, emulate=False, force=False):
         """Inserts the current term and the equivalent terms stored

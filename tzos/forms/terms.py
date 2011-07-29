@@ -14,8 +14,8 @@ from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
         TextAreaField, TextField, ValidationError, regexp, required
 
 from tzos.extensions import dbxml
-from tzos.forms.fields import BooleanWorkingField, OriginatingPerson, \
-        SelectMultipleFieldDyn, SelectFieldPlus, SubjectField
+from tzos.forms.fields import BooleanWorkingField, MultipleTextField, \
+        OriginatingPerson, SelectMultipleFieldDyn, SelectFieldPlus, SubjectField
 from tzos.strings import *
 
 

@@ -129,14 +129,18 @@ class BooleanWorkingField(BooleanField):
             self.data = 'starterElement'
 
 
-class OriginatingPerson(TextField):
-    """A TextField for defining originatingPerson fields."""
+class MultipleTextField(TextField):
+    """A TextField which will allow multiple `items` in the UI."""
 
     def process_data(self, value):
         if value:
             self.data = u";;;".join(value)
         else:
             self.data = value
+
+
+class OriginatingPerson(MultipleTextField):
+    """A TextField for defining originatingPerson fields."""
 
     def process_formdata(self, valuelist):
         if valuelist and valuelist[0] == u"":

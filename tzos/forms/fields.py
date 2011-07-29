@@ -136,7 +136,7 @@ class MultipleTextField(TextField):
         if value:
             self.data = u";;;".join(value)
         else:
-            self.data = value
+            self.data = u""
 
 
 class OriginatingPerson(MultipleTextField):

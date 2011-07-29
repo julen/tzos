@@ -337,6 +337,10 @@ class Term(object):
         self._originating_person = []
         self._entry_source = []
         self._product_subset = []
+        self._subordinate_concept_generic = []
+        self._superordinate_concept_generic = []
+        self._antonym_concept = []
+        self._related_concept = []
 
     def mattrgetter(attr):
         """Generic attribute getter for using with attributes
@@ -377,6 +381,16 @@ class Term(object):
                             mattrsetter('_entry_source'))
     product_subset = property(mattrgetter('_product_subset'),
                               mattrsetter('_product_subset'))
+    subordinate_concept_generic = \
+            property(mattrgetter('_subordinate_concept_generic'),
+                     mattrsetter('_subordinate_concept_generic'))
+    superordinate_concept_generic = \
+            property(mattrgetter('_superordinate_concept_generic'),
+                     mattrsetter('_superordinate_concept_generic'))
+    antonym_concept = property(mattrgetter('_antonym_concept'),
+                               mattrsetter('_antonym_concept'))
+    related_concept = property(mattrgetter('_related_concept'),
+                               mattrsetter('_related_concept'))
 
 
     #

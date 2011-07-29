@@ -121,22 +121,22 @@ declare function term:subject_field($tig as element(tig)) {
 
 
 declare function term:subordinate_cg($tig as element(tig)) {
-    $tig/../../descrip[@type="subordinateConceptGeneric"]/string()
+    string-join($tig/../../descrip[@type="subordinateConceptGeneric"]/string(), ";;;")
 };
 
 
 declare function term:superordinate_cg($tig as element(tig)) {
-    $tig/../../descrip[@type="superordinateConceptGeneric"]/string()
+    string-join($tig/../../descrip[@type="superordinateConceptGeneric"]/string(), ";;;")
 };
 
 
 declare function term:antonym_concept($tig as element(tig)) {
-    $tig/../../descrip[@type="antonymConcept"]/string()
+    string-join($tig/../../descrip[@type="antonymConcept"]/string(), ";;;")
 };
 
 
 declare function term:related_concept($tig as element(tig)) {
-    $tig/../../descrip[@type="relatedConcept"]/string()
+    string-join($tig/../../descrip[@type="relatedConcept"]/string(), ";;;")
 };
 
 

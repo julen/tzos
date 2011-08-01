@@ -148,19 +148,19 @@
             {%- endif %}
             {%- if term.subordinate_concept_generic %}
             <dt>{{ _('Hyponym') }}</dt>
-            <dd>{{ term.subordinate_concept_generic }}</dd>
+            <dd>{{ render_with_br(term.subordinate_concept_generic) }}</dd>
             {%- endif %}
             {%- if term.superordinate_concept_generic %}
             <dt>{{ _('Hypernym') }}</dt>
-            <dd>{{ term.superordinate_concept_generic }}</dd>
+            <dd>{{ render_with_br(term.superordinate_concept_generic) }}</dd>
             {%- endif %}
             {%- if term.antonym_concept %}
             <dt>{{ _('Antonym') }}</dt>
-            <dd>{{ term.antonym_concept }}</dd>
+            <dd>{{ render_with_br(term.antonym_concept) }}</dd>
             {%- endif %}
             {%- if term.related_concept %}
             <dt>{{ _('Related') }}</dt>
-            <dd>{{ term.related_concept }}</dd>
+            <dd>{{ render_with_br(term.related_concept) }}</dd>
             {%- endif %}
             {%- if term.cross_reference %}
             <dt>{{ _('See also') }}</dt>

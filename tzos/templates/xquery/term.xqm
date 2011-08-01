@@ -164,10 +164,6 @@ declare function term:xref($tig as element(tig)) {
     $tig/ref[@type="crossReference"]/string()
 };
 
-declare function term:xref_id($tig as element(tig)) {
-    $tig/ref[@type="crossReference"]/data(@target)
-};
-
 
 declare function term:activity($tx as element(transacGrp)) {
 string-join(

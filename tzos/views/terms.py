@@ -420,8 +420,7 @@ def edit(id):
         success = []
         failure = []
 
-        blacklist = ('not_mine', 'submit',
-                     'cross_reference', 'normative_authorization',
+        blacklist = ('not_mine', 'submit', 'normative_authorization',
                      'normative_authorization_org')
 
         for field in form:
@@ -438,25 +437,8 @@ def edit(id):
                         failure.append(field.name)
 
         #
-        # Treat excepcional cases (xref, normative_auth)
+        # Treat excepcional cases (ormative_authorization)
         #
-
-        if form.cross_reference.data != term.cross_reference:
-            xref_term = Term(term=form.cross_reference.data)
-            xref_id = xref_term.id
-
-            olds = (u'//tig[@id="{0}"]/ref[@type="crossReference"]', u'//tig[@id="{0}"]/../../ref[@type="crossReference"]')
-
-            new = u'<ref target="{0}" type="crossReference">{1}</ref>'. \
-                    format(xref_id, form.cross_reference.data)
-
-            for old in olds:
-                old = old.format(term.id)
-
-                if dbxml.session.replace(old, new):
-                    success.append(field.name)
-                else:
-                    failure.append(field.name)
 
         if form.normative_authorization.data != \
            term.normative_authorization or \

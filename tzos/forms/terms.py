@@ -150,8 +150,7 @@ class BaseTermForm(CoreTermForm):
 
     xref_desc = _(u"A related term.")
     cross_reference = TextField(_(u'Cross reference'),
-            description=xref_desc,
-            validators=[check_exists, is_valid_input])
+            description=xref_desc)
 
     def_desc = _(u"A descriptive statement which serves to differentiate "
                  "from related concepts.")

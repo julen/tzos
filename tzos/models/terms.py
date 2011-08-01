@@ -341,6 +341,7 @@ class Term(object):
         self._superordinate_concept_generic = []
         self._antonym_concept = []
         self._related_concept = []
+        self._cross_reference = []
 
     def mattrgetter(attr):
         """Generic attribute getter for using with attributes
@@ -391,6 +392,8 @@ class Term(object):
                                mattrsetter('_antonym_concept'))
     related_concept = property(mattrgetter('_related_concept'),
                                mattrsetter('_related_concept'))
+    cross_reference = property(mattrgetter('_cross_reference'),
+                               mattrsetter('_cross_reference'))
 
 
     #
@@ -827,15 +830,10 @@ class Term(object):
             'concept_origin': self.concept_origin,
             'originating_person': self.originating_person,
             'entry_source': self.entry_source,
-            'product_subset': self.product_subset
+            'product_subset': self.product_subset,
+            'cross_reference': self.cross_reference
             }
         ctx.update(self.__dict__)
-
-        if hasattr(self, 'cross_reference') and self.cross_reference:
-            xref_term = Term(term=self.cross_reference)
-            xref_id = xref_term.id
-
-            ctx.update({'xref_id': xref_id})
 
         if hasattr(self, 'syntrans') and self.syntrans:
             syntrans_term = Term(term=self.syntrans_term)

@@ -69,16 +69,6 @@ $(document).ready(function () {
         }
     });
 
-    $('input[id$="cross_reference"]').autocomplete({
-        source: function (req, res) {
-            $.getJSON($TERM_AUTOCOMPLETE_URL, {
-                term: req.term,
-                lang: $('select[id$="-language"]').val()||$('#langCode').val(),
-                sf: $('select[id$="subject_field"]').val().join(";")
-            }, res);
-        }
-    });
-
 
     /*
      * bsmSelect for multiple select fields
@@ -115,6 +105,18 @@ $(document).ready(function () {
         tagSource: function (req, res) {
             $.getJSON($TERM_AUTOCOMPLETE_URL, {
                 term: $extractLast(req.term),
+                lang: $('select[id$="-language"]').val()||$('#langCode').val(),
+                sf: $('select[id$="subject_field"]').val().join(";")
+            }, res);
+        },
+        allowSpaces: true,
+        singleFieldDelimiter: ';;;'
+    });
+
+    $('input[id$="cross_reference"]').tagit({
+        tagSource: function (req, res) {
+            $.getJSON($TERM_AUTOCOMPLETE_URL, {
+                term: req.term,
                 lang: $('select[id$="-language"]').val()||$('#langCode').val(),
                 sf: $('select[id$="subject_field"]').val().join(";")
             }, res);

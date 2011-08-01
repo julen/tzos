@@ -5,7 +5,7 @@
     {{ render_multiple('descrip', 'superordinateConceptGeneric', superordinate_concept_generic) }}
     {{ render_multiple('descrip', 'antonymConcept', antonym_concept) }}
     {{ render_multiple('descrip', 'relatedConcept', related_concept) }}
-    <ref{% if xref_id %} target="{{ xref_id }}"{% endif %} type="crossReference">{% if cross_reference %}{{ cross_reference }}{% endif %}</ref>
+    {{ render_multiple('ref', 'crossReference', cross_reference) }}
     {{ render_transaction(transac_type, date, username) }}
     {% include "xml/new_langset.xml" %}
 </termEntry>

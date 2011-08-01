@@ -14,6 +14,6 @@
     <descrip type="example">{% if example %}{{ example }}{% endif %}</descrip>
     <descrip type="explanation">{% if explanation %}{{ explanation }}{% endif %}</descrip>
     <descrip type="context">{% if context %}{{ context }}{% endif %}</descrip>
-    <ref{% if xref_id %} target="{{ xref_id }}"{% endif %} type="crossReference">{% if cross_reference %}{{ cross_reference }}{% endif %}</ref>
+    {{ render_multiple('ref', 'crossReference', cross_reference) }}
     {{ render_transaction(transac_type, date, username) }}
 </tig>

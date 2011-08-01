@@ -161,7 +161,7 @@ declare function term:explanation($tig as element(tig)) {
 
 
 declare function term:xref($tig as element(tig)) {
-    $tig/ref[@type="crossReference"]/string()
+    string-join($tig/ref[@type="crossReference"]/string(), ";;;")
 };
 
 

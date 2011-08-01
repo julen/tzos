@@ -129,7 +129,8 @@
            term.normative_authorization or
            term.subordinate_concept_generic or
            term.superordinate_concept_generic or
-           term.antonym_concept or term.related_concept %}
+           term.antonym_concept or term.related_concept or
+           term.cross_reference %}
     <div class="group">
         <h3>{{ _('Linguistic information') }}</h3>
         <dl>
@@ -163,7 +164,7 @@
             {%- endif %}
             {%- if term.cross_reference %}
             <dt>{{ _('See also') }}</dt>
-            <dd>{{ term.cross_reference }}</dd>
+            <dd>{{ render_with_br(term.cross_reference) }}</dd>
             {%- endif %}
         </ul>
     </div>

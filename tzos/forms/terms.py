@@ -149,7 +149,7 @@ class BaseTermForm(CoreTermForm):
             validators=[is_valid_input])
 
     xref_desc = _(u"A related term.")
-    cross_reference = TextField(_(u'Cross reference'),
+    cross_reference = MultipleTextField(_(u'Cross reference'),
             description=xref_desc)
 
     def_desc = _(u"A descriptive statement which serves to differentiate "
@@ -186,18 +186,14 @@ class BaseTermForm(CoreTermForm):
     normative_authorization_org = SelectFieldPlus(_(u'Normative organization'),
             placeholder='', sort=True)
 
-    subordinate_concept_generic = TextField(_(u'Hyponym'),
-            validators=[check_exists])
-    superordinate_concept_generic = TextField(_(u'Hypernym'),
-            validators=[check_exists])
-    antonym_concept = TextField(_(u'Antonym'),
-            validators=[check_exists])
+    subordinate_concept_generic = MultipleTextField(_(u'Hyponym'))
+    superordinate_concept_generic = MultipleTextField(_(u'Hypernym'))
+    antonym_concept = MultipleTextField(_(u'Antonym'))
 
     rltd_desc = _(u"A concept that has an associative relation to another "
                   "concept, such as teacher and school.")
-    related_concept = TextField(_(u'Related concept'),
-            description=rltd_desc,
-            validators=[check_exists])
+    related_concept = MultipleTextField(_(u'Related concept'),
+            description=rltd_desc)
 
     part_of_speech = SelectFieldPlus(_(u'Part of Speech'),
             choices=PART_OF_SPEECH, placeholder='', sort=True,

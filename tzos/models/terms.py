@@ -835,6 +835,10 @@ class Term(object):
             }
         ctx.update(self.__dict__)
 
+        #
+        # Determine where to perform the actual insert and which XML
+        # markup is needed.
+        #
         if hasattr(self, 'syntrans') and self.syntrans:
             syntrans_term = Term(term=self.syntrans_term)
             syntrans_term.language = self.syntrans_language
@@ -864,6 +868,7 @@ class Term(object):
             return True
 
         return False
+
 
     def update(self, field, value):
         """Updates current term's DB data with the object's data."""

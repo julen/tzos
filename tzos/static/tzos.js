@@ -51,10 +51,14 @@ $(document).ready(function () {
      * Autocompletes
      */
 
-    /* Helper functions */
+    /* Helper constants and functions */
+
+    $DELIM = ";;;";
+
     $split = function (val) {
         return val.split( /,\s*/ );
     };
+
     $extractLast = function (term) {
         return $split(term).pop();
     }
@@ -92,13 +96,13 @@ $(document).ready(function () {
             }, res);
         },
         allowSpaces: true,
-        singleFieldDelimiter: ';;;'
+        singleFieldDelimiter: $DELIM
     });
 
     $('input[id$="entry_source"]').tagit({
         tagSource: $ES_AUTOCOMPLETE_URL,
         allowSpaces: true,
-        singleFieldDelimiter: ';;;'
+        singleFieldDelimiter: $DELIM
     });
 
     $('input[id$="concept_generic"], input[id$="_concept"]').tagit({
@@ -110,7 +114,7 @@ $(document).ready(function () {
             }, res);
         },
         allowSpaces: true,
-        singleFieldDelimiter: ';;;'
+        singleFieldDelimiter: $DELIM
     });
 
     $('input[id$="cross_reference"]').tagit({
@@ -122,7 +126,7 @@ $(document).ready(function () {
             }, res);
         },
         allowSpaces: true,
-        singleFieldDelimiter: ';;;'
+        singleFieldDelimiter: $DELIM
     });
 
 

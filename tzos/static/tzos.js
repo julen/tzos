@@ -83,12 +83,8 @@ $(document).ready(function () {
     /*
      * bsmSelect for multiple select fields
      */
-    $('select#add-subject_field, \
-       .editTerm select#subject_field, \
-       select#upload-subject_field, \
-       select#add-concept_origin, \
-       .editTerm select#concept_origin, \
-       select#upload-concept_origin, \
+    $('select[id$="subject_field"], \
+       select[id$="concept_origin"], \
        select[id$="product_subset"]').bsmSelect({
         removeLabel: '<strong>×</strong>',
         selectClass: 'input bsmSelect',

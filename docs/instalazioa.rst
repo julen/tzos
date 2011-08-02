@@ -29,6 +29,10 @@ Memcached
 Bertsio-kontrolerako sistemak
     Kodea eskuratzeko beharrezkoak dira `git`_ eta `Mercurial`_.
 
+Posta bidaltzeko aplikaziotik bertatik (izena ematerakoan, pasahitzak
+berrezarri nahi direnean...), SMTP zerbitzari bat edo urruneko zerbitzari
+bateko SMTP kontu bat ere behar da.
+
 Bestetik, zerbitzariko instalazio-prozesua automatizatu nahi bada, bezeroak
 iturburu-kodearen kopia eta `Fabric`_ beharko ditu [#f1]_. Esan gabe doa
 zerbitzarira SSH bidezko konexioa ere behar dela.

@@ -140,6 +140,23 @@ def _gen_term_form(form_cls, **form_args):
     return form
 
 
+def _populate_equivalents(form, term):
+    """Populates `term` equivalents that have been submitted in the `form`."""
+
+    for field in form:
+        if u'eqterm-' in field.name:
+            lang = field.name.rsplit(u'-', 1)[1]
+            terms = field.data
+
+            if terms:
+                terms = terms.split(u',')
+
+                if lang == term.language:
+                    term.append_raw_synonym(terms)
+                else:
+                    term.append_raw_translation(lang, terms)
+
+
 @terms.route('/add/', methods=('GET', 'POST'))
 @auth.require(401)
 def add():
@@ -197,18 +214,7 @@ def add():
         else:
             add_form.populate_obj(term)
 
-        for f in add_form._fields:
-            if f.startswith(u'eqterm-'):
-                lang = f.rsplit(u'-', 1)[1]
-                terms = getattr(add_form, f).data
-
-                if terms != u"":
-                    terms = terms.split(u',')
-
-                    if lang == term.language:
-                        term.append_raw_synonym(terms)
-                    else:
-                        term.append_raw_translation(lang, terms)
+        _populate_equivalents(add_form, term)
 
         st, results, objects = term.insert_all(force=force)
 

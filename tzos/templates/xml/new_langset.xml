@@ -1,3 +1,4 @@
+{% from "macros/_xml.html" import render_multiple %}
 <langSet xml:lang="{{ language }}">
     {{ render_multiple('descrip', 'definition', definition) }}
     {% include "xml/new_term.xml" %}

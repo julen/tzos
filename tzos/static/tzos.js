@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    /*
+     * Tipsy tooltips
+     */
+
     $('[rel=tipsy-ns]').tipsy({
         gravity: $.fn.tipsy.autoNS,
         live: true,
@@ -15,17 +19,29 @@ $(document).ready(function () {
     $('#tzosDict > a').click(function (e) {
         e.preventDefault();
     });
+
     $('#tzosDict').click(function (e) {
         e.stopPropagation();
         $(this).children('ul').toggle();
     });
+
     $('body').not('#tzosDict').click(function (e) {
         if ($('ul.dictList').is(':visible')) {
             $('ul.dictList').hide();
         }
     });
 
+
+    /*
+     * Inline tabs
+     */
+
     $('ul.inlineTabs').tabs();
+
+
+    /*
+     * Show/hide stuff
+     */
 
     if ($('li.showSource input:checkbox').is(':checked')) {
         $('li.showSource').next('li').removeClass('hideme');

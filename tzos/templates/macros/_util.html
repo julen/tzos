@@ -42,8 +42,13 @@
 {% endmacro %}
 
 
+{% macro tag_wrap(text, tag='q') %}
+<{{tag}}>{{ text }}</{{tag}}>
+{% endmacro %}
+
+
 {% macro render_with_br(items, callback=None) %}
-{%- for item in items %}{% if callback %}{{ callback(item) }}{% else %}{{ item }}{% endif %}{%- if not loop.last %}<br />{%- endif %}
+{%- for item in items %}{% if callback %}{{ callback(item, **kwargs) }}{% else %}{{ item }}{% endif %}{%- if not loop.last %}<br />{%- endif %}
 {%- endfor %}
 {% endmacro %}
 
@@ -91,7 +96,7 @@
             {%- endif %}
             {%- if term.context %}
             <dt>{{ _('Context') }}</dt>
-            <dd><q>{{ render_with_br(term.context) }}</q></dd>
+            <dd>{{ render_with_br(term.context, tag_wrap) }}</dd>
             {%- endif %}
             {%- if term.example %}
             <dt>{{ _('Example') }}</dt>

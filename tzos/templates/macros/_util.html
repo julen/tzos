@@ -71,7 +71,7 @@
     {%- endif %}
     {%- if term.subject_field %}
     {% set sfields = term.subject_field_display|join(', ') %}
-    <p class="head weak"{% if sfields|length > 90 %} rel="tipsy-ns" title="{{ sfields }}"{% endif %}>{{ sfields|truncate(90) }}</p>
+    <p class="head weak"{% if sfields|length > 90 %} rel="tipsy-ns" title="{{ render_with_br(term.subject_field_display, truncate=False) }}"{% endif %}>{{ sfields|truncate(90) }}</p>
     {%- endif %}
 
     {%- if term.synonyms %}

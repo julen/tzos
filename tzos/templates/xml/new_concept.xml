@@ -9,4 +9,3 @@
     {{ render_transaction(transac_type, date, username) }}
     {% include "xml/new_langset.xml" %}
 </termEntry>
-

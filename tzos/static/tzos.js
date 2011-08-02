@@ -67,8 +67,15 @@ $(document).ready(function () {
     $('li.showSource input:checkbox').click(function () {
         $('li.showSource').next('li').toggle('slow');
     });
+
     $('li.showSyntrans input:checkbox').click(function () {
         $('li.showSyntrans').nextAll('li').toggle('slow');
+    });
+
+    /* Show/hide term information */
+
+    $("span.truncate.more").click(function () {
+        $(this).parent().find("span.truncate").toggle();
     });
 
     /*

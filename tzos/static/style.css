@@ -868,6 +868,18 @@ div.term .private i {
     margin-right: 5px;
 }
 
+/* More/less details */
+
+span.truncate.showme,
+span.truncate.showme > a {
+    display: none;
+}
+
+span.truncate.more {
+    display: block;
+    text-align: right;
+}
+
 
 /* Adding terms */
 

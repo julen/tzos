@@ -46,10 +46,20 @@
 <{{tag}}>{{ text }}</{{tag}}>
 {% endmacro %}
 
-
-{% macro render_with_br(items, callback=None) %}
+{% macro _render_with_br(items, callback=None) %}
 {%- for item in items %}{% if callback %}{{ callback(item, **kwargs) }}{% else %}{{ item }}{% endif %}{%- if not loop.last %}<br />{%- endif %}
 {%- endfor %}
+{% endmacro %}
+
+{% macro render_with_br(items, callback=None, truncate=True, lines=3) %}
+<span class='truncate{% if truncate and items|length > lines %} hideme{% endif %}'>
+{{ _render_with_br(items, callback) }}
+</span>
+
+{%- if truncate and items|length > lines %}
+<span class='truncate showme'>{{ _render_with_br(items[:lines], callback) }}</span>
+<span class='truncate showme more strong small'><a class="showme" href="#">{{ _('Show more…') }}</a></span>
+{%- endif %}
 {% endmacro %}
 
 

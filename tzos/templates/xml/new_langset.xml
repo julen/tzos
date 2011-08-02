@@ -1,4 +1,4 @@
 <langSet xml:lang="{{ language }}">
-    <descrip type="definition">{% if definition %}{{ definition }}{% endif %}</descrip>
+    {{ render_multiple('descrip', 'definition', definition) }}
     {% include "xml/new_term.xml" %}
 </langSet>

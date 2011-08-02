@@ -11,9 +11,9 @@
     {{ render_multiple('admin', 'productSubset', product_subset) }}
     <admin type="elementWorkingStatus">{% if working_status %}{{ working_status }}{% endif %}</admin>
     <admin type="sortKey">{{ sortkey }}</admin>
-    <descrip type="example">{% if example %}{{ example }}{% endif %}</descrip>
-    <descrip type="explanation">{% if explanation %}{{ explanation }}{% endif %}</descrip>
-    <descrip type="context">{% if context %}{{ context }}{% endif %}</descrip>
+    {{ render_multiple('descrip', 'example', example) }}
+    {{ render_multiple('descrip', 'explanation', explanation) }}
+    {{ render_multiple('descrip', 'context', context) }}
     {{ render_multiple('ref', 'crossReference', cross_reference) }}
     {{ render_transaction(transac_type, date, username) }}
 </tig>

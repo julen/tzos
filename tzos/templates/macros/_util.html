@@ -83,19 +83,19 @@
         <dl>
             {%- if term.definition %}
             <dt>{{ _('Definition') }}</dt>
-            <dd>{{ term.definition }}</dd>
+            <dd>{{ render_with_br(term.definition) }}</dd>
             {%- endif %}
             {%- if term.explanation %}
             <dt>{{ _('Explanation') }}</dt>
-            <dd>{{ term.explanation }}</dd>
+            <dd>{{ render_with_br(term.explanation) }}</dd>
             {%- endif %}
             {%- if term.context %}
             <dt>{{ _('Context') }}</dt>
-            <dd><q>{{ term.context }}</q></dd>
+            <dd><q>{{ render_with_br(term.context) }}</q></dd>
             {%- endif %}
             {%- if term.example %}
             <dt>{{ _('Example') }}</dt>
-            <dd>{{ term.example }}</dd>
+            <dd>{{ render_with_br(term.example) }}</dd>
             {%- endif %}
         </dl>
     </div>

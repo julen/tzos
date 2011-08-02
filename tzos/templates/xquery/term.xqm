@@ -141,22 +141,22 @@ declare function term:related_concept($tig as element(tig)) {
 
 
 declare function term:definition($tig as element(tig)) {
-    $tig/../descrip[@type="definition"]/string()
+    string-join($tig/../descrip[@type="definition"]/string(), ";;;")
 };
 
 
 declare function term:context($tig as element(tig)) {
-    $tig/descrip[@type="context"]/string()
+    string-join($tig/descrip[@type="context"]/string(), ";;;")
 };
 
 
 declare function term:example($tig as element(tig)) {
-    $tig/descrip[@type="example"]/string()
+    string-join($tig/descrip[@type="example"]/string(), ";;;")
 };
 
 
 declare function term:explanation($tig as element(tig)) {
-    $tig/descrip[@type="explanation"]/string()
+    string-join($tig/descrip[@type="explanation"]/string(), ";;;")
 };
 
 

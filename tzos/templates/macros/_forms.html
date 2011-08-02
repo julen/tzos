@@ -21,6 +21,11 @@
     {%- if field.type == 'BooleanField' or field.type == 'BooleanWorkingField' %}
         {{ field(class="in")|safe }}
         {{ field.label(class="in") }}
+    {%- elif field.type == 'FieldList' %}
+        {%- for f in field %}
+        {{ render_field(f, tagged=False, **kwargs) }}
+        {%- endfor %}
+        <p class="addMore"><a class="addField">{{ _("Add another one") }}</a></p>
     {%- else %}
         {%- if labeled %}
         {{ field.label }}

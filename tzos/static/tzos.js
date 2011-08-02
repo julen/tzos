@@ -131,6 +131,26 @@ $(document).ready(function () {
 
 
     /*
+     * FieldList population
+     */
+    $("p.addMore").click(function () {
+        var last = $(this).parent().find("textarea").last();
+
+        var id = last.attr("id");
+        var parts = id.split("-");
+        var idName = parts.slice(0, parts.length - 1).join("-");
+        var idNumber = new Number(parts[parts.length-1]) + 1;
+        var idNew = idName + "-" + idNumber;
+
+        var newElem = last.clone();
+        newElem.val('');
+        newElem.attr('id', idNew);
+        newElem.attr('name', idNew);
+        newElem.insertBefore(this);
+    });
+
+
+    /*
      * Adding equivalents on-the-fly
      */
 

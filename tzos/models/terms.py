@@ -343,6 +343,11 @@ class Term(object):
         self._related_concept = []
         self._cross_reference = []
 
+        self._definition = []
+        self._context = []
+        self._example = []
+        self._explanation = []
+
     def mattrgetter(attr):
         """Generic attribute getter for using with attributes
         that accept multiple values."""
@@ -394,6 +399,15 @@ class Term(object):
                                mattrsetter('_related_concept'))
     cross_reference = property(mattrgetter('_cross_reference'),
                                mattrsetter('_cross_reference'))
+
+    definition = property(mattrgetter('_definition'),
+                          mattrsetter('_definition'))
+    context = property(mattrgetter('_context'),
+                       mattrsetter('_context'))
+    example = property(mattrgetter('_example'),
+                       mattrsetter('_example'))
+    explanation = property(mattrgetter('_explanation'),
+                           mattrsetter('_explanation'))
 
 
     #
@@ -831,7 +845,11 @@ class Term(object):
             'originating_person': self.originating_person,
             'entry_source': self.entry_source,
             'product_subset': self.product_subset,
-            'cross_reference': self.cross_reference
+            'cross_reference': self.cross_reference,
+            'definition': self.definition,
+            'context': self.context,
+            'example': self.example,
+            'explanation': self.explanation
             }
         ctx.update(self.__dict__)
 

@@ -921,8 +921,18 @@ ul.otherFields > li:first-child a.rmCol {
     visibility: hidden;
 }
 
-a.addCol, a.rmCol, a.rmEq {
+a.addCol, a.addField, a.rmCol, a.rmEq {
     cursor: pointer;
+}
+
+p.addMore {
+    margin-right: 20px;
+    margin-top: -10px;
+    text-align: right;
+}
+
+.editTerm p.addMore {
+    margin-right: 55px;
 }
 
 ul.uploadResults li {

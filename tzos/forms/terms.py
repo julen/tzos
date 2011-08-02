@@ -9,8 +9,8 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import AnyOf, BooleanField, FileField, Form, HiddenField, \
-        NoneOf, Optional, SelectField, SubmitField, \
+from flaskext.wtf import AnyOf, BooleanField, FieldList, FileField, Form, \
+        HiddenField, NoneOf, Optional, SelectField, SubmitField, \
         TextAreaField, TextField, ValidationError, regexp, required
 
 from tzos.extensions import dbxml
@@ -141,39 +141,35 @@ class BaseTermForm(CoreTermForm):
     # Optional fields
     #
 
-    ctx_desc = _(u"A text which illustrates a concept or a term by "
-                 "containing the concept designation itself. "
-                 "It must be authentic.")
-    context = TextAreaField(_('Context'),
-            description=ctx_desc,
-            validators=[is_valid_input])
-
     xref_desc = _(u"A related term.")
     cross_reference = MultipleTextField(_(u'Cross reference'),
             description=xref_desc)
-
-    def_desc = _(u"A descriptive statement which serves to differentiate "
-                 "from related concepts.")
-    definition = TextAreaField(_(u'Definition'),
-            description=def_desc,
-            validators=[is_valid_input])
 
     es_desc = _(u"The source of the terminological entry.")
     entry_source = MultipleTextField(_(u'Entry source'),
             description=es_desc)
 
+    def_desc = _(u"A descriptive statement which serves to differentiate "
+                 "from related concepts.")
+    definition = FieldList(TextAreaField(_(u'Definition'),
+            description=def_desc), min_entries=1)
+
+    ctx_desc = _(u"A text which illustrates a concept or a term by "
+                 "containing the concept designation itself. "
+                 "It must be authentic.")
+    context = FieldList(TextAreaField(_('Context'),
+            description=ctx_desc), min_entries=1)
+
     example_desc = _(u"A text which illustrates a concept or a term. "
                      "It can be an invented sentence.")
-    example = TextAreaField(_(u'Example'),
-            description=example_desc,
-            validators=[is_valid_input])
+    example = FieldList(TextAreaField(_(u'Example'),
+            description=example_desc), min_entries=1)
 
     explan_desc = _(u"A statement that describes and clarifies a concept "
                     "and makes it understandable, but does not necessarily "
                     "differentiate it from other concepts.")
-    explanation = TextAreaField(_(u'Explanation'),
-            description=explan_desc,
-            validators=[is_valid_input])
+    explanation = FieldList(TextAreaField(_(u'Explanation'),
+            description=explan_desc), min_entries=1)
 
     product_subset = SelectMultipleFieldDyn(_(u'Product subset'),
             choices=PRODUCT_SUBSET)

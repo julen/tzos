@@ -205,7 +205,7 @@ def add_source():
 
     return redirect(url_for("admin.settings"))
 
-@admin.route('/source/edit/<int:id>', methods=('GET','POST'))
+@admin.route('/source/edit/<int:id>/', methods=('GET','POST'))
 @admin_permission.require(401)
 def edit_source(id):
 

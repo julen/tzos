@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% from "macros/_forms.html" import render_form %}
+
+{% block title %}{{ super() }}{{ _('Edit source') }}{% endblock %}
+
+{% block intro %}{% endblock %}
+
+{% block content %}
+<div class="fields">
+    <h2 class="h4">{{ _('Edit source') }}</h2>
+    {{ render_form(form, labeled=False) }}
+</div>
+{% endblock %}

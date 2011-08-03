@@ -9,8 +9,8 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import Form, IntegerField, Length, SelectField, SubmitField, \
-        TextField, required
+from flaskext.wtf import Form, HiddenField, IntegerField, Length, SelectField, \
+        SubmitField, TextField, required
 
 from tzos.forms.fields import SelectFieldPlus
 from tzos.models import User
@@ -75,17 +75,19 @@ class EditTermSourceForm(BaseTermSourceForm):
 
 class BaseTermSubjectForm(Form):
 
-    code = IntegerField(_(u"Code"))
-
     parent_id = SelectFieldPlus(_(u"Parent"), coerce=int, placeholder=-1)
 
 
 class AddTermSubjectForm(BaseTermSubjectForm):
 
+    code = IntegerField(_(u"Code"))
+
     submit = SubmitField(_(u"Add"))
 
 
 class EditTermSubjectForm(BaseTermSubjectForm):
+
+    code = HiddenField()
 
     submit = SubmitField(_(u"Edit"))
 

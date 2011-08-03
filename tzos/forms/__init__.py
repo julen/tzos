@@ -12,8 +12,9 @@ from .account import LoginForm, SignupForm, RecoverPasswordForm, \
         BasePasswordForm, ResetPasswordForm, EditPasswordForm, \
         EditEmailForm, EditProfileForm
 from .admin import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
-        BackupForm, DeleteUploadForm, EditTermOriginForm, EditTermSourceForm, \
-        ExportForm, ModifyUserPermissionForm
+        AddTermSubjectForm, BackupForm, DeleteUploadForm, EditTermOriginForm, \
+        EditTermSourceForm, EditTermSubjectForm, ExportForm, \
+        ModifyUserPermissionForm
 from .comments import CommentForm
 from .frontend import ContactForm
 from .search import SearchForm

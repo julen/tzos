@@ -159,7 +159,7 @@ def add_origin():
 
     return redirect(url_for("admin.settings"))
 
-@admin.route('/origin/edit/<int:id>', methods=('GET','POST'))
+@admin.route('/origin/edit/<int:id>/', methods=('GET','POST'))
 @admin_permission.require(401)
 def edit_origin(id):
 

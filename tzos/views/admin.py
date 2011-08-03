@@ -48,7 +48,7 @@ def _gen_origins_form(form_cls, **kwargs):
     return form
 
 
-def _gen_sfields_form(form_cls, **form_args):
+def _gen_sfields_form(form_cls, sfields=[], **form_args):
 
     class F(form_cls):
         pass
@@ -57,7 +57,7 @@ def _gen_sfields_form(form_cls, **form_args):
 
     for values in langs:
         code = values[0]
-        field_name = 'name-{0}'.format(code)
+        field_name = u'name-{0}'.format(code)
         field_label = _l(u'Name — %(lang)s', lang=code)
         setattr(F, field_name, TextField(field_label,
             validators=[required(message=_(u"Name is required."))]))
@@ -65,6 +65,12 @@ def _gen_sfields_form(form_cls, **form_args):
     form = F(**form_args)
 
     form.parent_id.choices = get_sfields_dropdown(g.ui_lang)
+
+    # If passed, set data
+    for sf in sfields:
+        form.parent_id.data = sf.parent_id
+        form.code.data = sf.code
+        getattr(form, "name-%s" % sf.translations.locale).data = sf.translations.text
 
     return form
 

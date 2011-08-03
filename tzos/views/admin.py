@@ -13,13 +13,15 @@ import os
 from flask import Module, current_app, flash, g, make_response, redirect, \
         render_template, request, send_from_directory, url_for
 
-from flaskext.babel import gettext as _
+from flaskext.babel import gettext as _, lazy_gettext as _l
+from flaskext.wtf import required, TextField
 
 from tzos.extensions import cache, db, dbxml
 from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
-        BackupForm, DeleteUploadForm, EditTermOriginForm, EditTermSourceForm, \
-        ExportForm, ModifyUserPermissionForm
-from tzos.helpers import get_origins_dropdown
+        AddTermSubjectForm, BackupForm, DeleteUploadForm, EditTermOriginForm, \
+        EditTermSourceForm, EditTermSubjectForm, ExportForm, \
+        ModifyUserPermissionForm
+from tzos.helpers import get_origins_dropdown, get_sfields_dropdown
 from tzos.models import Term, TermOrigin, TermSource, TermSubject, TermUpload, \
         Translation, User
 from tzos.permissions import admin as admin_permission
@@ -42,6 +44,27 @@ def _gen_origins_form(form_cls, **kwargs):
     form = form_cls(**kwargs)
 
     form.parent_id.choices = get_origins_dropdown()
+
+    return form
+
+
+def _gen_sfields_form(form_cls, **form_args):
+
+    class F(form_cls):
+        pass
+
+    langs = Translation.query.values(db.distinct(Translation.locale))
+
+    for values in langs:
+        code = values[0]
+        field_name = 'name-{0}'.format(code)
+        field_label = _l(u'Name — %(lang)s', lang=code)
+        setattr(F, field_name, TextField(field_label,
+            validators=[required(message=_(u"Name is required."))]))
+
+    form = F(**form_args)
+
+    form.parent_id.choices = get_sfields_dropdown(g.ui_lang)
 
     return form
 
@@ -74,6 +97,7 @@ def settings():
     langs_form = AddLanguagesForm()
     origins_form = _gen_origins_form(AddTermOriginForm)
     sources_form = AddTermSourceForm()
+    sfields_form = _gen_sfields_form(AddTermSubjectForm)
     export_form = ExportForm()
     backup_form = BackupForm()
 
@@ -81,7 +105,8 @@ def settings():
             'sources': sources, 'uploads': uploads, 'bkps': bkps,
             'users_form': users_form, 'langs_form': langs_form,
             'origins_form': origins_form, 'sources_form': sources_form,
-            'export_form': export_form, 'backup_form': backup_form }
+            'sfields_form': sfields_form, 'export_form': export_form,
+            'backup_form': backup_form }
     return render_template("admin/settings.html", **ctx)
 
 @admin.route('/users/', methods=('POST',))
@@ -225,6 +250,56 @@ def edit_source(id):
 
     return render_template("admin/edit_source.html", form=form,
                                                      source=source)
+
+
+@admin.route('/subject/add/', methods=('POST',))
+@admin_permission.require(401)
+def add_sfield():
+
+    form = _gen_sfields_form(AddTermSubjectForm)
+
+    if form.validate_on_submit():
+
+        if form.parent_id.data > -1:
+            parent_id = form.parent_id.data
+        else:
+            parent_id = None
+
+        # Add translations
+        for field in form:
+
+            if u"name-" in field.name:
+                locale = field.name.rsplit(u'-', 1)[1]
+                text = field.data
+                code = form.code.data
+
+                trans = Translation()
+                trans.id = code
+                trans.locale = locale
+                trans.text = text
+
+                db.session.add(trans)
+                db.session.commit()
+
+                # Now we can store the subject field
+                sf = TermSubject()
+                sf.code = code
+                sf.trans_id = trans.auto_id
+
+                if parent_id:
+                    sf.parent_id = parent_id
+
+                db.session.add(sf)
+                db.session.commit()
+
+        flash(_(u"Term subject ‘%(code)d’ has been added.",
+                code=sf.code), "success")
+    else:
+        flash(_(u"Error while adding subject field. Check the inserted "
+                "values are correct."), "error")
+
+    return redirect(url_for("admin.settings"))
+
 
 @admin.route('/export/', methods=('POST',))
 @admin_permission.require(401)

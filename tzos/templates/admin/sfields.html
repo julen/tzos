@@ -1,3 +1,4 @@
+{% from "macros/_forms.html" import render_form %}
 <div class="columns">
     <h2 class="h4">{{ _('Knowledge fields') }}</h2>
     <p>{{ _('These are the current knowledge fields available on the system. To edit a knowledge field, just click on it.') }}</p>
@@ -10,4 +11,9 @@
         </li>
         {%- endfor %}
     </ul>
+    <div class="hr fields">
+        <h2 class="h4">{{ _('Add a subject field') }}</h2>
+        {% set add_sfield_url = url_for('admin.add_sfield') %}
+        {{ render_form(sfields_form, action=add_sfield_url) }}
+    </div>
 </div>

@@ -307,6 +307,48 @@ def add_sfield():
     return redirect(url_for("admin.settings"))
 
 
+@admin.route('/subject/edit/<int:id>/', methods=('GET','POST'))
+@admin_permission.require(401)
+def edit_sfield(id):
+
+    if request.method == 'GET':
+        sfields = TermSubject.query \
+                .join('translations') \
+                .filter(TermSubject.code==id).all()
+    else:
+        sfields = []
+
+    form = _gen_sfields_form(EditTermSubjectForm, sfields=sfields)
+
+    if form.validate_on_submit():
+
+        if form.parent_id.data > -1:
+            parent_id = form.parent_id.data
+        else:
+            parent_id = None
+
+        # Iterate over translations and update them
+        translations = [f for f in form if u"name-" in f.name]
+        for field in translations:
+
+            locale = field.name.rsplit(u'-', 1)[1]
+            translation = Translation.query.filter(
+                    db.and_(Translation.id==id,
+                            Translation.locale==locale)).first()
+            translation.text = field.data
+            subject = TermSubject.query.get((id, translation.auto_id))
+            subject.parent_id = parent_id
+
+        db.session.commit()
+
+        flash(_(u"Term subject ‘%(code)s’ has been edited.",
+                code=id), "success")
+
+        return redirect(url_for("admin.settings"))
+
+    return render_template("admin/edit_sfield.html", form=form)
+
+
 @admin.route('/export/', methods=('POST',))
 @admin_permission.require(401)
 def export():

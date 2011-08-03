@@ -58,7 +58,7 @@ def _gen_sfields_form(form_cls, sfields=[], **form_args):
     for values in langs:
         code = values[0]
         field_name = u'name-{0}'.format(code)
-        field_label = _l(u'Name — %(lang)s', lang=code)
+        field_label = _l(u'Name (%(lang)s)', lang=code)
         setattr(F, field_name, TextField(field_label,
             validators=[required(message=_(u"Name is required."))]))
 

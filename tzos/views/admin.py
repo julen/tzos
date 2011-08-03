@@ -214,7 +214,7 @@ def edit_source(id):
 
     if form and form.validate_on_submit():
 
-        source.name = form.name.data
+        form.populate_obj(source)
 
         db.session.commit()
 

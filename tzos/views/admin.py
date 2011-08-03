@@ -168,7 +168,7 @@ def edit_origin(id):
 
     if form and form.validate_on_submit():
 
-        origin.name = form.name.data
+        form.populate_obj(origin)
 
         if form.parent_id.data > -1:
             origin.parent_id = form.parent_id.data

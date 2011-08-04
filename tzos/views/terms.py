@@ -229,10 +229,6 @@ def add():
             msg = _(u'Collision detected!')
             flash(msg, 'warning')
 
-            # Quick hack for avoiding weird data within originating_person
-            add_form._do_postprocess = True
-            add_form.process()
-
             # Fill in collision form
             for field in add_form:
                 if field.name != 'csrf':
@@ -349,10 +345,6 @@ def add():
             if not emulate:
                 db.session.add(term_upload)
                 db.session.commit()
-
-            # Quick hack for avoiding weird data within originating_person
-            upload_form._do_postprocess = True
-            upload_form.process()
 
             # We need to set this again due to the postprocessing
             upload_form.fpath.data = disk_fn

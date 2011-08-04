@@ -81,7 +81,7 @@ def _get_search_filters(or_search=False):
 
     rv = operator.join(result)
     if rv:
-        rv = u" and {0}".format(rv)
+        rv = u" and ({0})".format(rv)
 
     return rv
 

@@ -108,9 +108,15 @@ $(document).ready(function () {
     /*
      * bsmSelect for multiple select fields
      */
-    $('select[id$="subject_field"], \
-       select[id$="concept_origin"], \
-       select[id$="product_subset"]').bsmSelect({
+    $('.addTerm select[id$="subject_field"], \
+       .uploadTerm select[id$="subject_field"], \
+       .editTerm select[id$="subject_field"], \
+       .addTerm select[id$="concept_origin"], \
+       .uploadTerm select[id$="concept_origin"], \
+       .editTerm select[id$="concept_origin"], \
+       .addTerm select[id$="product_subset"], \
+       .uploadTerm select[id$="product_subset"], \
+       .editTerm select[id$="product_subset"]').bsmSelect({
         removeLabel: '<strong>×</strong>',
         selectClass: 'input bsmSelect',
         containerClass: 'bsmContainer',

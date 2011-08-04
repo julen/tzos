@@ -21,3 +21,18 @@ Konfigurazio-gakoak
 -------------------
 
 .. include:: konfigurazio-gakoak.rst.inc
+
+Mantentze-lanak
+---------------
+
+Badira aintzat hartu beharreko zenbait ohar aplikazioa modu egokian mantendu
+nahi bada.
+
+Gehiegizko log fitxategiak
+    Berkeley DBaren inguruneko log fitxategiak pilatzen direnean, aplikazioaren
+    hasieratzean atzerapenak sor daitezke.
+
+    Atzerapenak ekiditeko, komenigarria da datu-basearen babeskopia egitea
+    eta kopiako fitxategiak kargatzea ingurune errealean. Babeskopiak egiten
+    direnean azken log fitxategia gordetzen da soilik eta aplikazioaren
+    hasieratzea azkarragoa da.

@@ -92,4 +92,9 @@ DBXML
                                 dituen `object` kopuru maximoa.
                                 Argibide gehiagorako begiratu Berkeley
                                 DBren dokumentazioa.
+``DBXML_LOG_AUTOREMOVE``        DBXMLren log fitxategiak ezabatzen ditu
+                                automatikoki gehiago behar ez direnean.
+                                Besterik ezean ``True`` balioa dauka.
+                                Argibide gehiagorako begiratu Berkeley
+                                DBren dokumentazioa.
 =============================== =========================================

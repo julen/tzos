@@ -32,7 +32,9 @@ Gehiegizko log fitxategiak
     Berkeley DBaren inguruneko log fitxategiak pilatzen direnean, aplikazioaren
     hasieratzean atzerapenak sor daitezke.
 
-    Atzerapenak ekiditeko, komenigarria da datu-basearen babeskopia egitea
-    eta kopiako fitxategiak kargatzea ingurune errealean. Babeskopiak egiten
-    direnean azken log fitxategia gordetzen da soilik eta aplikazioaren
-    hasieratzea azkarragoa da.
+    Atzerapenak ekiditeko, ziurtatu ``DBXML_LOG_AUTOREMOVE``
+    konfigurazio-gakoaren balioa ``True`` gisa ezarrita dagoela. Beharrezkoak
+    ez diren log fitxategiak ezabatuko ditu honek automatikoki.
+
+    Log zaharrak alboratzeko beste modu bat babeskopiak egitea eta kopiak
+    kargatzea da. Babeskopiak egitean azken log fitxategia gordetzen da soilik.

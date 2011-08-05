@@ -76,7 +76,9 @@ da.
 
 Kudeaketa-komandoak ``manage.py`` fitxategiari dei eginez exekutatzen dira.
 Inolako argumenturik gabe deituz gero, eskura dauden komandoen zerrenda
-bistaratzen da::
+bistaratzen da:
+
+.. code-block:: bash
 
     $ python manage.py
     shell         Runs a Python shell inside Flask application context.
@@ -132,9 +134,10 @@ MySQL datu-basea sortzea
 Aurrez MySQL datu-baseekin lan egin duen edonorentzat ohiko urratsa izango da
 datu-base eta erabiltzaile berriak sortzea. Eragiketa `root` gisa egin
 beharko da, oro har erabiltzaile honek izaten baitu sisteman datu-baseak
-sortzeko baimena::
+sortzeko baimena:
 
-    # mysql -u root -p
+.. code-block:: mysql
+
     mysql> create database tzosdb;
     mysql> grant usage on *.* to tzos@localhost identified by 'nirepasahitza';
     mysql> grant all privileges on tzosdb.* to tzos@localhost;

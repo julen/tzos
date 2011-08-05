@@ -4,5 +4,6 @@
     <p>{{ _("Select the filtering options you want before importing "
             "the database. No filtering means all the database will "
             "be exported.") }}</p>
-    {{ render_form(export_form) }}
+    {%- set export_url = url_for('admin.export') %}
+    {{ render_form(export_form, action=export_url) }}
 </div>

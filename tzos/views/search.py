@@ -94,7 +94,7 @@ def results():
     if q:
         predicate = _get_search_predicate(q)
 
-        mode = request.args.get('mode', False)
+        mode = request.args.get('mode', u'and')
         or_search = True if mode == u'or' else False
         filter = _get_search_filters(or_search=or_search)
 

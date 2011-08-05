@@ -727,7 +727,7 @@ class Term(object):
     # CRUD methods and related functions
     #
 
-    def check_collision(self, txn=None, commit=True):
+    def check_collision(self, txn=None, commit=True, term_id=None):
         """If a collision happens, a list with the terms which are
         present in the DB will be returned. An empty list will be
         returned otherwise.
@@ -736,7 +736,13 @@ class Term(object):
         - the term itself,
         - the language, and
         - one of the parent subject fields (a subject field on the root)
+        - the term IDs differ
         """
+
+        if term_id:
+            extra = ' and $tig/data(@id) != "%s"' % term_id
+        else:
+            extra = ''
 
         qs = """
         import module namespace term = "http://tzos.net/term" at "term.xqm";
@@ -745,10 +751,11 @@ class Term(object):
         where term:is_public($tig) and
             term:term($tig) = "{1}" and
             (let $fields := tokenize(term:subject_field($tig), ";;;")
-            return some $f in $fields satisfies $f = $sfields)
+            return some $f in $fields satisfies $f = $sfields){2}
         return term:values($tig, false())
         """.format(self.language.encode('utf-8'),
-                   self.term.replace(u'"', u'""').encode('utf-8'))
+                   self.term.replace(u'"', u'""').encode('utf-8'),
+                   extra)
 
         root_codes = list(set([unicode(TermSubject.root_code(c)) \
                 for c in self.subject_field]))
@@ -887,6 +894,16 @@ class Term(object):
 
         return False
 
+
+    def edit(self):
+        """Edits current term's DB data."""
+        if dbxml.session.raw_query(xml, where,
+                                   document='tzos.xml',
+                                   txn=txn, commit=commit):
+            self._id = ctx['term_id']
+            return True
+
+        return False
 
     def update(self, field, value):
         """Updates current term's DB data with the object's data."""

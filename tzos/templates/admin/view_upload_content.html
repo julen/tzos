@@ -1,12 +1,10 @@
 {% from "macros/_forms.html" import render_form %}
 {% from "macros/_util.html" import render_term with context %}
 <div class="centerWrap w90">
+{%- if terms %}
 {%- for term in terms %}
 {{ render_term(term, hr=True) }}
-{%- else %}
-<p>{{ _('The terms from this upload action have been already deleted.') }}</p>
 {%- endfor %}
-{%- if terms %}
 <div class="hr">
     <h2>{{ _('Delete uploaded terms') }}</h2>
     <p>{{ _('Please note that this operation is risky and can affect '
@@ -14,5 +12,7 @@
     'cause data losses. Use with caution.') }}</p>
     {{ render_form(delete_form, action=url_for('admin.delete_upload', id=upload_id)) }}
 </div>
+{%- else %}
+<p>{{ _('The terms from this upload action have already been deleted.') }}</p>
 {%- endif %}
 </div>

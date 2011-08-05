@@ -15,6 +15,7 @@ from tzos.forms.fields import SelectFieldPlus
 from tzos.strings import *
 
 class SearchForm(Form):
+
     q = TextField(_('Keywords'))
 
     lang = SelectFieldPlus(_("Language"), placeholder='all', sort=True)

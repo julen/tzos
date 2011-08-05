@@ -413,6 +413,18 @@ def edit(id):
         form.working_status.data = term.is_public
 
     if form.validate_on_submit():
+
+        new_term = Term()
+        form.populate_obj(new_term)
+
+        objects = new_term.check_collision(term_id=id)
+
+        if objects:
+            flash(_(u'Collision detected! The renamed term you entered '
+                    'already exists in the database.'), 'warning')
+
+            return render_template('terms/edit.html', form=form, term=term)
+
         success = []
         failure = []
 

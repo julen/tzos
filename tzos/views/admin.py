@@ -361,15 +361,57 @@ def edit_sfield(id):
     return render_template("admin/edit_sfield.html", form=form)
 
 
+def _get_export_filters(form, or_filter=False):
+
+    operator = u" or " if or_filter else u" and "
+
+    filters = (
+        ('lang', u'$tig/..[@xml:lang="{0}"]'),
+        ('subject_field', u'(let $fields := tokenize(term:subject_field($tig), ";;;") return some $f in $fields satisfies $f = "{0}")'),
+        ('concept_origin', u'(let $origins := tokenize(term:concept_origin($tig), ";;;") return some $o in $origins satisfies $o = "{0}")'),
+    )
+
+    result = []
+    for f in filters:
+        param = getattr(form, f[0], None)
+
+        if param and param.data != u"all":
+            result.append(f[1].format(param.data))
+
+    rv = operator.join(result)
+    if rv:
+        rv = u"not ({0})".format(rv)
+
+    return rv
+
 @admin.route('/export/', methods=('POST',))
 @admin_permission.require(401)
 def export():
 
-    form = ExportForm()
+    form = _gen_export_form(ExportForm)
 
-    if form and form.validate_on_submit():
+    if form.validate_on_submit():
 
-        result = dbxml.session.query('/martif').as_str().first()
+        mode = form.mode.data
+        or_filter = True if mode == u'or' else False
+        filter = _get_export_filters(form, or_filter=or_filter)
+
+        if filter:
+            qs = """
+            import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+            copy $d := collection($collection)/martif
+            modify (
+                for $tig in $d/text/body/termEntry/langSet/tig
+                where {0}
+                return delete node $tig
+            )
+            return $d
+            """.format(filter.encode('utf-8'))
+        else:
+            qs = 'collection($collection)/martif'
+
+        result = dbxml.session.raw_query(qs).as_str().first()
 
         rv = make_response(result)
         rv.content_type = 'application/octet-stream'

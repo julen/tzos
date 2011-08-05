@@ -101,6 +101,28 @@ aldiz, SQL datu-basearekin.
 DB-XML
 ^^^^^^
 
+DB-XML datu-basea hasieratzeko, beharrezkoa da bi fitxategi inportatzea
+aplikazioaren edukiontzi edo `container`-ean. Horren aurretik, gainera,
+indizeak sortu beharko dira.
+
+.. note::
+
+    Indizeak beranduago ere sor daitezke baina aurretik zeuden indize guztiak
+    birsortzea dakar eta eragiketa oso garestia izan daiteke tamaina handiko
+    datu-baseetan.
+
+.. code-block:: bash
+
+    $ python manage.py add_indexes
+    Indexes added successfully.
+    $ python manage.py add_document -f bootstrap/tzos.xml -d tzos.xml
+    Document added successfully.
+    $ python manage.py add_document -f bootstrap/tzos.xcs -d tzos.xcs
+    Document added successfully.
+
+Garrantzitsua da gainera goiko dokumentu-izen horiek ezartzea, aplikazioak
+izen horiek erabiltzen baititu zenbait kontsultarako.
+
 SQL
 ^^^
 

@@ -416,7 +416,7 @@ def edit(id):
         success = []
         failure = []
 
-        blacklist = ('not_mine', 'submit', 'normative_authorization',
+        blacklist = ('submit', 'normative_authorization',
                      'normative_authorization_org')
 
         for field in form:

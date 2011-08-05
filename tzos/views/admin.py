@@ -21,7 +21,8 @@ from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
         AddTermSubjectForm, BackupForm, DeleteUploadForm, EditTermOriginForm, \
         EditTermSourceForm, EditTermSubjectForm, ExportForm, \
         ModifyUserPermissionForm
-from tzos.helpers import get_origins_dropdown, get_sfields_dropdown
+from tzos.helpers import get_dict_langs, get_origins_dropdown, \
+        get_sfields_dropdown
 from tzos.models import Term, TermOrigin, TermSource, TermSubject, TermUpload, \
         Translation, User
 from tzos.permissions import admin as admin_permission
@@ -75,6 +76,17 @@ def _gen_sfields_form(form_cls, sfields=[], **form_args):
     return form
 
 
+def _gen_export_form(form_cls, **kwargs):
+
+    form = form_cls(**kwargs)
+
+    form.lang.choices = get_dict_langs()
+    form.subject_field.choices = get_sfields_dropdown(g.ui_lang)
+    form.concept_origin.choices = get_origins_dropdown()
+
+    return form
+
+
 @admin.route('/')
 @admin_permission.require(401)
 def settings():
@@ -104,7 +116,7 @@ def settings():
     origins_form = _gen_origins_form(AddTermOriginForm)
     sources_form = AddTermSourceForm()
     sfields_form = _gen_sfields_form(AddTermSubjectForm)
-    export_form = ExportForm()
+    export_form = _gen_export_form(ExportForm)
     backup_form = BackupForm()
 
     ctx = {'users': users, 'origins': origins, 'sfields': sfields,

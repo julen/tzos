@@ -1,10 +1,8 @@
-<div class="columns">
+{% from "macros/_forms.html" import render_form %}
+<div class="exports">
     <h2 class="h4">{{ _('Export database') }}</h2>
-    <form method="POST" action="{{ url_for('admin.export') }}" class="f1">
-        {{ export_form.hidden_tag() }}
-        <dl>
-            <dt>{{ _("This will export the whole database.") }}</dt>
-            <dd>{{ export_form.submit(class="button") }}</dd>
-        </dl>
-    </form>
+    <p>{{ _("Select the filtering options you want before importing "
+            "the database. No filtering means all the database will "
+            "be exported.") }}</p>
+    {{ render_form(export_form) }}
 </div>

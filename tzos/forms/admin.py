@@ -9,10 +9,10 @@
     :license: BSD, see LICENSE for more details.
 """
 from flaskext.babel import lazy_gettext as _
-from flaskext.wtf import Form, HiddenField, IntegerField, Length, SelectField, \
-        SubmitField, TextField, required
+from flaskext.wtf import Form, HiddenField, IntegerField, Length, RadioField, \
+        SelectField, SubmitField, TextField, required
 
-from tzos.forms.fields import SelectFieldPlus
+from tzos.forms.fields import OriginatingPerson, SelectFieldPlus
 from tzos.models import User
 
 class ModifyUserPermissionForm(Form):
@@ -93,6 +93,29 @@ class EditTermSubjectForm(BaseTermSubjectForm):
 
 
 class ExportForm(Form):
+
+    #
+    # Filtering mode
+    #
+    mode_choices = (
+        ('and', _(u"All conditions must be met (AND style filtering).")),
+        ('or', _(u"Any of the conditions must be met (OR style filtering)."))
+    )
+    mode = RadioField(_(u"Filtering mode"),
+            default=u"and", choices=mode_choices)
+
+    #
+    # Filtering options
+    #
+    lang = SelectFieldPlus(_("Language"), placeholder='all', sort=True)
+
+    subject_field = SelectFieldPlus(_('Subject field'),
+            placeholder='all')
+
+    concept_origin = SelectFieldPlus(_("Origin"),
+            placeholder='all')
+
+    originating_person = OriginatingPerson(_(u"Originating person"))
 
     submit = SubmitField(_(u"Export"))
 

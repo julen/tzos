@@ -12,7 +12,7 @@ from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import Form, HiddenField, IntegerField, Length, RadioField, \
         SelectField, SubmitField, TextField, required
 
-from tzos.forms.fields import OriginatingPerson, SelectFieldPlus
+from tzos.forms.fields import SelectFieldPlus
 from tzos.models import User
 
 class ModifyUserPermissionForm(Form):
@@ -114,8 +114,6 @@ class ExportForm(Form):
 
     concept_origin = SelectFieldPlus(_("Origin"),
             placeholder='all')
-
-    originating_person = OriginatingPerson(_(u"Originating person"))
 
     submit = SubmitField(_(u"Export"))
 

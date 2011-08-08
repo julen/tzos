@@ -1052,7 +1052,7 @@ form.simpleSearch i.iSrch {
     float: left;
 }
 
-.advancedSearch .extra input,
+.advancedSearch .extra input[type!="radio"],
 .advancedSearch .extra select {
     width: 50%;
 }

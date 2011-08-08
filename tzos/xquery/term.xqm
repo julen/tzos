@@ -1,7 +1,5 @@
 module namespace term = "http://tzos.net/term";
 
-import module namespace util = "http://tzos.net/util" at "util.xqm";
-
 
 (: Properties :)
 

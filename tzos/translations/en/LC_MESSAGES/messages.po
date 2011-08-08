@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-12-28 12:32+0100\n"
-"PO-Revision-Date: 2011-08-08 14:37+0200\n"
+"PO-Revision-Date: 2011-08-08 14:54+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -1084,7 +1084,7 @@ msgstr ""
 
 #: tzos/templates/admin/exports.html:4
 msgid ""
-"Select the filtering options you want before importing the database. No "
+"Select the filtering options you want before exporting the database. No "
 "filtering means the whole database will be exported."
 msgstr ""
 
@@ -1874,39 +1874,10 @@ msgstr ""
 msgid "Failed to perform action."
 msgstr ""
 
-#~ msgid "Collision detected! Term ‘{0}’ already exists."
-#~ msgstr ""
-
-#~ msgid "Collision detected! Term ‘{0}’ wouldn't be added."
-#~ msgstr ""
-
-#~ msgid "Term ‘{0}’ added successfully."
-#~ msgstr ""
-
-#~ msgid "Term ‘{0}’ would be added."
-#~ msgstr ""
-
-#~ msgid "Error while adding term ‘{0}’."
-#~ msgstr ""
-
-#~ msgid "This will export the whole database."
-#~ msgstr ""
-
-#~ msgid "Misc"
-#~ msgstr ""
-
 #~ msgid ""
-#~ "The author of this term is <span"
-#~ " class=\"origPerson\">%(author)s</span>, and it "
-#~ "is <span class=\"adminSts\">%(admin_sts)s</span> "
-#~ "within the TZOS environment."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The author of this term is <span"
-#~ " class=\"origPerson\">%(author)s</span>."
-#~ msgstr ""
-
-#~ msgid "Failed to edit some fields."
+#~ "Select the filtering options you want"
+#~ " before importing the database. No "
+#~ "filtering means the whole database will"
+#~ " be exported."
 #~ msgstr ""
 

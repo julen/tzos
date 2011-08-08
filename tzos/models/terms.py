@@ -896,73 +896,52 @@ class Term(object):
         return False
 
 
-    def edit(self):
-        """Edits current term's DB data."""
-        if dbxml.session.raw_query(xml, where,
-                                   document='tzos.xml',
-                                   txn=txn, commit=commit):
-            self._id = ctx['term_id']
+    def update(self):
+        """Updates current term's DB data with the object's data."""
+
+        fields = ('id', 'term', 'concept_origin', 'subject_field',
+                'working_status', 'originating_person', 'definition',
+                'context', 'example', 'explanation', 'entry_source',
+                'product_subset', 'subordinate_concept_generic',
+                'superordinate_concept_generic', 'antonym_concept',
+                'related_concept', 'part_of_speech', 'term_type',
+                'administrative_status', 'cross_reference',
+                'normative_authorization', 'normative_authorization_org')
+
+        ctx = {}
+        for field in fields:
+            ctx[field] = getattr(self, field)
+
+        qs = '''
+        import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+        let $tig := collection($collection)/martif/text/body/termEntry/langSet/tig[@id=$id]
+        return (
+            term:term_update($tig, $term),
+            term:concept_origin_update($tig, $concept_origin),
+            term:subject_field_update($tig, $subject_field),
+            term:working_status_update($tig, $working_status),
+            term:orig_person_update($tig, $originating_person),
+            term:definition_update($tig, $definition),
+            term:context_update($tig, $context),
+            term:example_update($tig, $example),
+            term:explanation_update($tig, $explanation),
+            term:entry_source_update($tig, $entry_source),
+            term:product_subset_update($tig, $product_subset),
+            term:subordinate_cg_update($tig, $subordinate_concept_generic),
+            term:superordinate_cg_update($tig, $superordinate_concept_generic),
+            term:antonym_concept_update($tig, $antonym_concept),
+            term:related_concept_update($tig, $related_concept),
+            term:pos_update($tig, $part_of_speech),
+            term:type_update($tig, $term_type),
+            term:admn_sts_update($tig, $administrative_status),
+            term:norm_auth_update($tig, $normative_authorization,
+                                  $normative_authorization_org),
+            term:xref_update($tig, $cross_reference)
+        )
+        '''
+
+        if dbxml.session.insert_raw(qs, context=ctx):
             return True
 
         return False
-
-    def update(self, field, value):
-        """Updates current term's DB data with the object's data."""
-
-        fields_map = {
-            # FIXME: should check for collisions if term is edited
-            'term':
-            u'/martif/text/body/termEntry/langSet/tig[@id="{0}"]/term',
-            'concept_origin':
-             u'//tig[@id="{0}"]/admin[@type="conceptOrigin"]',
-            'subject_field':
-             u'//tig[@id="{0}"]/../../descrip[@type="subjectField"]',
-            'working_status':
-             u'//tig[@id="{0}"]/admin[@type="elementWorkingStatus"]',
-            'originating_person':
-             u'//tig[@id="{0}"]/admin[@type="originatingPerson"]',
-            'definition':
-             u'//tig[@id="{0}"]/../descrip[@type="definition"]',
-            'context':
-             u'//tig[@id="{0}"]/descrip[@type="context"]',
-            'example':
-             u'//tig[@id="{0}"]/descrip[@type="example"]',
-            'explanation':
-             u'//tig[@id="{0}"]/descrip[@type="explanation"]',
-            'entry_source':
-             u'//tig[@id="{0}"]/admin[@type="entrySource"]',
-            'product_subset':
-             u'//tig[@id="{0}"]/admin[@type="productSubset"]',
-            'subordinate_concept_generic':
-             u'//tig[@id="{0}"]/../../descrip[@type="subordinateConceptGeneric"]',
-            'superordinate_concept_generic':
-             u'//tig[@id="{0}"]/../../descrip[@type="superordinateConceptGeneric"]',
-            'antonym_concept':
-             u'//tig[@id="{0}"]/../../descrip[@type="antonymConcept"]',
-            'related_concept':
-             u'//tig[@id="{0}"]/../../descrip[@type="relatedConcept"]',
-            'part_of_speech':
-             u'//tig[@id="{0}"]/termNote[@type="partOfSpeech"]',
-            'term_type':
-             u'//tig[@id="{0}"]/termNote[@type="termType"]',
-            'administrative_status':
-             u'//tig[@id="{0}"]/termNote[@type="administrativeStatus"]',
-        }
-
-        try:
-            qs = fields_map[field]
-
-            old = qs.format(self.id)
-
-            if isinstance(value, list):
-                value = u";".join(value)
-
-            if dbxml.session.replace_value(old, value):
-                # Update object's value as well
-                setattr(self, field, value)
-
-                return True
-
-            return False
-        except KeyError:
-            return False

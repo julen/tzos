@@ -416,6 +416,7 @@ def edit(id):
 
         new_term = Term()
         form.populate_obj(new_term)
+        new_term._id = id
 
         objects = new_term.check_collision(term_id=id)
 
@@ -425,63 +426,24 @@ def edit(id):
 
             return render_template('terms/edit.html', form=form, term=term)
 
-        success = []
-        failure = []
-
-        blacklist = ('submit', 'normative_authorization',
-                     'normative_authorization_org')
-
-        for field in form:
-
-            if field.type != 'HiddenField' and field.name not in blacklist:
-                old_data = getattr(term, field.name)
-                new_data = field.data
-
-                if new_data != old_data:
-
-                    if term.update(field.name, new_data):
-                        success.append(field.name)
-                    else:
-                        failure.append(field.name)
-
-        #
-        # Treat excepcional cases (ormative_authorization)
-        #
-
-        if form.normative_authorization.data != \
-           term.normative_authorization or \
-           form.normative_authorization_org.data != \
-           term.normative_authorization_org:
-
-            old = u'//tig[@id="{0}"]/termNote[@type="normativeAuthorization"]'. \
-                format(term.id)
-            new = u'<termNote type="normativeAuthorization" '\
-                  'target="{0}">{1}</termNote>'. \
-                format(form.normative_authorization_org.data,
-                       form.normative_authorization.data)
-
-            if dbxml.session.replace(old, new):
-                success.append(field.name)
-            else:
-                failure.append(field.name)
-
-        if failure:
-            flash(_(u"Failed to edit some fields."), "error")
-        else:
+        if new_term.update():
             _register_transaction(id)
 
             term.unlock()
 
-            flash(_(u"Term ‘%(term)s’ has been edited.", term=term.term),
+            flash(_(u"Term ‘%(term)s’ has been edited.", term=new_term.term),
                     "success")
 
             return redirect(url_for("terms.detail", id=id))
+        else:
+            flash(_(u"Failed to edit term."), "error")
 
     elif request.method == 'POST' and not form.validate():
         flash(_(u"Failed to edit term. Please review the data you "
                  "entered is correct."), "error")
 
     return render_template('terms/edit.html', form=form, term=term)
+
 
 @terms.route("/<int:term_id>/comment/", methods=("POST",))
 @auth.require(401)

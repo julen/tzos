@@ -1,7 +1,7 @@
 {% from "macros/_forms.html" import render_form %}
 <div class="exports">
     <h2 class="h4">{{ _('Export database') }}</h2>
-    <p>{{ _("Select the filtering options you want before importing "
+    <p>{{ _("Select the filtering options you want before exporting "
             "the database. No filtering means the whole database will "
             "be exported.") }}</p>
     {%- set export_url = url_for('admin.export') %}

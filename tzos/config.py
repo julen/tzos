@@ -28,7 +28,7 @@ SQLALCHEMY_ECHO = False
 # DB-XML database settings
 DBXML_ENV = '/home/julen/dev/tzos/tzos/dbs/dbxml/'
 DBXML_DATABASE = DBXML_ENV + 'tzos.dbxml'
-DBXML_BASE_URI = 'file:///home/julen/dev/tzos/tzos/templates/xquery/'
+DBXML_BASE_URI = 'file:///home/julen/dev/tzos/tzos/xquery/'
 DBXML_CACHESIZE_GB = 0
 DBXML_CACHESIZE_BYTES = 512 * 1024 * 1024
 DBXML_MAX_LOCKS = 10000

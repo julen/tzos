@@ -159,7 +159,7 @@
             {%- endif %}
             {%- if term.normative_authorization %}
             <dt>{{ _('Normative level') }}</dt>
-            <dd>{{ _t(term.normative_authorization) }}{% if term.normative_authorization_org %} ({{ term.normative_authorization_org }}){% endif %}</dd>
+            <dd>{{ _t(term.normative_authorization) }}{% if term.normative_authorization_org_display %} ({{ term.normative_authorization_org_display }}){% endif %}</dd>
             {%- endif %}
             {%- if term.subordinate_concept_generic %}
             <dt>{{ _('Hyponym') }}</dt>

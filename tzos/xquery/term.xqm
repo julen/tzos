@@ -201,6 +201,7 @@ string-join(
      term:product_subset($tig),
      term:norm_auth($tig),
      term:norm_auth_org($tig),
+     term:norm_auth_org_display($tig),
      term:subordinate_cg($tig),
      term:superordinate_cg($tig),
      term:antonym_concept($tig),

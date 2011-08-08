@@ -3,6 +3,9 @@ module namespace term = "http://tzos.net/term";
 import module namespace util = "http://tzos.net/util" at "util.xqm";
 
 
+(: Properties :)
+
+
 declare function term:owner($tig as element(tig))
 {
     $tig/transacGrp[./transac[@type="transactionType"]/string()="origination" or ./transac[@type="transactionType"]/string()="input" or ./transac[@type="transactionType"]/string()="importation"]/transacNote[@type="responsibility"]/string()
@@ -28,10 +31,6 @@ declare function term:is_unreviewed($tig as element(tig))
 as xs:boolean {
 let $workingStatus := term:working_status($tig)
 return $workingStatus = "starterElement" or $workingStatus = "importedElement"
-};
-
-declare function term:term($tig as element(tig)) {
-    $tig/term/string()
 };
 
 
@@ -60,33 +59,10 @@ declare function term:translations($tig as element(tig), $unreviewed as xs:boole
 };
 
 
-declare function term:type($tig as element(tig)) {
-    $tig/termNote[@type="termType"]/string()
-};
+(: Main fields :)
 
-
-declare function term:pos($tig as element(tig)) {
-    $tig/termNote[@type="partOfSpeech"]/string()
-};
-
-
-declare function term:admn_sts($tig as element(tig)) {
-    $tig/termNote[@type="administrativeStatus"]/string()
-};
-
-
-declare function term:norm_auth($tig as element(tig)) {
-    $tig/termNote[@type="normativeAuthorization"]/string()
-};
-
-
-declare function term:norm_auth_org($tig as element(tig)) {
-    let $nao := $tig/termNote[@type="normativeAuthorization"]/data(@target)
-    let $org := collection($collection)//refObjectList[@type="respOrg"]/refObject[@id=$nao]/item[@type="org"]/string()
-    return
-        if (exists($org)) then
-            $org
-        else ("")
+declare function term:term($tig as element(tig)) {
+    $tig/term/string()
 };
 
 
@@ -95,13 +71,8 @@ declare function term:concept_origin($tig as element(tig)) {
 };
 
 
-declare function term:orig_person($tig as element(tig)) {
-    string-join($tig/admin[@type="originatingPerson"]/string(), ";;;")
-};
-
-
-declare function term:product_subset($tig as element(tig)) {
-    string-join($tig/admin[@type="productSubset"]/string(), ";;;")
+declare function term:subject_field($tig as element(tig)) {
+    string-join($tig/../../descrip[@type="subjectField"]/string(), ";;;")
 };
 
 
@@ -110,33 +81,8 @@ declare function term:working_status($tig as element(tig)) {
 };
 
 
-declare function term:entry_source($tig as element(tig)) {
-    string-join($tig/admin[@type="entrySource"]/string(), ";;;")
-};
-
-
-declare function term:subject_field($tig as element(tig)) {
-    string-join($tig/../../descrip[@type="subjectField"]/string(), ";;;")
-};
-
-
-declare function term:subordinate_cg($tig as element(tig)) {
-    string-join($tig/../../descrip[@type="subordinateConceptGeneric"]/string(), ";;;")
-};
-
-
-declare function term:superordinate_cg($tig as element(tig)) {
-    string-join($tig/../../descrip[@type="superordinateConceptGeneric"]/string(), ";;;")
-};
-
-
-declare function term:antonym_concept($tig as element(tig)) {
-    string-join($tig/../../descrip[@type="antonymConcept"]/string(), ";;;")
-};
-
-
-declare function term:related_concept($tig as element(tig)) {
-    string-join($tig/../../descrip[@type="relatedConcept"]/string(), ";;;")
+declare function term:orig_person($tig as element(tig)) {
+    string-join($tig/admin[@type="originatingPerson"]/string(), ";;;")
 };
 
 
@@ -160,10 +106,72 @@ declare function term:explanation($tig as element(tig)) {
 };
 
 
+declare function term:entry_source($tig as element(tig)) {
+    string-join($tig/admin[@type="entrySource"]/string(), ";;;")
+};
+
+
+declare function term:product_subset($tig as element(tig)) {
+    string-join($tig/admin[@type="productSubset"]/string(), ";;;")
+};
+
+
+declare function term:subordinate_cg($tig as element(tig)) {
+    string-join($tig/../../descrip[@type="subordinateConceptGeneric"]/string(), ";;;")
+};
+
+
+declare function term:superordinate_cg($tig as element(tig)) {
+    string-join($tig/../../descrip[@type="superordinateConceptGeneric"]/string(), ";;;")
+};
+
+
+declare function term:antonym_concept($tig as element(tig)) {
+    string-join($tig/../../descrip[@type="antonymConcept"]/string(), ";;;")
+};
+
+
+declare function term:related_concept($tig as element(tig)) {
+    string-join($tig/../../descrip[@type="relatedConcept"]/string(), ";;;")
+};
+
+
+declare function term:pos($tig as element(tig)) {
+    $tig/termNote[@type="partOfSpeech"]/string()
+};
+
+
+declare function term:type($tig as element(tig)) {
+    $tig/termNote[@type="termType"]/string()
+};
+
+
+declare function term:admn_sts($tig as element(tig)) {
+    $tig/termNote[@type="administrativeStatus"]/string()
+};
+
+
+declare function term:norm_auth($tig as element(tig)) {
+    $tig/termNote[@type="normativeAuthorization"]/string()
+};
+
+
+declare function term:norm_auth_org($tig as element(tig)) {
+    let $nao := $tig/termNote[@type="normativeAuthorization"]/data(@target)
+    let $org := collection($collection)//refObjectList[@type="respOrg"]/refObject[@id=$nao]/item[@type="org"]/string()
+    return
+        if (exists($org)) then
+            $org
+        else ("")
+};
+
+
 declare function term:xref($tig as element(tig)) {
     string-join($tig/ref[@type="crossReference"]/string(), ";;;")
 };
 
+
+(: Methods :)
 
 declare function term:activity($tx as element(transacGrp)) {
 string-join(

@@ -1,22 +1,43 @@
+mysql-python
+Babel==0.9.6
 Flask==0.6.1
-Flask-Assets
-Flask-Babel
-Flask-Cache
-python-memcached
-Flask-Mail
-Flask-Principal
-Flask-SQLAlchemy
-Flask-Script
+Flask-Assets==0.2.2
+Flask-Babel==0.6
+Flask-Cache==0.3.3
+Flask-Mail==0.6.1
+Flask-Principal==0.2
+Flask-SQLAlchemy==0.15
+Flask-Script==0.3.1
+Jinja2==2.6
+MySQL-python==1.2.3
+Pygments==1.4
+SQLAlchemy==0.7.2
+Sphinx==1.0.7
+WTForms==0.6.3
+Werkzeug==0.7.1
+argparse==1.2.1
+blinker==1.1
+bsddb3==5.1.2
+chardet==1.0.1
+cssmin==0.1.4
+dbxml==2.5.16
+docutils==0.8
+lamson==1.1
+lockfile==0.9.1
+mock==0.7.0rc1
+nose==1.0.0
+python-daemon==1.6
+python-dateutil==1.5
+python-memcached==1.47
+pytz==2010o
+speaklater==1.2
+webassets==0.5
+wsgiref==0.1.2
+
+# Requirements external to PyPi
 
 # Flask-WTF with fixes
 -e hg+https://bitbucket.org/julen/flask-wtf/#egg=flask-wtf
 
 # Flask-DBXML
 -e git://github.com/julen/flask-dbxml.git#egg=flask-dbxml
-bsddb3
-
-cssmin
-
-python-dateutil==1.5
-
-mysql-python

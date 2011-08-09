@@ -83,7 +83,7 @@ def update_code():
         with cd(env.project_path):
 
             run('git pull')
-            run('pip install -E env/ -r requirements.txt' % env)
+            run('pip install -E env/ -r requirements.txt')
 
 
 def install_site():

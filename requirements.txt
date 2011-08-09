@@ -19,7 +19,6 @@ blinker==1.1
 bsddb3==5.1.2
 chardet==1.0.1
 cssmin==0.1.4
-dbxml==2.5.16
 docutils==0.8
 lamson==1.1
 lockfile==0.9.1

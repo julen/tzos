@@ -58,6 +58,7 @@ def bootstrap():
                     with settings(warn_only=True):
                         run('mkdir -m a+w logs')
                         run('mkdir -m g+w tzos/dbs')
+                        run('mkdir -m g+w tzos/dbs/dbxml')
 
     else:
 

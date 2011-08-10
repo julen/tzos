@@ -282,6 +282,14 @@ doitu nahi izanez gero, editatu ``configs/virtualhost.conf`` eta
     Kontuan izan konfigurazio-aldaketek eragina izan dezaten
     ``fab install_site`` exekutatu behar dela.
 
+Azkenik, :abbr:`PO (Portable Object)` formatuan dauden webgunearen itzulpen
+estatikoak konpilatu behar dira. Horretarako ``compile_translations`` agindua
+exekutatu behar da.
+
+.. code-block:: bash
+
+    fab compile_translations
+
 
 Eskuzko urratsak
 ^^^^^^^^^^^^^^^^
@@ -305,6 +313,15 @@ zerbitzari publikoan egitean ere komandoren bat zein beste beharrezkoak dira.
     aukera gehitu beharko diogu ``manage.py`` komando bakoitzaren deiari.
     Edo bestela ``TZOS_CONFIG`` ingurune-aldagaiak konfigurazio-fitxategi
     egokira zuzendu beharko du.
+
+Komandoak exekutatu aurretik, `shell`\ean ingurune birtuala aktibatu behar da:
+
+.. code-block:: bash
+
+    source env/bin/activate
+
+Hortik aurrera komando-lerroaren hasieran ``(env)`` agertuko da. Ingurunetik
+irteteko ``deactivate`` komandoari deitu behar zaio.
 
 Kudeaketa-komandoak ``manage.py`` fitxategiari dei eginez exekutatzen dira.
 Inolako argumenturik gabe deituz gero, eskura dauden komandoen zerrenda
@@ -362,9 +379,9 @@ indizeak sortu beharko dira.
 
     python manage.py add_indexes
     Indexes added successfully.
-    python manage.py add_document -f bootstrap/tzos.xml -d tzos.xml
+    python manage.py add_document -f bootstrap/tzos.xml -d tzos.xml --config=production.py
     Document added successfully.
-    python manage.py add_document -f bootstrap/tzos.xcs -d tzos.xcs
+    python manage.py add_document -f bootstrap/tzos.xcs -d tzos.xcs --config=production.py
     Document added successfully.
 
 Garrantzitsua da gainera goiko dokumentu-izen horiek ezartzea, aplikazioak
@@ -401,8 +418,26 @@ Eskema eta hasierako datuak
 Eskema sortu eta datuak kargatzeko prest dago datu-basea beraz. Horretarako
 ``createall`` eta ``initdb`` komandoak daude eskura.
 
+.. code-block:: bash
+
+    python manage.py createall --config=production.py
+    python manage.py initdb --config=production.py
+
+``initdb`` komandoak hasierako jakintza-arloak eta terminoen jatorriak gehitzeaz
+gain, lehenetsitako erabiltzaile batzuk ere sortuko ditu:
+
+    * admin/admin: administraziorako baimenekin
+    * supervisor/supervisor: gainbegiratzaile baimenekin
+    * corrector/corrector: zuzentzaile baimenekin
+    * member/member: besterik ezeko erabiltzaile erregistratua
+
+Sistemaren administratzailearen lana da hasierako erabiltzaile hauek kudeatzea
+erabilera egokia emateko.
+
 ``dropall`` komandoa ere badago, datu-baseko datuak husteko balio duena,
 baina garapen inguruneetarako da erabilgarria soilik.
+
+Honekin guztiarekin aplikazioa prest dago erabiltzeko.
 
 
 .. rubric:: Oin-oharrak

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TBXXCS name="master" version="0.4">
+    <header>
+        <title>TZOS</title>
+    </header>
+    <languages>
+        <langInfo>
+            <langCode>eu</langCode>
+            <langName>Euskara</langName>
+        </langInfo>
+        <langInfo>
+            <langCode>en</langCode>
+            <langName>English</langName>
+        </langInfo>
+        <langInfo>
+            <langCode>es</langCode>
+            <langName>Español</langName>
+        </langInfo>
+        <langInfo>
+            <langCode>fr</langCode>
+            <langName>Française</langName>
+        </langInfo>
+        <langInfo>
+            <langCode>la</langCode>
+            <langName>Lingua Latina</langName>
+        </langInfo>
+    </languages>
+</TBXXCS>

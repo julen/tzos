@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<martif type="TBX">
+    <martifHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>TZOS</title>
+                <note></note>
+            </titleStmt>
+        </fileDesc>
+        <encodingDesc>
+            <p type="XCSURI">tzos.xcs</p>
+        </encodingDesc>
+    </martifHeader>
+    <text>
+        <body></body>
+        <back>
+            <refObjectList type="respOrg">
+                <refObject id="roid-Euskaltzaindia">
+                    <item type="org">Euskaltzaindia</item>
+                </refObject>
+                <refObject id="roid-EABTB">
+                    <item type="org">Euskararen Aholku Batzordeko Terminologia Batzordea</item>
+                </refObject>
+            </refObjectList>
+        </back>
+    </text>
+</martif>

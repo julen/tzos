@@ -19,7 +19,6 @@ docs/_build/
 !docs/_static/*.png
 
 backups/
-bootstrap/
 
 tzos/production.py
 tzos/tzos.wsgi

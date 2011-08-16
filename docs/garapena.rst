@@ -73,6 +73,8 @@ erabilera orokorreko Werkzeug liburutegia. Werkzeugen oinarritzen denez Flask
 eta TZOSek zuzenean Flask erabiltzen duenez, modu gardenean lan egiten da
 zerbitzaritik datozen eskaeren gainean.
 
+.. _vmt-patroia:
+
 `View`, `Model`, `Template` patroia
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -102,3 +104,42 @@ Txantiloiak (`Template`)
 .. _URLen bideratzea: http://werkzeug.pocoo.org/docs/routing/
 
 
+Python ↔ XQuery elkarrekintza
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Python osagaiak besterik ez daude :ref:`vmt-patroia`\n eta, nahiz eta
+Flask-DBXMLren laguntza izan DBXMLrekiko kudeaketa sinplifikatzeko, ez dago
+modu sinple eta zuzenik XML datuak Python objektuei lotzeko. Horregatik,
+Python objektuak sortu ahal izateko XQuery galderen bidez beharrezko
+informazio guztia pilatzen da eta formatu jakin bateko `string`\a bueltatzen
+da, hortik abiatuta Python objektua sortzeko.
+
+Aplikazioaren zatirik handienean terminoak tartean daudenez, ``Term`` klasea
+da erabilpenik handiena duen klasea. Honen `classmethod` bat arduratzen da
+(``Term.parse`` zehazki) XQuery bidez pasa dakiokeen `string`\a banatu eta
+zatiak atributuei esleitzeaz.
+
+Ekintza hau XQuery galderaren emaitza bati aplikatzeko, Flask-DBXMLren
+``as_callback()`` funtzioari pasatzen zaio atributu gisa. Halere, kontuan izan
+behar da XQuery galderak ``term:values($tig)`` funtzio berezia itzuli behar
+duela, honek sortzen baitu gero ``Term.parse``\k ulertuko duen karaktere-katea.
+
+Adibidez, ondorengo XQuery galderak euskarazko termino publiko guztiak
+eskuratuko lituzke:
+
+.. code-block:: xquery
+
+    import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+    for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="eu"]/tig
+    where term:is_public($tig)
+    order by term:sortkey($tig) ascending, term:term($tig) ascending
+    return term:values($tig, false())
+
+Eta ``Term`` motako objektu bihurtzeko, ondorengo kodea erabil daiteke
+bistatik (demagun galdera ``qs`` aldagaian dagoela)::
+
+    from tzos.extensions import dbxml
+    from tzos.models import Term
+
+    terms = dbxml.session.raw_query(qs).as_callback(Term.parse).all()

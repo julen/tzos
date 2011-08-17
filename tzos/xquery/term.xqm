@@ -289,7 +289,11 @@ declare function term:norm_auth($tig as element(tig)) {
 };
 
 declare function term:norm_auth_org($tig as element(tig)) {
-    $tig/termNote[@type="normativeAuthorization"]/data(@target)
+    let $org := $tig/termNote[@type="normativeAuthorization"]/data(@target)
+    return
+        if (exists($org)) then
+            $org
+        else ("")
 };
 
 declare function term:norm_auth_org_display($tig as element(tig)) {

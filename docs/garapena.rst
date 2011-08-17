@@ -105,7 +105,7 @@ Txantiloiak (`Template`)
 
 
 Python ↔ XQuery elkarrekintza
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 
 Python osagaiak besterik ez daude :ref:`vmt-patroia`\n eta, nahiz eta
 Flask-DBXMLren laguntza izan DBXMLrekiko kudeaketa sinplifikatzeko, ez dago
@@ -127,7 +127,7 @@ duela, honek sortzen baitu gero ``Term.parse``\k ulertuko duen karaktere-katea.
 Adibidez, ondorengo XQuery galderak euskarazko termino publiko guztiak
 eskuratuko lituzke:
 
-.. code-block:: xquery
+.. code-block:: XQuery
 
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 

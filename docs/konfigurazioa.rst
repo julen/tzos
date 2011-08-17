@@ -38,3 +38,18 @@ Gehiegizko log fitxategiak
 
     Log zaharrak alboratzeko beste modu bat babeskopiak egitea eta kopiak
     kargatzea da. Babeskopiak egitean azken log fitxategia gordetzen da soilik.
+
+`Cache` zaharkitua
+    TZOSen `cache`\a erabiltzen da zenbait tokitan, datu-basera egin litezkeen
+    galdera errepikakor eta erredundateak saihesteko, batez ere.
+    Erabiltzaile-mailen arabera ere funtzionaltasuna aktibatu/desaktibatu
+    egiten da: erabiltzaile anonimoek `cache`\ko edukiak ikusiko dituzte
+    askotan.
+
+    `Cache`\a oro har 15 minuturo berritzen da (hasierako orrian, adibidez)
+    baina gerta liteke `cache`\a eskuz garbitzeko beharra izatea. Horrelako
+    kasuetan, Memcached zerbitzaria berrabiarazi behar da.
+
+.. code-block:: bash
+
+    sudo /etc/init.d/memcached restart

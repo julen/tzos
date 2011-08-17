@@ -133,12 +133,14 @@ $(document).ready(function () {
             }, res);
         },
         allowSpaces: true,
+        animate: false,
         singleFieldDelimiter: $DELIM
     });
 
     $('input[id$="entry_source"]').tagit({
         tagSource: $ES_AUTOCOMPLETE_URL,
         allowSpaces: true,
+        animate: false,
         singleFieldDelimiter: $DELIM
     });
 
@@ -151,6 +153,7 @@ $(document).ready(function () {
             }, res);
         },
         allowSpaces: true,
+        animate: false,
         singleFieldDelimiter: $DELIM
     });
 
@@ -163,6 +166,7 @@ $(document).ready(function () {
             }, res);
         },
         allowSpaces: true,
+        animate: false,
         singleFieldDelimiter: $DELIM
     });
 

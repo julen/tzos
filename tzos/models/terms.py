@@ -740,7 +740,7 @@ class Term(object):
         - the term IDs differ
         """
 
-        if term_id:
+        if term_id is not None:
             extra = ' and $tig/data(@id) != "%s"' % term_id
         else:
             extra = ''

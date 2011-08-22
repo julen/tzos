@@ -163,16 +163,20 @@ def add():
 
     form_args = None
 
-    if request.args and 'term' in request.args and 'lang' in request.args:
+    if request.args and 'term' in request.args and \
+       'lang' in request.args and 'sf' in request.args:
         form_args = request.args.copy()
 
+        form_args['add-subject_field'] = request.args.getlist('sf')
         form_args['add-syntrans_term'] = request.args['term']
         form_args['add-syntrans_lang'] = request.args['lang']
         form_args['add-syntrans'] = True
+        form_args['collision-subject_field'] = request.args.getlist('sf')
         form_args['collision-syntrans_term'] = request.args['term']
         form_args['collision-syntrans_lang'] = request.args['lang']
         form_args['collision-syntrans'] = True
 
+        del form_args['sf']
         del form_args['term']
         del form_args['lang']
 

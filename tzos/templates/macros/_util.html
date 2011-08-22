@@ -204,7 +204,7 @@
         </div>
         {%- else %}
         <div class="termAction">
-            <i class="iAdd">[add]</i><a href="{{ url_for('terms.add', lang=term.language, term=term.term) }}">{{ _('Add synonym/translation') }}</a>
+            <i class="iAdd">[add]</i><a href="{{ url_for('terms.add', lang=term.language, term=term.term, sf=term.subject_field) }}">{{ _('Add synonym/translation') }}</a>
         </div>
         {%- endif %}
         <div class="termAction">

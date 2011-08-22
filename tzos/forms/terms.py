@@ -64,16 +64,28 @@ def check_syntrans(form, field):
         raise ValidationError(message)
 
 def check_syntrans_exists(form, field):
+
     if form.syntrans.data and field.data != "":
         message = _(u"This term doesn't exist in the database.")
 
         lang = form.syntrans_lang.data
         term = field.data
+        sfields = form.subject_field.data
 
-        # FIXME: Also check in subject field?
-        qs = u'//langSet[@xml:lang="{0}"]/tig/term[string()="{1}"]'. \
-                format(lang, term)
-        result = dbxml.session.query(qs).as_str().first()
+        qs = '''
+        import module namespace term = "http://tzos.net/term" at "term.xqm";
+
+        for $tig in collection($collection)/martif/text/body/termEntry/langSet[@xml:lang="{0}"]/tig
+        where term:is_public($tig) and
+              term:term($tig) = "{1}" and
+              (let $fields := tokenize(term:subject_field($tig), ";;;")
+              return some $f in $fields satisfies $f = $sfields)
+        return term:term($tig)
+        '''.format(lang, term.encode('utf-8'))
+
+        ctx = {'sfields': sfields}
+
+        result = dbxml.session.raw_query(qs, ctx).as_str().first()
 
         if not result:
             raise ValidationError(message)

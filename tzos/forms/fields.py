@@ -109,6 +109,13 @@ class SubjectField(SelectMultipleFieldDyn):
     user hasn't set any."""
 
     def process_formdata(self, valuelist):
+
+        try:
+            if isinstance(valuelist[0], list):
+                valuelist = valuelist[0]
+        except IndexError:
+            pass
+
         root_codes = list(set([unicode(TermSubject.root_code(c)) \
                 for c in valuelist]))
         root_codes.extend(valuelist)

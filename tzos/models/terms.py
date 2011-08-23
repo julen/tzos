@@ -673,7 +673,7 @@ class Term(object):
         t.subject_field = self.subject_field
         t.syntrans = True
         t.syntrans_term = self.term
-        t.syntrans_language = self.language
+        t.syntrans_lang = self.language
         t.concept_origin = self.concept_origin
         t.originating_person = self.originating_person
         t.transac_type = self.transac_type
@@ -867,7 +867,7 @@ class Term(object):
         #
         if hasattr(self, 'syntrans') and self.syntrans:
             syntrans_term = Term(term=self.syntrans_term)
-            syntrans_term.language = self.syntrans_language
+            syntrans_term.language = self.syntrans_lang
 
             if syntrans_term.has_langset(self.language, txn=txn, commit=commit):
                 template_name = 'xml/new_term.xml'

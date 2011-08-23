@@ -205,11 +205,14 @@ label {
     display: block;
 }
 
-input, textarea {
+input[type!="radio"], textarea {
     background-color: #fff;
     border-color: #848484 #c1c1c1 #e1e1e1;
     border-style: solid;
     border-width: 1px;
+}
+
+input, textarea {
     padding: 0.15em;
 }
 

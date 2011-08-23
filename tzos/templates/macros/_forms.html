@@ -71,7 +71,7 @@
         {%- for field in form.eqterm_fields %}
         <li class="eqField clBoth"{% if not form.errors or field.data == "" %} style="display:none;"{% endif %}>
             {{ render_field(field, class="input in", rel="tipsy-ns", tagged=False) }}
-            <a class="rmEq b"><strong>X</strong></a>
+            <a class="rmEq b"><strong>×</strong></a>
         </li>
         {%- endfor %}
     </ul>
@@ -141,7 +141,7 @@
             </ul>
             <label>{{ _("Column contents") }}</label>
             <ul class="otherFields">
-                <li style="display:none;">{{ form.other_fields(class="input", tag_class="singleLine") }}<a class="rmCol b"><strong>X</strong></a></li>
+                <li style="display:none;">{{ form.other_fields(class="input", tag_class="singleLine") }}<a class="rmCol b"><strong>×</strong></a></li>
             </ul>
             <p><a class="addCol">{{ _("Add column") }}</a></p>
         </div>

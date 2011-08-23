@@ -414,6 +414,8 @@ form.headerSearch input[type=search] {
     background-repeat: no-repeat;
     padding: 5px 5px 5px 25px;
     width: 140px;
+    -webkit-appearance: none;
+    -webkit-box-sizing: content-box;
 }
 
 section#glossary {

@@ -36,6 +36,23 @@ Orokorrak
                                 etorriko da balio hau.
 =============================== =========================================
 
+Zerbitzatzeko modua
+^^^^^^^^^^^^^^^^^^^
+
+=============================== =========================================
+``TZOS_SCRIPT_PREFIX``          Aplikazioak web zerbitzarian daukan
+                                aurrizkia.
+                                Web aplikazioa normalean domeinu edo
+                                azpidomeinuetan instalatzen denez,
+                                ezarpen hau ez dago aldatu beharrik.
+                                Halere, konfigurazio zehatzek aplikazioa
+                                aurrizki baten pean instalatzea eska
+                                lezakete, adibidez ``http://foo.domain.tld/tzos``
+                                azpian. Kasu honetan ``/tzos`` izango
+                                litzateke konfigurazio-gakoaren balioa.
+                                Ez du eraginik besterik zehazten ez bada.
+=============================== =========================================
+
 Biltegiratzea, datu-baseak
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 

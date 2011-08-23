@@ -38,6 +38,7 @@ def create_app(config=None):
 
     configure_app(app, config)
 
+    configure_middlewares(app)
     configure_errorhandlers(app)
     configure_extensions(app)
     configure_before_handlers(app)
@@ -73,7 +74,16 @@ def configure_extensions(app):
     configure_identity(app)
 
 
+def configure_middlewares(app):
+
+    prefix = app.config.get('TZOS_SCRIPT_PREFIX', None)
+    if prefix:
+        from tzos.middlewares import PrefixMiddleware
+        app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix)
+
+
 def configure_errorhandlers(app):
+
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template("errors/404.html")

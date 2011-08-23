@@ -15,7 +15,7 @@ from flask import Module, abort, current_app, flash, g, render_template, \
         redirect, request, url_for
 
 from flaskext.babel import gettext as _, lazy_gettext as _l
-from flaskext.wtf import TextField
+from flaskext.wtf import FieldList, TextField
 
 from tzos.extensions import db, dbxml
 from tzos.forms import AddTermForm, AddTermFormCor, CommentForm, \
@@ -233,12 +233,22 @@ def add():
             msg = _(u'Collision detected!')
             flash(msg, 'warning')
 
+            #
             # Fill in collision form
-            for field in add_form._fields:
-                if field != 'csrf':
-                    val = getattr(add_form, field).data
-                    f = getattr(collision_form, field, None)
-                    setattr(f, 'data', val)
+            #
+            for fname in add_form._fields:
+
+                if fname != 'csrf':
+                    val = getattr(add_form, fname).data
+                    f = getattr(collision_form, fname, None)
+
+                    # FieldLists are tricky
+                    if isinstance(f, FieldList):
+                        f.pop_entry()
+                        for entry in val:
+                            f.append_entry(entry)
+                    else:
+                        f.data = val
 
             return render_template('terms/collision.html',
                     add_form=add_form,

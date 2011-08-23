@@ -234,9 +234,11 @@ def add():
             flash(msg, 'warning')
 
             # Fill in collision form
-            for field in add_form:
-                if field.name != 'csrf':
-                    setattr(collision_form, field.name, field.data)
+            for field in add_form._fields:
+                if field != 'csrf':
+                    val = getattr(add_form, field).data
+                    f = getattr(collision_form, field, None)
+                    setattr(f, 'data', val)
 
             return render_template('terms/collision.html',
                     add_form=add_form,

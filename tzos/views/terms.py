@@ -171,10 +171,12 @@ def add():
         form_args['add-syntrans_term'] = request.args['term']
         form_args['add-syntrans_lang'] = request.args['lang']
         form_args['add-syntrans'] = True
+        form_args['add-transac_type'] = u'input'
         form_args['collision-subject_field'] = request.args.getlist('sf')
         form_args['collision-syntrans_term'] = request.args['term']
         form_args['collision-syntrans_lang'] = request.args['lang']
         form_args['collision-syntrans'] = True
+        form_args['collision-transac_type'] = u'input'
 
         del form_args['sf']
         del form_args['term']

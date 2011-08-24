@@ -18,12 +18,16 @@ configs/production.py
 docs/_build/
 !docs/_static/*.png
 
+tzos/ui_strings.py
+
+#
+# Production stuff
+#
+
 backups/
+env/
+logs/
 
 tzos/production.py
 tzos/tzos.wsgi
-
-tzos/ui_strings.py
-
-env/
-logs/
+tzos/static/jquery.js

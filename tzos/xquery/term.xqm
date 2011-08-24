@@ -34,7 +34,7 @@ return $workingStatus = "starterElement" or $workingStatus = "importedElement"
 
 declare function term:synonyms($tig as element(tig), $unreviewed as xs:boolean?) {
     let $synonyms :=
-        for $syn in $tig/..//tig[term/string() != term:term($tig)]
+        for $syn in $tig/..//tig[data(@id) != $tig/data(@id)]
         let $synID := $syn/data(@id)
         where (if ($unreviewed) then true() else term:is_public($syn))
         return string-join(($synID, term:term($syn)), ";")

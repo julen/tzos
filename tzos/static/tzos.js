@@ -1,6 +1,13 @@
 $(document).ready(function () {
 
     /*
+     * Focus login box on page load
+     */
+
+    $("input#login").focus();
+
+
+    /*
      * Tipsy tooltips
      */
 

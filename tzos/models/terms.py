@@ -723,6 +723,14 @@ class Term(object):
         return self.working_status == u"starterElement" or \
                self.working_status == u"importedElement"
 
+    @property
+    @working_status
+    def is_archived(self):
+        """Returns True if the current term has an elementWorkingStatus
+        with a value of `archiveElement`."""
+
+        return self.working_status == u"archiveElement"
+
 
     #
     # CRUD methods and related functions

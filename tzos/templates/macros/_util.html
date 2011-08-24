@@ -216,6 +216,9 @@
     {%- if term.is_unreviewed and not review %}
     <div class="private"><i class="iWarn">[warning]</i>{{ _("This term is unreviewed and is not being publicly displayed.") }}</div>
     {%- endif %}
+    {%- if term.is_archived and not review %}
+    <div class="private"><i class="iWarn">[warning]</i>{{ _("This term is archived and is not being publicly displayed.") }}</div>
+    {%- endif %}
 
 </div>
 {% endmacro %}

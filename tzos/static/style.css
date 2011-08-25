@@ -78,8 +78,7 @@ q { font-style: italic; }
   -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;
   vertical-align:middle; white-space:nowrap;
 }
-.b:hover, button:hover, input[type=submit]:hover,
-{ color:#000; border-color:#666; }
+.b:hover, button:hover, input[type=submit]:hover { color:#000; border-color:#666; }
 
 /* Tables */
 /* ... */

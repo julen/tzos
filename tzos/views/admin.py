@@ -337,29 +337,36 @@ def edit_sfield(id):
 
     if form.validate_on_submit():
 
-        if form.parent_id.data > -1:
+        sfield = TermSubject.query.filter(TermSubject.code==id).first()
+
+        # Make sure it's safe to move the current origin
+        if sfield.can_move_to(form.parent_id.data):
+
             parent_id = form.parent_id.data
+            if parent_id < 0:
+                parent_id = None
+
+            # Iterate over translations and update them
+            translations = [f for f in form if u"name-" in f.name]
+            for field in translations:
+
+                locale = field.name.rsplit(u'-', 1)[1]
+                translation = Translation.query.filter(
+                        db.and_(Translation.id==id,
+                                Translation.locale==locale)).first()
+                translation.text = field.data
+                subject = TermSubject.query.get((id, translation.auto_id))
+                subject.parent_id = parent_id
+
+            db.session.commit()
+
+            flash(_(u"Term subject ‘%(code)s’ has been edited.",
+                    code=id), "success")
+
+            return redirect(url_for("admin.settings"))
         else:
-            parent_id = None
-
-        # Iterate over translations and update them
-        translations = [f for f in form if u"name-" in f.name]
-        for field in translations:
-
-            locale = field.name.rsplit(u'-', 1)[1]
-            translation = Translation.query.filter(
-                    db.and_(Translation.id==id,
-                            Translation.locale==locale)).first()
-            translation.text = field.data
-            subject = TermSubject.query.get((id, translation.auto_id))
-            subject.parent_id = parent_id
-
-        db.session.commit()
-
-        flash(_(u"Term subject ‘%(code)s’ has been edited.",
-                code=id), "success")
-
-        return redirect(url_for("admin.settings"))
+            flash(_(u"Couldn't move subject ‘%(code)s’ to that location.",
+            code=id), "error")
 
     return render_template("admin/edit_sfield.html", form=form)
 

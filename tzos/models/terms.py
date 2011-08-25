@@ -217,6 +217,36 @@ class TermSubject(db.Model):
                         (Translation.locale==locale)) \
                                 .order_by('text').all()
 
+    def is_parent_of(self, subject_id):
+        """Returns `True` if the current term subject is a parent of the
+        subject designated by ``subject_id``. In case ``subject_id`` matches
+        current term subject's code, `True` is returned as well."""
+
+        if self.code == subject_id:
+            return True
+        elif subject_id < 0:
+            return False
+
+        child = TermSubject.query.filter(TermSubject.code==subject_id).first()
+
+        while child.parent_id is not None:
+
+            if child.parent_id == self.code:
+                return True
+
+            child = child.parent
+
+        return False
+
+    def can_move_to(self, new_parent_id):
+        """Returns `True` if the current term subject can be safely moved
+        as a child of ``new_parent_id``."""
+
+        if self.is_parent_of(new_parent_id):
+            return False
+
+        return True
+
 
 class TermChange(object):
 

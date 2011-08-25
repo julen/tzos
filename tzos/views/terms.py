@@ -57,6 +57,11 @@ def _register_transaction(id, type='modification'):
 @terms.route('/<int:id>/')
 def detail(id):
 
+    if hasattr(g, 'user') and g.user.is_corrector:
+        user_restriction = "true()"
+    else:
+        user_restriction = "term:is_public($tig)"
+
     qs = """
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 
@@ -66,10 +71,11 @@ def detail(id):
             true()
         else
             false()
-    where term:owner($tig) = "{1}" or term:is_public($tig)
+    where term:owner($tig) = "{1}" or {2}
     return term:values($tig, $unreviewed)
     """.format(unicode(id).encode('utf-8'),
-               getattr(g.user, 'username', u'').encode('utf-8'))
+               getattr(g.user, 'username', u'').encode('utf-8'),
+               user_restriction)
 
 
     term = dbxml.session.raw_query(qs).as_callback(Term.parse).first_or_404()

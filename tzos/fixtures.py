@@ -107,7 +107,7 @@ ORIGINS = [
         "Ingeniaritza Mekanikoa": [],
     }},
 
-    {"Donostiako Ingeniaritza Eskola": {
+    {"Bilboko Ingeniaritza Eskola": {
         "Industria Elektronikaren eta Automatikaren Ingeniaritza": [],
         "Industria Ingeniari Teknikoa, Elektrizitate espezialitatea": [],
         "Industria Ingeniari Teknikoa, Industria Elektronika espezialitatea": [],

@@ -108,6 +108,37 @@ class TermOrigin(db.Model):
     parent = db.relationship('TermOrigin', remote_side=[id], backref='children')
 
 
+    def is_parent_of(self, origin_id):
+        """Returns `True` if the current term origin is a parent of the origin
+        designated by ``origin_id``. In case ``origin_id`` matches
+        current term origin's id, `True` is returned as well."""
+
+        if self.id == origin_id:
+            return True
+        elif origin_id < 0:
+            return False
+
+        child = TermOrigin.query.get(origin_id)
+
+        while child.parent_id is not None:
+
+            if child.parent_id == self.id:
+                return True
+
+            child = child.parent
+
+        return False
+
+    def can_move_to(self, new_parent_id):
+        """Returns `True` if the current term origin can be safely moved
+        as a child of ``new_parent_id``."""
+
+        if self.is_parent_of(new_parent_id):
+            return False
+
+        return True
+
+
 class TermSource(db.Model):
     __tablename__ = 'sources'
     __table_args__ = {'mysql_engine': 'InnoDB'}

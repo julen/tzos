@@ -211,19 +211,22 @@ def edit_origin(id):
 
     if form and form.validate_on_submit():
 
-        form.populate_obj(origin)
+        # Make sure it's safe to move the current origin
+        if origin.can_move_to(form.parent_id.data):
+            form.populate_obj(origin)
 
-        if form.parent_id.data > -1:
-            origin.parent_id = form.parent_id.data
+            if form.parent_id.data < 0:
+                origin.parent_id = None
+
+            db.session.commit()
+
+            flash(_(u"Term origin ‘%(origin)s’ has been edited.",
+                    origin=origin.name), "success")
+
+            return redirect(url_for("admin.settings"))
         else:
-            origin.parent_id = None
-
-        db.session.commit()
-
-        flash(_(u"Term origin ‘%(origin)s’ has been edited.",
-                origin=origin.name), "success")
-
-        return redirect(url_for("admin.settings"))
+            flash(_(u"Couldn't move origin ‘%(origin)s’ to that location.",
+                    origin=origin.name), "error")
 
     return render_template("admin/edit_origin.html", form=form,
                                                      origin=origin)

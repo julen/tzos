@@ -95,7 +95,7 @@ def login():
 
             next_url = form.next.data
 
-            if not next_url or next_url == request.path:
+            if not next_url or next_url == request.script_root + request.path:
                 next_url = url_for('user.profile', username=user.username)
 
             return redirect(next_url)

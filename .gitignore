@@ -5,6 +5,7 @@
 *.mo
 *.png
 !sprite.png
+!tzos/static/img/fancybox/*.png
 *.pyc
 *.swp
 *.xcf

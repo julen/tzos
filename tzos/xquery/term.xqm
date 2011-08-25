@@ -21,14 +21,14 @@ declare function term:lock($tig as element(tig))
 
 declare function term:is_public($tig as element(tig))
 as xs:boolean {
-let $workingStatus := term:working_status($tig)
-return $workingStatus != "starterElement" and $workingStatus != "importedElement" and $workingStatus != "archiveElement"
+    let $workingStatus := term:working_status($tig)
+    return $workingStatus != "starterElement" and $workingStatus != "importedElement" and $workingStatus != "archiveElement"
 };
 
 declare function term:is_unreviewed($tig as element(tig))
 as xs:boolean {
-let $workingStatus := term:working_status($tig)
-return $workingStatus = "starterElement" or $workingStatus = "importedElement"
+    let $workingStatus := term:working_status($tig)
+    return $workingStatus = "starterElement" or $workingStatus = "importedElement"
 };
 
 

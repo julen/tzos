@@ -57,7 +57,7 @@ def _register_transaction(id, type='modification'):
 @terms.route('/<int:id>/')
 def detail(id):
 
-    if hasattr(g, 'user') and g.user.is_corrector:
+    if g.user and g.user.is_corrector:
         user_restriction = "true()"
     else:
         user_restriction = "term:is_public($tig)"

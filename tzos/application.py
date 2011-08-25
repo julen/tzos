@@ -211,7 +211,7 @@ def configure_assets(app):
                 filters='cssmin', output='tzos-packed.css')
 
     css_admin = Bundle('jquery.fancybox.css',
-                       filters='cssmin', output='tzos-packed.css')
+                       filters='cssmin', output='tzos-admin-packed.css')
 
     assets.register('js_jquery', js_jquery)
     assets.register('js_all', js)

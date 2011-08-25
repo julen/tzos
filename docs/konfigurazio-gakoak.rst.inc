@@ -40,6 +40,10 @@ Zerbitzatzeko modua
 ^^^^^^^^^^^^^^^^^^^
 
 =============================== =========================================
+``TZOS_BEHIND_PROXY``           Aplikazioa instalatuta dagoen web
+                                zerbitzaria proxy baten atzean badago,
+                                ezarpen honen balioak ``True`` izan behar
+                                du. Besterik ezean ``False`` da.
 ``TZOS_SCRIPT_PREFIX``          Aplikazioak web zerbitzarian daukan
                                 aurrizkia.
                                 Web aplikazioa normalean domeinu edo

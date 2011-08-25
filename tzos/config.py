@@ -9,6 +9,7 @@ TZOS_REGISTER_WHITELIST = ('@(\w+\.)*ehu.es$',)
 TZOS_ACTIVATION_DAYS = 5
 TZOS_MAX_UPLOADS = 100
 
+TZOS_BEHIND_PROXY = False
 TZOS_SCRIPT_PREFIX = ''
 
 TZOS_DB_HOME = '/home/julen/dev/tzos/tzos/dbs/'

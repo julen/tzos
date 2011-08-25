@@ -81,6 +81,11 @@ def configure_middlewares(app):
         from tzos.middlewares import PrefixMiddleware
         app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix)
 
+    proxyed = app.config.get('TZOS_BEHIND_PROXY', False)
+    if proxyed:
+        from werkzeug.contrib.fixers import ProxyFix
+        app.wsgi_app = ProxyFix(app.wsgi_app)
+
 
 def configure_errorhandlers(app):
 

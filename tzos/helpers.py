@@ -94,30 +94,6 @@ def require_valid_dict(f):
 
 
 @cache.memoize()
-def get_working_statuses(only_statuses=False):
-    """Returns a list with tuples of all the available working statuses
-    for a term.
-    The tuple elements are status names and localized names.
-
-    :param only_statuses: if set to True, returns a list of status names.
-                          Defaults to False.
-    """
-
-    qs = u"//adminSpec[@name='elementWorkingStatus']/contents/string()"
-    statuses = dbxml.session.query(qs).as_str().all()
-
-    try:
-        status_split = statuses[0].split()
-        # TODO: display localized names
-        # TODO: limit status names depending on user privileges
-        status_list = [s if only_statuses else (s, s) for s in status_split]
-    except IndexError:
-        status_list = []
-
-    return status_list
-
-
-@cache.memoize()
 def get_responsible_orgs():
     """Returns a list with tuples of all the available responsible
     organizations. These organizations are to be used in

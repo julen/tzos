@@ -110,6 +110,7 @@ def get_responsible_orgs():
     return orgs_list
 
 
+@cache.memoize()
 def get_origins_dropdown():
     """Returns a list of (key, value) tuples including all the allowed
     conceptOrigins."""
@@ -136,6 +137,7 @@ def get_origins_dropdown():
     return dropdown
 
 
+@cache.memoize()
 def get_sfields_dropdown(locale):
     """Returns a list of (key, value) tuples including all the allowed
     subjectFields in `locale`."""

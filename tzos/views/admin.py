@@ -195,6 +195,9 @@ def add_origin():
         db.session.add(origin)
         db.session.commit()
 
+        # Invalidate cache
+        cache.delete_memoized('get_origins_dropdown')
+
         flash(_(u"Term origin ‘%(origin)s’ has been added.",
                 origin=origin.name), "success")
     else:
@@ -219,6 +222,9 @@ def edit_origin(id):
                 origin.parent_id = None
 
             db.session.commit()
+
+            # Invalidate cache
+            cache.delete_memoized('get_origins_dropdown')
 
             flash(_(u"Term origin ‘%(origin)s’ has been edited.",
                     origin=origin.name), "success")
@@ -313,6 +319,9 @@ def add_sfield():
                 db.session.add(sf)
                 db.session.commit()
 
+        # Invalidate cache
+        cache.delete_memoized('get_sfields_dropdown')
+
         flash(_(u"Term subject ‘%(code)d’ has been added.",
                 code=sf.code), "success")
     else:
@@ -359,6 +368,9 @@ def edit_sfield(id):
                 subject.parent_id = parent_id
 
             db.session.commit()
+
+            # Invalidate cache
+            cache.delete_memoized('get_sfields_dropdown')
 
             flash(_(u"Term subject ‘%(code)s’ has been edited.",
                     code=id), "success")

@@ -205,6 +205,9 @@ konfigurazio-balioa berrerabiltzeko prestatuta::
     TZOS_DB_HOME = '{{ project_path }}/tzos/dbs/'
     TZOS_BKP_HOME = '{{ project_path }}/backups/'
 
+    TZOS_BEHIND_PROXY = False
+    TZOS_SCRIPT_PREFIX = '/'
+
     TZOS_MYSQL_HOST = 'localhost'
     TZOS_MYSQL_DBNAME = 'tzosdb'
     TZOS_MYSQL_USERNAME = 'tzos'

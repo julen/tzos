@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-08-24 18:29+0200\n"
+"POT-Creation-Date: 2011-08-26 09:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: tzos/application.py:101
+#: tzos/application.py:106
 msgid "You must login to see this page."
 msgstr ""
 
@@ -806,22 +806,22 @@ msgstr ""
 msgid "I want these terms to be public."
 msgstr ""
 
-#: tzos/models/terms.py:229
+#: tzos/models/terms.py:290
 #, python-format
 msgid "Imported term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr ""
 
-#: tzos/models/terms.py:232
+#: tzos/models/terms.py:293
 #, python-format
 msgid "Added term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr ""
 
-#: tzos/models/terms.py:235
+#: tzos/models/terms.py:296
 #, python-format
 msgid "Edited term <a href=\"%(term_url)s\">%(term)s</a>."
 msgstr ""
 
-#: tzos/models/terms.py:243
+#: tzos/models/terms.py:304
 msgid "No activity details available."
 msgstr ""
 
@@ -1495,7 +1495,7 @@ msgstr ""
 msgid "From file"
 msgstr ""
 
-#: tzos/templates/terms/collision.html:6 tzos/views/terms.py:235
+#: tzos/templates/terms/collision.html:6 tzos/views/terms.py:241
 msgid "Collision detected!"
 msgstr ""
 
@@ -1743,47 +1743,57 @@ msgstr ""
 msgid "Term origin ‘%(origin)s’ has been edited."
 msgstr ""
 
-#: tzos/views/admin.py:244
+#: tzos/views/admin.py:228
+#, python-format
+msgid "Couldn't move origin ‘%(origin)s’ to that location."
+msgstr ""
+
+#: tzos/views/admin.py:247
 #, python-format
 msgid "Term source ‘%(source)s’ has been added."
 msgstr ""
 
-#: tzos/views/admin.py:247
+#: tzos/views/admin.py:250
 msgid "Error while adding term source."
 msgstr ""
 
-#: tzos/views/admin.py:264
+#: tzos/views/admin.py:267
 #, python-format
 msgid "Term source ‘%(source)s’ has been edited."
 msgstr ""
 
-#: tzos/views/admin.py:313
+#: tzos/views/admin.py:316
 #, python-format
 msgid "Term subject ‘%(code)d’ has been added."
 msgstr ""
 
-#: tzos/views/admin.py:316
+#: tzos/views/admin.py:319
 msgid "Error while adding subject field. Check the inserted values are correct."
 msgstr ""
 
-#: tzos/views/admin.py:356
+#: tzos/views/admin.py:363
 #, python-format
 msgid "Term subject ‘%(code)s’ has been edited."
 msgstr ""
 
-#: tzos/views/admin.py:425 tzos/views/admin.py:471
+#: tzos/views/admin.py:368
+#, python-format
+msgid "Couldn't move subject ‘%(code)s’ to that location."
+msgstr ""
+
+#: tzos/views/admin.py:435 tzos/views/admin.py:481
 msgid "Error validating form. You may want to reload the page."
 msgstr ""
 
-#: tzos/views/admin.py:460
+#: tzos/views/admin.py:470
 msgid "Backup done successfully."
 msgstr ""
 
-#: tzos/views/admin.py:462
+#: tzos/views/admin.py:472
 msgid "OS error while trying to make the backup."
 msgstr ""
 
-#: tzos/views/admin.py:465
+#: tzos/views/admin.py:475
 msgid "Invalid arguments passed to the backup command."
 msgstr ""
 
@@ -1802,73 +1812,73 @@ msgid ""
 "possible."
 msgstr ""
 
-#: tzos/views/terms.py:97
+#: tzos/views/terms.py:103
 msgid "Separate terms using commas."
 msgstr ""
 
-#: tzos/views/terms.py:101
+#: tzos/views/terms.py:107
 #, python-format
 msgid "Equivalents — %(lang)s"
 msgstr ""
 
-#: tzos/views/terms.py:122
+#: tzos/views/terms.py:128
 #, python-format
 msgid "Equivalent in %(lang)s"
 msgstr ""
 
-#: tzos/views/terms.py:214
+#: tzos/views/terms.py:220
 msgid "Term addition discarded."
 msgstr ""
 
-#: tzos/views/terms.py:230
+#: tzos/views/terms.py:236
 #, python-format
 msgid "Term added successfully. <a href=\"%(url)s\">Go to the term</a>."
 msgstr ""
 
-#: tzos/views/terms.py:260
+#: tzos/views/terms.py:266
 msgid "Error while trying to add some terms."
 msgstr ""
 
-#: tzos/views/terms.py:266
+#: tzos/views/terms.py:272
 msgid "Import action cancelled."
 msgstr ""
 
-#: tzos/views/terms.py:375
+#: tzos/views/terms.py:381
 msgid "Not a valid file."
 msgstr ""
 
-#: tzos/views/terms.py:442
+#: tzos/views/terms.py:448
 msgid ""
 "Collision detected! The renamed term you entered already exists in the "
 "database."
 msgstr ""
 
-#: tzos/views/terms.py:452
+#: tzos/views/terms.py:458
 #, python-format
 msgid "Term ‘%(term)s’ has been edited."
 msgstr ""
 
-#: tzos/views/terms.py:457
+#: tzos/views/terms.py:463
 msgid "Failed to edit term."
 msgstr ""
 
-#: tzos/views/terms.py:460
+#: tzos/views/terms.py:466
 msgid "Failed to edit term. Please review the data you entered is correct."
 msgstr ""
 
-#: tzos/views/terms.py:480
+#: tzos/views/terms.py:486
 msgid "Thanks for your comment."
 msgstr ""
 
-#: tzos/views/terms.py:521
+#: tzos/views/terms.py:527
 msgid "Term accepted."
 msgstr ""
 
-#: tzos/views/terms.py:524
+#: tzos/views/terms.py:530
 msgid "Term rejected."
 msgstr ""
 
-#: tzos/views/terms.py:526
+#: tzos/views/terms.py:532
 msgid "Failed to perform action."
 msgstr ""
 

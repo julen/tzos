@@ -393,7 +393,7 @@ indizeak sortu beharko dira.
 
 .. code-block:: bash
 
-    python manage.py add_indexes
+    python manage.py add_indexes --config=production.py
     Indexes added successfully.
     python manage.py add_document -f bootstrap/tzos.xml -d tzos.xml --config=production.py
     Document added successfully.

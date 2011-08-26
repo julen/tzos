@@ -13,8 +13,6 @@ from flask import Module, flash, g, redirect, render_template, request, url_for
 from flaskext.babel import gettext as _
 from flaskext.mail import Message
 
-from babel import Locale
-
 from tzos.extensions import cache, dbxml, mail
 from tzos.forms import ContactForm, SearchForm
 from tzos.helpers import get_dict_langs
@@ -65,9 +63,8 @@ def dict():
     newdict = request.args.get('setdict', None)
 
     if newdict:
-        # FIXME: maybe a helper function could get locale display names
         flash(_(u"From now on your dictionary language is ‘%(dictname)s’.",
-                dictname=Locale.parse(newdict).display_name.capitalize()))
+                dictname=newdict))
 
         return redirect(url_for('frontend.index'))
 

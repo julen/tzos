@@ -339,7 +339,7 @@ def edit_sfield(id):
 
         sfield = TermSubject.query.filter(TermSubject.code==id).first()
 
-        # Make sure it's safe to move the current origin
+        # Make sure it's safe to move the current subject field
         if sfield.can_move_to(form.parent_id.data):
 
             parent_id = form.parent_id.data

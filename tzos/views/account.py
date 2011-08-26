@@ -168,7 +168,6 @@ def change_password():
         flash(_(u"Your password has been changed, "
                 "please log in again."), "success")
 
-        # TODO: if user is already authenticated redirect it to its account page
         return redirect(url_for("account.login"))
 
     return render_template("account/change_password.html", form=form)

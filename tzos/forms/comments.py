@@ -14,7 +14,6 @@ from flaskext.babel import lazy_gettext as _
 
 class CommentForm(Form):
 
-    # TODO: check it's a valid term ID
     term_id = HiddenField(validators=[
                           required(message=_("Term id is required."))])
 

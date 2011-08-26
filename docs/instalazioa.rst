@@ -415,9 +415,9 @@ MySQL datu-basea sortzea
 ''''''''''''''''''''''''
 
 Aurrez MySQL datu-baseekin lan egin duen edonorentzat ohiko urratsa izango da
-datu-base eta erabiltzaile berriak sortzea. Eragiketa `root` gisa egin
-beharko da, hau da, `root` erabiltzaileak abiatu beharko du MySQL kontsola,
-oro har erabiltzaile honek izaten baitu sisteman datu-baseak sortzeko baimena:
+datu-base eta erabiltzaile berriak sortzea. MySQL kontsola `root` erabiltzaile
+gisa abiatu beharko da, oro har erabiltzaile honek izaten baitu sisteman
+datu-baseak sortzeko baimena:
 
 .. code-block:: mysql
 

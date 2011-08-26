@@ -1,3 +1,5 @@
+.. _konfigurazioa:
+
 Konfigurazioa
 =============
 
@@ -14,7 +16,8 @@ ingurune-aldagaia, adibidez::
 .. note::
 
     Aplikazioa ingurune erreal batean ezartzeko prozesua Fabric bidez burutzen
-    bada, `fabfile`\ak behar bezala ezarriko du ingurune-aldagaia.
+    bada, :ref:`instalatzeko prozesuan azaldu bezala <instalazioa-fabric>`,
+    `fabfile`\ak behar bezala ezarriko du ingurune-aldagaia.
 
 
 Konfigurazio-gakoak
@@ -47,9 +50,9 @@ Gehiegizko log fitxategiak
     askotan.
 
     `Cache`\a oro har ``CACHE_DEFAULT_TIMEOUT`` ezarpenak zehaztutako segundoak
-    pasa ondoren berritzen da (hasierako orrian, adibidez) baina gerta liteke
-    `cache`\a eskuz garbitzeko beharra izatea. Horrelako kasuetan, Memcached
-    zerbitzaria berrabiarazi behar da.
+    pasa ondoren berritzen da baina gerta liteke `cache`\a eskuz garbitzeko
+    beharra izatea. Horrelako kasuetan, Memcache zerbitzaria berrabiarazi
+    behar da.
 
 .. code-block:: bash
 

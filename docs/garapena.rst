@@ -12,14 +12,15 @@ desberdineko hainbat teknologia erabili direla. Honen arabera, beharrezko
 ingurunearen ezaugarriak modu batekoak edo bestekoak izango dira.
 
 Aplikazioa nagusiki `Python`_ programazio-lengoaiaz idatzita dago, web
-garapena erraztera zuzendutako `Flask`_ `framework`\a erabiliz. Flask-ek eremu
-egonkor bat eskaintzen du horren gainean nahi ditugun piezekin aplikazioak
-idazteko. Ohiko atazetarako `hedapenak`_ ere badauzka (datu-baseen atzipenerako,
-inprimakien tratamendurako, erabiltzaile-saioen kudeaketarako...), eta
-horietako batzuk ere erabili dira TZOS garatzeko.
+garapena erraztera zuzendutako `Flask`_ `micro framework`\a erabiliz.
+Flask-ek eremu egonkor bat eskaintzen du horren gainean nahi ditugun
+piezekin aplikazioak idazteko. Ohiko atazetarako `hedapenak`_ ere badauzka
+(datu-baseen atzipenerako, inprimakien tratamendurako, erabiltzaile-saioen
+kudeaketarako...), eta horietako batzuk ere erabili dira TZOS garatzeko.
 
-Aldi berean, `Werkzeug`_ izeneko tresna multzo baten gainean dago eraikita Flask.
-Tresna multzo honek Python munduko `WSGI`_ estandarra inplementatzen du
+Aldi berean, `Werkzeug`_ izeneko tresna multzo baten gainean dago eraikita
+Flask. Tresna multzo honek Python munduko `WSGI`_ estandarra inplementatzen
+du eta honen bitartez burutzen du komunikazioa web zerbitzariekin.
 
 Aplikazioaren aurkezpena lantzeko Flask-ek dakarren `Jinja2 txantiloi-motorra`_
 erabili da.
@@ -39,6 +40,8 @@ gomendatzen da.
 Internazionalizazioa eta lokalizazioa `GNUren gettext tresnak`_ erabiliz
 burutzen da nagusiki, `Babel`_ paketearen laguntzaz.
 
+Azkenik, dokumentazio hau `Sphinx`_ tresnaren laguntzaz dago sortuta.
+
 .. _Python: http://python.org/
 .. _Flask: http://flask.pocoo.org/
 .. _hedapenak: http://flask.pocoo.org/extensions/
@@ -53,6 +56,7 @@ burutzen da nagusiki, `Babel`_ paketearen laguntzaz.
 .. _SQLite: http://sqlite.org/
 .. _MySQL: http://mysql.com/
 .. _Babel: http://babel.edgewall.org/
+.. _Sphinx: http://sphinx.pocoo.org/
 
 Arkitektura
 -----------
@@ -103,6 +107,175 @@ Txantiloiak (`Template`)
 
 .. _URLen bideratzea: http://werkzeug.pocoo.org/docs/routing/
 
+Direktorio-egitura
+^^^^^^^^^^^^^^^^^^
+
+Aplikazioak direktorio-egitura oso zehatzean biltzen du kode guztia eta
+erraza da modulu edo funtzionaltasun konkretuak aurkitzea kode barruan.
+
+Laburbilduta, hau litzateke direktorio-egituraren maila goreneko ikuspegi
+orokorra::
+
+    backups/
+    bootstrap/
+    configs/
+    docs/
+    tzos/
+
+Egituraren goi-mailan aplikazioaren instalazioarekin, konfigurazioarekin eta
+mantentze-lanekin lotutako kontuak daude. Dokumentazioa ere aurki daiteke.
+
+Bertako ``manage.py`` `script`\a ezinbestekoa da garapenerako, integratutako
+web zerbitzaria baitauka eta egindako kode-aldaketak automatikoki birkargatzen
+ditu. Oro har ``python manage.py runserver`` izango da erabili nahi den
+komandoa garapenerako zerbitzaria abiarazteko.
+
+Maila honetan, halaber, itzultzeko kateak erauzi, batu eta konpilatzeko
+``gettext.sh`` `script`\a dago. Hiru eragiketa sinple onartzen dira:
+
+    * ``./gettext.sh extract`` komandoarekin azken itzulpenak erauzten dira.
+      Emaitza ``tzos/translations/messages.pot`` txantiloian uzten da.
+    * ``./gettext.sh update`` komandoak, azken txantiloia dagoeneko dauden
+      itzulpenekin batzen du.
+    * ``./gettext.sh compile`` komandoak itzulpenak konpilatzen ditu
+      aplikazioak erabiltzeko moduko formatura.
+
+Mamia ordea ``tzos/`` direktorioaren barruan dago, bertan biltzen baita
+aplikazioaren iturburu-kodea::
+
+    tzos/
+        dbs/
+            dbxml/
+        forms/
+        models/
+        static/
+            img/
+        templates/
+            account/
+            admin/
+            emails/
+            errors/
+            glossary/
+            macros/
+            search/
+            terms/
+            user/
+            xml/
+        translations/
+            en/
+                LC_MESSAGES/
+            eu/
+                LC_MESSAGES/
+        views/
+        xquery/
+
+Azter dezagun direktorio bakoitza banan bana:
+
+``dbs/``
+    Aplikazioaren datu-baseak biltegiratzen dira hemen. Garapen-ingurunean,
+    SQLite datu-basea ere hemen egongo da kokatuta. ``dbxml/``
+    azpidirektorioan DB-XMLren ingurunea dago halaber.
+
+``forms/``
+    Inprimakien eta inprimakietan erabil daitezkeen eremuen definizioak.
+    Gogoratu inprimakien kudeaketarako WTForms liburutegia erabiltzen dela
+    Flask-WTFren bitartez.
+
+    Aplikazioaren modulu bakoitzeko fitxategi bana dago: ``account.py``,
+    ``admin.py``, ``comments.py``...
+
+``models/``
+    Modeloen definizioak.
+
+    Modelo gehienak SQLAlchemyko modeloen azpiklase gisa daude inplementatua
+    (Flask-SQLAlchemy-ko ``db.Model`` heredatuz, zehazki). Salbuespenak
+    ``Term`` eta ``TermChange`` modulu bereziak dira.
+
+    Aplikazioaren modulu bakoitzeko fitxategi bana dago: ``account.py``,
+    ``admin.py``, ``comments.py``...
+
+``static/``
+    Aplikazioaren eduki estatikoak. Irudiak, CSS estilo-orriak eta JavaScript
+    fitxategiak aurki daitezke hemen.
+
+    Produkzio-inguruneetan, CSS eta JavaScript fitxategiak batu egiten dira
+    Flask-Assets erabilita, sareko latentzia minimizatzeko asmoz. Horrela,
+    hainbat fitxategi bakarrean biltzen dira.
+
+    `Asset` edo baliabide estatikoen multzoak kodean definitzen dira,
+    ``application.py`` fitxategiko ``configure_assets()`` metodoan.
+
+    Aplikazioko irudiak `sprite` modura daude, fitxategi bakarrean
+    (``sprite.png``). Horrela irudi bakarra erabiltzen da eta latentzia
+    minimizatzen da aldi berean.
+    Salbuespena Fancybox `plugin`\aren irudiak dira; hauek bere horretan
+    biltegiratzen dira.
+
+``templates/``
+    Jinja formatuko HTML txantiloiak.
+
+    Oinarri gisa erabiltzen ``layout.html`` txantiloi nagusia erabiltzen da
+    eta gainontzeko moduluen txantiloiak hau heredatzen dute. Horrela, itxura
+    uniformea lortzen da, kodea errepikatzeko beharrik gabe.
+
+    Aplikazioaren modulu bakoitzaren txantiloiak direktorio bereiztuetan
+    gordetzen dira, salbuespen batzuekin:
+
+    * ``emails/`` direktorioan posta elektroniko bidez bidaliko diren mezuen
+      txantiloiak daude.
+    * ``errors/`` direktorioan aplikazioaren erroreen ondorioz erakutsiko
+      diren txantiloiak daude: HTTP 404, 401, 501... erroreentzako txantiloiak
+      dira.
+    * ``xml/`` direktorioan XML datu-basean gordeko den XMLa sortzeko
+      txantiloi lagungarriak daude.
+    * `frontend` moduluaren txantiloiak direktorioaren goiko mailan daude,
+      aparteko direktoriorik gabe: ``contact.html``, ``dict.html`` eta
+      ``index.html``.
+
+    Azkenik, ``macros/`` direktorioan Jinja txantiloietan erabil daitezkeen
+    `macro` edo txantiloi-zati berrerabilgarriak daude. Funtzioak bailiran
+    definitzen dira eta HTML kodea itzultzen dute beti.
+
+``translation/``
+    Aplikazioaren itzulpen estatikoak :abbr:`PO (Portable Object)` formatuan.
+
+    Hizkuntza bakoitzak bere azpidirektorioan dauka eta ``LC_MESSAGES``
+    direktorioan daude itzulpen-fitxategiak (konpilatuak eta konpilatu gabeak).
+
+``views/``
+    Aplikazioaren bistak.
+
+    Modulu bakoitzak bere bisten fitxategia dauka. URL eta bisten arteko
+    erlazioa bisten definizioan zehazten da. Adibidez::
+
+        from flask import Module
+
+        example = Module(__name__)
+
+        @example.route('/example/<int:id>/')
+        def hello(id):
+            return "Kaixo mundua, %d naiz!" % (id)
+
+    Aplikazioaren modulu bakoitzeko fitxategi bana dago: ``account.py``,
+    ``admin.py``, ``comments.py``...
+
+``xquery/``
+    XQuery galderetan inporta daitezkeen moduluak.
+
+    Finean ``term.xqm`` modulua bakarrik dago hemen eta terminoekin lan
+    egin eta ataza errepikakorrak sinplifikatzeko funtzio lagungarriak
+    ditu.
+
+    XQuery kodean direktorio honetako moduluak inportatu nahi badira,
+    TZOSen konfigurazio-fitxategiko ``DBXML_BASE_URI`` gakoaren balioak
+    direktorio honetara zuzendu behar du.
+
+    Gero, moduluak XQuery kodean inportatu nahi badira, nahikoa da
+    ondorengoa egitea:
+
+    .. code-block:: xqy
+
+        import module namespace term = "http://tzos.net/term" at "term.xqm";
 
 Python ↔ XQuery elkarrekintza
 -----------------------------
@@ -127,7 +300,7 @@ duela, honek sortzen baitu gero ``Term.parse``\k ulertuko duen karaktere-katea.
 Adibidez, ondorengo XQuery galderak euskarazko termino publiko guztiak
 eskuratuko lituzke:
 
-.. code-block:: XQuery
+.. code-block:: xqy
 
     import module namespace term = "http://tzos.net/term" at "term.xqm";
 

@@ -1,8 +1,10 @@
+.. _instalazioa:
+
 Instalazioa
 ===========
 
 TZOS makina berri batean instalatzeko eman beharreko pausuak azaltzen 
-dira hemen. Instalazioa GNU/Linux sistematarako deskribatuko da.
+dira hemen. Instalazioa Debian GNU/Linux sistematarako deskribatuko da.
 
 .. _sistemaren-beharrak:
 
@@ -59,10 +61,10 @@ DB-XML
 
 DB-XML instalatzeko beharrezkoa da eskuz konpilatzea eta instalatzea.
 Konpilazioa burutu ahal izateko, `build-essential` eta `python-dev`
-paketeaak instalatu beharko dira Debian sistemetan.
+paketeak instalatu beharko dira Debian sistemetan.
 
 Gero `DB-XMLren iturburu-kodea`_ deskargatu behar da (saioa hastea eskatzen
-du) zerbitzarira, artxiboa despaketatu eta instalatzeko.
+du) zerbitzarian, artxiboa despaketatu eta instalatzeko.
 
 .. code-block:: bash
 
@@ -71,7 +73,7 @@ du) zerbitzarira, artxiboa despaketatu eta instalatzeko.
     sh buildall.sh --prefix=/usr/local
 
 Honek DB-XML konpilatuko du urrats bakarrean eta ``/usr/local`` barruan
-instalatuko du guztia.
+instalatuko du guztia. Instalazioa egiteko `root` baimenak beharko dira.
 
 Jarraian DB-XMLren eta Berkeley DBren Python-erako `binding`\ak konpilatu
 eta instalatu behar dira. Berkeley DBren `binding`\ak banaketako paketea
@@ -109,7 +111,7 @@ TZOS modu automatizatuan instala daiteke eta horrela zerbitzariaren
 komando-lerrotik eginkizun minimoak burutuko dira.
 
 Hau horrela izan dadin, `Fabric` izeneko tresna erabiltzen da, `fabfile`
-izeneko fitxategi (`script`) berezi batez lagunduta. `Fabfile` batek
+izeneko fitxategi (`script`) berezi baten laguntzaz. `Fabfile` batek
 zerbitzarian (edo hainbat zerbitzaritan) exekutatuko diren komandoen multzoak
 definitzen ditu. TZOSen iturburuan `fabfile` bat dago instalazio-prozesua
 automatizatzeko eta, beraz, itruburu-kodea eskuratu beharko da ezertan hasi
@@ -118,6 +120,8 @@ aurretik::
     git clone git://github.com/julen/tzos.git
 
 Honek ``tzos`` izeneko direktorio baten azpian utziko du iturburu-kode guztia.
+
+.. _instalazioa-fabric:
 
 `Fabric`\en konfigurazioa
 `````````````````````````
@@ -167,7 +171,7 @@ zehazten dute. Azken ezarpena Apacheren `VirtualHost`\ean erabiliko da
     Beharrezkoa da ``USER`` aldagaian zehaztutako erabiltzaileak `sudo`
     bitartez administrazio-ekintzak burutzeko gaitasuna izatea.
 
-WSGI prozesuak ze erabiltzaile/talderen baitan exekutatuko diren zehazten dute
+WSGI prozesuak zein erabiltzaile/talderen baitan exekutatuko diren zehazten dute
 ``WSGI_USER`` eta ``WSGI_GROUP`` gakoek. Gainontzeko aldagaien balioek bere
 horretan ez lukete arazorik sortu behar Debian sistemetan. Konturatu halaber,
 aplikazioaren beraren konfigurazio-fitxategia ``PROJECT_SETTINGS`` aldagaian
@@ -176,21 +180,22 @@ zehazten dela. Aldagai honen balioa ingurune-aldagai gisa ezarriko da WSGI
 
 `Fabric`\en konfigurazioa burutu ostean, sistemako ``PYTHONPATH``
 ingurune-aldagaian TZOSen iturburu-kodea dagoen direktorioa zehaztu beharko da,
-gerora `Fabric`\ek konfigurazio-modulua bertatik inportatu ahal izateko.
+`Fabric`\ek konfigurazio-modulua bertatik inportatu ahal izateko.
 
 .. code-block:: bash
 
-    export PYTHONPATH=/root/tzos:$PYTHONPATH
+    export PYTHONPATH=/path/to/tzos:$PYTHONPATH
 
 Zerbitzariko konfigurazioa
 ``````````````````````````
 
 Fabric bidez konfigurazio osoa burutzeko, aplikazioak zerbitzarian izango duen
-konfigurazio-fitxategia ere eman behar zaio. Fitxategi hau ``production.py``
-izenarekin kokatu behar da ``configs/`` direktorioan. Azken finean garapenean
-erabiltzen den ``config.py`` fitxategiaren kopia bat da, zerbitzariko
-ingurunera moldatutako konfigurazioarekin eta `fabfile`\ak eskaintzen dituen
-konfigurazio-balioa berrerabiltzeko prestatuta::
+konfigurazio-fitxategia ere eman behar zaio. Bestelakorik ez bada zehaztu
+`Fabric`\en ``PROJECT_SETTINGS`` konfigurazio-gakoan, fitxategi hau
+``production.py`` izenarekin kokatu behar da ``configs/`` direktorioan.
+Azken finean garapenean erabiltzen den ``config.py`` fitxategiaren kopia bat
+da, zerbitzariko ingurunera moldatutako konfigurazioarekin eta `fabfile`\ak
+eskaintzen dituen konfigurazio-balioa berrerabiltzeko prestatuta::
 
     DEBUG = False
 
@@ -251,8 +256,11 @@ konfigurazio-balioa berrerabiltzeko prestatuta::
 
 Konfigurazioa espezifikoa da zerbitzariarentzat eta proiektuaren bideak
 berrerabiltzen dira, `Fabric`\eko konfigurazioan zehaztu bezala. Bertako
-konfigurazioko balioak ``{{`` eta ``}}`` karaktereen artean doaz.
+konfigurazioko balioak ``{{`` eta ``}}`` karaktereen artean doaz. `Jinja
+txantiloi-motorraren sintaxia`_ onartzen da fitxategi honetan beraz.
 
+.. _Jinja txantiloi-motorraren sintaxia:
+    http://jinja.pocoo.org/docs/templates/
 
 `Fabric` komandoak
 ``````````````````
@@ -262,7 +270,7 @@ konfigurazioko balioak ``{{`` eta ``}}`` karaktereen artean doaz.
 
 .. code-block:: bash
 
-    cd tzos
+    cd /path/to/tzos
     fab -l
 
 Bistaratzen diren komandoen artean, ``bootstrap`` erabiliko da hasierako
@@ -283,7 +291,10 @@ doitu nahi izanez gero, editatu ``configs/virtualhost.conf`` eta
 .. note::
 
     Kontuan izan konfigurazio-aldaketek eragina izan dezaten
-    ``fab install_site`` exekutatu behar dela.
+    ``fab update_config touch`` exekutatu behar dela. Lehenengo komandoak
+    konfigurazio-fitxategiak eguneratzen ditu eta bigarrenak Apache
+    zerbitzariari abisatzen dio aldaketak daudela fitxategietan eta
+    kodea birkargatu behar duela.
 
 Azkenik, :abbr:`PO (Portable Object)` formatuan dauden webgunearen itzulpen
 estatikoak konpilatu behar dira. Horretarako ``compile_translations`` agindua
@@ -317,10 +328,12 @@ zerbitzari publikoan egitean ere komandoren bat zein beste beharrezkoak dira.
     Edo bestela ``TZOS_CONFIG`` ingurune-aldagaiak konfigurazio-fitxategi
     egokira zuzendu beharko du.
 
-Komandoak exekutatu aurretik, `shell`\ean ingurune birtuala aktibatu behar da:
+Komandoak exekutatu aurretik, zerbitzariko `shell`\ean ingurune birtuala
+aktibatu behar da:
 
 .. code-block:: bash
 
+    cd /var/www/tzos
     source env/bin/activate
 
 Hortik aurrera komando-lerroaren hasieran ``(env)`` agertuko da. Ingurunetik
@@ -388,7 +401,7 @@ indizeak sortu beharko dira.
     Document added successfully.
 
 Garrantzitsua da gainera goiko dokumentu-izen horiek ezartzea, aplikazioak
-izen horiek erabiltzen baititu zenbait kontsultarako.
+izen horiek erabiltzen baititu zenbait kontsultatan.
 
 SQL
 ```
@@ -403,8 +416,8 @@ MySQL datu-basea sortzea
 
 Aurrez MySQL datu-baseekin lan egin duen edonorentzat ohiko urratsa izango da
 datu-base eta erabiltzaile berriak sortzea. Eragiketa `root` gisa egin
-beharko da, oro har erabiltzaile honek izaten baitu sisteman datu-baseak
-sortzeko baimena:
+beharko da, hau da, `root` erabiltzaileak abiatu beharko du MySQL kontsola,
+oro har erabiltzaile honek izaten baitu sisteman datu-baseak sortzeko baimena:
 
 .. code-block:: mysql
 
@@ -440,7 +453,9 @@ erabilera egokia emateko.
 ``dropall`` komandoa ere badago, datu-baseko datuak husteko balio duena,
 baina garapen inguruneetarako da erabilgarria soilik.
 
-Honekin guztiarekin aplikazioa prest dago erabiltzeko.
+Honekin guztiarekin aplikazioa instalatuta dago. Jarraian,
+:ref:`zerbitzariarekin lotutako konfigurazioa <konfigurazioa>` doitu
+beharko da.
 
 
 .. rubric:: Oin-oharrak

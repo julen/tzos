@@ -24,12 +24,15 @@ Orokorrak
                                 ezartzen bada, ez da inolako egiaztapenik
                                 egingo eta edozein helbide elektronikok
                                 izango du izena emateko aukera.
-                                Besterik ezean ``None`` balioa du.
+                                Besterik zehazten ez bada, ``None``
+                                balioa du.
 ``TZOS_ACTIVATION_DAYS``        Erabiltzaile-kontuak aktibatu arte gehienez
                                 ere igaro daitezkeen egun kopurua.
                                 Egun kopuru hau igarotzen bada eta kontua
                                 oraindik aktibatzeke badago, `iraungita`
                                 dagoela pentsatuko da eta erabiltzaile-izen
+                                hori berriro erregistratzeko moduan egongo
+                                da.
 ``TZOS_MAX_UPLOADS``            Inportazioak egiterakoan, gehienez ere igo
                                 ahal izango den `kontzeptu` kopurua.
                                 CSV fitxategien kasuan lerro kopuruarekin bat
@@ -64,7 +67,9 @@ Biltegiratzea, datu-baseak
 ``TZOS_DB_HOME``                Fitxategi-sisteman datu-baseek daukaten
                                 kokapenaren bide absolutua. SQL
                                 datu-baseen kasuan, SQLiteri bakarrik
-                                eragiten dio ezarpen honek.
+                                eragiten dio ezarpen honek. SQLite soilik
+                                garapen-inguruneetan erabiltzea
+                                gomendatzen da.
 ``TZOS_BKP_HOME``               Fitxategi-sisteman babeskopiak gordetzeko
                                 erabiliko den direktorioaren bide
                                 absolutua.
@@ -86,9 +91,9 @@ DBXML
 
 =============================== =========================================
 ``DBXML_ENV``                   Fitxategi-sisteman DBXML inguruneak
-                                (log fitxategiak + kontainerra) daukan
+                                (log fitxategiak + `container`a) daukan
                                 kokapenaren bide absolutua.
-``DBXML_DATABASE``              Fitxategi-sisteman DBXML kontainer edo
+``DBXML_DATABASE``              Fitxategi-sisteman DBXML `container` edo
                                 datu-baseak daukan kokapenaren bide
                                 absolutua.
                                 Besterik ezean ``default.dbxml`` erabiliko

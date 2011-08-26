@@ -23,7 +23,7 @@ from tzos.forms import AddLanguagesForm, AddTermOriginForm, AddTermSourceForm, \
         ModifyUserPermissionForm
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
         get_sfields_dropdown
-from tzos.models import Term, TermOrigin, TermSource, TermSubject, TermUpload, \
+from tzos.models import TermOrigin, TermSource, TermSubject, TermUpload, \
         Translation, User
 from tzos.permissions import admin as admin_permission
 

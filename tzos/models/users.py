@@ -16,11 +16,11 @@ from werkzeug import cached_property, check_password_hash, generate_password_has
 
 from flask import current_app, url_for
 
-from flaskext.babel import gettext as _, lazy_gettext as _l
+from flaskext.babel import lazy_gettext as _l
 from flaskext.sqlalchemy import BaseQuery
 from flaskext.principal import RoleNeed, UserNeed
 
-from tzos.extensions import db, dbxml
+from tzos.extensions import db
 
 class UserQuery(BaseQuery):
 

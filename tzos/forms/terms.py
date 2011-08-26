@@ -10,8 +10,8 @@
 """
 from flaskext.babel import lazy_gettext as _
 from flaskext.wtf import AnyOf, BooleanField, FieldList, FileField, Form, \
-        HiddenField, NoneOf, Optional, SelectField, SubmitField, \
-        TextAreaField, TextField, ValidationError, regexp, required
+        HiddenField, Optional, SelectField, SubmitField, TextAreaField, \
+        TextField, ValidationError, regexp, required
 
 from tzos.extensions import dbxml
 from tzos.forms.fields import BooleanWorkingField, MultipleTextField, \

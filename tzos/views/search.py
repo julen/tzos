@@ -8,9 +8,7 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Module, g, render_template, request, redirect, url_for
-
-from flaskext.babel import lazy_gettext as _
+from flask import Module, g, render_template, request
 
 from tzos.extensions import dbxml
 from tzos.forms import SearchForm

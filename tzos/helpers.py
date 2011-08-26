@@ -8,18 +8,15 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Markup, _request_ctx_stack, abort, current_app, g, \
-        request, url_for
+from flask import Markup, abort, g, request, url_for
 
 from functools import wraps
 
 from tzos.extensions import cache, dbxml
-from tzos.models import Term, TermOrigin, TermSubject, Translation
+from tzos.models import TermOrigin, TermSubject, Translation
 from tzos import strings
 
 import functools
-import random
-import string
 import types
 
 

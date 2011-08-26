@@ -8,11 +8,10 @@
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.
 """
-from operator import itemgetter
 from time import strftime
 
-from flask import Module, abort, current_app, flash, g, render_template, \
-        redirect, request, url_for
+from flask import Module, current_app, flash, g, render_template, redirect, \
+        request, url_for
 
 from flaskext.babel import gettext as _, lazy_gettext as _l
 from flaskext.wtf import FieldList, TextField
@@ -23,7 +22,7 @@ from tzos.forms import AddTermForm, AddTermFormCor, CommentForm, \
         EditTermFormMod, UploadForm, UploadFormCor
 from tzos.models import Comment, Term, TermUpload
 from tzos.helpers import get_dict_langs, get_origins_dropdown, \
-        get_responsible_orgs, get_sfields_dropdown, require_valid_dict
+        get_responsible_orgs, get_sfields_dropdown
 from tzos.permissions import auth, corrector
 
 terms = Module(__name__)

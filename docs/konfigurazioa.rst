@@ -46,9 +46,10 @@ Gehiegizko log fitxategiak
     egiten da: erabiltzaile anonimoek `cache`\ko edukiak ikusiko dituzte
     askotan.
 
-    `Cache`\a oro har 15 minuturo berritzen da (hasierako orrian, adibidez)
-    baina gerta liteke `cache`\a eskuz garbitzeko beharra izatea. Horrelako
-    kasuetan, Memcached zerbitzaria berrabiarazi behar da.
+    `Cache`\a oro har ``CACHE_DEFAULT_TIMEOUT`` ezarpenak zehaztutako segundoak
+    pasa ondoren berritzen da (hasierako orrian, adibidez) baina gerta liteke
+    `cache`\a eskuz garbitzeko beharra izatea. Horrelako kasuetan, Memcached
+    zerbitzaria berrabiarazi behar da.
 
 .. code-block:: bash
 

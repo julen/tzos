@@ -213,7 +213,7 @@ konfigurazio-balioa berrerabiltzeko prestatuta::
     # Caching
     CACHE_TYPE = "memcached"
     CACHE_MEMCACHED_SERVERS = ["127.0.0.1:11211"]
-    CACHE_DEFAULT_TIMEOUT = 300
+    CACHE_DEFAULT_TIMEOUT = 900
 
     # SQLAlchemy database settings
     SQLALCHEMY_DATABASE_URI = 'mysql://{0}:{1}@{2}/{3}'.format(TZOS_MYSQL_USERNAME,

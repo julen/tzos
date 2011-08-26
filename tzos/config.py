@@ -22,7 +22,7 @@ TZOS_MYSQL_PASSWORD = ''
 
 # Caching
 CACHE_TYPE = "simple"
-CACHE_DEFAULT_TIMEOUT = 300
+CACHE_DEFAULT_TIMEOUT = 900
 
 # SQLAlchemy database settings
 SQLALCHEMY_DATABASE_URI = 'sqlite:////home/julen/dev/tzos/tzos/dbs/tzos.db'

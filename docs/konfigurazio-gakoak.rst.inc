@@ -26,18 +26,21 @@ Orokorrak
                                 izango du izena emateko aukera.
                                 Besterik zehazten ez bada, ``None``
                                 balioa du.
-``TZOS_ACTIVATION_DAYS``        Erabiltzaile-kontuak aktibatu arte gehienez
-                                ere igaro daitezkeen egun kopurua.
-                                Egun kopuru hau igarotzen bada eta kontua
-                                oraindik aktibatzeke badago, `iraungita`
-                                dagoela pentsatuko da eta erabiltzaile-izen
-                                hori berriro erregistratzeko moduan egongo
-                                da.
-``TZOS_MAX_UPLOADS``            Inportazioak egiterakoan, gehienez ere igo
-                                ahal izango den `kontzeptu` kopurua.
-                                CSV fitxategien kasuan lerro kopuruarekin bat
-                                etorriko da balio hau.
+``TZOS_ACTIVATION_DAYS``        Erabiltzaile-kontuak aktibatu arte
+                                gehienez ere igaro daitezkeen egun
+                                kopurua.
+                                Egun kopuru hau igarotzen bada eta
+                                kontua oraindik aktibatzeke badago,
+                                `iraungita` dagoela pentsatuko da eta
+                                erabiltzaile-izen hori berriro
+                                erregistratzeko moduan egongo da.
+``TZOS_MAX_UPLOADS``            Inportazioak egiterakoan, gehienez ere
+                                igo ahal izango den `kontzeptu` kopurua.
+                                CSV fitxategien kasuan lerro
+                                kopuruarekin bat etorriko da balio hau.
 =============================== =========================================
+
+.. tabularcolumns:: |p{6.5cm}|p{8.5cm}|
 
 Zerbitzatzeko modua
 ^^^^^^^^^^^^^^^^^^^
@@ -60,6 +63,8 @@ Zerbitzatzeko modua
                                 Ez du eraginik besterik zehazten ez bada.
 =============================== =========================================
 
+.. tabularcolumns:: |p{6.5cm}|p{8.5cm}|
+
 Biltegiratzea, datu-baseak
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -75,6 +80,8 @@ Biltegiratzea, datu-baseak
                                 absolutua.
 =============================== =========================================
 
+.. tabularcolumns:: |p{6.5cm}|p{8.5cm}|
+
 MySQL
 `````
 
@@ -85,6 +92,8 @@ MySQL
 ``TZOS_MYSQL_USERNAME``         MySQL datu-basearen erabiltzaile-izena.
 ``TZOS_MYSQL_PASSWORD``         MySQL datu-basearen pasahitza.
 =============================== =========================================
+
+.. tabularcolumns:: |p{6.5cm}|p{8.5cm}|
 
 DBXML
 `````

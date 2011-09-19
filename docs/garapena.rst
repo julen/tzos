@@ -277,7 +277,7 @@ Azter dezagun direktorio bakoitza banan bana:
 
         import module namespace term = "http://tzos.net/term" at "term.xqm";
 
-Python ↔ XQuery elkarrekintza
+Python / XQuery elkarrekintza
 -----------------------------
 
 Python osagaiak besterik ez daude :ref:`vmt-patroia`\n eta, nahiz eta

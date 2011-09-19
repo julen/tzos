@@ -458,7 +458,7 @@ Honekin guztiarekin aplikazioa instalatuta dago. Jarraian,
 beharko da.
 
 
-.. rubric:: Oin-oharrak
+.. rubric::
 
 .. [#f1] SSH erabiliz sistemen administraziorako eta aplikazioen ezarpenerako
          komando-lerroko tresna eta Python liburutegia da Fabric.

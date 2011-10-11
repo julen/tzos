@@ -916,7 +916,7 @@ class Term(object):
         ctx = {
             'date': strftime('%Y-%m-%d %H:%M:%S%z'),
             'username': g.user.username,
-            'term_id': dbxml.session.generate_id('term'),
+            'term_id': u"%s%d" % (u"t", dbxml.session.generate_id('term')),
             'subject_field': self.subject_field,
             'concept_origin': self.concept_origin,
             'originating_person': self.originating_person,
@@ -950,7 +950,9 @@ class Term(object):
 
         else:
 
-            ctx.update({'concept_id': dbxml.session.generate_id('concept')})
+            ctx.update({'concept_id': \
+                u"%s%d" % (u"c", dbxml.session.generate_id('concept'))
+            })
             template_name = 'xml/new_concept.xml'
             where = u'/martif/text/body'
 

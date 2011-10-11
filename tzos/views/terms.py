@@ -53,7 +53,7 @@ def _register_transaction(id, type='modification'):
         dbxml.session.insert_as_last(xml, location)
 
 
-@terms.route('/<int:id>/')
+@terms.route('/<id>/')
 def detail(id):
 
     if g.user and g.user.is_corrector:
@@ -382,7 +382,7 @@ def add():
     return render_template('terms/add.html', add_form=add_form,
                                              upload_form=upload_form)
 
-@terms.route('/<int:id>/edit/', methods=('GET', 'POST'))
+@terms.route('/<id>/edit/', methods=('GET', 'POST'))
 @auth.require(401)
 def edit(id):
 
@@ -468,7 +468,7 @@ def edit(id):
     return render_template('terms/edit.html', form=form, term=term)
 
 
-@terms.route("/<int:term_id>/comment/", methods=("POST",))
+@terms.route("/<term_id>/comment/", methods=("POST",))
 @auth.require(401)
 def add_comment(term_id):
 
@@ -507,7 +507,7 @@ def review_ui():
     return render_template('terms/review.html', terms=terms)
 
 
-@terms.route('/<int:id>/review/<any(accept, reject):action>/')
+@terms.route('/<id>/review/<any(accept, reject):action>/')
 @corrector.require(401)
 def review(id, action):
 

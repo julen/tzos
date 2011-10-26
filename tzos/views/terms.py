@@ -39,7 +39,7 @@ def _register_transaction(id, type='modification'):
 
     ctx = {
         'transac_type': type,
-        'date': strftime('%Y-%m-%d %H:%M:%S%z'),
+        'date': strftime('%Y-%m-%dT%H:%M:%S%z'),
         'username': g.user.username
     }
 

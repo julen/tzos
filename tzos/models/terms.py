@@ -914,7 +914,7 @@ class Term(object):
                self.working_status = u'workingElement'
 
         ctx = {
-            'date': strftime('%Y-%m-%d %H:%M:%S%z'),
+            'date': strftime('%Y-%m-%dT%H:%M:%S%z'),
             'username': g.user.username,
             'term_id': u"%s%d" % (u"t", dbxml.session.generate_id('term')),
             'subject_field': self.subject_field,

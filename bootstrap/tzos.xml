@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<martif type="TBX">
+<!DOCTYPE martif SYSTEM "TBXcoreStructV02.dtd">
+<martif type="TBX" xml:lang="eu">
     <martifHeader>
         <fileDesc>
             <titleStmt>
                 <title>TZOS</title>
-                <note></note>
             </titleStmt>
+            <sourceDesc>
+                <p>TZOS datu-basea.</p>
+            </sourceDesc>
         </fileDesc>
         <encodingDesc>
             <p type="XCSURI">tzos.xcs</p>

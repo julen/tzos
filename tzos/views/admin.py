@@ -435,7 +435,11 @@ def export():
 
         result = dbxml.session.raw_query(qs).as_str().first()
 
-        rv = make_response(result)
+        xml = [u'<?xml version="1.0" encoding="UTF-8" ?>',
+               u'<!DOCTYPE martif SYSTEM "TBXcoreStructV02.dtd">']
+        xml.append(result)
+
+        rv = make_response(u"\n".join(xml))
         rv.content_type = 'application/octet-stream'
         rv.mimetype = 'application/xml'
         rv.headers['Content-Disposition'] = 'attachment; filename=tzos.tbx'

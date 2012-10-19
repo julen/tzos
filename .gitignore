@@ -7,6 +7,7 @@
 !sprite.png
 !tzos/static/img/fancybox/*.png
 *.pyc
+*.pyo
 *.swp
 *.xcf
 

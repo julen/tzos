@@ -57,7 +57,8 @@ Zerbitzatzeko modua
                                 ezarpen hau ez dago aldatu beharrik.
                                 Halere, konfigurazio zehatzek aplikazioa
                                 aurrizki baten pean instalatzea eska
-                                lezakete, adibidez ``http://foo.domain.tld/tzos``
+                                lezakete, adibidez
+                                ``http://foo.domain.tld/tzos``
                                 azpian. Kasu honetan ``/tzos`` izango
                                 litzateke konfigurazio-gakoaren balioa.
                                 Ez du eraginik besterik zehazten ez bada.
@@ -100,7 +101,7 @@ DBXML
 
 =============================== =========================================
 ``DBXML_ENV``                   Fitxategi-sisteman DBXML inguruneak
-                                (log fitxategiak + `container`a) daukan
+                                (log fitxategiak + `container`\a) daukan
                                 kokapenaren bide absolutua.
 ``DBXML_DATABASE``              Fitxategi-sisteman DBXML `container` edo
                                 datu-baseak daukan kokapenaren bide

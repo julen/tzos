@@ -20,7 +20,8 @@ Python
     behar dira: `pip`_, `setuptools`_ eta `virtualenv`_.
 Oracle DB-XML
     2.5.16 bertsioa, Python-erako `binding`\ekin konpilatuta. DB-XMLren
-    instalazioari argibide gehiago daude :ref:`beharrak-dbxml` azpiatalean.
+    instalazioari buruzko argibide gehiago daude :ref:`beharrak-dbxml`
+    azpiatalean.
 MySQL
     5.x bertsioa.
 

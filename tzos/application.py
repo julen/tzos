@@ -86,6 +86,17 @@ def configure_middlewares(app):
         from werkzeug.contrib.fixers import ProxyFix
         app.wsgi_app = ProxyFix(app.wsgi_app)
 
+    profile = app.config.get('TZOS_PROFILE', False)
+    if profile:
+        log_filename = app.config.get('TZOS_PROFILE_LOG', 'profile.log')
+        cachegrind_filename = app.config.get('TZOS_PROFILE_CACHEGRIND',
+                                             'profile.cachegrind')
+        from repoze.profile.profiler import AccumulatingProfileMiddleware
+        app.wsgi_app = AccumulatingProfileMiddleware(
+            app.wsgi_app, log_filename=log_filename,
+            cachegrind_filename=cachegrind_filename
+        )
+
 
 def configure_errorhandlers(app):
 

@@ -133,3 +133,21 @@ DBXML
                                 Argibide gehiagorako begiratu Berkeley
                                 DBren dokumentazioa.
 =============================== =========================================
+
+.. tabularcolumns:: |p{6.5cm}|p{8.5cm}|
+
+Bestelakoak
+^^^^^^^^^^^
+=============================== =========================================
+``TZOS_PROFILE``                Errendimenduaren azterketa egiteko ezarri
+                                ``True``. `repoze.profile`_ paketea behar
+                                du eta emaitzak
+                                ``http://zerbitzaria.tld/__profile__``
+                                helbidean araka daitezke.
+``TZOS_PROFILE_LOG``            Errendimenduaren azterketa gordetzeko
+                                fitxategi-izena.
+``TZOS_PROFILE_CACHEGRIND``     Errendimenduaren azterketa gordetzeko
+                                fitxategi-izena, Cachegrind formatuan.
+=============================== =========================================
+
+.. _repoze.profile: http://pypi.python.org/pypi/repoze.profile

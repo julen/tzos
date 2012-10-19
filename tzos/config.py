@@ -20,6 +20,10 @@ TZOS_MYSQL_DBNAME = ''
 TZOS_MYSQL_USERNAME = ''
 TZOS_MYSQL_PASSWORD = ''
 
+TZOS_PROFILE = False
+TZOS_PROFILE_LOG = '/home/julen/dev/tzos/profile.log'
+TZOS_PROFILE_CACHEGRIND = '/home/julen/dev/tzos/profile.cachegrind'
+
 # Caching
 CACHE_TYPE = "simple"
 CACHE_DEFAULT_TIMEOUT = 900

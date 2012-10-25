@@ -378,6 +378,13 @@ ingurune birtualetik kanpo daude eta kopiatu egin behar dira (instalatzean
     cp -a /usr/local/lib/python2.6/dist-packages/bsddb3* /var/www/tzos/env/lib/python2.6/site-packages/
     cp /usr/local/lib/python2.6/dist-packages/*dbxml* /var/www/tzos/env/lib/python2.6/site-packages/
 
+``bsddb3`` paketea `egg` batean datorrenez, ingurune birtualari berau
+aurkitzeko modua eman behar diogu. Horretarako
+*/var/www/tzos/env/lib/python2.6/site-packages/easy_install.pth* fitxategia
+editatu behar da eta ondorengoa gehitu ``import`` lerroen artean::
+
+    ./bsddb3-4.8.1-py2.6-linux-i686.egg
+
 
 DB-XML
 ``````
@@ -401,8 +408,10 @@ indizeak sortu beharko dira.
     python manage.py add_document -f bootstrap/tzos.xcs -d tzos.xcs --config=production.py
     Document added successfully.
 
-Garrantzitsua da gainera goiko dokumentu-izen horiek ezartzea, aplikazioak
-izen horiek erabiltzen baititu zenbait kontsultatan.
+Garrantzitsua da gainera goiko dokumentu-izen horiek ezartzea, aplikazioak izen
+horiek erabiltzen baititu zenbait kontsultatan. Aldi berean, lehenengo
+dokumentua gehitzeko (*tzos.xml*) beharrezkoa izango da uneko direktoriora
+*TBXcoreStructV02.dtd* DTD fitxategia kopiatzea.
 
 SQL
 ```

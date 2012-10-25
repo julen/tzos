@@ -127,6 +127,7 @@ def settings():
             'backup_form': backup_form }
     return render_template("admin/settings.html", **ctx)
 
+
 @admin.route('/users/', methods=('POST',))
 @admin_permission.require(401)
 def users():
@@ -145,6 +146,7 @@ def users():
         flash(_(u"Error while updating permissions."), "error")
 
     return redirect(url_for("admin.settings"))
+
 
 @admin.route('/languages/', methods=('POST',))
 @admin_permission.require(401)
@@ -180,6 +182,7 @@ def languages():
 
     return redirect(url_for("admin.settings"))
 
+
 @admin.route('/origin/add/', methods=('POST',))
 @admin_permission.require(401)
 def add_origin():
@@ -204,6 +207,7 @@ def add_origin():
         flash(_(u"Error while adding term origin."), "error")
 
     return redirect(url_for("admin.settings"))
+
 
 @admin.route('/origin/edit/<int:id>/', methods=('GET','POST'))
 @admin_permission.require(401)
@@ -256,6 +260,7 @@ def add_source():
         flash(_(u"Error while adding term source."), "error")
 
     return redirect(url_for("admin.settings"))
+
 
 @admin.route('/source/edit/<int:id>/', methods=('GET','POST'))
 @admin_permission.require(401)
@@ -405,6 +410,7 @@ def _get_export_filters(form, or_filter=False):
         rv = u"not ({0})".format(rv)
 
     return rv
+
 
 @admin.route('/export/', methods=('POST',))
 @admin_permission.require(401)

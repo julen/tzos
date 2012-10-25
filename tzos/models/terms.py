@@ -38,7 +38,7 @@ class TermUpload(db.Model):
                           nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     deleted = db.Column(db.Boolean, default=False)
-    terms = db.Column(DenormalizedText)
+    terms = db.Column(DenormalizedText(coerce=str))
 
     author = db.relation(User, innerjoin=True, lazy="joined")
 

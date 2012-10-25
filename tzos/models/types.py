@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    tzos.models.comments
+    tzos.models.types
     ~~~~~~~~~~~~~~~~~~~~
 
-    Comment models.
+    DB types.
 
     :copyright: (c) 2011 Julen Ruiz Aizpuru.
     :license: BSD, see LICENSE for more details.

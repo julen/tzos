@@ -214,8 +214,8 @@ Azter dezagun direktorio bakoitza banan bana:
 ``templates/``
     Jinja formatuko HTML txantiloiak.
 
-    Oinarri gisa erabiltzen ``layout.html`` txantiloi nagusia erabiltzen da
-    eta gainontzeko moduluen txantiloiak hau heredatzen dute. Horrela, itxura
+    Oinarri gisa ``layout.html`` txantiloi nagusia erabiltzen da eta
+    gainontzeko moduluen txantiloiak hau heredatzen dute. Horrela, itxura
     uniformea lortzen da, kodea errepikatzeko beharrik gabe.
 
     Aplikazioaren modulu bakoitzaren txantiloiak direktorio bereiztuetan
